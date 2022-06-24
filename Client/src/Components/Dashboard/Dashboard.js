@@ -435,6 +435,7 @@ class Dashboard extends Component {
                           <Autocomplete
                             disablePortal
                             id="contractType"
+							source="ContractType"
                             options={this.state.contractTypes}
                             sx={{ width: 300 }}
                             value={this.state.contractType}
