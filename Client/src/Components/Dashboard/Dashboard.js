@@ -32,6 +32,7 @@ import EnergySavingsLeafOutlinedIcon from "@mui/icons-material/EnergySavingsLeaf
 import "./Dashboard.css";
 
 import clientDetailService from './ClientDetailService';
+import industoryService from './IndustoryService';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -413,7 +414,9 @@ class Dashboard extends Component {
                       <Typography>Who is the client?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
+					<form onSubmit={this.handleSubmit}>
                       <Row md={12} className="rowSeprator">
+					  
                         <Col md={12}>
                           <TextField
                             id="clientName"
@@ -422,7 +425,7 @@ class Dashboard extends Component {
                             size="small"
                             fullWidth
                             value={this.state.clientName}
-                            onChange={this.handleInputNameChange.bind(this)}
+                            onChange={this.handleInputNameChange.bind(this); this.handleChange.bind(this);}
                           />
                         </Col>
                       </Row>
@@ -437,7 +440,7 @@ class Dashboard extends Component {
                             value={this.state.contractType}
                             getOptionLabel={(option) => option}
                             onChange={(event, value) => {
-                              this.handleContractTypeChange(value);
+                              this.handleContractTypeChange(value);this.handleChange.bind(this);
                             }}
                             // onChange={this.handleContractTypeChange.bind(this)}
                             renderInput={(params) => (
@@ -456,7 +459,7 @@ class Dashboard extends Component {
                               id="Lifeworks"
                               style={{ float: "left" }}
                               checked={this.state.isLifeworks}
-                              onChange={this.handleLifeworksChange.bind(this)}
+                              onChange={this.handleLifeworksChange.bind(this);this.handleChange.bind(this);}
                             />
                             <span className="switchLabel"> Lifeworks? *</span>
                           </div>
@@ -539,8 +542,9 @@ class Dashboard extends Component {
                           >
                             Next
                           </Fab>
-                        </Col>
+                        </Col>						
                       </Row>
+					  </form>
                     </AccordionDetails>
                   </Accordion>
                 </Row>
