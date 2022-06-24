@@ -16,6 +16,12 @@ import QuotesIcon from "../../assets/svg/Quotes";
 import homePageImg from "../../assets/img/homePageImg.png";
 import Dots from "../../assets/svg/Dots";
 import Alert from "../Alert/Alert";
+
+import registerServiceWorker from './registerServiceWorker';
+
+import ItemService from './ItemService';
+
+
 class Home extends Component {
   constructor(props) {
     super(props);

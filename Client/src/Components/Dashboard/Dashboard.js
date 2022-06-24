@@ -30,6 +30,9 @@ import Slider from "@mui/material/Slider";
 import Alert from "../Alert/Alert";
 import EnergySavingsLeafOutlinedIcon from "@mui/icons-material/EnergySavingsLeafOutlined";
 import "./Dashboard.css";
+
+import clientDetailService from './ClientDetailService';
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -127,7 +130,34 @@ class Dashboard extends Component {
       contractType: null,
       clientName: "",
     };
+	
+	super(props);
+        this.state = {
+            value: '',
+			value: false,
+			value: '',
+			value: '',
+			value: 0,
+			value: 0,
+			value: '',
+        }
+        this.addService = new clientDetailService();
   }
+  
+  
+
+    handleChange = (event) => {
+        this.setState({
+            value: event.target.value
+        })
+    }
+
+    handleSubmit = (event) => {
+        //alert(this.state.value);
+        event.preventDefault();
+        this.addService.sendData(this.state.value);
+        this.props.history.push('/');
+    }
 
   mobileToggle(navClass, e) {
     if (navClass === "navbar") {
