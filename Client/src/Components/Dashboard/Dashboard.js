@@ -1,72 +1,75 @@
+import EnergySavingsLeafOutlinedIcon from "@mui/icons-material/EnergySavingsLeafOutlined";
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
+import Avatar from "@mui/material/Avatar";
 import React, { Component } from "react";
+import { Col, Row } from "react-bootstrap";
+import "../../assets/css/style.css";
 import aramarkLogo from "../../assets/img/aramarkLogo.png";
+import homePageImg from "../../assets/img/homePageImg.png";
+import QuotesIcon from "../../assets/svg/Quotes";
 import "../../assets/vendor/aos/aos.css";
-import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
 import "../../assets/vendor/bootstrap-icons/bootstrap-icons.css";
+import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
 import "../../assets/vendor/boxicons/css/boxicons.min.css";
 import "../../assets/vendor/glightbox/css/glightbox.min.css";
 import "../../assets/vendor/remixicon/remixicon.css";
 import "../../assets/vendor/swiper/swiper-bundle.min.css";
-import "../../assets/css/style.css";
-import QuotesIcon from "../../assets/svg/Quotes";
-import homePageImg from "../../assets/img/homePageImg.png";
-import Avatar from "@mui/material/Avatar";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import Switch from "@mui/material/Switch";
-// import Accordion from "../Accordion/Accordion";
-import { Button, Col, Row } from "react-bootstrap";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import Fab from "@mui/material/Fab";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import LocalAtmIcon from "@mui/icons-material/LocalAtm";
-import Chip from "@mui/material/Chip";
-import FaceIcon from "@mui/icons-material/Face";
-import Slider from "@mui/material/Slider";
+import AccordionCmp from "../Accordion/AccordionCmp";
+import ClientDetailService from "../Accordion/ClientDetailService";
 import Alert from "../Alert/Alert";
-import EnergySavingsLeafOutlinedIcon from "@mui/icons-material/EnergySavingsLeafOutlined";
 import "./Dashboard.css";
 
-import clientDetailService from './ClientDetailService';
-import industoryService from './IndustoryService';
-
+import CostConsciousnes from "../../assets/img/Cost-Consciousnes.png";
+import CommunityInvolvement from "../../assets/img/Community-Involvement.png";
+import DEI from "../../assets/img/DEI.png";
+import LeadershipVisibility from "../../assets/img/Leadership-Visibility.png";
+import OperationalResults from "../../assets/img/Operational-Results.png";
+import ProactiveInnovation from "../../assets/img/Proactive-Innovation.png";
+import RightTeamOnTheGround from "../../assets/img/Right-Team-On-The-Ground.png";
+import Sustainability from "../../assets/img/Sustainability.png";
 class Dashboard extends Component {
+  accordianCmpntRef = [];
+
   constructor(props) {
     super(props);
+
     this.state = {
       navbarClass: "navbar",
       mobileNavToggle: "bi bi-list mobile-nav-toggle",
       contractType: [],
-      blocks: [
+      steps: [
         {
           id: 1,
-          title: "Who is the client?",
-          body: null,
+          title: "Tell us about your prospect",
+          data: null,
           expanded: false,
           backgroundColor: "#808080",
         },
         {
           id: 2,
           title: "What is important to them?",
-          body: "Form 2",
-          expanded: true,
+          data: null,
+          expanded: false,
           backgroundColor: "#000080",
         },
         {
           id: 3,
           title: "How do they envision the dining experience?",
-          body: "Form 3",
+          data: null,
           expanded: false,
           backgroundColor: "#A93226",
         },
         {
           id: 4,
           title: "What additional services will best support this experience?",
-          body: "Form 4",
+          data: null,
+          expanded: false,
+          backgroundColor: "#16A085",
+        },
+        {
+          id: 5,
+          title: "Supporting Question?",
+          data: null,
           expanded: false,
           backgroundColor: "#16A085",
         },
@@ -113,7 +116,9 @@ class Dashboard extends Component {
       ],
       anticipatedRevenue: 0,
       isIndustryType: false,
+      theme: false,
       population: 0,
+      selectedAccordian: 0,
       contractTypes: ["Subsidy", "P&L", "Cost+", "Other"],
       industryTypes: [
         "Technology",
@@ -126,39 +131,69 @@ class Dashboard extends Component {
         "RealEstate",
         "ServiceAgency",
       ],
+      winThemesData: [
+        {
+          theme: "Cost-Consciousness",
+          icon: <LocalAtmIcon style={{ margin: "-0.4em 0 0 0" }} />,
+          img: CostConsciousnes,
+        },
+        {
+          theme: "Leadership-Visibility",
+          icon: <Avatar />,
+          img: LeadershipVisibility,
+        },
+        {
+          theme: "Operational-Results",
+          icon: <Avatar />,
+          img: OperationalResults,
+        },
+        {
+          theme: "Right-Team-On-The-Ground",
+          icon: <Avatar />,
+          img: RightTeamOnTheGround,
+        },
+        {
+          theme: "Proactive-Innovation",
+          icon: <Avatar />,
+          img: ProactiveInnovation,
+        },
+        // {
+        //   theme: "Deep-Client-Understanding",
+        //   icon: <Avatar />,
+        //   img: CostConsciousnes,
+        // },
+        { theme: "DEI", icon: <Avatar />, img: DEI },
+        {
+          theme: "Sustainability",
+          icon: (
+            <EnergySavingsLeafOutlinedIcon style={{ margin: "-0.4em 0 0 0" }} />
+          ),
+          img: Sustainability,
+        },
+        {
+          theme: "Community-Involvement",
+          icon: <Avatar />,
+          img: CommunityInvolvement,
+        },
+      ],
       userSelectedIndustryType: [],
-      isLifeworks: false,
-      contractType: null,
-      clientName: "",
+      userSelectedThemes: [],
+      // isLifeworks: false,
+      // contractType: null,
+      // clientName: "",
+      // expanded: "",
+      formData: null,
+      step1Data: null,
+      step2Data: null,
+      step3Data: null,
+      step4Data: null,
+      accordiondisabled: false,
+      isThemesErrorMsg: false,
+      total: 0,
+      isCalculations: false,
     };
-	
-	super(props);
-        this.state = {
-            value: '',
-			value: false,
-			value: '',
-			value: '',
-			value: 0,
-			value: 0,
-			value: '',
-        }
-        this.addService = new clientDetailService();
+    this.clientDetails = new ClientDetailService();
   }
-  
-  
-
-    handleChange = (event) => {
-        this.setState({
-            value: event.target.value
-        })
-    }
-
-    handleSubmit = (event) => {
-        //alert(this.state.value);
-        event.preventDefault();
-        this.addService.sendData(this.state.value);
-        this.props.history.push('/');
-    }
 
   mobileToggle(navClass, e) {
     if (navClass === "navbar") {
@@ -174,93 +209,162 @@ class Dashboard extends Component {
     }
   }
 
-  toggle(id, data) {
+  toggle(id) {
+    let index = "";
     this.setState((prevState, props) => {
-      const index = prevState.blocks.findIndex((item) => item.id === id);
-
-      prevState.blocks[index].expanded = !prevState.blocks[index].expanded;
-
-      return { blocks: prevState.blocks };
+      index = prevState.steps.findIndex((item) => item.id === id);
+      // for (let i = 0; i < prevState.steps.length; i++) {
+      //   if (index === i) {
+      //     prevState.steps[i].expanded = true;
+      //   } else {
+      //     prevState.steps[i].expanded = false;
+      //   }
+      // }
+      prevState.steps[index].expanded = !prevState.steps[index].expanded;
+      this.showCalculations(id, prevState.steps[index].expanded, index);
+      if (prevState.steps[index].expanded === false) {
+        return { steps: prevState.steps, selectedAccordian: 0 };
+      } else {
+        return { steps: prevState.steps, selectedAccordian: id };
+      }
     });
   }
-
-  nextAccoordianOpen(id, data) {
+  showCalculations(id, isCalculation, index) {
+    console.log("id ", id);
+    console.log("isCalculation ", isCalculation);
+    console.log("index ", index);
+    if (
+      id === 1 &&
+      this.state.steps[index].data === null &&
+      isCalculation === false
+    ) {
+      this.setState({
+        isCalculations: false,
+      });
+    } else {
+      this.setState({
+        isCalculations: true,
+      });
+    }
+  }
+  nextAccoordianOpen(id) {
+    console.log("id ", id);
     this.setState((prevState, props) => {
-      const index = prevState.blocks.findIndex((item) => item.id === id);
-      prevState.blocks[index].expanded = !prevState.blocks[index].expanded;
-      prevState.blocks[index + 1].expanded =
-        !prevState.blocks[index + 1].expanded;
+      const index = prevState.steps.findIndex((item) => item.id === id);
+      console.log("index ", index);
+      prevState.steps[index].expanded = !prevState.steps[index].expanded;
+      prevState.steps[index + 1].expanded =
+        !prevState.steps[index + 1].expanded;
 
-      return { blocks: prevState.blocks };
+      return {
+        steps: prevState.steps,
+      };
+    });
+    this.setState({
+      selectedAccordian: id,
     });
   }
   valuetext(value) {
     return `${value}`;
   }
-  handleInputNameChange(e) {
-    this.setState({
-      clientName: e.target.value,
+  toPreviousStep(id) {
+    console.log("id ", id);
+    this.setState((prevState, props) => {
+      const index = prevState.steps.findIndex((item) => item.id === id);
+      console.log("index ", index);
+      // prevState.blocks[index].expanded = !prevState.blocks[index].expanded;
+      prevState.steps[index - 1].expanded =
+        !prevState.steps[index - 1].expanded;
+      prevState.steps[index].expanded = false;
+
+      return { steps: prevState.steps };
     });
   }
 
-  handleContractTypeChange(contractType) {
-    this.state.contractType = contractType;
-    this.setState({
-      contractType: contractType,
-    });
-    if (undefined !== this.state.onChange && null !== this.state.onChange) {
-      this.state.onChange(this.state);
+  createClient(id) {
+    for (let i = 0; i < this.accordianCmpntRef.length; i++) {
+      if (i === id) {
+        if (
+          this.accordianCmpntRef[i].current.state.clientName === "" ||
+          this.accordianCmpntRef[i].current.state.clientName.length > 255
+        ) {
+          Alert.error("Enter client name,0-255 characters");
+          document.getElementById("clientName").focus();
+        } else if (
+          this.accordianCmpntRef[i].current.state.contractType === null
+        ) {
+          Alert.error("Choose a contract type");
+          document.getElementById("contractType").focus();
+        } else if (
+          this.accordianCmpntRef[i].current.state.industryType === null
+        ) {
+          Alert.error("Select at least one industry type");
+          document.getElementById("industryType").focus();
+          // for (
+          //   let i = 0;
+          //   i < this.accordianCmpntRef[i].current.state.industryTypes.length;
+          //   i++
+          // ) {
+          //   document.getElementById("industryBtn" + i).style.border =
+          //     "1px solid red";
+          // }
+        } else if (
+          this.accordianCmpntRef[i].current.state.anticipatedRevenue === 0
+        ) {
+          Alert.error("Select the anticipated revenue");
+          document.getElementById("AnticipatedRevenue").focus();
+        } else if (this.accordianCmpntRef[i].current.state.population === 0) {
+          Alert.error("Estimate the population");
+          document.getElementById("Population").focus();
+        } else {
+          let obj = {
+            ClientName: this.accordianCmpntRef[i].current.state.clientName,
+            ContractType: this.accordianCmpntRef[i].current.state.contractType,
+            LifeWorks: this.accordianCmpntRef[i].current.state.isLifeworks,
+            AnticipatedRevenue:
+              this.accordianCmpntRef[i].current.state.anticipatedRevenue,
+            Population: this.accordianCmpntRef[i].current.state.population,
+            IndustrTypes:
+              this.accordianCmpntRef[i].current.state.userSelectedIndustryType,
+          };
+          // this.clientDetails.sendData(obj);
+          this.state.steps[i].data = {};
+          this.setState({
+            selectedAccordian: 2,
+          });
+          this.nextAccoordianOpen(this.state.steps[i].id);
+        }
+      }
     }
   }
-  handleLifeworksChange(e) {
-    this.setState({
-      isLifeworks: e.target.checked,
-    });
-  }
-  // handleAnticipatedRevenueChange(e) {
-  //   this.setState({
-  //     anticipatedRevenue: e.target.value,
-  //   });
-  // }
-
-  handleAnticipatedRevenueChange = (e, data) => {
-    this.setState({
-      anticipatedRevenue: data,
-    });
-  };
-  handlePopulationChange = (e, data) => {
-    this.setState({
-      population: data,
-    });
-  };
-
-  createClient() {
-    if (this.state.clientName === "") {
-      Alert.error("Name is required");
-      document.getElementById("clientName").focus();
-    } else if (this.state.contractType === null) {
-      Alert.error("Contract Type is required");
-      document.getElementById("contractType").focus();
-    } else if (this.state.isLifeworks === false) {
-      Alert.error("Lifeworks is should be true");
-      document.getElementById("Lifeworks").focus();
-    } else if (this.state.anticipatedRevenue === 0) {
-      Alert.error("Anticipated Revenue is required more than zero");
-      document.getElementById("AnticipatedRevenue").focus();
-    } else if (this.state.population === 0) {
-      Alert.error("population is required more than zero");
-      document.getElementById("Population").focus();
-    } else if (this.state.userSelectedIndustryType.length === 0) {
-      Alert.error("Industry types is required");
-      document.getElementById("industry_Type").focus();
-    } else {
-      let obj = {
-        name: this.state.clientName,
-        contractType: this.state.contractType,
-        isLifeworks: this.state.isLifeworks,
-        anticipatedRevenue: this.state.anticipatedRevenue,
-        population: this.state.population,
-      };
+  addWinthemes(id) {
+    console.log(
+      "themes log ",
+      this.accordianCmpntRef[id].current.state.userSelectedThemes
+    );
+    for (let i = 0; i < this.accordianCmpntRef.length; i++) {
+      if (i === id) {
+        if (
+          this.accordianCmpntRef[i].current.state.userSelectedThemes.length ===
+          0
+        ) {
+          for (let i = 0; i < this.state.winThemesData.length; i++) {
+            document.getElementById("themesBtn" + i).style.border =
+              "1px solid red";
+          }
+          this.setState({
+            isThemesErrorMsg: true,
+          });
+        } else {
+          let inputObj = {
+            userSelectedThemes:
+              this.accordianCmpntRef[i].current.state.userSelectedThemes,
+          };
+          this.state.steps[i].data = {};
+          this.setState({});
+          this.nextAccoordianOpen(this.state.steps[i].id);
+        }
+      }
     }
   }
   selectIndustry(e, industry, index) {
@@ -268,7 +372,7 @@ class Dashboard extends Component {
     let industries = this.state.userSelectedIndustryType;
     if (checked === true) {
       document.getElementById("industryBtn" + index).style.backgroundColor =
-        "red";
+        "#EB2035";
       industries.push(industry);
       this.setState({
         userSelectedIndustryType: industries,
@@ -285,502 +389,344 @@ class Dashboard extends Component {
         }
       }
     }
+  }
 
-    // let id = document.getElementById("industryBtn" + index);
+  selectedThemes(e, theme, index) {
+    const { checked } = e.target;
+    let themes = this.state.userSelectedThemes;
+    if (checked === true) {
+      // document.getElementById("themesBtn" + index).style.backgroundColor =
+      //   "#fff";
+      document.getElementById("themesBtn" + index).style.border =
+        "2px solid #4BAE4F";
+      // document.getElementById("themesBtn" + index).style.border =
+      //   "1px solid #000";
+      document.getElementById("thmsLbl" + index).style.color = "#566573";
+
+      themes.push(theme);
+      this.setState({
+        userSelectedThemes: themes,
+      });
+    } else {
+      for (let i = 0; i < themes.length; i++) {
+        if (themes[i] === theme) {
+          themes.splice(i, 1);
+          // document.getElementById("themesBtn" + index).style.backgroundColor =
+          //   "#D5D8DC";
+          document.getElementById("themesBtn" + index).style.border =
+            "1px solid #fff";
+          document.getElementById("thmsLbl" + index).style.color = "#808B96";
+          document
+            .getElementById("themeIcon" + index)
+            .classList.add(".css-i4bv87-MuiSvgIcon-root");
+          this.setState({
+            userSelectedThemes: themes,
+          });
+        }
+      }
+    }
+  }
+  handleAccordianChange(panel) {
+    this.setState({
+      expanded: panel,
+    });
+  }
+  setNavDetails(id) {
+    console.log("id ", id);
+    if (id === 0) {
+      return (
+        <ul>
+          <li>
+            <div className="nav_header_container">
+              <h5 className="nav_header">WELCOME, JOHN DOE</h5>
+            </div>
+          </li>
+          <li>
+            <div className="nav_description_container">
+              <p className="nav_description">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua.
+              </p>
+              <p className="nav_description">
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+                dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy.
+              </p>
+            </div>
+          </li>
+          <li className="version_details">
+            <p className="version_txt">© 2022 Aramark Corporation. | EC v0.1</p>
+          </li>
+        </ul>
+      );
+    } else if (id === 1) {
+      return (
+        <ul>
+          <li>
+            <div className="nav_header_container">
+              <h5 className="nav_header">
+                LET’S GET STARTED WITH SOME BASIC INFORMATION
+              </h5>
+            </div>
+          </li>
+          <li>
+            <div className="nav_description_container_expanded">
+              <p className="nav_description">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua.
+              </p>
+              <p className="nav_description">
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+                dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy.
+              </p>
+            </div>
+          </li>
+          <li className="version_details">
+            <p className="version_txt">© 2022 Aramark Corporation. | EC v0.1</p>
+          </li>
+        </ul>
+      );
+    } else if (id === 2) {
+      return (
+        <ul>
+          <li>
+            <div className="nav_header_container">
+              <h5 className="nav_header">
+                WHAT IS IMPORTANT TO YOUR PROSPECT?
+              </h5>
+            </div>
+          </li>
+          <li>
+            <div className="nav_description_container_expanded">
+              <p className="nav_description">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua.
+              </p>
+              <p className="nav_description">
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+                dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy.
+              </p>
+            </div>
+          </li>
+          <li className="version_details">
+            <p className="version_txt">© 2022 Aramark Corporation. | EC v0.1</p>
+          </li>
+        </ul>
+      );
+    } else if (id === 3) {
+      return (
+        <ul>
+          <li>
+            <div className="nav_header_container">
+              <h5 className="nav_header">
+                HOW DO THEY ENVISION THE DINING EXPERIENCE?
+              </h5>
+            </div>
+          </li>
+          <li>
+            <div className="nav_description_container_expanded">
+              <p className="nav_description">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua.
+              </p>
+              <p className="nav_description">
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+                dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy.
+              </p>
+            </div>
+          </li>
+          <li className="version_details">
+            <p className="version_txt">© 2022 Aramark Corporation. | EC v0.1</p>
+          </li>
+        </ul>
+      );
+    } else if (id === 4) {
+      return (
+        <ul>
+          <li>
+            <div className="nav_header_container">
+              <h5 className="nav_header">
+                WHAT ADDITIONAL SERVICES WILL BEST SUPPORT THIS EXPERIENCE?
+              </h5>
+            </div>
+          </li>
+          <li>
+            <div className="nav_description_container_expanded">
+              <p className="nav_description">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua.
+              </p>
+              <p className="nav_description">
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+                dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy.
+              </p>
+            </div>
+          </li>
+          <li className="version_details">
+            <p className="version_txt">© 2022 Aramark Corporation. | EC v0.1</p>
+          </li>
+        </ul>
+      );
+    } else if (id === 5) {
+      return (
+        <ul>
+          <li>
+            <div className="nav_header_container">
+              <h5 className="nav_header">SUPPORTING QUESTION?</h5>
+            </div>
+          </li>
+          <li>
+            <div className="nav_description_container_expanded">
+              <p className="nav_description">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua.
+              </p>
+              <p className="nav_description">
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+                dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy.
+              </p>
+            </div>
+          </li>
+          <li className="version_details">
+            <p className="version_txt">© 2022 Aramark Corporation. | EC v0.1</p>
+          </li>
+        </ul>
+      );
+    }
   }
   render() {
-    let industryTypes = [];
-    this.state.industryTypes.forEach((industry, index) => {
-      industryTypes.push(
-        <Col
-          md={3}
-          style={{ marginBottom: "0.5em" }}
-          // onClick={this.selectIndustry.bind(this, industry, index)}
-        >
-          <div className="">
-            <div className="cat action" id={"industryBtn" + index}>
-              <label>
-                <input
-                  type="checkbox"
-                  style={{
-                    background: "white",
-                    color: "black",
-                  }}
-                  defaultChecked={this.state.isIndustryType}
-                  name="checkedSacCode"
-                  onChange={(e) => this.selectIndustry(e, industry, index)}
-                />
-                {industry}
-              </label>
-            </div>
-          </div>
-          {/* <Fab
-            id={"industryBtn" + index}
-            variant="extended"
-            size="small"
-            color="primary"
-            aria-label="add"
-            style={{
-              background: "white",
-            }}
-          >
-            {industry}
-          </Fab> */}
-        </Col>
+    let accordians = [];
+
+    this.state.steps.forEach((item, index) => {
+      this.accordianCmpntRef[index] = React.createRef();
+      console.log("expanded ", item.expanded);
+      accordians.push(
+        <Row className="rowSeprator ">
+          <AccordionCmp
+            key={index}
+            title={item.title}
+            isThemesErrorMsg={this.state.isThemesErrorMsg}
+            ref={this.accordianCmpntRef[index]}
+            body={item.body}
+            expand={item.expanded}
+            bgColor={item.backgroundColor}
+            themes={this.state.winThemesData}
+            formData={item.data}
+            id={item.id}
+            onAccordianChange={this.toggle.bind(this, item.id)}
+            onClientCreate={this.createClient.bind(this, index)}
+            onPrevious={this.toPreviousStep.bind(this, item.id)}
+            onThemeSelected={this.addWinthemes.bind(this, index)}
+          />
+        </Row>
       );
     });
-    const label = { inputProps: { "aria-label": "Switch demo" } };
     return (
-      <div>
-        <meta charSet="utf-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Vesperr Bootstrap Template - Index</title>
-        <meta content name="description" />
-        <meta content name="keywords" />
-
-        {/* ======= Header ======= */}
-        <header id="header" className="fixed-top d-flex align-items-center">
-          <div className="container d-flex align-items-center justify-content-between">
-            <a href="/home">
+      <div className="aramark_dashboard">
+        <nav>{this.setNavDetails(this.state.selectedAccordian)}</nav>
+        <header>
+          <Row>
+            <Col md={3}>
+              {" "}
               <div className="logo">
                 <img
                   src={aramarkLogo}
                   alt="aramarLogo"
-                  style={{ height: "3em" }}
+                  className="aramark_header_logo"
                 />
+                <h5 style={{ fontSize: "0.5em" }}>
+                  {/* <b>Experience calculator (AEC)</b> */}
+                </h5>
                 {/* Uncomment below if you prefer to use an image logo */}
                 {/* <a href="index.html"><img src="../../assets/img/logo.png" alt="" class="img-fluid"></a>*/}
               </div>
-            </a>
-            <nav id="navbar" className={this.state.navbarClass}>
-              <ul>
-                {/* <li><a className="nav-link scrollto active" href="#hero">Home</a></li>
-                  <li><a className="nav-link scrollto" href="#about">About</a></li>
-                  <li><a className="nav-link scrollto" href="#services">Services</a></li>
-                  <li><a className="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-                  <li><a className="nav-link scrollto" href="#team">Team</a></li>
-                  <li><a className="nav-link scrollto" href="#pricing">Pricing</a></li>
-                  <li className="dropdown"><a href="#"><span>Drop Down</span> <i className="bi bi-chevron-down" /></a>
-                    <ul>
-                      <li><a href="#">Drop Down 1</a></li>
-                      <li className="dropdown"><a href="#"><span>Deep Drop Down</span> <i className="bi bi-chevron-right" /></a>
-                        <ul>
-                          <li><a href="#">Deep Drop Down 1</a></li>
-                          <li><a href="#">Deep Drop Down 2</a></li>
-                          <li><a href="#">Deep Drop Down 3</a></li>
-                          <li><a href="#">Deep Drop Down 4</a></li>
-                          <li><a href="#">Deep Drop Down 5</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Drop Down 2</a></li>
-                      <li><a href="#">Drop Down 3</a></li>
-                      <li><a href="#">Drop Down 4</a></li>
-                    </ul>
-                  </li>*/}
-                <li>
-                  <h5>
-                    <b>Experience calculator (AEC)</b>
-                  </h5>
-                </li>
-                {/* <li>
-                  <a className="getstarted scrollto" href="/signIn">
-                    Sign in
-                  </a>
-                </li> */}
-              </ul>
-              <i
-                className={this.state.mobileNavToggle}
-                onClick={this.mobileToggle.bind(this, this.state.navbarClass)}
-              />
-            </nav>
-            {/* .navbar */}
-          </div>
+            </Col>
+            <Col md={9} className="aramark_header_bg">
+              <h5 className="aramark_header_text">Experience calculator</h5>
+            </Col>
+          </Row>
         </header>
-        {/* End Header */}
-        {/* ======= Hero Section ======= */}
-        <section id="hero" className="hero d-flex align-items-center">
-          <div className="aramark_dashboard">
-            {/* <Row style={{ margin: "5em 0 0 0" }}></Row> */}
+        <section>
+          <Row className="aramark_section">
+            <Col md={8} className="accordianContent">
+              <article>{accordians}</article>
+            </Col>
+            <Col md={3}>
+              {this.state.isCalculations === false ? (
+                <div className="tootalCalculationSection">
+                  <div className="tootalCalculationSection_container"></div>
+                </div>
+              ) : (
+                <div className="tootalCalculationSection_expanded">
+                  <div className="tootalCalculationSection_container">
+                    <h5 className="nav_header">ESTIMATED COSTS</h5>
 
-            <Row className="heroSection ">
-              <Col md={6} style={{ margin: "5em 0 0 0" }}>
-                <Row className="rowSeprator ">
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography>Who is the client?</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-					<form onSubmit={this.handleSubmit}>
-                      <Row md={12} className="rowSeprator">
-					  
-                        <Col md={12}>
-                          <TextField
-                            id="clientName"
-                            label="Name"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                            value={this.state.clientName}
-                            onChange={this.handleInputNameChange.bind(this); this.handleChange.bind(this);}
-                          />
-                        </Col>
-                      </Row>
-                      <Row className="rowSeprator">
-                        <Col md={6}>
-                          {" "}
-                          <Autocomplete
-                            disablePortal
-                            id="contractType"
-							source="ContractType"
-                            options={this.state.contractTypes}
-                            sx={{ width: 300 }}
-                            value={this.state.contractType}
-                            getOptionLabel={(option) => option}
-                            onChange={(event, value) => {
-                              this.handleContractTypeChange(value);this.handleChange.bind(this);
-                            }}
-                            // onChange={this.handleContractTypeChange.bind(this)}
-                            renderInput={(params) => (
-                              <TextField
-                                {...params}
-                                label="Select Contract Type"
-                                required
-                              />
-                            )}
-                          />
-                        </Col>
-                        <Col md={6}>
-                          <div className="toggle_switch_rounded_bg">
-                            <Switch
-                              {...label}
-                              id="Lifeworks"
-                              style={{ float: "left" }}
-                              checked={this.state.isLifeworks}
-                              onChange={this.handleLifeworksChange.bind(this);this.handleChange.bind(this);}
-                            />
-                            <span className="switchLabel"> Lifeworks? *</span>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="rowSeprator">
-                        <Col md={6}>
-                          <div className="range_rounded_bg">
-                            &nbsp;
-                            <span className="switchLabel">
-                              {" "}
-                              Anticipated Revenue *{" "}
-                            </span>
-                            <Slider
-                              aria-label="Always visible"
-                              // defaultValue={80}
-                              // getAriaValueText={this.state.anticipatedRevenue}
-
-                              id="AnticipatedRevenue"
-                              onChange={this.handleAnticipatedRevenueChange}
-                              value={this.state.anticipatedRevenue}
-                              min={0}
-                              max={10}
-                              // step={10}
-                              marks={this.state.marks1}
-                              // valueLabelDisplay="on"
-                            />
-                          </div>
-                        </Col>
-                        <Col md={6}>
-                          <div className="range_rounded_bg">
-                            &nbsp;
-                            <span className="switchLabel"> Population *</span>
-                            <Slider
-                              aria-label="Always visible"
-                              id="Population"
-                              min={0}
-                              max={5000}
-                              // getAriaValueText={this.valuetext}
-                              onChange={this.handlePopulationChange}
-                              value={this.state.population}
-                              step={10}
-                              marks={this.state.marks2}
-                              valueLabelDisplay="on"
-                            />
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="rowSeprator">
-                        <Col md={12}>
-                          <div
-                            className="Industry_type_rounded_bg"
-                            id="industry_Type"
-                          >
-                            <span className="switchLabel">
-                              {" "}
-                              Select Industry Type *
-                            </span>
-                            <br></br>
-                            <br></br>
-                            <div>
-                              <Row>{industryTypes}</Row>
-                            </div>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="rowSeprator">
-                        <Col md={12} style={{ textAlign: "center" }}>
-                          <Fab
-                            variant="extended"
-                            size="small"
-                            color="primary"
-                            aria-label="add"
-                            style={{
-                              background: "black",
-                              color: "white",
-                              width: "10em",
-                            }}
-                            onClick={this.createClient.bind(this)}
-                          >
-                            Next
-                          </Fab>
-                        </Col>						
-                      </Row>
-					  </form>
-                    </AccordionDetails>
-                  </Accordion>
-                </Row>
-                <Row className="rowSeprator ">
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography>What is important to them?</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Row style={{ textAlign: "left" }}>
-                        <span className="switchLabel">WIN THEMES</span>
-                      </Row>
-
-                      <Row className="rowSeprator ">
-                        <Col md={6}>
-                          <div className=" win_themes">
-                            <LocalAtmIcon />
-                            &nbsp;{" "}
-                            <span className="themesLabelActive">
-                              Cost consciousness
-                            </span>
-                          </div>
-                        </Col>
-                        <Col md={6}>
-                          <div className=" win_themes_deactive">
-                            <span style={{ display: "flex" }}>
-                              <span>
-                                {" "}
-                                <Avatar></Avatar>
-                              </span>
-                              &nbsp;{" "}
-                              <span className="themesLabel">
-                                Leadership visibilty
-                              </span>
-                            </span>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="rowSeprator ">
-                        <Col md={6}>
-                          <div className=" win_themes_deactive">
-                            <span style={{ display: "flex" }}>
-                              <span>
-                                {" "}
-                                <Avatar></Avatar>
-                              </span>
-                              &nbsp;{" "}
-                              <span className="themesLabel">
-                                Operation result
-                              </span>
-                            </span>
-                          </div>
-                        </Col>
-                        <Col md={6}>
-                          <div className=" win_themes_deactive">
-                            <span style={{ display: "flex" }}>
-                              <span>
-                                {" "}
-                                <Avatar></Avatar>
-                              </span>
-                              &nbsp;{" "}
-                              <span className="themesLabel">
-                                Right team on ground
-                              </span>
-                            </span>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="rowSeprator ">
-                        <Col md={6}>
-                          <div className=" win_themes_deactive">
-                            <span style={{ display: "flex" }}>
-                              <span>
-                                {" "}
-                                <Avatar></Avatar>
-                              </span>
-                              &nbsp;{" "}
-                              <span className="themesLabel">
-                                Proactive innovation
-                              </span>
-                            </span>
-                          </div>
-                        </Col>
-                        <Col md={6}>
-                          <div className=" win_themes">
-                            <span
-                              style={{ display: "flex", lineHeight: "1.5em" }}
-                            >
-                              <span style={{ margin: "0.2em 0 0 0" }}>
-                                <Avatar style={{ background: "#000" }}></Avatar>
-                              </span>
-                              &nbsp;{" "}
-                              <span className="themesLabelActive">
-                                DEI (Deep client understanding)
-                              </span>
-                            </span>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="rowSeprator ">
-                        <Col md={6}>
-                          <div className=" win_themes_deactive">
-                            <span style={{ display: "flex" }}>
-                              <span>
-                                {" "}
-                                <Avatar></Avatar>
-                              </span>
-                              &nbsp;{" "}
-                              <span className="themesLabel">
-                                Community involvment
-                              </span>
-                            </span>
-                          </div>
-                        </Col>
-
-                        <Col md={6}>
-                          <div className=" win_themes">
-                            <EnergySavingsLeafOutlinedIcon />
-                            &nbsp;{" "}
-                            <span className="themesLabelActive">
-                              Sustainability
-                            </span>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row className="rowSeprator">
-                        <Col md={12} style={{ textAlign: "center" }}>
-                          <Fab
-                            variant="extended"
-                            size="small"
-                            color="primary"
-                            aria-label="add"
-                            style={{
-                              background: "black",
-                              color: "white",
-                              width: "10em",
-                            }}
-                          >
-                            Next
-                          </Fab>
-                        </Col>
-                      </Row>
-                    </AccordionDetails>
-                  </Accordion>
-                </Row>
-                <Row className="rowSeprator ">
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography>
-                        How do they envision the dining experience?
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails></AccordionDetails>
-                  </Accordion>
-                </Row>
-                <Row className="rowSeprator ">
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography>
-                        What additional services will best support this
-                        experience?
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails></AccordionDetails>
-                  </Accordion>
-                </Row>
-              </Col>
-              <Col md={6}>
-                <div className="" data-aos="fade-left" data-aos-delay={200}>
-                  <div className="imageWrapper">
-                    <img
-                      src={homePageImg}
-                      className="img-fluid "
-                      alt=""
-                      style={{ marginTop: "2em", borderRadius: "1rem" }}
-                    />
-                    <div className="quoteWrapper flexCenter darkBg radius8">
-                      <div className="QuotesWrapper">
-                        <QuotesIcon />
+                    <div className="capEx">
+                      <div className="capEx_sign_container">
+                        <p className="capEx_sign">$</p>
                       </div>
-                      <div>
-                        <p className="font15 whiteColor">
-                          <em>
-                            Friends, such as we desire, are dreams and fables.
-                            Friendship demands the ability to do without it.
-                          </em>
-                        </p>
-                        <p
-                          className="font13 orangeColor textRight"
-                          style={{ marginTop: "10px" }}
-                        >
-                          Ralph Waldo Emerson
-                        </p>
+                      <div className="capexValue_container">
+                        <p className="capexValue_label">Cap Ex</p>
+                        <p className="capexValue">$0</p>
                       </div>
                     </div>
-                  </div>
-                  <div className="lightBg grayDiv"></div>
-                </div>
-              </Col>
-            </Row>
-            {/* <div className="row heroSection">
-              <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                {/* <dl className="accordion">
-                  {this.state.blocks.map((item) => (
-                    <Accordion
-                      key={item.id}
-                      title={item.title}
-                      body={item.body}
-                      expand={item.expanded}
-                      bgColor={item.backgroundColor}
-                      id={item.id}
-                      onClick={this.toggle.bind(this, item.id)}
-                      onSubmit={this.nextAccoordianOpen.bind(this, item.id)}
-                    />
-                  ))}
-                </dl> 
-              </div>
-            </div> */}
-          </div>
-        </section>
-        {/* End Hero */}
+                    <br></br>
+                    <div className="opEx">
+                      <div className="opEx_sign_container">
+                        <p className="opEx_sign">$</p>
+                      </div>
+                      <div className="opexValue_container">
+                        <p className="opexValue_label">Op Ex</p>
+                        <p className="opexValue">$0</p>
+                      </div>
+                    </div>
 
-        {/* End #main */}
+                    <div className="capExOpex_total_container">
+                      <p className="capExOpex_total">
+                        {" "}
+                        {"$" + this.state.total}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </Col>
+          </Row>
+          {/* <article>
+            <h1>London</h1>
+            <p>
+              London is the capital city of England. It is the most populous
+              city in the United Kingdom, with a metropolitan area of over 13
+              million inhabitants.
+            </p>
+            <p>
+              Standing on the River Thames, London has been a major settlement
+              for two millennia, its history going back to its founding by the
+              Romans, who named it Londinium.
+            </p>
+          </article> */}
+        </section>
+
+        {/* <footer>
+          <p>Footer</p>
+        </footer> */}
       </div>
     );
   }
