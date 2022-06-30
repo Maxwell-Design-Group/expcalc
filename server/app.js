@@ -8,7 +8,7 @@ var cors = require('cors');
 
 //Mongoose connection with mongodb
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost:27017/CrudDB')
+mongoose.connect('mongodb://localhost:27017/aramarkDB')
     .then(() => {
         console.log('Start');
     })
@@ -18,10 +18,13 @@ mongoose.connect('mongodb://localhost:27017/CrudDB')
     });
 
 // Required aplication specific custom router module
-var clientDetailRouter = require('./src/routes/ClientDetailRouter');
+var clientdetailRouter = require('./src/routes/clientdetailRouter');
 
 // Required aplication specific custom router module
-var industryRouter = require('./src/routes/industryRouter');
+var contracttypelistRouter = require('./src/routes/contracttypelistRouter');
+
+// Required aplication specific custom router module
+var industrytypeRouter = require('./src/routes/industrytypeRouter');
 
 // Use middlewares to set view engine and post json data to the server
 app.use(express.static('public'));
@@ -31,7 +34,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.use('/items', itemRouter);
+app.use('/clientdetails', clientdetailRouter);
+
+app.use('/contracttypelists', contracttypelistRouter);
+
+app.use('/industrytypes', industrytypeRouter);
 
 // Start the server
 app.listen(port, function() {
