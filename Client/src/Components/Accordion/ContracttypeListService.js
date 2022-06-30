@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-class IndustoryService {
+class ContracttypeListService {
 
     sendData(data) {
-        axios.post('http://localhost:4200/Industory/add/post', {
-            Industory: data
+        axios.post('http://localhost:4200/contracttypelists/add/post', {
+            contracttypelist: data
         })
         .then((response) => {
             this.setState({
-                Industory: response.data
+                contracttypelists: response.data
             })
         })
         .catch((error) => {
@@ -17,12 +17,12 @@ class IndustoryService {
     }
 
     updateDate(data, id) {
-        axios.post('http://localhost:4200/Industory/update/'+id, {
-            Industory: data
+        axios.post('http://localhost:4200/contracttypelists/update/'+id, {
+            contracttypelist: data
         })
         .then((response) => {
             this.asetState({
-                Industory: response.data
+                contracttypelists: response.data
             })
         })
         .catch((error) => {
@@ -31,7 +31,7 @@ class IndustoryService {
     }
 
     deleteData(id) {
-        axios.get('http://localhost:4200/Industory/delete/'+id)
+        axios.get('http://localhost:4200/contracttypelists/delete/'+id)
         .then(() => {
             console.log('Deleted')
         })
@@ -41,4 +41,4 @@ class IndustoryService {
     }
 }
 
-export default IndustoryService;
+export default ContracttypeListService;

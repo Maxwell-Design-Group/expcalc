@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-class ClientDetailService {
+class IndustryTypeService {
 
     sendData(data) {
-        axios.post('http://localhost:4200/ClientDetail/add/post', {
-            item: data
+        axios.post('http://localhost:4200/industrytypes/add/post', {
+            industrytype: data
         })
         .then((response) => {
             this.setState({
-                items: response.data
+                industrytypes: response.data
             })
         })
         .catch((error) => {
@@ -17,12 +17,12 @@ class ClientDetailService {
     }
 
     updateDate(data, id) {
-        axios.post('http://localhost:4200/ClientDetail/update/'+id, {
-            ClientDetail: data
+        axios.post('http://localhost:4200/industrytypes/update/'+id, {
+            industrytype: data
         })
         .then((response) => {
             this.asetState({
-                ClientDetail: response.data
+                industrytypes: response.data
             })
         })
         .catch((error) => {
@@ -31,7 +31,7 @@ class ClientDetailService {
     }
 
     deleteData(id) {
-        axios.get('http://localhost:4200/ClientDetail/delete/'+id)
+        axios.get('http://localhost:4200/industrytypes/delete/'+id)
         .then(() => {
             console.log('Deleted')
         })
@@ -41,4 +41,4 @@ class ClientDetailService {
     }
 }
 
-export default ClientDetailService;
+export default IndustryTypeService;
