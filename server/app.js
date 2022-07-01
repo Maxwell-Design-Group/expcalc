@@ -26,6 +26,12 @@ var contracttypelistRouter = require('./src/routes/contracttypelistRouter');
 // Required aplication specific custom router module
 var industrytypeRouter = require('./src/routes/industrytypeRouter');
 
+// Required aplication specific custom router module
+var winthemedetailRouter = require('./src/routes/winthemedetailRouter');
+
+// Required aplication specific custom router module
+//var winthemeRouter = require('./src/routes/winthemeRouter');
+
 // Use middlewares to set view engine and post json data to the server
 app.use(express.static('public'));
 app.use(cors());
@@ -39,6 +45,11 @@ app.use('/clientdetails', clientdetailRouter);
 app.use('/contracttypelists', contracttypelistRouter);
 
 app.use('/industrytypes', industrytypeRouter);
+
+app.use('/winthemedetails', winthemedetailRouter);
+
+//app.use('/wintheme', winthemeRouter);
+
 
 // Start the server
 app.listen(port, function() {
