@@ -175,8 +175,7 @@ class AccordionCmp extends Component {
         "#fff";
       document.getElementById("themesBtn" + index).style.border =
         "2px solid #4BAE4F";
-      // document.getElementById("themesBtn" + index).style.border =
-      //   "1px solid #000";
+      document.getElementById("theme_check" + index).style.opacity = "1";
       document.getElementById("thmsLbl" + index).style.color = "#566573";
       // document.getElementById("thmsLbl" + index).style.color = "#ffff";
       this.state.theme = true;
@@ -190,6 +189,7 @@ class AccordionCmp extends Component {
           themes.splice(i, 1);
           // document.getElementById("themesBtn" + index).style.backgroundColor =
           //   "#D5D8DC";
+          document.getElementById("theme_check" + index).style.opacity = "0.1";
           document.getElementById("themesBtn" + index).style.border =
             "1px solid #fff";
           document.getElementById("thmsLbl" + index).style.color = "#808B96";
@@ -234,6 +234,7 @@ class AccordionCmp extends Component {
                 iconStyle={{ fill: "white" }}
                 defaultChecked={this.state.theme}
                 name="checkedSacCode"
+                id={"theme_check" + index}
                 className="theme_checkbox_color"
                 onChange={(e) => this.selectedThemes(e, theme.theme, index)}
               />
