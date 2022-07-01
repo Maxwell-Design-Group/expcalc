@@ -14,6 +14,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import LifeWork from "../../assets/img/isLifeWork.png";
 import { createTheme } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
+import Checkbox from "@mui/material/Checkbox";
 // import { createMuiTheme } from "@material-ui/core";
 // import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
 // const formLabelsTheme = createMuiTheme({
@@ -38,17 +39,6 @@ class AccordionCmp extends Component {
       step3Data: null,
       step4Data: null,
       expanded: "",
-      industryTypes: [
-        "Technology",
-        "Banking",
-        "FinTech",
-        "Insurance",
-        "Transport",
-        "Manufacturing",
-        "Retail",
-        "RealEstate",
-        "ServiceAgency",
-      ],
       marks1: [
         {
           value: 0,
@@ -92,7 +82,6 @@ class AccordionCmp extends Component {
       anticipatedRevenue: 0,
       isIndustryType: false,
       population: 0,
-      contractTypes: ["Subsidy", "P&L", "Cost+", "Other"],
       userSelectedIndustryType: [],
       userSelectedThemes: [],
       isLifeworks: false,
@@ -104,7 +93,6 @@ class AccordionCmp extends Component {
   }
 
   handleInputNameChange(e) {
-    console.log("name ", e.target.value);
     this.setState({
       clientName: e.target.value,
     });
@@ -146,9 +134,6 @@ class AccordionCmp extends Component {
   };
   selectIndustry(e, industry, index) {
     const { checked } = e.target;
-    console.log("checked ", checked);
-    console.log("industry ", industry);
-    console.log("index ", index);
     let industries = this.state.userSelectedIndustryType;
     if (checked === true) {
       document.getElementById("industryBtn" + index).style.backgroundColor =
@@ -182,7 +167,6 @@ class AccordionCmp extends Component {
   }
   selectedThemes(e, theme, index) {
     const { checked } = e.target;
-    console.log("theme ", theme);
     let themes = this.state.userSelectedThemes;
     if (checked === true) {
       // document.getElementById("themesBtn" + index).style.backgroundColor =
@@ -195,7 +179,7 @@ class AccordionCmp extends Component {
       //   "1px solid #000";
       document.getElementById("thmsLbl" + index).style.color = "#566573";
       // document.getElementById("thmsLbl" + index).style.color = "#ffff";
-
+      this.state.theme = true;
       themes.push(theme);
       this.setState({
         userSelectedThemes: themes,
@@ -209,9 +193,7 @@ class AccordionCmp extends Component {
           document.getElementById("themesBtn" + index).style.border =
             "1px solid #fff";
           document.getElementById("thmsLbl" + index).style.color = "#808B96";
-          document
-            .getElementById("themeIcon" + index)
-            .classList.add(".css-i4bv87-MuiSvgIcon-root");
+
           this.setState({
             userSelectedThemes: themes,
           });
@@ -225,7 +207,10 @@ class AccordionCmp extends Component {
     onClientCreate,
     onThemeSelected,
     isThemesErrorMsg,
-    onPrevious
+    onPrevious,
+    contractTypes,
+    industryTypes,
+    onCheckWithTheme
   ) {
     const label = { inputProps: { "aria-label": "Switch demo" } };
     let winThemes = [];
@@ -238,33 +223,35 @@ class AccordionCmp extends Component {
               <input
                 type="checkbox"
                 style={{
-                  background: "white",
-                  color: "black",
                   width: "100%",
-                  margin: "-1em 0 0 -11em",
+                  margin: "-1em 0px 0px -11.4em",
+                  height: "20px",
+                  accentColor: "#4BAE4F",
+                  border: "15px solid red",
                 }}
                 {...label}
-                // sx={{
-                //   color: green[800],
-                //   "&.Mui-checked": {
-                //     color: green[600],
-                //   },
-                // }}
-
-                // sx={{
-                //   color: "green",
-                //   "&.Mui-checked": {
-                //     color: "green",
-                //   },
-                // }}
+                labelStyle={{ color: "white" }}
+                iconStyle={{ fill: "white" }}
                 defaultChecked={this.state.theme}
                 name="checkedSacCode"
+                className="theme_checkbox_color"
                 onChange={(e) => this.selectedThemes(e, theme.theme, index)}
               />
+              {/* <Checkbox
+                {...label}
+                defaultChecked={this.state.theme}
+                style={{
+                  width: "100%",
+                  margin: "-1em 0px 0px -11.4em !important",
+                  height: "20px  !important",
+                }}
+                color="success"
+                onChange={(e) => this.selectedThemes(e, theme.theme, index)}
+              /> */}
               <img
                 src={theme.img}
                 alt={theme.img}
-                style={{ display: "block", margin: "0.5em 3em" }}
+                style={{ display: "block", margin: "0.5em 3.5em" }}
               />
               {/* <span style={{ display: "flex" }}>
                   <span id={"themeIcon" + index}> {theme.icon}</span>
@@ -275,42 +262,30 @@ class AccordionCmp extends Component {
                 </span> */}
               {/* </label> */}
               <div
-                className={
-                  index === 3 || index === 6 || index === 7
-                    ? "theme_label_container1"
-                    : "theme_label_container"
-                }
+                className="theme_label_container"
+                // className={
+                //   index === 3 || index === 6 || index === 7
+                //     ? "theme_label_container1"
+                //     : "theme_label_container"
+                // }
               >
                 <span className="themesLabel" id={"thmsLbl" + index}>
                   {theme.theme}
                 </span>
+                {index === 5 || index === 6 || index === 7 ? (
+                  <span
+                    style={{
+                      display: "block",
+                      fontSize: "0.5em",
+                      marginTop: "-1.5em",
+                    }}
+                  >
+                    {theme.description}
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
-            </div>
-          </div>
-        </Col>
-      );
-    });
-
-    let industryTypes = [];
-    this.state.industryTypes.forEach((industry, index) => {
-      industryTypes.push(
-        <Col md={3} style={{ marginBottom: "0.5em" }} key={index}>
-          <div className="">
-            <div className="cat action" id={"industryBtn" + index}>
-              <label>
-                <input
-                  type="checkbox"
-                  style={{
-                    background: "white",
-                    color: "black",
-                  }}
-                  defaultChecked={this.state.isIndustryType}
-                  name="checkedSacCode"
-                  onChange={(e) => this.selectIndustry(e, industry, index)}
-                  // onChange={this.selectIndustry.bind(this, industry, index)}
-                />
-                {industry}
-              </label>
             </div>
           </div>
         </Col>
@@ -339,10 +314,10 @@ class AccordionCmp extends Component {
               <Autocomplete
                 disablePortal
                 id="contractType"
-                options={this.state.contractTypes}
+                options={contractTypes}
                 sx={{ width: 300 }}
-                value={this.state.contractType}
-                getOptionLabel={(option) => option}
+                value={this.state.contractTypes}
+                getOptionLabel={(option) => option.contracttypelist}
                 onChange={(event, value) => {
                   this.handleContractTypeChange(value);
                 }}
@@ -362,10 +337,10 @@ class AccordionCmp extends Component {
               <Autocomplete
                 disablePortal
                 id="industryType"
-                options={this.state.industryTypes}
+                options={industryTypes}
                 sx={{ width: 300 }}
                 value={this.state.industryType}
-                getOptionLabel={(option) => option}
+                getOptionLabel={(option) => option.industrytype}
                 onChange={(event, value) => {
                   this.handleIndustryTypeChange(value);
                 }}
@@ -387,6 +362,7 @@ class AccordionCmp extends Component {
               <Switch
                 {...label}
                 id="Lifeworks"
+                color="success"
                 style={{ float: "left" }}
                 checked={this.state.isLifeworks}
                 onChange={this.handleLifeworksChange.bind(this)}
@@ -462,7 +438,7 @@ class AccordionCmp extends Component {
       return (
         <>
           <Row style={{ textAlign: "left" }}>
-            <span className="switchLabel">WIN THEMES</span>
+            {/* <span className="switchLabel">WIN THEMES</span> */}
             {isThemesErrorMsg === true ? (
               <span
                 className="switchLabel"
@@ -476,7 +452,7 @@ class AccordionCmp extends Component {
           </Row>
 
           <Row className="rowSeprator ">{winThemes}</Row>
-          <Row className="rowSeprator">
+          <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
             <Col md={6} style={{ textAlign: "left" }}>
               <Button
                 variant="contained"
@@ -523,12 +499,15 @@ class AccordionCmp extends Component {
       onPrevious,
       onThemeSelected,
       isThemesErrorMsg,
+      contractTypes,
+      industryTypes,
+      onCheckWithTheme,
     } = this.props;
     let className = "";
 
     if (formData !== null && expand === true) {
       className = "step_edit";
-    } else if (formData !== null) {
+    } else if (formData !== null && expand === false) {
       className = "step_completed";
     } else {
       className = "";
@@ -546,7 +525,7 @@ class AccordionCmp extends Component {
             formData !== null ? (
               <CheckCircleIcon className="icon_step_complete" />
             ) : expand === true ? (
-              <RemoveCircleIcon />
+              <RemoveCircleIcon style={{ margin: "-0.4em 0 0 0 !important" }} />
             ) : (
               <AddCircleIcon />
             )
@@ -564,7 +543,10 @@ class AccordionCmp extends Component {
             onClientCreate,
             onThemeSelected,
             isThemesErrorMsg,
-            onPrevious
+            onPrevious,
+            contractTypes,
+            industryTypes,
+            onCheckWithTheme
           )}
         </AccordionDetails>
       </Accordions>

@@ -18,7 +18,6 @@ import AccordionCmp from "../Accordion/AccordionCmp";
 import ClientDetailService from "../Accordion/ClientDetailService";
 import Alert from "../Alert/Alert";
 import "./Dashboard.css";
-
 import CostConsciousnes from "../../assets/img/Cost-Consciousnes.png";
 import CommunityInvolvement from "../../assets/img/Community-Involvement.png";
 import DEI from "../../assets/img/DEI.png";
@@ -27,6 +26,9 @@ import OperationalResults from "../../assets/img/Operational-Results.png";
 import ProactiveInnovation from "../../assets/img/Proactive-Innovation.png";
 import RightTeamOnTheGround from "../../assets/img/Right-Team-On-The-Ground.png";
 import Sustainability from "../../assets/img/Sustainability.png";
+import axios from "axios";
+import { getTypographyUtilityClass } from "@mui/material";
+import WinthemeDetailService from "../Accordion/WinthemeDetailService";
 class Dashboard extends Component {
   accordianCmpntRef = [];
 
@@ -119,69 +121,67 @@ class Dashboard extends Component {
       theme: false,
       population: 0,
       selectedAccordian: 0,
-      contractTypes: ["Subsidy", "P&L", "Cost+", "Other"],
-      industryTypes: [
-        "Technology",
-        "Banking",
-        "FinTech",
-        "Insurance",
-        "Transport",
-        "Manufacturing",
-        "Retail",
-        "RealEstate",
-        "ServiceAgency",
-      ],
+      industryTypes: [],
+      contractTypes: [],
       winThemesData: [
         {
           theme: "Cost-Consciousness",
           icon: <LocalAtmIcon style={{ margin: "-0.4em 0 0 0" }} />,
           img: CostConsciousnes,
+          description: "",
         },
         {
           theme: "Leadership-Visibility",
           icon: <Avatar />,
           img: LeadershipVisibility,
+          description: "",
         },
         {
           theme: "Operational-Results",
           icon: <Avatar />,
           img: OperationalResults,
+          description: "",
         },
         {
           theme: "Right-Team-On-The-Ground",
           icon: <Avatar />,
           img: RightTeamOnTheGround,
+          description: "",
         },
         {
           theme: "Proactive-Innovation",
           icon: <Avatar />,
           img: ProactiveInnovation,
+          description: "",
         },
         // {
         //   theme: "Deep-Client-Understanding",
         //   icon: <Avatar />,
         //   img: CostConsciousnes,
         // },
-        { theme: "DEI", icon: <Avatar />, img: DEI },
+        {
+          theme: "DEI",
+          icon: <Avatar />,
+          img: DEI,
+          description: "DEEP CLIENT UNDERSTANDING",
+        },
         {
           theme: "Sustainability",
           icon: (
             <EnergySavingsLeafOutlinedIcon style={{ margin: "-0.4em 0 0 0" }} />
           ),
           img: Sustainability,
+          description: "DEEP CLIENT UNDERSTANDING",
         },
         {
           theme: "Community-Involvement",
           icon: <Avatar />,
           img: CommunityInvolvement,
+          description: "DEEP CLIENT UNDERSTANDING",
         },
       ],
       userSelectedIndustryType: [],
       userSelectedThemes: [],
-      // isLifeworks: false,
-      // contractType: null,
-      // clientName: "",
-      // expanded: "",
       formData: null,
       step1Data: null,
       step2Data: null,
@@ -191,10 +191,32 @@ class Dashboard extends Component {
       isThemesErrorMsg: false,
       total: 0,
       isCalculations: false,
+      isUserShow: false,
+      render: false,
     };
     this.clientDetails = new ClientDetailService();
+    this.winThemeDetails = new WinthemeDetailService();
   }
+  componentDidMount = () => {
+    axios
+      .get("http://localhost:4200/contracttypelists")
+      .then((response) => {
+        this.setState({
+          contractTypes: response.data,
+        });
+      })
+      .catch((error) => {});
 
+    axios
+      .get("http://localhost:4200/industrytypes")
+      .then((response) => {
+        this.setState({
+          industryTypes: response.data,
+          render: true,
+        });
+      })
+      .catch((error) => {});
+  };
   mobileToggle(navClass, e) {
     if (navClass === "navbar") {
       this.setState({
@@ -230,9 +252,6 @@ class Dashboard extends Component {
     });
   }
   showCalculations(id, isCalculation, index) {
-    console.log("id ", id);
-    console.log("isCalculation ", isCalculation);
-    console.log("index ", index);
     if (
       id === 1 &&
       this.state.steps[index].data === null &&
@@ -248,10 +267,8 @@ class Dashboard extends Component {
     }
   }
   nextAccoordianOpen(id) {
-    console.log("id ", id);
     this.setState((prevState, props) => {
       const index = prevState.steps.findIndex((item) => item.id === id);
-      console.log("index ", index);
       prevState.steps[index].expanded = !prevState.steps[index].expanded;
       prevState.steps[index + 1].expanded =
         !prevState.steps[index + 1].expanded;
@@ -268,10 +285,8 @@ class Dashboard extends Component {
     return `${value}`;
   }
   toPreviousStep(id) {
-    console.log("id ", id);
     this.setState((prevState, props) => {
       const index = prevState.steps.findIndex((item) => item.id === id);
-      console.log("index ", index);
       // prevState.blocks[index].expanded = !prevState.blocks[index].expanded;
       prevState.steps[index - 1].expanded =
         !prevState.steps[index - 1].expanded;
@@ -318,19 +333,22 @@ class Dashboard extends Component {
           document.getElementById("Population").focus();
         } else {
           let obj = {
+            email: "",
             ClientName: this.accordianCmpntRef[i].current.state.clientName,
             ContractType: this.accordianCmpntRef[i].current.state.contractType,
             LifeWorks: this.accordianCmpntRef[i].current.state.isLifeworks,
             AnticipatedRevenue:
               this.accordianCmpntRef[i].current.state.anticipatedRevenue,
             Population: this.accordianCmpntRef[i].current.state.population,
-            IndustrTypes:
-              this.accordianCmpntRef[i].current.state.userSelectedIndustryType,
+            industry_Type: this.accordianCmpntRef[i].current.state.industryType,
           };
-          // this.clientDetails.sendData(obj);
+          this.clientDetails.sendData(obj);
+          Alert.success("ClientDetail added successfully");
           this.state.steps[i].data = {};
           this.setState({
             selectedAccordian: 2,
+            clientName: this.accordianCmpntRef[i].current.state.clientName,
+            isUserShow: true,
           });
           this.nextAccoordianOpen(this.state.steps[i].id);
         }
@@ -338,35 +356,83 @@ class Dashboard extends Component {
     }
   }
   addWinthemes(id) {
-    console.log(
-      "themes log ",
-      this.accordianCmpntRef[id].current.state.userSelectedThemes
-    );
-    for (let i = 0; i < this.accordianCmpntRef.length; i++) {
-      if (i === id) {
-        if (
-          this.accordianCmpntRef[i].current.state.userSelectedThemes.length ===
-          0
-        ) {
-          for (let i = 0; i < this.state.winThemesData.length; i++) {
-            document.getElementById("themesBtn" + i).style.border =
-              "1px solid red";
-          }
-          this.setState({
-            isThemesErrorMsg: true,
-          });
-        } else {
-          let inputObj = {
-            userSelectedThemes:
-              this.accordianCmpntRef[i].current.state.userSelectedThemes,
-          };
-          this.state.steps[i].data = {};
-          this.setState({});
-          this.nextAccoordianOpen(this.state.steps[i].id);
-        }
+    if (
+      this.accordianCmpntRef[id].current.state.userSelectedThemes.length === 0
+    ) {
+      for (let i = 0; i < this.state.winThemesData.length; i++) {
+        document.getElementById("themesBtn" + i).style.border = "1px solid red";
       }
+      this.state.steps[id].data = null;
+      this.setState({
+        isThemesErrorMsg: true,
+      });
+    } else {
+      for (
+        let i = 0;
+        i < this.accordianCmpntRef[id].current.state.userSelectedThemes.length;
+        i++
+      ) {
+        let obj = {
+          email: "",
+          winthemedetail:
+            this.accordianCmpntRef[i].current.state.userSelectedThemes,
+        };
+        this.winThemeDetails.sendData(obj);
+      }
+      this.state.steps[id].data = {};
+      this.setState({});
+      this.nextAccoordianOpen(this.state.steps[id].id);
+      Alert.success("WinthemeDetail added successfully");
+      this.setState({
+        isThemesErrorMsg: false,
+      });
     }
+
+    // for (let i = 0; i < this.accordianCmpntRef.length; i++) {
+    //   if (i === id) {
+    //     if (
+    //       this.accordianCmpntRef[i].current.state.userSelectedThemes.length ===
+    //       0
+    //     ) {
+    //       for (let i = 0; i < this.state.winThemesData.length; i++) {
+    //         document.getElementById("themesBtn" + i).style.border =
+    //           "1px solid red";
+    //       }
+    //       this.setState({
+    //         isThemesErrorMsg: true,
+    //       });
+    //     } else {
+    //       let inputObj = {
+    //         winthemedetail:
+    //           this.accordianCmpntRef[i].current.state.userSelectedTheme,
+    //       };
+    //       this.state.steps[i].data = {};
+    //       this.setState({});
+    //       this.nextAccoordianOpen(this.state.steps[i].id);
+    //     }
+    //   }
+    // }
   }
+  // saveWinTheme(id) {
+  //   if (this.accordianCmpntRef[id].current.state.theme === true) {
+  //     let obj = {
+  //       email: "",
+  //       winthemedetail:
+  //         this.accordianCmpntRef[id].current.state.userSelectedThemes.at(-1),
+  //     };
+  //     this.winThemeDetails.sendData(obj);
+  //     Alert.success("WinthemeDetail added successfully");
+  //   }
+  //   //     "themes log ",
+  //   //     this.accordianCmpntRef[id].current.state.userSelectedThemes
+  //   //   );
+  //   //   "themes boolean ",
+  //   //   this.accordianCmpntRef[id].current.state.theme
+  //   // );
+  //   //   "themes ",
+  //   //   this.accordianCmpntRef[id].current.state.userSelectedThemes.at(-1)
+  //   // );
+  // }
   selectIndustry(e, industry, index) {
     const { checked } = e.target;
     let industries = this.state.userSelectedIndustryType;
@@ -432,7 +498,6 @@ class Dashboard extends Component {
     });
   }
   setNavDetails(id) {
-    console.log("id ", id);
     if (id === 0) {
       return (
         <ul>
@@ -612,104 +677,117 @@ class Dashboard extends Component {
     }
   }
   render() {
-    let accordians = [];
+    if (this.state.render === false) {
+      return <></>;
+    } else {
+      let accordians = [];
 
-    this.state.steps.forEach((item, index) => {
-      this.accordianCmpntRef[index] = React.createRef();
-      console.log("expanded ", item.expanded);
-      accordians.push(
-        <Row className="rowSeprator ">
-          <AccordionCmp
-            key={index}
-            title={item.title}
-            isThemesErrorMsg={this.state.isThemesErrorMsg}
-            ref={this.accordianCmpntRef[index]}
-            body={item.body}
-            expand={item.expanded}
-            bgColor={item.backgroundColor}
-            themes={this.state.winThemesData}
-            formData={item.data}
-            id={item.id}
-            onAccordianChange={this.toggle.bind(this, item.id)}
-            onClientCreate={this.createClient.bind(this, index)}
-            onPrevious={this.toPreviousStep.bind(this, item.id)}
-            onThemeSelected={this.addWinthemes.bind(this, index)}
-          />
-        </Row>
-      );
-    });
-    return (
-      <div className="aramark_dashboard">
-        <nav>{this.setNavDetails(this.state.selectedAccordian)}</nav>
-        <header>
-          <Row>
-            <Col md={3}>
-              {" "}
-              <div className="logo">
-                <img
-                  src={aramarkLogo}
-                  alt="aramarLogo"
-                  className="aramark_header_logo"
-                />
-                <h5 style={{ fontSize: "0.5em" }}>
-                  {/* <b>Experience calculator (AEC)</b> */}
-                </h5>
-                {/* Uncomment below if you prefer to use an image logo */}
-                {/* <a href="index.html"><img src="../../assets/img/logo.png" alt="" class="img-fluid"></a>*/}
-              </div>
-            </Col>
-            <Col md={9} className="aramark_header_bg">
-              <h5 className="aramark_header_text">Experience calculator</h5>
-            </Col>
+      this.state.steps.forEach((item, index) => {
+        this.accordianCmpntRef[index] = React.createRef();
+        accordians.push(
+          <Row className="rowSeprator ">
+            <AccordionCmp
+              key={index}
+              title={item.title}
+              isThemesErrorMsg={this.state.isThemesErrorMsg}
+              ref={this.accordianCmpntRef[index]}
+              body={item.body}
+              expand={item.expanded}
+              bgColor={item.backgroundColor}
+              themes={this.state.winThemesData}
+              formData={item.data}
+              id={item.id}
+              contractTypes={this.state.contractTypes}
+              industryTypes={this.state.industryTypes}
+              // onCheckWithTheme={this.saveWinTheme.bind(this, index)}
+              onAccordianChange={this.toggle.bind(this, item.id)}
+              onClientCreate={this.createClient.bind(this, index)}
+              onPrevious={this.toPreviousStep.bind(this, item.id)}
+              onThemeSelected={this.addWinthemes.bind(this, index)}
+            />
           </Row>
-        </header>
-        <section>
-          <Row className="aramark_section">
-            <Col md={8} className="accordianContent">
-              <article>{accordians}</article>
-            </Col>
-            <Col md={3}>
-              {this.state.isCalculations === false ? (
-                <div className="tootalCalculationSection">
-                  <div className="tootalCalculationSection_container"></div>
+        );
+      });
+      return (
+        <div className="aramark_dashboard">
+          <nav>{this.setNavDetails(this.state.selectedAccordian)}</nav>
+          <header>
+            <Row>
+              <Col md={3}>
+                {" "}
+                <div className="logo">
+                  <img
+                    src={aramarkLogo}
+                    alt="aramarLogo"
+                    className="aramark_header_logo"
+                  />
+                  <h5 style={{ fontSize: "0.5em" }}>
+                    {/* <b>Experience calculator (AEC)</b> */}
+                  </h5>
+                  {/* Uncomment below if you prefer to use an image logo */}
+                  {/* <a href="index.html"><img src="../../assets/img/logo.png" alt="" class="img-fluid"></a>*/}
                 </div>
-              ) : (
-                <div className="tootalCalculationSection_expanded">
-                  <div className="tootalCalculationSection_container">
-                    <h5 className="nav_header">ESTIMATED COSTS</h5>
+              </Col>
+              <Col md={9} className="aramark_header_bg">
+                <h5 className="aramark_header_text">Experience calculator</h5>
+              </Col>
+            </Row>
+          </header>
+          <section>
+            <Row className="aramark_section">
+              <Col md={8} className="accordianContent">
+                <article>{accordians}</article>
+              </Col>
+              <Col md={3}>
+                {this.state.isCalculations === false ? (
+                  <div className="tootalCalculationSection">
+                    <div className="tootalCalculationSection_container"></div>
+                  </div>
+                ) : (
+                  <div className="tootalCalculationSection_expanded">
+                    <div className="tootalCalculationSection_container">
+                      <h5 className="nav_header">ESTIMATED COSTS</h5>
 
-                    <div className="capEx">
-                      <div className="capEx_sign_container">
-                        <p className="capEx_sign">$</p>
+                      <div className="user_container">
+                        {this.state.isUserShow === true ? (
+                          <p className="client_info">{this.state.clientName}</p>
+                        ) : (
+                          ""
+                        )}
                       </div>
-                      <div className="capexValue_container">
-                        <p className="capexValue_label">Cap Ex</p>
-                        <p className="capexValue">$0</p>
-                      </div>
-                    </div>
-                    <br></br>
-                    <div className="opEx">
-                      <div className="opEx_sign_container">
-                        <p className="opEx_sign">$</p>
-                      </div>
-                      <div className="opexValue_container">
-                        <p className="opexValue_label">Op Ex</p>
-                        <p className="opexValue">$0</p>
-                      </div>
-                    </div>
 
-                    <div className="capExOpex_total_container">
-                      <p className="capExOpex_total">
-                        {" "}
-                        {"$" + this.state.total}
-                      </p>
+                      <div className="capEx">
+                        <div className="capEx_sign_container">
+                          <p className="capEx_sign">$</p>
+                        </div>
+                        <div className="capexValue_container">
+                          <p className="capexValue_label">Cap Ex</p>
+                          <p className="capexValue">$0</p>
+                        </div>
+                      </div>
+                      <br></br>
+                      <div className="opEx">
+                        <div className="opEx_sign_container">
+                          <p className="opEx_sign">$</p>
+                        </div>
+                        <div className="opexValue_container">
+                          <p className="opexValue_label">Op Ex</p>
+                          <p className="opexValue">$0</p>
+                        </div>
+                      </div>
+
+                      <div className="capExOpex_total_container">
+                        <p className="capExOpex_total">
+                          {" "}
+                          {"$" + this.state.total}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </Col>
-          </Row>
-          {/* <article>
+                )}
+              </Col>
+            </Row>
+            {/* <article>
             <h1>London</h1>
             <p>
               London is the capital city of England. It is the most populous
@@ -722,13 +800,14 @@ class Dashboard extends Component {
               Romans, who named it Londinium.
             </p>
           </article> */}
-        </section>
+          </section>
 
-        {/* <footer>
+          {/* <footer>
           <p>Footer</p>
         </footer> */}
-      </div>
-    );
+        </div>
+      );
+    }
   }
 }
 
