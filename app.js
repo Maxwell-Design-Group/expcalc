@@ -2,8 +2,9 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var port = 4200;
+var port = process.env.port || 4200;
 var cors = require('cors');
+
 
 
 //Mongoose connection with mongodb
