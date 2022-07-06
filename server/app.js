@@ -9,7 +9,7 @@ var cors = require('cors');
 
 //Mongoose connection with mongodb
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test/aramarkDB')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test/aramarkDB')
     .then(() => {
         console.log('Start');
     })
