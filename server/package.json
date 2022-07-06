@@ -3,13 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "install": "npm run install:client && npm run install:server",
-    "install:client": "(cd ./client && npm install)",
-    "install:server": "(cd ./server && npm install)",
-    "start": "npm run start:dev",
-    "start:dev": "npm run start:client & npm run start:server",
-    "start:client": "(cd ./client && npm run start)",
-    "start:server": "(cd ./server && npm run start:watch)"
+    "start": "nodemon app.js"
   },
   "repository": "https://github.com/nurislam03/MERN-CRUD-Application.git",
   "author": "Nur Islam",
