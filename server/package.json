@@ -1,7 +1,6 @@
 {
-  "name": "expcalc",
+  "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "install": "npm run install:client && npm run install:server",
@@ -12,14 +11,16 @@
     "start:client": "(cd ./client && npm run start)",
     "start:server": "(cd ./server && npm run start:watch)"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Maxwell-Design-Group/expcalc.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Maxwell-Design-Group/expcalc/issues"
-  },
-  "homepage": "https://github.com/Maxwell-Design-Group/expcalc#readme"
+  "repository": "https://github.com/nurislam03/MERN-CRUD-Application.git",
+  "author": "Nur Islam",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.1",
+    "mongoose": "^5.0.1",
+    "nodemon": "^1.14.11"
+  }
 }
