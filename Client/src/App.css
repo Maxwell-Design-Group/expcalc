@@ -133,7 +133,7 @@
 }
 
 .heroSection{
-  margin: 5em !important;
+  margin: 0 5em !important;
 }
 
 
@@ -184,7 +184,7 @@ margin-top: 8em !important;
       font-size: 25px !important;
     }
                  .aramark_dashboard {
-                   margin: 21em 0 0 0 !important;
+                   margin: 0 0.5em !important;
                  }
               
 }
@@ -229,7 +229,7 @@ and (orientation: portrait) {
         font-size: 25px !important;
       }
                      .aramark_dashboard {
-                       margin: 21em 0 0 0 !important;
+                       margin: 0 0.5em !important;
                      }
                   
 }
@@ -274,7 +274,7 @@ and (orientation: landscape) {
         font-size: 25px !important;
       }
                      .aramark_dashboard {
-                       margin: 21em 0 0 0 !important;
+                       margin: 0 0.5em !important;
                      }
                   
 }
@@ -315,7 +315,7 @@ and (orientation: landscape) {
         font-size: 25px !important;
       }
                      .aramark_dashboard {
-                       margin: 21em 0 0 0 !important;
+                       margin: 0 0.5em !important;
                      }
                  
 }
@@ -360,7 +360,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
         font-size: 25px !important;
       }
                      .aramark_dashboard {
-                       margin: 21em 0 0 0 !important;
+                       margin: 0 0.5em !important;
                      }
                   
 }
@@ -405,7 +405,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
         font-size: 25px !important;
       }
      .aramark_dashboard {
-                  margin: 21em 0 0 0 !important;
+                  margin: 0 0.5em !important;
     }
 }
  
@@ -449,7 +449,7 @@ z-index: -99 !important;
     font-size: 25px !important;
   }
     .aramark_dashboard {
-      margin: 21em 0 0 0 !important;
+      margin: 0 0.5em !important;
     }
 }
 

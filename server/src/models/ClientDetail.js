@@ -1,8 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Define collection and schema for Client detail
+// Define collection and schema for ClientDetails
 var ClientDetail = new Schema({
+    email: {
+        type: String
+    },
     ClientName: {
         type: String
     },
@@ -13,19 +16,17 @@ var ClientDetail = new Schema({
         type: String
     },	
 	AnticipatedRevenue: {
-        type: Integer
+        type: Number
     },
 	Population: {
-        type: Integer
+        type: Number
     },
 	industry_Type: {
         type: String
     },
 
 },{
-    collection: 'ClientDetail'
+    collection: 'clientdetails'
 });
 
 module.exports = mongoose.model('ClientDetail', ClientDetail);
-
-
