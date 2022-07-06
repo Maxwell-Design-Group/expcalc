@@ -1,2 +1,0 @@
-# expcalc
-Experience Calculator
