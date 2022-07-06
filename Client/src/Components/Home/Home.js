@@ -16,12 +16,7 @@ import QuotesIcon from "../../assets/svg/Quotes";
 import homePageImg from "../../assets/img/homePageImg.png";
 import Dots from "../../assets/svg/Dots";
 import Alert from "../Alert/Alert";
-
-import registerServiceWorker from './registerServiceWorker';
-
-import ItemService from './ItemService';
-
-
+import "./Home.css";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -71,7 +66,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="aramark_home">
         <meta charSet="utf-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <title>Vesperr Bootstrap Template - Index</title>
@@ -80,7 +75,10 @@ class Home extends Component {
 
         {/* ======= Header ======= */}
         <header id="header" className="fixed-top d-flex align-items-center">
-          <div className="container d-flex align-items-center justify-content-between">
+          <div
+            className="container d-flex align-items-center justify-content-between"
+            style={{ maxWidth: "1700px" }}
+          >
             <a href="/home">
               <div className="logo">
                 <img
@@ -102,6 +100,7 @@ class Home extends Component {
                   <TextField
                     id="email"
                     label="Email"
+                    type="text"
                     variant="outlined"
                     size="small"
                     value={this.state.email}
@@ -114,6 +113,7 @@ class Home extends Component {
                   <TextField
                     id="password"
                     label="Password"
+                    type="password"
                     variant="outlined"
                     size="small"
                     value={this.state.password}

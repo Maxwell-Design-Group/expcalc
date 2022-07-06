@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import Accordion from "./Accordion";
-import Home from "../Home/Home";
+import { Component } from "react";
 
 class Landing extends Component {
   constructor(props) {
