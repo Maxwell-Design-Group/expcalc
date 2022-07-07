@@ -9,17 +9,17 @@ var port = 4200;
 var cors = require('cors');
 
 
-//Mongoose connection with mongodb
-//mongoose.Promise = require('bluebird');
-//mongoose.connect('mongodb://localhost:27017/aramarkDB')
-mongoose.connect('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test/aramarkDB')
-    .then(() => {
-        console.log('Start');
-    })
-    .catch((err) => {
-        console.error('App starting error:', err.stack);
-        process.exit(1);
-    });
+// //Mongoose connection with mongodb
+// //mongoose.Promise = require('bluebird');
+// //mongoose.connect('mongodb://localhost:27017/aramarkDB')
+// mongoose.connect('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test/aramarkDB')
+//     .then(() => {
+//         console.log('Start');
+//     })
+//     .catch((err) => {
+//         console.error('App starting error:', err.stack);
+//         process.exit(1);
+//     });
 
 // Required aplication specific custom router module
 var clientdetailRouter = require('./src/routes/clientdetailRouter');
