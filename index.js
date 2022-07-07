@@ -22,7 +22,7 @@ var cors = require('cors');
 //     });
 
 // Required aplication specific custom router module
-var clientdetailRouter = require('./src/routes/clientdetailRouter');
+var clientdetailRouter = require('./src/routes/ClientDetailRouter');
 
 // Required aplication specific custom router module
 var contracttypelistRouter = require('./src/routes/contracttypelistRouter');
