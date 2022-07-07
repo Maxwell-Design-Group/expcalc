@@ -17,7 +17,7 @@ clientdetailRouter.route('/add/post').post(function(req, res, next) {
     });
 });
 
-
+//addingcommentfornoreason
 // Defined get data(index or listing) route
 clientdetailRouter.route('/').get(function(req, res, next) {
     ClientDetail.find(function(err, clientdetail) {
