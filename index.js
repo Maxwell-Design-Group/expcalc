@@ -57,13 +57,20 @@ app.use('/winthemedetails', winthemedetailRouter);
 // Start the server
 app.listen(port, function() {
     console.log('Server is running on Port: ', port);
+  //  console.log(request.headers.host);
+    //console.log(window.location.hostname);
 });
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.get('*', function(req, res){
      res.sendFile(path.join(__dirname,'/client/build/index.html'));
+     console.log(req.headers.host);
+     console.log(__dirname);
+
 });
+
+
 
 app.listen(3000);
 
