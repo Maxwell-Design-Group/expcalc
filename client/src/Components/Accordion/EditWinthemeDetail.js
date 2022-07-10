@@ -14,7 +14,7 @@ class EditWinthemeDetail extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://localhost:4200/winthemedetails/edit/'+this.props.match.params.id)
+        axios.get('http://https://expcalc-dev.herokuapp.com/winthemedetails/edit/'+this.props.match.params.id)
         .then((response) => {
             this.setState({
                 value: response.data

@@ -10,9 +10,9 @@ var cors = require('cors');
 
 
 // //Mongoose connection with mongodb
-// //mongoose.Promise = require('bluebird');
-// //mongoose.connect('mongodb://localhost:27017/aramarkDB')
-// mongoose.connect('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test/aramarkDB')
+mongoose.Promise = require('bluebird');
+//mongoose.connect('mongodb://localhost:27017/aramarkDB')
+// mongoose.connect(encodeURI('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test/aramarkDB'));
 //     .then(() => {
 //         console.log('Start');
 //     })
@@ -20,6 +20,26 @@ var cors = require('cors');
 //         console.error('App starting error:', err.stack);
 //         process.exit(1);
 //     });
+// srv style not supporing
+mongoose.connect('mongodb://cluster0.bhz6k.mongodb.net/test', {
+  auth: { username: "dmaxwell", Password: "ZiscohFcN6FkC5zb" },
+  dbName: "aramarkDB",
+  authSource: "aramarkDB",
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}, function(err, db) {
+  if (err) {
+    console.log('mongoose error 1 ', err);
+  }
+});
+
+// mongoose.connect('mongodb+srv://cluster0.bhz6k.mongodb.net/test/aramarkDB', {
+//   auth: {
+//     user: 'dmaxwell',
+//     password: 'ZiscohFcN6FkC5zb'
+//   },
+//    useNewUrlParser: true
+// })
 
 // Required aplication specific custom router module
 var clientdetailRouter = require('./src/routes/ClientDetailRouter');
