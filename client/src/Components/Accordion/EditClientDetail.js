@@ -14,7 +14,7 @@ class EditClientDetail extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://https://expcalc-dev.herokuapp.com/clientdetails/edit/'+this.props.match.params.id)
+        axios.get('https://expcalc-dev.herokuapp.com/clientdetails/edit/'+this.props.match.params.id)
         .then((response) => {
             this.setState({
                 value: response.data
@@ -24,7 +24,7 @@ class EditClientDetail extends Component {
             console.log(error);
         })
 
-        axios.get('http://https://expcalc-dev.herokuapp.com/contracttypelists/')
+        axios.get('https://expcalc-dev.herokuapp.com/contracttypelists/')
         .then((response) => {
             // this.setState({
             //     contracttypelists: response.data
@@ -36,7 +36,7 @@ class EditClientDetail extends Component {
         })
 
 
-        axios.get('http://https://expcalc-dev.herokuapp.com/industrytypes/')
+        axios.get('https://expcalc-dev.herokuapp.com/industrytypes/')
         .then((response) => {
             // this.setState({
             //     industrytypes: response.data

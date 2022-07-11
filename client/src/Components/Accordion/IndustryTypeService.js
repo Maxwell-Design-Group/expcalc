@@ -3,7 +3,7 @@ import axios from 'axios';
 class IndustryTypeService {
 
     sendData(data) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/industrytypes/add/post', {
+        axios.post('https://expcalc-dev.herokuapp.com/industrytypes/add/post', {
             industrytype: data
         })
         .then((response) => {
@@ -17,7 +17,7 @@ class IndustryTypeService {
     }
 
     updateDate(data, id) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/industrytypes/update/'+id, {
+        axios.post('https://expcalc-dev.herokuapp.com/industrytypes/update/'+id, {
             industrytype: data
         })
         .then((response) => {
@@ -31,7 +31,7 @@ class IndustryTypeService {
     }
 
     deleteData(id) {
-        axios.get('http://https://expcalc-dev.herokuapp.com/industrytypes/delete/'+id)
+        axios.get('https://expcalc-dev.herokuapp.com/industrytypes/delete/'+id)
         .then(() => {
             console.log('Deleted')
         })

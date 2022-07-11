@@ -3,7 +3,7 @@ import axios from 'axios';
 class WinthemeDetailService {
 
     sendData(data) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/winthemedetails/add/post', data)
+        axios.post('https://expcalc-dev.herokuapp.com/winthemedetails/add/post', data)
         .then((response) => {
             this.setState({
                 winthemedetails: response.data
@@ -15,7 +15,7 @@ class WinthemeDetailService {
     }
 
     updateDate(data, id) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/winthemedetails/update/'+id, data)
+        axios.post('https://expcalc-dev.herokuapp.com/winthemedetails/update/'+id, data)
         .then((response) => {
             this.asetState({
                 winthemedetails: response.data
@@ -27,7 +27,7 @@ class WinthemeDetailService {
     }
 
     deleteData(id) {
-        axios.get('http://https://expcalc-dev.herokuapp.com/winthemedetails/delete/'+id)
+        axios.get('https://expcalc-dev.herokuapp.com/winthemedetails/delete/'+id)
         .then(() => {
             console.log('Deleted')
         })

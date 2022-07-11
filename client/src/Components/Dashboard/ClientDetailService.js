@@ -3,7 +3,7 @@ import axios from 'axios';
 class ClientDetailService {
 
     sendData(data) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/ClientDetail/add/post', {
+        axios.post('https://expcalc-dev.herokuapp.com/ClientDetail/add/post', {
             item: data
         })
         .then((response) => {
@@ -17,7 +17,7 @@ class ClientDetailService {
     }
 
     updateDate(data, id) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/ClientDetail/update/'+id, {
+        axios.post('https://expcalc-dev.herokuapp.com/ClientDetail/update/'+id, {
             ClientDetail: data
         })
         .then((response) => {
@@ -31,7 +31,7 @@ class ClientDetailService {
     }
 
     deleteData(id) {
-        axios.get('http://https://expcalc-dev.herokuapp.com/ClientDetail/delete/'+id)
+        axios.get('https://expcalc-dev.herokuapp.com/ClientDetail/delete/'+id)
         .then(() => {
             console.log('Deleted')
         })

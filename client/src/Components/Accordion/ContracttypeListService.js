@@ -3,7 +3,7 @@ import axios from 'axios';
 class ContracttypeListService {
 
     sendData(data) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/contracttypelists/add/post', {
+        axios.post('https://expcalc-dev.herokuapp.com/contracttypelists/add/post', {
             contracttypelist: data
         })
         .then((response) => {
@@ -17,7 +17,7 @@ class ContracttypeListService {
     }
 
     updateDate(data, id) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/contracttypelists/update/'+id, {
+        axios.post('https://expcalc-dev.herokuapp.com/contracttypelists/update/'+id, {
             contracttypelist: data
         })
         .then((response) => {
@@ -31,7 +31,7 @@ class ContracttypeListService {
     }
 
     deleteData(id) {
-        axios.get('http://https://expcalc-dev.herokuapp.com/contracttypelists/delete/'+id)
+        axios.get('https://expcalc-dev.herokuapp.com/contracttypelists/delete/'+id)
         .then(() => {
             console.log('Deleted')
         })

@@ -3,7 +3,7 @@ import axios from 'axios';
 class IndustoryService {
 
     sendData(data) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/Industory/add/post', {
+        axios.post('https://expcalc-dev.herokuapp.com/Industory/add/post', {
             Industory: data
         })
         .then((response) => {
@@ -17,7 +17,7 @@ class IndustoryService {
     }
 
     updateDate(data, id) {
-        axios.post('http://https://expcalc-dev.herokuapp.com/Industory/update/'+id, {
+        axios.post('https://expcalc-dev.herokuapp.com/Industory/update/'+id, {
             Industory: data
         })
         .then((response) => {
@@ -31,7 +31,7 @@ class IndustoryService {
     }
 
     deleteData(id) {
-        axios.get('http://https://expcalc-dev.herokuapp.com/Industory/delete/'+id)
+        axios.get('https://expcalc-dev.herokuapp.com/Industory/delete/'+id)
         .then(() => {
             console.log('Deleted')
         })
