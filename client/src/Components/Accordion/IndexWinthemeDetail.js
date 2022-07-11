@@ -14,7 +14,7 @@ class IndexWinthemeDetail extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('https://expcalc-dev.herokuapp.com:4200/winthemedetails')
+        axios.get('https://expcalc-dev.herokuapp.com/winthemedetails')
         .then((response) => {
             this.setState({
                 winthemedetails: response.data

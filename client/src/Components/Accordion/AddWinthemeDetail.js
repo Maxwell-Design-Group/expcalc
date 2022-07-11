@@ -12,7 +12,7 @@ class AddWinthemeDetail extends Component {
     }
 
     componentDidMount = () => {
-        // axios.get('https://expcalc-dev.herokuapp.com:4200/winthemes')
+        // axios.get('https://expcalc-dev.herokuapp.com/winthemes')
         // .then((response) => {
         //     // this.setState({
         //     //     winthemes: response.data

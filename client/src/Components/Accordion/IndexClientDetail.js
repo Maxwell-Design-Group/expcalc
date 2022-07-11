@@ -14,7 +14,7 @@ class IndexClientDetail extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('https://expcalc-dev.herokuapp.com:4200/clientdetails')
+        axios.get('https://expcalc-dev.herokuapp.com/clientdetails')
         .then((response) => {
             this.setState({
                 clientdetails: response.data

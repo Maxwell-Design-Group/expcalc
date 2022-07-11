@@ -199,7 +199,7 @@ class Dashboard extends Component {
   }
   componentDidMount = () => {
     axios
-      .get("https://expcalc-dev.herokuapp.com:4200/contracttypelists")
+      .get("https://expcalc-dev.herokuapp.com/contracttypelists")
       .then((response) => {
         this.setState({
           contractTypes: response.data,
@@ -208,7 +208,7 @@ class Dashboard extends Component {
       .catch((error) => {});
 
     axios
-      .get("https://expcalc-dev.herokuapp.com:4200/industrytypes")
+      .get("https://expcalc-dev.herokuapp.com/industrytypes")
       .then((response) => {
         this.setState({
           industryTypes: response.data,

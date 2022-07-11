@@ -19,7 +19,7 @@ class AddClientDetail extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('https://expcalc-dev.herokuapp.com:4200/contracttypelists')
+        axios.get('https://expcalc-dev.herokuapp.com/contracttypelists')
         .then((response) => {
             // this.setState({
             //     contracttypelists: response.data
@@ -31,7 +31,7 @@ class AddClientDetail extends Component {
         });
 
 
-        axios.get('https://expcalc-dev.herokuapp.com:4200/strytypes')
+        axios.get('https://expcalc-dev.herokuapp.com/strytypes')
         .then((response) => {
             // this.setState({
             //     industrytypes: response.data
