@@ -8,10 +8,12 @@ import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import LifeWork from "../../Assets/images/isLifeWork.png";
 import "../../Assets/Style/style.css";
+import { getMasterData } from "../../Redux/Actions";
 import ClientDetailService from "../../Services/ClientDetailService";
 import Alert from "../Alert/Alert";
 const Step1 = (props) => {
-  useEffect(() => {});
+  const dispatch = useDispatch();
+
   const clientDetailService = new ClientDetailService();
   const [expand, setExpand] = useState(false);
   const [clientName, setClientName] = useState("");
@@ -20,8 +22,10 @@ const Step1 = (props) => {
   const [isLifeworks, setIsLifeworks] = useState(false);
   const [anticipatedRevenue, setAnticipatedRevenue] = useState("");
   const [population, setPopulation] = useState("");
-  const dispatch = useDispatch();
+
   const { accordionId } = useSelector((state) => state.Reducer);
+  const { masterData } = useSelector((state) => state.Master);
+
   const [industrytypes, setindustrytypeList] = useState([
     { _id: "62bd38db215b515b14317628", industrytype: " Technology", __v: 0 },
     { _id: "62bd38e8215b515b1431762b", industrytype: "Banking", __v: 0 },
@@ -79,6 +83,7 @@ const Step1 = (props) => {
       label: "5000",
     },
   ]);
+  console.log("masterData ", JSON.stringify(masterData));
   function onAccordianChange(params) {
     setExpand(!expand);
   }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row, Modal } from "react-bootstrap";
 import CancelIcon from "@mui/icons-material/Cancel";
 import aramarkLogo from "../Assets/images/aramarkLogo.png";
@@ -7,8 +7,13 @@ import { NavInfoList } from "./Static";
 import "./Dashboard.css";
 import AccordianComponent from "../Components/Accordian/AccordionComponent";
 import Calculator from "../Components/Calculator/Calculator";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getMasterData } from "../Redux/Actions";
 function Dashboard() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMasterData());
+  }, []);
   const isMobileView = window.innerWidth < 430;
   const [selectedAccordion, setSelectedAccordion] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(isMobileView);
@@ -113,7 +118,7 @@ function Dashboard() {
             <article>
               {" "}
               <AccordianComponent
-                handleAccordianChange={handleAccordianChange}
+                handleAccordionChange={handleAccordianChange}
                 handleCloseModal={handleCloseModal}
                 handleOpenModal={handleOpenModal}
               />
