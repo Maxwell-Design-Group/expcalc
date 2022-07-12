@@ -53,7 +53,7 @@ export const getMasterData = () => {
     axios
       .get("http://localhost:3000/getmasterdata")
       .then((response) => {
-        dispatch(getMaster(response));
+        dispatch(getMaster(response.data));
       })
       .catch((error) => {});
   };
