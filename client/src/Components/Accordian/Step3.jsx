@@ -11,6 +11,7 @@ import {
 import { useSelector } from "react-redux";
 //import { makeStyles } from "@mui/styles";
 import Alert from "../Alert/Alert";
+const  makeStyles=new Object();
 
 const useStyles = makeStyles({
   root: {
