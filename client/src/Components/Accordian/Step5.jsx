@@ -13,6 +13,7 @@ const Step5 = (props) => {
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
   const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);
   const dispatch = useDispatch();
+  const { masterData } = useSelector((state) => state.Master);
   const { accordianId } = useSelector((state) => state.Reducer);
   const [tableData, setTabledata] = useState([
     {
@@ -36,24 +37,11 @@ const Step5 = (props) => {
       cost: "$ 231,453",
     },
   ]);
-  const supportingFeatureData = [
-    {
-      label: "Digital Signage $234,245",
-      status: "enable",
-    },
-    {
-      label: "Catering $434,245",
-      status: "enable",
-    },
-    {
-      label: "Enable $154,245",
-      status: "disabled",
-    },
-    {
-      label: " Dashboards $ 354,245",
-      status: "disabled",
-    },
-  ];
+  let supportingFeatureData = [];
+  if (masterData.supportingfeature) {
+    supportingFeatureData = masterData.supportingfeature;
+  }
+
   const onPrevious = (id) => {
     dispatch(prevAccordionOpen(id));
   };
@@ -78,12 +66,12 @@ const Step5 = (props) => {
     const { checked } = e.target;
     let features = userSelectedFeatures;
     if (checked === true) {
-      features.push(rowData.label);
+      features.push(rowData.Name);
 
       setUserSelectedFeatures(features);
     } else {
       for (let i = 0; i < features.length; i++) {
-        if (features[i] === rowData.label) {
+        if (features[i] === rowData.Name) {
           features.splice(i, 1);
 
           setUserSelectedFeatures(features);
@@ -127,7 +115,7 @@ const Step5 = (props) => {
             defaultChecked={featureChecked}
             onChange={(e) => handleChangeFeatures(e, feature, index)}
           />
-          <span> {feature.label}</span>
+          <span> {feature.Name + " " + "$" + feature.value}</span>
         </label>
       </div>
     );

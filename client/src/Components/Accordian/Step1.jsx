@@ -8,7 +8,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import LifeWork from "../../Assets/images/isLifeWork.png";
 import "../../Assets/Style/style.css";
-import { getMasterData } from "../../Redux/Actions";
+import axios from "axios";
 import ClientDetailService from "../../Services/ClientDetailService";
 import Alert from "../Alert/Alert";
 const Step1 = (props) => {
@@ -25,24 +25,14 @@ const Step1 = (props) => {
 
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
+  console.log("masterData ", masterData);
+  let industrytypes = [];
+  let contractTypes = [];
+  if (masterData.industrytype) {
+    industrytypes = masterData.industrytype;
+    contractTypes = masterData.contracttypelist;
+  }
 
-  const [industrytypes, setindustrytypeList] = useState([
-    { _id: "62bd38db215b515b14317628", industrytype: " Technology", __v: 0 },
-    { _id: "62bd38e8215b515b1431762b", industrytype: "Banking", __v: 0 },
-    { _id: "62bd38f7215b515b1431762e", industrytype: "FinTech", __v: 0 },
-    { _id: "62bd3914215b515b14317631", industrytype: "Insurance", __v: 0 },
-    { _id: "62bd3924215b515b14317634", industrytype: "Transport", __v: 0 },
-    { _id: "62bd3931215b515b14317637", industrytype: "Manufacturing", __v: 0 },
-    { _id: "62bd393f215b515b1431763a", industrytype: "Retail", __v: 0 },
-    { _id: "62bd394e215b515b1431763d", industrytype: "RealEstate", __v: 0 },
-    { _id: "62bd3961215b515b14317640", industrytype: "ServiceAgency", __v: 0 },
-  ]);
-  const [contractTypes, setContractList] = useState([
-    { _id: "62bd30220b9aa753784bb250", contracttypelist: "Subsidy", __v: 0 },
-    { _id: "62bd30320b9aa753784bb253", contracttypelist: "P&L", __v: 0 },
-    { _id: "62bd30470b9aa753784bb256", contracttypelist: "Cost+", __v: 0 },
-    { _id: "62bd30550b9aa753784bb259", contracttypelist: "Other", __v: 0 },
-  ]);
   const [anticipatedRevenueRange, setAnticipatedRevenueRange] = useState([
     {
       value: 0,
@@ -83,7 +73,7 @@ const Step1 = (props) => {
       label: "5000",
     },
   ]);
-  console.log("masterData ", JSON.stringify(masterData));
+  console.log("industrytype ", masterData);
   function onAccordianChange(params) {
     setExpand(!expand);
   }
