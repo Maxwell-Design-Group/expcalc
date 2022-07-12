@@ -322,7 +322,7 @@ const Step3 = () => {
   return (
     <>
       <Row className="logoNToggle">
-        <Col md={2}>
+        {/* <Col md={2}>
           <Button variant="secondary" className="LogoButton">
             Logo
           </Button>
@@ -343,9 +343,9 @@ const Step3 = () => {
             checked={yesOrNo}
             onChange={handleYesOrNoChange}
           />
-        </Col>
+        </Col> */}
       </Row>
-      <br />
+      {/* <br />
       {yesOrNo ? (
         <>
           <Row className="Option">
@@ -453,7 +453,7 @@ const Step3 = () => {
             </Col>
           </Row>
         </>
-      )}
+      )} */}
     </>
   );
 };
