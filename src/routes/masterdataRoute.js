@@ -12,11 +12,6 @@ module.exports = (app) => {
     app.put('/client/:id',  clientData.update);
 
 
-
-    // app.get('/clientbyid/:id', clientData.findOne);
-
-    // app.get('/clientbyemail/:email', clientData.findByEmail);
-
     app.get('/master', masterdata.findAll);
 
     app.get('/contract', masterdata.findContractTypeList);
@@ -27,7 +22,4 @@ module.exports = (app) => {
 
     app.get('/ccoption', masterdata.findCustomisableConvenienceOption);
     
-    // app.put('//update/:id',  clientData.update);
-
-    // app.delete('/delete/:id', clientData.delete);
-}
+   }
