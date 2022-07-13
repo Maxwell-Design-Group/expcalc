@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 3000
 app.use(express.json())
 
 
- //require('./src/routes/masterdataRoute')(app);
+ require('./src/routes/masterdataRoute')(app);
 
  require('./src/routes/winthemeRoute')(app);
 
