@@ -2,13 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // Define collection and schema for ContracttypeLists
-var ContracttypeList = new Schema({
+var ContractTypeList = new Schema({
     contracttypelist: {
         type: String
     },
 
 },{
-    collection: 'contracttypelists'
+    collection: 'contracttypelist'
 });
 
-module.exports = mongoose.model('ContracttypeList', ContracttypeList);
+module.exports = mongoose.model('ContractTypeList', ContractTypeList);
+
+

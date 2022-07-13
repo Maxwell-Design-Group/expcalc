@@ -2,19 +2,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // Define collection and schema for ContracttypeLists
-var winTheme = new Schema({
-    wintheme: {
+var supportingFeatures = new Schema({
+    Name: {
         type: String
     },
-    capex: {
-        type: Number
-    },    
-    opex: {
+    value: {
         type: Number
     },
 
 },{
-    collection: 'wintheme'
+    collection: 'supportingfeature'
 });
 
-module.exports = mongoose.model('winTheme', winTheme);
+module.exports = mongoose.model('supportingFeatures', supportingFeatures);
