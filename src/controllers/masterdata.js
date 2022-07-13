@@ -120,14 +120,14 @@ exports.findAll = (req, res) => {
         });
     });
 
-
     //-----------------------------------------
     cateringDetail.find()
     .then(cateringdetail => {
        
-
         gcateringdetail = cateringdetail;
+
         console.log(gwth);
+        
         return res.status(200).send({
             success: true,        
             contracttypelist:gcontracttypelist,
@@ -139,8 +139,8 @@ exports.findAll = (req, res) => {
             digitalsignage:gdigitalsignage,
             cateringdetail:gcateringdetail,
 
-            ccoption: gwth,
-            wintheme:gccoption
+            ccoption: gccoption,
+            wintheme:gwth
             
           });
     }).catch(err => {

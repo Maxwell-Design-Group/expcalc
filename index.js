@@ -49,6 +49,17 @@ mongoose.connect('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb
 //    useNewUrlParser: true
 // })
 
+// Required aplication specific custom router module
+var clientdetailRouter = require('./src/routes/ClientDetailRouter');
+
+// Required aplication specific custom router module
+var contracttypelistRouter = require('./src/routes/contracttypelistRouter');
+
+// Required aplication specific custom router module
+var industrytypeRouter = require('./src/routes/industrytypeRouter');
+
+// Required aplication specific custom router module
+var winthemedetailRouter = require('./src/routes/winthemedetailRouter');
 
 // Required aplication specific custom router module
 //var winthemeRouter = require('./src/routes/winthemeRouter');
@@ -59,12 +70,17 @@ app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(bodyParser.json());
 
+app.use('/clientdetails', clientdetailRouter);
 
+app.use('/contracttypelists', contracttypelistRouter);
 
-require('./src/routes/masterdataRoute.js')(app);
+app.use('/industrytypes', industrytypeRouter);
 
-require('./src/routes/winthemeRoute.js')(app);
+app.use('/winthemedetails', winthemedetailRouter);
+
+//app.use('/wintheme', winthemeRouter);
 
 
 // Start the server
