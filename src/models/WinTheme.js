@@ -1,20 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Define collection and schema for ContracttypeLists
-var winTheme = new Schema({
+// Define collection and schema for WinThemes
+var WinTheme = new Schema({
     wintheme: {
         type: String
     },
-    capex: {
-        type: Number
-    },    
-    opex: {
-        type: Number
-    },
 
 },{
-    collection: 'wintheme'
+    collection: 'winthemes'
 });
 
-module.exports = mongoose.model('winTheme', winTheme);
+module.exports = mongoose.model('WinTheme', WinTheme);
