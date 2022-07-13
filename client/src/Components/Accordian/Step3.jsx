@@ -93,10 +93,12 @@ const Step3 = () => {
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
+
   let yesDatas = [];
   if (masterData.ccoption) {
     yesDatas = masterData.ccoption;
   }
+
   const handleYesOrNoChange = (e) => {
     setYesOrNo(e.target.checked);
   };
@@ -108,6 +110,7 @@ const Step3 = () => {
       setYesOption(value);
     }
   };
+
   const handleFootprintButtons = (value) => {
     if (selectedFootprint.includes(value)) {
       setSelectedFootprint((prev) =>
@@ -119,6 +122,7 @@ const Step3 = () => {
       setSelectedFootprint((prev) => [...prev, value]);
     }
   };
+
   const handleNoButtons = (value) => {
     let obj = {
       selectedNoOptions: selectedNoOptions,
@@ -134,6 +138,7 @@ const Step3 = () => {
       setSelectedNoOptions((prev) => [...prev, value]);
     }
   };
+
   const selectYesOption = (id) => {
     if (yesOption === "") {
       Alert.error("select any Option");
@@ -147,9 +152,11 @@ const Step3 = () => {
   const onPrevious = (id) => {
     dispatch(prevAccordionOpen(id));
   };
+
   const selectNoOption = (id) => {
     dispatch(nextAccordionOpen(id));
   };
+
   let yesData = [];
   yesDatas.forEach((data, index) => {
     yesData.push(
@@ -195,6 +202,7 @@ const Step3 = () => {
       </Button>
     );
   });
+
   let ontheGoDatas = [];
   onTheGoData.forEach((data, index) => {
     ontheGoDatas.push(
@@ -218,6 +226,7 @@ const Step3 = () => {
       </Button>
     );
   });
+
   let localVarietyDatas = [];
   localVarietyData.forEach((data, index) => {
     localVarietyDatas.push(
@@ -241,6 +250,7 @@ const Step3 = () => {
       </Button>
     );
   });
+
   let alaCarteDatas = [];
   alaCarteData.forEach((data, index) => {
     alaCarteDatas.push(
@@ -264,6 +274,7 @@ const Step3 = () => {
       </Button>
     );
   });
+  
   return (
     <>
       <Row className="logoNToggle">

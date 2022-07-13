@@ -51,7 +51,7 @@ export const completedSteps = (id) => {
 export const getMasterData = () => {
   return function (dispatch) {
     axios
-      .get("https://expcalc-dev.herokuapp.com/getmasterdata")
+      .get("http://localhost:3000/getmasterdata")
       .then((response) => {
         dispatch(getMaster(response.data));
       })
