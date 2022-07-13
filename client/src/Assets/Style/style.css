@@ -8,8 +8,8 @@
   color: black;
   font-weight: bold;
   background-color: lightgrey;
-  width: 133px;
-  height: 42px;
+  width: 100%;
+  height: auto;
 }
 
 .LogoButton:hover {
@@ -20,7 +20,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
 }
 
 .Option {
@@ -28,22 +27,12 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 77px;
+  height: auto;
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #cfcfcf;
   border-radius: 15px;
   opacity: 1;
-  margin-left: 1px;
-}
-
-.heading {
-  display: flex;
-  height: 100%;
-  background-color: #00000013;
-  border-radius: 15px 0px 0px 15px;
-  align-items: center;
-  font-weight: bolder;
-  overflow: hidden;
+  margin-left: 0.2%;
 }
 
 .formButtons {
@@ -53,23 +42,50 @@
   font: normal normal normal 14px/20px Gotham;
   letter-spacing: 0.25px;
   opacity: 1;
-  margin-left: 30px;
+  margin-left: 10px;
   padding: 5px 15px;
+  margin-bottom: 1%;
+  margin-top: 1%;
 }
-
+.heading {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background-color: #00000013;
+  border-radius: 15px 0px 0px 15px;
+  align-items: center;
+  font-weight: bolder;
+  overflow: hidden;
+}
+.headingLocal{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background-color: #00000013;
+  border-radius: 15px 0px 0px 15px;
+  align-items: center;
+  font-weight: bolder;
+  overflow: hidden;
+}
 .OptionAla {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 120px;
+  height: fit-content;
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #cfcfcf;
   border-radius: 15px;
   opacity: 1;
-  margin-left: 1px;
+  margin-left: 0.2%;
 }
-
+.headingAla {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: #00000013;
+  border-radius: 15px 0px 0px 15px;
+  align-items: center;
+  font-weight: bolder;
+  overflow: hidden;
+}
 .formButtonsAla {
   border: 1px solid #979797;
   border-radius: 16px;
@@ -78,13 +94,15 @@
   letter-spacing: 0.25px;
   color: #000000de;
   opacity: 1;
-  margin-left: 40px;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-left: 20px;
+  margin-bottom: 1%;
+  margin-top: 1%;
 }
 
 .stepOne .next_btn3 {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -96,12 +114,16 @@
   background: #000000 0% 0% no-repeat padding-box;
   border-radius: 24px;
   opacity: 1;
-  width: 145px;
-  height: 48px;
+  width: 38%;
+  height: 100%;
+  padding-top: 4%;
+  padding-bottom: 4%;
 }
 
 .previous_btn3 {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -109,8 +131,8 @@
   letter-spacing: 1.42px;
   color: #004040;
   opacity: 1;
-  width: 145px;
-  height: 48px;
+  width: 38%;
+  height: 100%;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 1px solid var(--unnamed-color-000000);
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -126,7 +148,7 @@
 }
 
 .MuiSwitch-switchBase {
-  color: #818181;
+  color: #f2eaea;
   padding: 1px;
 }
 
@@ -143,7 +165,7 @@
 
 .MuiSwitch-track {
   border-radius: 20px;
-  background-color: #818181;
+  background-color: lightgrey;
   opacity: 1 !important;
 }
 
@@ -151,19 +173,19 @@
   content: "Yes";
   left: 8px;
   color: white;
-  font-size: 12px;
+  font-size: 10px;
   position: absolute;
-  top: 3px;
+  top: 5px;
   bottom: 3px;
 }
 
 .MuiSwitch-track::before {
   content: "No";
-  right: 5px;
-  color: white;
-  font-size: 12px;
+  right: 7px;
+  color: black;
+  font-size: 10px;
   position: absolute;
-  top: 3px;
+  top: 5px;
   bottom: 3px;
 }
 
