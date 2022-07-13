@@ -7,14 +7,26 @@ import { NavInfoList } from "./Static";
 import "./Dashboard.css";
 import AccordionComponent from "../Components/Accordian/AccordionComponent";
 import Calculator from "../Components/Calculator/Calculator";
+import { useDispatch, useSelector } from "react-redux";
+import { getMasterData } from "../Redux/Actions";
+
+const mobileViewSize = 600;
 
 function Dashboard() {
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 600);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMasterData());
+  }, []);
+
+  const [isMobileView, setIsMobileView] = useState(
+    window.innerWidth < mobileViewSize
+  );
   const [selectedAccordion, setSelectedAccordion] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(isMobileView);
 
   const handleWindowResize = (e) => {
-    if (e.target.innerWidth < 600) {
+    if (e.target.innerWidth < mobileViewSize) {
       setIsMobileView(true);
     } else {
       setIsMobileView(false);
@@ -39,50 +51,53 @@ function Dashboard() {
     setIsModalOpen(true);
   }
 
+  function showNavDescription(navInfo, id) {
+    return (
+      <div
+        className={
+          id === 0
+            ? "nav_description_container"
+            : "nav_description_container_expanded"
+        }
+      >
+        <p className="nav_description">{navInfo.description1}</p>
+        <p className="nav_description">{navInfo.description2}</p>
+      </div>
+    );
+  }
+
   function showNavDetails(id) {
     const navInfo = NavInfoList.filter((item) => item.id === id)[0];
     return (
-      <ul style={{ listStyle: "none", padding: "0px" }}>
+      <>
         {isMobileView ? (
-          <div className="popup_header_container">
-            <h5 className="nav_header_popup">{navInfo.header}</h5>{" "}
-            <CancelIcon
-              onClick={handleCloseModal}
-              style={{
-                height: "18px",
-                width: "18px",
-                position: "relative",
-                color: "white",
-              }}
-            />
-          </div>
+          <>
+            <div className="popup_header_container">
+              <h5 className="nav_header_popup">{navInfo.header}</h5>{" "}
+              <CancelIcon
+                onClick={handleCloseModal}
+                style={{
+                  height: "18px",
+                  width: "18px",
+                  position: "relative",
+                  color: "white",
+                }}
+              />
+            </div>
+            {showNavDescription(navInfo, id)}
+          </>
         ) : (
-          <li>
+          <>
             <div className="nav_header_container">
               <h5 className="nav_header">{navInfo.header}</h5>
+              {showNavDescription(navInfo, id)}
             </div>
-          </li>
+            <p className="version_details">
+              © 2022 Aramark Corporation. | EC v0.1
+            </p>
+          </>
         )}
-
-        <li>
-          <div
-            className={
-              id === 0
-                ? "nav_description_container"
-                : "nav_description_container_expanded"
-            }
-          >
-            <p className="nav_description">{navInfo.description1}</p>
-            <p className="nav_description">{navInfo.description2}</p>
-          </div>
-        </li>
-
-        {isMobileView === false && (
-          <li className="version_details">
-            <p className="version_txt">© 2022 Aramark Corporation. | EC v0.1</p>
-          </li>
-        )}
-      </ul>
+      </>
     );
   }
 
@@ -110,8 +125,6 @@ function Dashboard() {
 
   return (
     <div className={`aramark_dashboard ${isMobileView && "mobile_layout"}`}>
-      {headerBar()}
-
       {isMobileView ? (
         <Modal
           contentClassName="content_modal"
@@ -129,6 +142,8 @@ function Dashboard() {
       ) : (
         <nav>{showNavDetails(selectedAccordion)}</nav>
       )}
+
+      {headerBar()}
 
       <section>
         <Row className="aramark_section">

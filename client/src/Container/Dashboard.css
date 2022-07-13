@@ -26,7 +26,7 @@
   float: left;
   line-height: 3em;
   font-size: 0.75em;
-  margin: 0 0 0 1em;
+  margin: 0 0 0 2em;
 }
 
 .aramark_dashboard .themesLabelActive {
@@ -154,7 +154,7 @@
 .aramark_dashboard .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
   border-bottom-left-radius: 10px !important;
   border-bottom-right-radius: 10px !important;
-  width: 100%;
+  width: 99%;
 }
 
 .aramark_dashboard .win_themes {
@@ -301,15 +301,15 @@ div label input {
   cursor: pointer;
 }
 
-.themes {
-  margin: 4px;
-  /* background-color: #D5D8DC;
+/* .themes {
+  margin: 4px; */
+/* background-color: #D5D8DC;
     border-radius: 15px;
     border: 1px solid #fff;
     overflow: hidden;
     float: left; */
-  /* width: 100%; */
-  width: 200px;
+/* width: 100%; */
+/* width: 200px;
   height: 165px;
   padding: 0.2em 0 0.2em 0.3em;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
@@ -318,7 +318,7 @@ div label input {
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #ebebeb;
   opacity: 1;
-}
+} */
 
 .themes label span {
   text-align: center;
@@ -434,16 +434,10 @@ div label input {
 
 /* Create two columns/boxes that floats next to each other */
 .aramark_dashboard nav {
-  /* float: left;
-  width: 15%;
-  height: 300px; 
-  background: #ccc;
-  padding: 20px; */
   position: fixed;
-  z-index: -11;
   top: 0px;
   left: 0px;
-  width: 377px;
+  width: 25%;
   height: 100%;
   background: var(--unnamed-color-01426a) 0% 0% no-repeat padding-box;
   background: #01426a 0% 0% no-repeat padding-box;
@@ -452,7 +446,7 @@ div label input {
 }
 
 .aramark_dashboard section {
-  margin-left: 24em;
+  margin-left: 25%;
   margin-top: 4em;
   padding: 60px 0;
   overflow: hidden;
@@ -613,6 +607,10 @@ div label input {
     flex-direction: column;
     align-items: center;
   }
+
+  .switchColumn {
+    top: 0em !important;
+  }
 }
 
 .popup_header_container {
@@ -679,11 +677,10 @@ div label input {
 
 .aramark_dashboard .nav_header_container {
   position: absolute;
-  top: 172px;
-  left: 66px;
-  width: 246px;
-  height: 32px;
+  top: 140px;
+  width: 100%;
   color: #fff;
+  padding: 0px 20px;
 }
 
 .aramark_dashboard .nav_header {
@@ -699,19 +696,15 @@ div label input {
 }
 
 .aramark_dashboard .nav_description_container {
-  top: 226px;
-  left: 66px;
-  width: 246px;
-  height: 466px;
-  position: absolute;
+  width: 100%;
+  bottom: 70px;
+  overflow-y: scroll;
 }
 
 .aramark_dashboard .nav_description_container_expanded {
-  top: 270px;
-  left: 66px;
-  width: 246px;
-  height: 466px;
-  position: absolute;
+  width: 100%;
+  bottom: 70px;
+  overflow-y: scroll;
 }
 
 .aramark_dashboard .nav_description {
@@ -723,7 +716,7 @@ div label input {
   font: normal normal normal 16px/22px Gotham;
   letter-spacing: 0.48px;
   color: #ffffff;
-  opacity: 0.65;
+  opacity: 1;
 }
 
 .aramark_dashboard .tootalCalculationSection_container {
@@ -934,33 +927,16 @@ div label input {
 }
 
 .aramark_dashboard .version_details {
-  /* top: 1004px; */
-  bottom: 70px;
-  left: 22px;
-  width: 334px;
+  bottom: 35px;
+  width: calc(100% - 40px);
   height: 0px;
-  border: 1px solid var(--unnamed-color-ffffff);
   border-top: 1px solid #ffffff;
-  opacity: 0.59;
-  position: fixed;
-}
-
-.aramark_dashboard .version_txt {
-  bottom: 28px;
-  left: 44px;
-  width: 290px;
-  height: 15px;
-  /* UI Properties */
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / 22px
-    var(--unnamed-font-family-gotham);
-  color: var(--unnamed-color-ffffff);
-  text-align: center;
-  font: normal normal normal 14px/22px Gotham;
-  letter-spacing: 0.42px;
-  color: #ffffff;
   opacity: 1;
-  position: fixed;
+  font: normal normal normal 14px/22px Gotham;
+  position: absolute;
+  color: white;
+  padding-top: 10px;
+  left: 20px;
 }
 
 .aramark_dashboard .next_btn {
@@ -1010,7 +986,7 @@ div label input {
   opacity: 1;
 }
 
-.aramark_dashboard .theme_label_container {
+/* .aramark_dashboard .theme_label_container {
   top: 523px;
   line-height: 1.19em;
   left: 404px;
@@ -1019,17 +995,7 @@ div label input {
   background: #f8f8f8 0% 0% no-repeat padding-box;
   opacity: 1;
   margin: 2.8em 0 0 -0.3em;
-}
-
-.aramark_dashboard .theme_label_container1 {
-  top: 523px;
-  left: 404px;
-  width: 198px;
-  height: 28px;
-  background: #f8f8f8 0% 0% no-repeat padding-box;
-  opacity: 1;
-  margin: 3.1em 0 0 -0.3em;
-}
+} */
 
 .aramark_dashboard .aramark_section {
   top: 172px;
@@ -1093,4 +1059,8 @@ div label input {
 
 .aramark_dashboard .theme_checkbox_color {
   opacity: 0.1;
+}
+
+.switchColumn {
+  top: 2em;
 }

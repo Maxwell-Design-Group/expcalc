@@ -9,6 +9,7 @@ import {
   prevAccordionOpen,
 } from "../../Redux/Actions";
 import { useSelector } from "react-redux";
+import "../../Assets/Style/style.css";
 import Alert from "../Alert/Alert";
 
 const yesDatas = [
@@ -130,6 +131,10 @@ const Step3 = () => {
     }
   };
   const handleNoButtons = (value) => {
+    let obj = {
+      selectedNoOptions: selectedNoOptions,
+      selectedFootprint: selectedFootprint,
+    };
     if (selectedNoOptions.includes(value)) {
       setSelectedNoOptions((prev) =>
         prev.filter((item) => {
@@ -161,7 +166,7 @@ const Step3 = () => {
     yesData.push(
       <Button
         className="formButtons"
-        variant="secondary"
+        variant="light"
         name={data.value}
         value={data.value}
         onClick={(e) => handleYesButtons(data.value)}
@@ -181,7 +186,7 @@ const Step3 = () => {
     footprintDatas.push(
       <Button
         className="formButtons"
-        variant="secondary"
+        variant="light"
         key={data.value}
         name={data.value}
         value={data.value}
@@ -205,7 +210,7 @@ const Step3 = () => {
     ontheGoDatas.push(
       <Button
         className="formButtons"
-        variant="secondary"
+        variant="light"
         name={data.value}
         value={data.value}
         onClick={() => handleNoButtons(data.value)}
@@ -228,7 +233,7 @@ const Step3 = () => {
     localVarietyDatas.push(
       <Button
         className="formButtons"
-        variant="secondary"
+        variant="light"
         name={data.value}
         value={data.value}
         onClick={(e) => handleNoButtons(data.value)}
@@ -251,7 +256,7 @@ const Step3 = () => {
     alaCarteDatas.push(
       <Button
         className="formButtonsAla"
-        variant="secondary"
+        variant="light"
         name={data.value}
         value={data.value}
         onClick={(e) => handleNoButtons(data.value)}
@@ -292,7 +297,7 @@ const Step3 = () => {
         <>
           <Row className="Option">
             <Col className="heading" md={4}>
-              <Typography variant="h6">
+              <Typography variant="subtitle1">
                 <b> What option would they like?</b>
               </Typography>
             </Col>
@@ -328,7 +333,7 @@ const Step3 = () => {
         <>
           <Row className="Option">
             <Col className="heading" md={2}>
-              <Typography variant="h6">
+              <Typography variant="subtitle1">
                 <b>Footprint</b>
               </Typography>
             </Col>
@@ -337,7 +342,7 @@ const Step3 = () => {
           <br />
           <Row className="Option">
             <Col className="heading" md={2}>
-              <Typography variant="h6">
+              <Typography variant="subtitle1">
                 <b>On the go</b>
               </Typography>
             </Col>
@@ -347,8 +352,8 @@ const Step3 = () => {
           </Row>
           <br />
           <Row className="Option">
-            <Col className="heading" md={2}>
-              <Typography variant="h6">
+            <Col className="headingLocal" md={2}>
+              <Typography variant="subtitle1">
                 <b>
                   Local
                   <br />
@@ -360,8 +365,8 @@ const Step3 = () => {
           </Row>
           <br />
           <Row className="OptionAla">
-            <Col className="heading" md={2}>
-              <Typography variant="h6">
+            <Col className="headingAla" md={2}>
+              <Typography variant="subtitle1">
                 <b>A la carte</b>
               </Typography>
             </Col>
