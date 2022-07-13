@@ -29,7 +29,7 @@ app.use(express.json())
 
 // require('./src/routes/masterdataRoute')(app);
 
-// require('./src/routes/winthemeRoute')(app);
+ require('./src/routes/winthemeRoute')(app);
 
 app.get('/test', (req, res) => {
     res.send('Hello World!')
