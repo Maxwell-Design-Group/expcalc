@@ -44,10 +44,6 @@ const Step1 = (props) => {
       label: "$0",
     },
     {
-      value: 0,
-      label: "$0",
-    },
-    {
       value: 10,
       label: "$10M",
     },
@@ -56,22 +52,6 @@ const Step1 = (props) => {
     {
       value: 0,
       label: "0",
-    },
-    {
-      value: 1000,
-      label: "1000",
-    },
-    {
-      value: 2000,
-      label: "2000",
-    },
-    {
-      value: 3000,
-      label: "3000",
-    },
-    {
-      value: 3000,
-      label: "3000",
     },
     {
       value: 5000,
