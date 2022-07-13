@@ -45,6 +45,13 @@ app.get('/test', (req, res) => {
 
 
 
+// Start the server
+app.listen(PORT, function() {
+    console.log('Server is running on Port: ', PORT);
+  //  console.log(request.headers.host);
+    //console.log(window.location.hostname);
+});
+
 app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.get('*', function(req, res){
@@ -54,8 +61,6 @@ app.get('*', function(req, res){
 
 });
 
-app.listen(PORT, (req,res) => {
-    
-    console.log(`app is listening to PORT ${PORT}`)
-})
-//app.listen(PORT);
+
+
+//app.listen(3000);
