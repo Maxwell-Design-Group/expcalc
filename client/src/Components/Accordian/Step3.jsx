@@ -12,20 +12,7 @@ import { useSelector } from "react-redux";
 import "../../Assets/Style/style.css";
 import Alert from "../Alert/Alert";
 
-const yesDatas = [
-  {
-    value: "Essential",
-  },
-  {
-    value: "Essential+",
-  },
-  {
-    value: "Elevated",
-  },
-  {
-    value: "Elevated+",
-  },
-];
+
 const footprintData = [
   {
     id: 0,
@@ -106,6 +93,11 @@ const Step3 = () => {
   const [selectedNoOptions, setSelectedNoOptions] = useState([]);
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
+  const { masterData } = useSelector((state) => state.Master);
+  let yesDatas = [];
+  if (masterData.ccoption) {
+    yesDatas = masterData.ccoption;
+  }
 
 
   const handleYesOrNoChange = (e) => {
@@ -167,16 +159,16 @@ const Step3 = () => {
       <Button
         className="formButtons"
         variant="light"
-        name={data.value}
-        value={data.value}
-        onClick={(e) => handleYesButtons(data.value)}
+        name={data.custConvOption}
+        value={data.custConvOption}
+        onClick={(e) => handleYesButtons(data.custConvOption)}
         style={{
-          backgroundColor: yesOption === data.value ? "#4BAE4F" : "#fff",
-          color: yesOption === data.value ? "white" : "black",
-          border: yesOption === data.value ? "" : "1px solid #979797",
+          backgroundColor: yesOption === data.custConvOption ? "#4BAE4F" : "#fff",
+          color: yesOption === data.custConvOption ? "white" : "black",
+          border: yesOption === data.custConvOption ? "" : "1px solid #979797",
         }}
       >
-        {data.value}
+        {data.custConvOption}
       </Button>
     );
   });
