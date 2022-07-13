@@ -166,7 +166,7 @@ const Step3 = () => {
     yesData.push(
       <Button
         className="formButtons"
-        variant="secondary"
+        variant="light"
         name={data.value}
         value={data.value}
         onClick={(e) => handleYesButtons(data.value)}
@@ -186,7 +186,7 @@ const Step3 = () => {
     footprintDatas.push(
       <Button
         className="formButtons"
-        variant="secondary"
+        variant="light"
         key={data.value}
         name={data.value}
         value={data.value}
@@ -210,7 +210,7 @@ const Step3 = () => {
     ontheGoDatas.push(
       <Button
         className="formButtons"
-        variant="secondary"
+        variant="light"
         name={data.value}
         value={data.value}
         onClick={() => handleNoButtons(data.value)}
@@ -233,7 +233,7 @@ const Step3 = () => {
     localVarietyDatas.push(
       <Button
         className="formButtons"
-        variant="secondary"
+        variant="light"
         name={data.value}
         value={data.value}
         onClick={(e) => handleNoButtons(data.value)}
@@ -256,7 +256,7 @@ const Step3 = () => {
     alaCarteDatas.push(
       <Button
         className="formButtonsAla"
-        variant="secondary"
+        variant="light"
         name={data.value}
         value={data.value}
         onClick={(e) => handleNoButtons(data.value)}
