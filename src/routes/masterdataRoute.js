@@ -1,5 +1,5 @@
 module.exports = (app) => {
-   // const masterdata = require('../controllers/masterdata.js');
+    const masterdata = require('../controllers/commaster.js');
     const clientData = require('../controllers/clientdetail.js');
 
     
