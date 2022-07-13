@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Define collection and schema for IndustryTypes
-var IndustryType = new Schema({
+// Define collection and schema for ContracttypeLists
+var industryType = new Schema({
     industrytype: {
         type: String
     },
 
 },{
-    collection: 'industrytypes'
+    collection: 'industrytype'
 });
 
-module.exports = mongoose.model('IndustryType', IndustryType);
+module.exports = mongoose.model('industryType', industryType);
