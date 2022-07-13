@@ -20,20 +20,23 @@ app.use(bodyParser.urlencoded({
 
 const PORT = process.env.PORT || 3000
 
+var masterdataRoute = require('./src/routes/masterdataRoute');
+
+var winthemeRoute = require('./src/routes/winthemeRoute');
+
 app.use(express.json())
 
 
-require('./src/routes/masterdataRoute.js')(app);
+//require('./src/routes/masterdataRoute.js')(app);
 
-require('./src/routes/winthemeRoute.js')(app);
+//require('./src/routes/winthemeRoute.js')(app);
 
 app.get('/test', (req, res) => {
     res.send('Hello World!')
   })
 
-
-
-
+  app.use('/masterdataRoute', masterdataRoute);
+  app.use('/winthemeRoute', winthemeRoute);
 
 
 
