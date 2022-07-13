@@ -11,16 +11,16 @@ const cateringDetail = require('../models/cateringdetail.js');
 
 exports.findAll = (req, res) => {
 
-    var gcontracttypelist = {};
-    var gindustrytype={};
-    var gstationList={};
-    var gwtproduct={};
+    var gcontracttypelist = [];
+    var gindustrytype=[];
+    var gstationList=[];
+    var gwtproduct=[];
 
-    var gsupportingfeature={};
-    var gdigitalsignage={};
-    var gcateringdetail={};
-    var gwth={};
-    var gccoption ={};
+    var gsupportingfeature=[];
+    var gdigitalsignage=[];
+    var gcateringdetail=[];
+    var gwth=[];
+    var gccoption =[];
     
 
 	contractTypeList.find()
@@ -137,8 +137,8 @@ exports.findAll = (req, res) => {
             digitalsignage:gdigitalsignage,
             cateringdetail:gcateringdetail,
 
-            ccoption: gwth,
-            wintheme:gccoption
+            ccoption: gccoption,
+            wintheme:gwth
             
           });
     }).catch(err => {
