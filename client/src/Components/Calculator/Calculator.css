@@ -1,11 +1,11 @@
 .calculator-main-container {
-  width: 452px;
-  height: 417px;
+  width: 90%;
   background: #01426a 0% 0% no-repeat padding-box;
   box-shadow: -2px 2px 6px #00000029;
   border-radius: 15px;
   opacity: 1;
   padding: 30px;
+  aspect-ratio: 1;
 }
 h5.dashboard-calculator-heder {
   text-align: left;
@@ -38,6 +38,9 @@ p.dashboard-calculator-text {
   border-radius: 10px;
   opacity: 1;
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cal-dollar-sign {
   text-align: center;
@@ -46,8 +49,6 @@ p.dashboard-calculator-text {
   color: #ffffff;
   opacity: 1;
   position: absolute;
-  top: 22px;
-  left: 28px;
 }
 .cap-margin {
   margin-bottom: 3px !important;
@@ -66,4 +67,56 @@ p.dashboard-calculator-text {
   text-transform: uppercase;
   opacity: 1;
   margin-top: 24px;
+}
+
+@media (max-width: 600px) {
+  .calculator-dollar-sign {
+    width: 40px;
+    height: 40px;
+    background: #01426a 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative !important;
+  }
+
+  .dashboard-calculator-cap-ex {
+    height: 50px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    opacity: 1;
+    margin-top: 20px;
+    width: 100%;
+    margin: 0px 5px;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 0px 5px;
+  }
+
+  .cap-margin {
+    margin-left: 5px;
+    margin-top: -5px;
+    font: medium medium 300 20px/21px Gotham;
+    font-weight: 500;
+    height: 20px;
+    font-size: medium;
+  }
+
+  .total-cost {
+    text-align: center;
+    font: normal normal 100 20px/22px Gotham;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+    text-transform: uppercase;
+    opacity: 1;
+    margin-top: 0px;
+  }
+
+  .calculator-main-container {
+    aspect-ratio: 0;
+  }
 }

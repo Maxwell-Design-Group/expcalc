@@ -21,11 +21,6 @@
   background-size: cover;
 }
 
-.aramark_dashboard .aramark_section {
-  top: 172px;
-  left: 398px;
-  position: fixed;
-}
 .aramark_dashboard .accordianContent::-webkit-scrollbar {
   display: none;
 }

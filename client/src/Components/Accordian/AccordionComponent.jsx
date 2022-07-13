@@ -4,7 +4,9 @@ import Accordions from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import { Typography } from "@mui/material";
+import "../../Assets/Style/accordianStyle.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import InfoIcon from '@mui/icons-material/Info';
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +18,9 @@ import Step5 from "./Step5";
 import Step4 from "./Step4";
 
 const AccordionComponent = (props) => {
-  const { handleAccordionChange = () => {} } = props;
+  const { handleAccordionChange = () => { },
+    isMobileView = false,
+    handleOpenModal = () => { } } = props;
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { completedSteps } = useSelector((state) => state.Reducer);
@@ -91,7 +95,6 @@ const AccordionComponent = (props) => {
   };
   useEffect(() => {
     accordionOpen(accordionId);
-    console.log("completedStepssss" + completedSteps);
   }, [accordionId]);
   return (
     <div className="aramark_section stepOne">
@@ -104,8 +107,8 @@ const AccordionComponent = (props) => {
             completedSteps.includes(item.id) && item.expanded === true
               ? "step_edit"
               : completedSteps.includes(item.id) && item.expanded === false
-              ? "step_completed"
-              : null
+                ? "step_completed"
+                : null
           }
         >
           <AccordionSummary
@@ -114,7 +117,7 @@ const AccordionComponent = (props) => {
                 <CheckCircleIcon className="icon_step_complete" />
               ) : item.expanded === true ? (
                 <RemoveCircleIcon
-                  style={{ margin: "-0.4em 0 0 0 !important" }}
+                  style={{ margin: "-0.4em 0 0 0 !important", color: "black", opacity: 1 }}
                 />
               ) : (
                 <AddCircleIcon />
@@ -122,9 +125,23 @@ const AccordionComponent = (props) => {
             }
             aria-controls="panel1a-content"
             id="panel1a-header"
-            style={{ flexDirection: "row-reverse", margin: "11px 0 0 0" }}
+            className="accordian-summary-header"
+            style={{
+              flexDirection: "row-reverse",
+              margin: "11px 0 0 0",
+            }}
           >
-            <Typography>{item.title}</Typography>
+            <div style={{
+              display: "flex",
+              padding: isMobileView ? "0px" : "0px 20px",
+              justifyContent: "space-between",
+              flex: 1
+            }}>
+              <Typography>{item.title}</Typography>
+              {
+                isMobileView && item.expanded === true && <InfoIcon style={{ color: "black", opacity: 1 }} onClick={(e) => handleOpenModal(e)} />
+              }
+            </div>
           </AccordionSummary>
           <AccordionDetails>
             {item.id === 3 ? (

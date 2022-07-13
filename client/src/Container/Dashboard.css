@@ -9,6 +9,7 @@
 .aramark_dashboard {
   width: 100%;
   margin: 0em 0 0 0;
+  height: 100%;
 }
 
 .aramark_dashboard .toggle_switch_rounded_bg {
@@ -146,43 +147,14 @@
   padding: 0 1em;
 }
 
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
+  height: 0px;
+}
+
 .aramark_dashboard .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
   border-bottom-left-radius: 10px !important;
   border-bottom-right-radius: 10px !important;
-}
-
-.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
-  border-bottom-left-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
-}
-
-.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  width: 995px;
-  min-height: 70px;
-  background: #f4f4f4 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #0000001c;
-  border-radius: 15px;
-  opacity: 0.8;
-  border-left: 15px solid #f4f4f4;
-}
-
-.stepOne .css-1aznpnh-MuiSlider-root {
-  border-radius: 12px;
-  box-sizing: content-box;
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  touch-action: none;
-  /* color: #1976d2; */
-  color: #da291c;
-  -webkit-tap-highlight-color: transparent;
-  height: 4px;
-  width: 85% !important;
-  padding: 13px 0px;
-  margin-bottom: 20px;
-  /* margin-top: 2.5em !important; */
+  width: 100%;
 }
 
 .aramark_dashboard .win_themes {
@@ -314,7 +286,7 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.cat label input+span {
+.cat label input + span {
   color: #000;
   font-weight: 500;
   font-size: 0.575rem !important;
@@ -370,7 +342,9 @@ div label input {
     color: #808B96;
     line-height: 1.8em; */
 
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) /
+    var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing--0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -390,7 +364,7 @@ div label input {
   color: #000;
   width: 1em;
   /* margin: -0.4em 0 0 0 !important; */
-  margin: 0 9px 0 -0.5em;
+  margin: 0 9px 0 -0.8em;
   opacity: 0.5;
 }
 
@@ -410,7 +384,8 @@ div label input {
   background: #00416b !important;
 }
 
-.aramark_dashboard .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-disabled {
+.aramark_dashboard
+  .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-disabled {
   opacity: 1 !important;
 }
 
@@ -419,7 +394,8 @@ div label input {
   opacity: 1;
 }
 
-.aramark_dashboard .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+.aramark_dashboard
+  .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
   -webkit-transform: rotate(0deg) !important;
   -moz-transform: rotate(0deg) !important;
   -ms-transform: rotate(0deg) !important;
@@ -434,7 +410,7 @@ div label input {
 .aramark_dashboard .step_edit {
   color: #000;
   border-left: 11px solid #4bae4f;
-
+  background: #edeaf1 !important;
 }
 
 /* Style the header */
@@ -477,9 +453,10 @@ div label input {
 
 .aramark_dashboard section {
   margin-left: 24em;
-  margin-top: 5em;
+  margin-top: 4em;
   padding: 60px 0;
   overflow: hidden;
+  height: 100%;
 }
 
 /* Style the list inside the menu */
@@ -493,8 +470,6 @@ div label input {
   padding: 0px 20px;
   width: 100%;
   background-color: transparent;
-  height: 300px;
-  /* only for demonstration, should be removed */
 }
 
 /* Clear floats after the columns */
@@ -513,10 +488,7 @@ div label input {
 }
 
 .aramark_header_text {
-  top: 30px;
   right: 70px;
-  /* width: 458px !important; */
-  height: 35px !important;
   font: normal normal medium 32px/35px Gotham !important;
   color: var(--unnamed-color-ffffff) !important;
   text-align: center !important;
@@ -524,16 +496,57 @@ div label input {
   color: #ffffff !important;
   text-transform: uppercase !important;
   opacity: 1;
-  position: absolute;
+}
+
+.aramark_dashboard .main_header {
+  flex-wrap: nowrap;
+  height: 87px !important;
+}
+
+.aramark_dashboard .aramark_header_logo {
+  object-fit: contain;
+  margin-left: 5px;
+  min-width: 50px;
+}
+
+.content_modal {
+  background: transparent;
+  border: none;
+}
+
+.content_modal_body {
+  background: #00416b;
+  border-radius: 15px;
+  margin: 0px 30px;
+}
+
+.modal_backdrop {
+  opacity: 0.25;
+}
+
+.accordianContent {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: auto;
 }
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
-
   .aramark_dashboard nav,
   article {
     width: 100%;
     height: auto;
+  }
+
+  .accordian-summary-header {
+    justify-content: space-between;
+  }
+
+  .aramark_dashboard section {
+    margin-left: 0px;
+    margin-top: 3em;
+    padding: 60px 0;
+    overflow: hidden;
   }
 
   .aramark_dashboard header {
@@ -551,23 +564,26 @@ div label input {
   }
 
   .aramark_header_logo_container {
-    width: 100px;
+    width: auto;
+    max-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .aramark_header_bg {
-    background: url(http://localhost:3000/static/media/Header-image.ed09048….png) top center no-repeat;
+    background: url(http://localhost:3000/static/media/Header-image.ed09048….png)
+      top center no-repeat;
     margin: -1.8em 0 0 2.63em !important;
     height: 1.3em !important;
     border-radius: 0px 40px 40px 0px;
     box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 50%);
     background-size: cover;
+    padding-right: 20px !important;
   }
 
   .aramark_header_text {
-    top: 20px;
     right: 70px;
-    /* width: 458px !important; */
-    height: 35px !important;
     font: normal normal 600 14px/17px Gotham !important;
     color: var(--unnamed-color-ffffff) !important;
     text-align: center !important;
@@ -575,8 +591,49 @@ div label input {
     color: #ffffff !important;
     text-transform: uppercase !important;
     opacity: 1;
-    position: absolute;
+    white-space: nowrap;
   }
+
+  .aramark_dashboard .main_header {
+    flex-wrap: nowrap;
+    height: 45px !important;
+  }
+
+  .aramark_dashboard .aramark_header_logo {
+    object-fit: contain;
+    margin-left: 15px;
+    min-width: 20px;
+  }
+
+  .accordianContent {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.popup_header_container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.nav_header_popup {
+  color: white;
+}
+
+.nav_description {
+  color: white;
+}
+
+.aramark_header_logo_container {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .aramark_header_bg {
@@ -587,27 +644,24 @@ div label input {
   box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 50%);
   background-size: cover;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   flex: 1;
   margin: 0px !important;
+  /* padding-right: 100px !important; */
 }
 
 .aramark_dashboard .accordianContent::-webkit-scrollbar {
   display: none;
 }
 
-.accordianContent {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  height: 50em;
-  overflow-y: auto;
-}
-
 .tootalCalculationSection {
   background: #01426a 0% 0% no-repeat padding-box;
   top: 172px;
-  left: 1416px;
-  width: 452px;
-  height: 417px;
+  /* left: 1416px;
+  width: 452px; */
+  width: 90%;
+  aspect-ratio: 1;
   border-radius: 20px;
   background: url(../Assets/images/First-page-image.png) top center no-repeat;
   background-size: cover;
@@ -616,8 +670,8 @@ div label input {
 .tootalCalculationSection_expanded {
   background: #01426a 0% 0% no-repeat padding-box;
   top: 172px;
-  left: 1416px;
-  width: 452px;
+  /* left: 1416px;
+  width: 452px; */
   height: 417px;
   border-radius: 20px;
   /* background: url(../../assets/img/First-page-image.png) top center no-repeat; */
@@ -661,7 +715,9 @@ div label input {
 }
 
 .aramark_dashboard .nav_description {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
+    var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: left;
   font: normal normal normal 16px/22px Gotham;
@@ -715,7 +771,9 @@ div label input {
 }
 
 .aramark_dashboard .capExOpex_total {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) / var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) /
+    var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: left;
@@ -744,7 +802,9 @@ div label input {
   left: 1482px;
   width: 18px;
   height: 31px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 28px/31px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 28px/31px
+    var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
@@ -772,7 +832,9 @@ div label input {
   left: 1482px;
   width: 18px;
   height: 31px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 28px/31px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 28px/31px
+    var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
@@ -797,7 +859,9 @@ div label input {
   left: 1545px;
   width: 70px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: center;
   font: normal normal 500 20px/21px Gotham;
@@ -812,7 +876,9 @@ div label input {
   left: 1549px;
   width: 27px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
   font: normal normal 500 20px/21px Gotham;
@@ -837,7 +903,9 @@ div label input {
   left: 1545px;
   width: 62px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: center;
   font: normal normal 500 20px/21px Gotham;
@@ -852,7 +920,9 @@ div label input {
   left: 1549px;
   width: 27px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
   font: normal normal 500 20px/21px Gotham;
@@ -881,7 +951,9 @@ div label input {
   width: 290px;
   height: 15px;
   /* UI Properties */
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / 22px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / 22px
+    var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: center;
   font: normal normal normal 14px/22px Gotham;
@@ -892,7 +964,9 @@ div label input {
 }
 
 .aramark_dashboard .next_btn {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -908,18 +982,40 @@ div label input {
   opacity: 1;
   top: 565px;
   left: 1200px;
-  width: 145px;
-  height: 48px;
+  width: 100px;
+  height: 38px;
 }
 
-
+.aramark_dashboard .previous_btn {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  letter-spacing: var(--unnamed-character-spacing-1-42) !important;
+  color: var(--unnamed-color-ffffff);
+  text-align: center !important;
+  font: normal normal 500 16px/16px Gotham;
+  letter-spacing: 1.42px;
+  color: #004040;
+  opacity: 1;
+  top: 565px;
+  left: 1200px;
+  width: 100px;
+  height: 38px;
+  /* UI Properties */
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--unnamed-color-000000);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #000000;
+  border-radius: 24px;
+  opacity: 1;
+}
 
 .aramark_dashboard .theme_label_container {
   top: 523px;
   line-height: 1.19em;
   left: 404px;
   width: 196px;
-  height: 31px;
+  height: 32px;
   background: #f8f8f8 0% 0% no-repeat padding-box;
   opacity: 1;
   margin: 2.8em 0 0 -0.3em;
@@ -935,16 +1031,13 @@ div label input {
   margin: 3.1em 0 0 -0.3em;
 }
 
-.aramark_dashboard .aramark_header_logo {
-  position: absolute;
-  top: 18px;
-  left: 106px;
-}
-
 .aramark_dashboard .aramark_section {
   top: 172px;
   left: 398px;
-  /* position: fixed; */
+  height: 100% !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 5px;
 }
 
 .aramark_dashboard .rowSeprator {
@@ -952,7 +1045,9 @@ div label input {
 }
 
 .aramark_dashboard .css-ahj2mt-MuiTypography-root {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -967,8 +1062,10 @@ div label input {
         left: 416px; */
   /* width: 277px; */
   /* position: fixed; */
-  height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+  height: auto !important;
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -983,7 +1080,9 @@ div label input {
   left: 1446px;
   width: 175px;
   height: 18px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
+    var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: left;
   font: normal normal 500 16px/22px Gotham;
@@ -994,16 +1093,4 @@ div label input {
 
 .aramark_dashboard .theme_checkbox_color {
   opacity: 0.1;
-}
-
-
-/* Production Build CSS */
-
-.css-67l5gl.Mui-expanded:first-of-type {
-  margin-top: 0px;
-  margin-top: 0;
-  border-left: 15px solid #ffc52b !important;
-  background-color: #ffffff !important;
-  opacity: 1 !important;
-  padding: 0 1em;
 }
