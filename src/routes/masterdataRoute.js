@@ -1,5 +1,5 @@
 module.exports = (app) => {
-      const masterdata = require('../controllers/masterdata.js');
+    //  const masterdata = require('../controllers/masterdata.js');
     //const clientData = require('../controllers/clientdetail.js');
 
     
@@ -11,15 +11,15 @@ module.exports = (app) => {
 
     // app.get('/clientbyemail/:email', clientData.findByEmail);
 
-    app.get('/getmasterdata', masterdata.findAll);
+    // app.get('/getmasterdata', masterdata.findAll);
 
-    app.get('/contracttypelist', masterdata.findContractTypeList);
+    // app.get('/contracttypelist', masterdata.findContractTypeList);
 
-    app.get('/industrytype', masterdata.findTndustryType);
+    // app.get('/industrytype', masterdata.findTndustryType);
 
-    app.get('/wintheme', masterdata.findwinTheme);
+    // app.get('/wintheme', masterdata.findwinTheme);
 
-    app.get('/customisableconvenienceoption', masterdata.findCustomisableConvenienceOption);
+    // app.get('/customisableconvenienceoption', masterdata.findCustomisableConvenienceOption);
     
     // app.put('//update/:id',  clientData.update);
 
