@@ -1,6 +1,6 @@
 module.exports = (app) => {
     //  const masterdata = require('../controllers/masterdata.js');
-    // //const clientData = require('../controllers/clientdetail.js');
+    const clientData = require('../controllers/clientdetail.js');
 
     
     // // app.post('/add/post', clientData.create);
