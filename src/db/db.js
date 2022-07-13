@@ -11,7 +11,7 @@ const url = 'mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/
 // Connect MongoDB at default port 27017.
 const url_local = 'mongodb://localhost:27017'
     
-mongoose.connect(url_local, {
+mongoose.connect(url, {
     dbName: "aramarkDB",
     useNewUrlParser: true,   
     useUnifiedTopology: true
