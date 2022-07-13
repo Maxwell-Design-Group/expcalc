@@ -12,7 +12,6 @@ import OperationalResults from "../../Assets/images/Operational-Results.png";
 import ProactiveInnovation from "../../Assets/images/Proactive-Innovation.png";
 import RightTeamOnTheGround from "../../Assets/images/Right-Team-On-The-Ground.png";
 import Sustainability from "../../Assets/images/Sustainability.png";
-import "../../Assets/Style/style.css";
 import { prevAccordionOpen } from "../../Redux/Actions";
 
 import WinthemeDetailService from "../../Services/WinthemeDetailService";

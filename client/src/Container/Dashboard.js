@@ -7,8 +7,13 @@ import { NavInfoList } from "./Static";
 import "./Dashboard.css";
 import AccordionComponent from "../Components/Accordian/AccordionComponent";
 import Calculator from "../Components/Calculator/Calculator";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getMasterData } from "../Redux/Actions";
 function Dashboard() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMasterData());
+  }, []);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth < 600);
   const [selectedAccordion, setSelectedAccordion] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(isMobileView);

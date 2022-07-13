@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import "../../Assets/Style/style.css";
 import { prevAccordionOpen } from "../../Redux/Actions";
 
 const Step5 = (props) => {
