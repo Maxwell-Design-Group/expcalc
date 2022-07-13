@@ -1,11 +1,11 @@
 const contractTypeList = require('../models/contracttypelist.js');
 const industryType = require('../models/industrytype.js');
-//const stationList = require('../models/stationlist.js');
+const stationList = require('../models/stationlist.js');
 const wtProduct = require('../models/wtproduct.js');
-//const winTheme = require('../models/wintheme.js');
+const winTheme = require('../models/wintheme.js');
 const customisableConvenienceOption = require('../models/customisableconvenienceoption.js');
 const supportingFeature = require('../models/supportingfeature.js');
-//const digitalSignage = require('../models/digitalsignage.js');
+const digitalSignage = require('../models/digitalsignage.js');
 const cateringDetail = require('../models/cateringdetail.js');
 
 
@@ -45,17 +45,17 @@ exports.findAll = (req, res) => {
         });
     });
 
-    // //-----------------------------------------
-    // stationList.find()
-    // .then(stationList => {
+    //-----------------------------------------
+    stationList.find()
+    .then(stationList => {
        
-    //     gstationList = stationList;
+        gstationList = stationList;
        
-    // }).catch(err => {
-    //     res.status(500).send({
-    //         message: err.message || "Something went wrong."
-    //     });
-    // });
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
 
     //-----------------------------------------
     wtProduct.find()
@@ -71,17 +71,17 @@ exports.findAll = (req, res) => {
     
 
     //-----------------------------------------
-    // winTheme.find()
-    // .then(wintheme => {
+    winTheme.find()
+    .then(wintheme => {
        
-    //     gwth = wintheme;
+        gwth = wintheme;
        
        
-    // }).catch(err => {
-    //     res.status(500).send({
-    //         message: err.message || "Something went wrong."
-    //     });
-    // });
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
 
     //-----------------------------------------
     customisableConvenienceOption.find()
@@ -109,16 +109,16 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    // digitalSignage.find()
-    // .then(digitalsignage => {
+    digitalSignage.find()
+    .then(digitalsignage => {
        
-    //     gdigitalsignage = digitalsignage;
+        gdigitalsignage = digitalsignage;
         
-    // }).catch(err => {
-    //     res.status(500).send({
-    //         message: err.message || "Something went wrong."
-    //     });
-    // });
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
 
 
     //-----------------------------------------
