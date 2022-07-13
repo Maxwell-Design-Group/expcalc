@@ -1,94 +1,41 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-
-
-var mongoose = require('mongoose');
+const path = require("path");
+const express = require("express")
+const mongoose = require("mongoose")
 var bodyParser = require('body-parser');
-var port = process.env.PORT || 4200;
+const db = require("./src/db/db")
+
+
+
 var cors = require('cors');
 
 
-// //Mongoose connection with mongodb
-mongoose.Promise = require('bluebird');
-//mongoose.connect('mongodb://localhost:27017/aramarkDB');
-// mongoose.connect(encodeURI('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test/aramarkDB'));
-//     .then(() => {
-//         console.log('Start');
-//     })
-//     .catch((err) => {
-//         console.error('App starting error:', err.stack);
-//         process.exit(1);
-//     });
-// srv style not supporing
- //mongoose.connect('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test/aramarkDB');
-   
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// }, function(err, db) {
-//   if (err) {
-//     console.log('mongo db error  ', err);
-//   }
-// });
-mongoose.connect('mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test', {
-  //auth: { username: "dmaxwell", Password: "ZiscohFcN6FkC5zb" },
-  dbName: "aramarkDB",
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}, function(err, db) {
-  if (err) {
-    console.log('mongo db error  ', err);
-  }
-});
-
-// mongoose.connect('mongodb+srv://cluster0.bhz6k.mongodb.net/test/aramarkDB', {
-//   auth: {
-//     user: 'dmaxwell',
-//     password: 'ZiscohFcN6FkC5zb'
-//   },
-//    useNewUrlParser: true
-// })
-
-// Required aplication specific custom router module
-var clientdetailRouter = require('./src/routes/ClientDetailRouter');
-
-// Required aplication specific custom router module
-var contracttypelistRouter = require('./src/routes/contracttypelistRouter');
-
-// Required aplication specific custom router module
-var industrytypeRouter = require('./src/routes/industrytypeRouter');
-
-// Required aplication specific custom router module
-var winthemedetailRouter = require('./src/routes/winthemedetailRouter');
-
-// Required aplication specific custom router module
-//var winthemeRouter = require('./src/routes/winthemeRouter');
-
-// Use middlewares to set view engine and post json data to the server
+const app = express()
 app.use(express.static('public'));
-app.use(cors());
+app.use(cors({origin: '*'}));
+//app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(bodyParser.json());
+//app.use(body-parser.json());
 
-app.use('/clientdetails', clientdetailRouter);
+const PORT = process.env.PORT || 3000
 
-app.use('/contracttypelists', contracttypelistRouter);
-
-app.use('/industrytypes', industrytypeRouter);
-
-app.use('/winthemedetails', winthemedetailRouter);
-
-//app.use('/wintheme', winthemeRouter);
+app.use(express.json())
 
 
-// Start the server
-app.listen(port, function() {
-    console.log('Server is running on Port: ', port);
-  //  console.log(request.headers.host);
-    //console.log(window.location.hostname);
-});
+require('./src/routes/masterdataRoute.js')(app);
+
+require('./src/routes/winthemeRoute.js')(app);
+
+app.get('/test', (req, res) => {
+    res.send('Hello World!')
+  })
+
+
+
+
+
+
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 
@@ -99,7 +46,8 @@ app.get('*', function(req, res){
 
 });
 
-
-
-app.listen(3000);
-
+app.listen(PORT, (req,res) => {
+    
+    console.log(`app is listening to PORT ${PORT}`)
+})
+//app.listen(PORT);
