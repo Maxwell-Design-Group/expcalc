@@ -9,6 +9,7 @@ import {
   prevAccordionOpen,
 } from "../../Redux/Actions";
 import { useSelector } from "react-redux";
+import "../../Assets/Style/style.css";
 import Alert from "../Alert/Alert";
 
 const yesDatas = [
