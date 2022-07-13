@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 // Connect MongoDB at cloude 
 const url = 'mongodb+srv://dmaxwell:ZiscohFcN6FkC5zb@cluster0.bhz6k.mongodb.net/test';
 // Connect MongoDB at default port 27017.
-const url_local = 'mongodb://localhost:27017'
+const url_local = process.env.DB_CONNECTIONLOCAL
     
 mongoose.connect(url_local, {
     dbName: "aramarkDB",
