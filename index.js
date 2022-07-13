@@ -45,14 +45,14 @@ app.get('/test', (req, res) => {
 
 
 
-// app.use(express.static(path.join(__dirname, '/client/build')));
+app.use(express.static(path.join(__dirname, '/client/build')));
 
-// app.get('*', function(req, res){
-//      res.sendFile(path.join(__dirname,'/client/build/index.html'));
-//      console.log(req.headers.host);
-//      console.log(__dirname);
+app.get('*', function(req, res){
+     res.sendFile(path.join(__dirname,'/client/build/index.html'));
+     console.log(req.headers.host);
+     console.log(__dirname);
 
-// });
+});
 
 app.listen(PORT, (req,res) => {
     
