@@ -7,9 +7,14 @@ import { useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import LifeWork from "../../Assets/images/isLifeWork.png";
-import "../../Assets/Style/style.css";
 import axios from "axios";
 import ClientDetailService from "../../Services/ClientDetailService";
+import FormControl, { useFormControl } from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import FormHelperText from "@mui/material/FormHelperText";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Input from "@mui/material/Input";
 import Alert from "../Alert/Alert";
 const Step1 = (props) => {
   const dispatch = useDispatch();
@@ -106,63 +111,90 @@ const Step1 = (props) => {
       clientDetailService.sendData(obj, id);
     }
   }
-  const label = { inputProps: { "aria-label": "Switch demo" } };
-  console.log("accordionId ", accordionId);
+
+  let contractTypeOption = [];
+  contractTypes.forEach((data, index) => {
+    contractTypeOption.push(<option>{data.contracttypelist}</option>);
+  });
+
+  let industrytypeOption = [];
+  industrytypes.forEach((data, index) => {
+    industrytypeOption.push(<option>{data.industrytype}</option>);
+  });
   return (
     <div className="stepOne">
       <Row className="rowSeprator">
-        <Col md={6} style={{ margin: "0 0 2em 0" }}>
-          <TextField
-            id="clientName"
-            label="Client Name"
-            variant="outlined"
-            size="small"
-            fullWidth
-            required
-            value={clientName}
-            onChange={(e) => setClientName(e.target.value)}
-          />
-        </Col>
-        <Col md={6} style={{ marginBottom: "1em" }}>
-          <Paper elevation={0}>
-            <Autocomplete
-              disablePortal
-              id="contractType"
-              options={contractTypes}
-              sx={{ width: 300 }}
-              value={contractType}
-              getOptionLabel={(option) => option.contracttypelist}
-              onChange={(event, value) => {
-                setContractTypes(value);
+        <Col>
+          <div style={{ display: "grid" }}>
+            <label style={{ textAlign: "left" }} className="switchLabel">
+              Client Name<span style={{ color: "red" }}>*</span>
+            </label>
+            <input
+              type="text"
+              id="clientName"
+              value={clientName}
+              placeholder="Enter Client Name"
+              onChange={(e) => setClientName(e.target.value)}
+              style={{
+                border: "1px solid #D0CDCD",
+                borderRadius: "25px",
+
+                height: "45px",
+                padding: "10px",
+                width: "100%",
               }}
-              renderInput={(params) => (
-                <TextField {...params} label="Select Contract Type" required />
-              )}
             />
-          </Paper>
+          </div>
+        </Col>
+        <Col md={6}>
+          <label style={{ float: "left" }} className="switchLabel">
+            Contract Type<span style={{ color: "red" }}>*</span>
+          </label>
+
+          <select
+            value={contractType}
+            onChange={(event, value) => {
+              setContractTypes(value);
+            }}
+            id="contractType"
+            style={{
+              border: "1px solid #D0CDCD",
+              borderRadius: "25px",
+
+              height: "45px",
+              padding: "10px",
+              width: "100%",
+            }}
+          >
+            {contractTypeOption}
+          </select>
         </Col>
       </Row>
       <Row className="rowSeprator">
-        <Col md={6} style={{ marginBottom: "1em" }}>
-          <Paper elevation={0}>
-            {" "}
-            <Autocomplete
-              disablePortal
-              id="industryType"
-              options={industrytypes}
-              sx={{ width: 300 }}
-              value={industryType}
-              getOptionLabel={(option) => option.industrytype}
-              onChange={(e, value) => {
-                setiIndustryType(value);
-              }}
-              renderInput={(params) => (
-                <TextField {...params} label="Select Industry Type" required />
-              )}
-            />
-          </Paper>
-        </Col>
         <Col md={6}>
+          <label style={{ float: "left" }} className="switchLabel">
+            Industry Type<span style={{ color: "red" }}>*</span>
+          </label>{" "}
+          <select
+            id="industryType"
+            options={industrytypes}
+            value={industryType}
+            onChange={(e, value) => {
+              setiIndustryType(value);
+            }}
+            style={{
+              border: "1px solid #D0CDCD",
+              borderRadius: "25px",
+
+              height: "45px",
+              padding: "10px",
+              width: "100%",
+            }}
+          >
+            {industrytypeOption}
+          </select>
+        </Col>
+        <Col md={6} className="switchColumn">
           <span className="switchLabel">
             {" "}
             <img src={LifeWork} alt="lifeWork" />
@@ -177,10 +209,12 @@ const Step1 = (props) => {
         </Col>
       </Row>
       <Row className="rowSeprator">
-        <Col md={6} style={{ marginBottom: "1em" }}>
+        <Col md={6}>
           <div>
             &nbsp;
-            <span className="switchLabel"> Anticipated Revenue * </span>
+            <label style={{ float: "left" }} className="switchLabel">
+              Anticipated Revenue<span style={{ color: "red" }}>*</span>
+            </label>
             <Slider
               aria-label="Always visible"
               id="AnticipatedRevenue"
@@ -189,13 +223,16 @@ const Step1 = (props) => {
               min={0}
               max={10}
               marks={anticipatedRevenueRange}
+              valueLabelDisplay="auto"
             />
           </div>
         </Col>
-        <Col md={6}>
+        <Col md={6} style={{ marginBottom: "1em" }}>
           <div>
             &nbsp;
-            <span className="switchLabel"> Population *</span>
+            <label style={{ float: "left" }} className="switchLabel">
+              Population<span style={{ color: "red" }}>*</span>
+            </label>
             <Slider
               aria-label="Always visible"
               id="Population"
@@ -204,6 +241,7 @@ const Step1 = (props) => {
               onChange={(e) => setPopulation(e.target.value)}
               value={population}
               step={10}
+              valueLabelDisplay="auto"
               marks={populationRange}
             />
           </div>

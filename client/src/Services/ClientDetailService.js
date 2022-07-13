@@ -8,7 +8,7 @@ class ClientDetailService {
 
   sendData(data, accordianId) {
     axios
-      .post("http://localhost:4200/clientdetails/add/post", data)
+      .post("https://expcalc-dev.herokuapp.com/clientdetails/add/post", data)
       .then((response) => {
         Alert.success("ClientDetail added successfully");
         console.log(
@@ -23,7 +23,10 @@ class ClientDetailService {
 
   updateDate(data, id) {
     axios
-      .post("http://localhost:4200/clientdetails/update/" + id, data)
+      .post(
+        "https://expcalc-dev.herokuapp.com/clientdetails/update/" + id,
+        data
+      )
       .then((response) => {
         this.asetState({
           clientdetails: response.data,
@@ -34,7 +37,7 @@ class ClientDetailService {
 
   deleteData(id) {
     axios
-      .get("http://localhost:4200/clientdetails/delete/" + id)
+      .get("https://expcalc-dev.herokuapp.com/clientdetails/delete/" + id)
       .then(() => {})
       .catch((error) => {});
   }
