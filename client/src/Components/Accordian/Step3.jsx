@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import "../../Assets/Style/style.css";
 import Alert from "../Alert/Alert";
 
-
 const footprintData = [
   {
     id: 0,
@@ -98,8 +97,6 @@ const Step3 = () => {
   if (masterData.ccoption) {
     yesDatas = masterData.ccoption;
   }
-
-
   const handleYesOrNoChange = (e) => {
     setYesOrNo(e.target.checked);
   };
@@ -163,7 +160,8 @@ const Step3 = () => {
         value={data.custConvOption}
         onClick={(e) => handleYesButtons(data.custConvOption)}
         style={{
-          backgroundColor: yesOption === data.custConvOption ? "#4BAE4F" : "#fff",
+          backgroundColor:
+            yesOption === data.custConvOption ? "#4BAE4F" : "#fff",
           color: yesOption === data.custConvOption ? "white" : "black",
           border: yesOption === data.custConvOption ? "" : "1px solid #979797",
         }}
