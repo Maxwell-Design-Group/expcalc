@@ -126,6 +126,8 @@ exports.findAll = (req, res) => {
        
         gcateringdetail = cateringdetail;
 
+        console.log(gwth);
+        
         return res.status(200).send({
             success: true,        
             contracttypelist:gcontracttypelist,
