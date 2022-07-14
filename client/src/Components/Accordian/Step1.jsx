@@ -30,6 +30,7 @@ const Step1 = (props) => {
 
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
+  const [clientID, setclientId] = useState("");
   console.log("masterData ", masterData);
   let industrytypes = [];
   let contractTypes = [];
@@ -88,6 +89,7 @@ const Step1 = (props) => {
       document.getElementById("Population").focus();
     } else {
       console.log("id ", id);
+        
       clientDetailService.sendData(obj, id);
     }
   }
@@ -134,7 +136,10 @@ const Step1 = (props) => {
           <select
             value={contractType}
             onChange={(event, value) => {
-              setContractTypes(value);
+              //setContractTypes(value);
+              setContractTypes(event.target.value);
+              console.log('contract type selected');              
+              console.log(event.target.value);
             }}
             id="contractType"
             style={{
@@ -160,7 +165,8 @@ const Step1 = (props) => {
             options={industrytypes}
             value={industryType}
             onChange={(e, value) => {
-              setiIndustryType(value);
+              //setiIndustryType(value);
+              setiIndustryType(e.target.value);
             }}
             style={{
               border: "1px solid #D0CDCD",
