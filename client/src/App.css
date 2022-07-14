@@ -43,65 +43,10 @@ body {
   }
 }
 
-/* .css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  width: 995px;
-  min-height: 70px;
-  background: #F4F4F4 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #0000001c;
-  border-radius: 15px;
-  opacity: 0.8;
-  border-left: 15px solid transparent;
-}
 
-.css-viou3o-MuiAutocomplete-root .MuiOutlinedInput-root {
-  padding: 1px !important;
-}
-
-.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  width: 995px;
-  min-height: 70px;
-  background: #F4F4F4 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #0000001c;
-  border-radius: 15px;
-  opacity: 0.8;
-  border-left: 15px solid transparent;
-}
-
-.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
-  border-bottom-left-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
-}
-
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded:first-of-type {
-  margin-top: 0;
-  border-left: 15px solid #FFC52B !important;
-  background-color: #FFFFFF !important;
-  opacity: 1 !important;
-  padding: 0 1em;
-}
-
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded {
-  margin: 16px 0;
-}
-
-
-
-
-
-
-
-.css-viou3o-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input {
-  padding: 7.5px 4px 7.5px 6px;
-} */
-
-.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
-  /* background-color: #EDEAF1 !important; */
+/* .stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
   background-color: #f4f4f4 !important;
-}
+} */
 
 /* .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
     background-color: #EDEAF1;
@@ -312,7 +257,7 @@ body {
   border-bottom-right-radius: 10px !important;
 }
 
-.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+/* .stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
   border-top-left-radius: 10px !important;
   border-top-right-radius: 10px !important;
   width: 995px;
@@ -322,7 +267,7 @@ body {
   border-radius: 15px;
   opacity: 0.8;
   border-left: 15px solid #f4f4f4;
-}
+} */
 
 .stepOne .win_themes {
   border: 2px solid gray;

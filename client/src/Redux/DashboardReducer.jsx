@@ -4,8 +4,6 @@ import * as types from "./ActionType";
 const initialState = {
   accordionId: 0,
   completedSteps: [],
-  clientDetails: {},
-  themes: [],
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -39,11 +37,6 @@ const DashboardReducer = (state = initialState, action) => {
       return {
         ...state,
         themes: action.payload,
-      };
-    case types.SET_CLIENT_DETAILS:
-      return {
-        ...state,
-        clientDetails: action.payload,
       };
     default:
       return state;

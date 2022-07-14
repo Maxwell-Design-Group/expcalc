@@ -228,7 +228,7 @@ const Step1 = (props) => {
               id="AnticipatedRevenue"
               style={{
                 color: "#da291c",
-                width: "85% !important",
+                width: "85%",
                 padding: "13px 0px",
                 marginBottom: "20px",
               }}
@@ -254,7 +254,7 @@ const Step1 = (props) => {
               max={5000}
               style={{
                 color: "#da291c",
-                width: "85% !important",
+                width: "85%",
                 padding: "13px 0px",
                 marginBottom: "20px",
               }}

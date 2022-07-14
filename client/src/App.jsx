@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { Suspense } from "react";
 import { lazy } from "react";
 import { Route, Routes } from "react-router";
-import "./App.css";
+// import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Dashboard = lazy(() => import("./Container/Dashboard"));

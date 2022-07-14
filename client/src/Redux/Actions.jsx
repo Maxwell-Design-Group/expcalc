@@ -26,10 +26,6 @@ const setTheme = (data) => ({
   type: types.SET_WINTHEME_DATA,
   payload: data,
 });
-const setClient = (data) => ({
-  type: types.SET_CLIENT_DETAILS,
-  payload: data,
-});
 // const setMasterData = (data) => ({
 //   type: types.SET_MASTER_DATA,
 //   payload: data,
@@ -59,15 +55,10 @@ export const setWinThemes = (data) => {
     dispatch(setTheme(data));
   };
 };
-export const setClientDetails = (data) => {
-  return function (dispatch) {
-    dispatch(setClient(data));
-  };
-};
 export const getMasterData = () => {
   return function (dispatch) {
     axios
-      .get("https://expcalc-dev.herokuapp.com/master")
+      .get("http://localhost:3000/getmasterdata")
       .then((response) => {
         dispatch(getMaster(response.data));
       })
