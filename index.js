@@ -1,15 +1,15 @@
 const path = require("path");
-const express = require("express")
-const mongoose = require("mongoose")
+const express = require("express");
+const mongoose = require("mongoose");
 var bodyParser = require('body-parser');
-const db = require("./src/db/db")
+const db = require("./src/db/db");
 
 
 
 var cors = require('cors');
 
 
-const app = express()
+const app = express();
 app.use(express.static('public'));
 app.use(cors({origin: '*'}));
 //app.use(cors());
@@ -18,11 +18,11 @@ app.use(bodyParser.urlencoded({
 }));
 //app.use(body-parser.json());
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 
 
-app.use(express.json())
+app.use(express.json());
 
 
  require('./src/routes/masterdataRoute')(app);
@@ -38,7 +38,7 @@ app.get('/test', (req, res) => {
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 
-app.get('*', function(req, res){
+app.get('/*', function(req, res){
      res.sendFile(path.join(__dirname,'/client/build/index.html'));
      console.log(req.headers.host);
      console.log(__dirname);
