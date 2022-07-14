@@ -139,8 +139,8 @@ exports.findAll = (req, res) => {
             digitalsignage:gdigitalsignage,
             cateringdetail:gcateringdetail,
 
-            ccoption: gwth,
-            wintheme:gccoption
+            ccoption: gccoption,
+            wintheme:gwth 
             
           });
     }).catch(err => {
