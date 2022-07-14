@@ -26,6 +26,7 @@ const Step2 = (props) => {
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
+  const { clientDetails } = useSelector((state) => state.Reducer);
   // const [winThemelist, setWinThemes] = useState();
   let winThemelist = [
     {
@@ -194,6 +195,7 @@ const Step2 = (props) => {
             // }
           }
         }
+        console.log("clientDetailss"+JSON.stringify(clientDetails));
         winThemeDetails.sendData(obj, id);
       }
     }
