@@ -239,14 +239,14 @@
     border-top: 1px solid gray !important; 
      padding: 8px 16px 16px;
 } */
-.css-ahj2mt-MuiTypography-root {
+/* .css-ahj2mt-MuiTypography-root {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 600 !important;
   font-size: 1rem;
   line-height: 1.5;
   letter-spacing: 0.00938em;
-}
+} */
 
 div label input {
   margin-right: 100px;
@@ -439,10 +439,13 @@ div label input {
   left: 0px;
   width: 25%;
   height: 100%;
-  background: var(--unnamed-color-01426a) 0% 0% no-repeat padding-box;
   background: #01426a 0% 0% no-repeat padding-box;
   box-shadow: 3px 3px 6px #00000029;
   opacity: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 130px;
 }
 
 .aramark_dashboard section {
@@ -461,7 +464,7 @@ div label input {
 
 .aramark_dashboard article {
   float: left;
-  padding: 0px 20px;
+  padding: 0px 0px 0px 20px;
   width: 100%;
   background-color: transparent;
 }
@@ -522,6 +525,7 @@ div label input {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: auto;
+  padding-right: 0px;
 }
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
@@ -676,11 +680,14 @@ div label input {
 }
 
 .aramark_dashboard .nav_header_container {
-  position: absolute;
-  top: 140px;
+  position: relative;
   width: 100%;
   color: #fff;
   padding: 0px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
 }
 
 .aramark_dashboard .nav_header {
@@ -698,13 +705,11 @@ div label input {
 .aramark_dashboard .nav_description_container {
   width: 100%;
   bottom: 70px;
-  overflow-y: scroll;
 }
 
 .aramark_dashboard .nav_description_container_expanded {
   width: 100%;
   bottom: 70px;
-  overflow-y: scroll;
 }
 
 .aramark_dashboard .nav_description {
@@ -927,16 +932,18 @@ div label input {
 }
 
 .aramark_dashboard .version_details {
-  bottom: 35px;
   width: calc(100% - 40px);
-  height: 0px;
   border-top: 1px solid #ffffff;
   opacity: 1;
   font: normal normal normal 14px/22px Gotham;
-  position: absolute;
+  position: relative;
   color: white;
   padding-top: 10px;
   left: 20px;
+  display: flex;
+  flex: 0;
+  align-self: center;
+  justify-content: center;
 }
 
 .aramark_dashboard .next_btn {
@@ -1021,6 +1028,7 @@ div label input {
   letter-spacing: 0.14px;
   /* color: #000000; */
   opacity: 0.7;
+  margin-right: 20px;
 }
 
 .aramark_dashboard .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {

@@ -117,7 +117,7 @@ const AccordionComponent = (props) => {
                 <CheckCircleIcon className="icon_step_complete" />
               ) : item.expanded === true ? (
                 <RemoveCircleIcon
-                  style={{ margin: "-0.4em 0 0 0 !important", color: "black", opacity: 1 }}
+                  style={{ margin: "0px 0px 0px 10px !important", color: "black", opacity: 1 }}
                 />
               ) : (
                 <AddCircleIcon />
@@ -129,6 +129,7 @@ const AccordionComponent = (props) => {
             style={{
               flexDirection: "row-reverse",
               margin: "11px 0 0 0",
+              padding: item.expanded ? "0px" : "16px"
             }}
           >
             <div style={{
@@ -149,7 +150,7 @@ const AccordionComponent = (props) => {
             ) : item.id === 1 ? (
               <Step1 />
             ) : item.id === 2 ? (
-              <Step2 />
+              <Step2 isMobileView={isMobileView} />
             ) : item.id === 5 ? (
               <Step5 />
             ) : item.id === 4 ? (

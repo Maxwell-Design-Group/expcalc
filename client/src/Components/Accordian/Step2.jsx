@@ -22,12 +22,15 @@ import WinthemeDetailService from "../../Services/WinthemeDetailService";
 import ClientDetailService from "../../Services/ClientDetailService";
 import Alert from "../Alert/Alert";
 
-const Step2 = () => {
+const Step2 = (props) => {
+  const { isMobileView = false } = props;
   const winThemeDetails = new WinthemeDetailService();
   const [userSelectedThemes, setUserSelectedThemes] = useState([]);
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { clientId } = useSelector((state) => state.Reducer);
+  const { masterData } = useSelector((state) => state.Master);
+
   const [winThemelist, setWinThemes] = useState([
     {
       theme: "Cost-Consciousness",
@@ -112,15 +115,19 @@ const Step2 = () => {
   }
 
   function createGridView() {
-    return <Box sx={{ flexGrow: 1 }}>
+    return <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto" }}>
       <Grid
         container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
+        spacing={{ xs: 2, md: 2 }}
+        columns={{ xs: 2, sm: 6, md: 12 }}
+        style={{
+          flexWrap: isMobileView ? "nowrap" : "wrap",
+          overflowX: isMobileView ? "scroll" : "hidden"
+        }}
       >
 
         {winThemelist.map((theme, index) => {
-          return <Grid item xs={2} sm={4} md={4} key={index}>
+          return <Grid item xs={2} sm={3} key={index}>
             <div style={{ marginBottom: "0.5em" }} key={index}>
               <div className="themes action" id={"themesBtn" + index} onClick={() => selectedThemes(theme.theme, index)}>
                 <input
@@ -174,7 +181,7 @@ const Step2 = () => {
   }
 
   function addWinThemes(id) {
-    
+
 
     console.log(userSelectedThemes);
 
@@ -187,22 +194,22 @@ const Step2 = () => {
       let wth = "";
       for (let i = 0; i < userSelectedThemes.length; i++) {
         wth = wth + "," + userSelectedThemes[i];
-        
-      }
-        // let obj = {
-        //   email: "",
-        //   clientname: clientName,
-        //   contracttype: contractType,
-        //   lifeworks: isLifeworks,
-        //   anticipatedrevenue: anticipatedRevenue,
-        //   population: population,
-        //   industrytype: industryType,
-        //   wintheme:wth,
-        // };
 
-        // console.log(obj);
-        // clientDetailService.updateDate(obj, id); // should be pass client id
-      
+      }
+      // let obj = {
+      //   email: "",
+      //   clientname: clientName,
+      //   contracttype: contractType,
+      //   lifeworks: isLifeworks,
+      //   anticipatedrevenue: anticipatedRevenue,
+      //   population: population,
+      //   industrytype: industryType,
+      //   wintheme:wth,
+      // };
+
+      // console.log(obj);
+      // clientDetailService.updateDate(obj, id); // should be pass client id
+
     }
   }
 

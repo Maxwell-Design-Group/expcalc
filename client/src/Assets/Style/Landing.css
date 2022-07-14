@@ -25,12 +25,12 @@
   display: none;
 }
 
-.accordianContent {
+/* .accordianContent {
   -ms-overflow-style: none;
   scrollbar-width: none;
   height: 50em;
   overflow-y: auto;
-}
+} */
 .tootalCalculationSection {
   background: #01426a 0% 0% no-repeat padding-box;
   top: 172px;

@@ -406,14 +406,14 @@ body {
     border-top: 1px solid gray !important; 
      padding: 8px 16px 16px;
 } */
-.css-ahj2mt-MuiTypography-root {
+/* .css-ahj2mt-MuiTypography-root {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 600 !important;
   font-size: 1rem;
   line-height: 1.5;
   letter-spacing: 0.00938em;
-}
+} */
 
 div label input {
   margin-right: 100px;
@@ -471,7 +471,7 @@ div label input {
 .themes {
   margin: 4px;
   max-width: 200px;
-  min-width: 120px;
+  min-width: 145px;
   height: 165px;
   padding: 0.2em 0 0.2em 0.3em;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
