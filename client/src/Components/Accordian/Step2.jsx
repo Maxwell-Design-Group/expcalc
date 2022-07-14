@@ -189,19 +189,19 @@ const Step2 = () => {
         wth = wth + "," + userSelectedThemes[i];
         
       }
-        let obj = {
-          email: "",
-          clientname: clientName,
-          contracttype: contractType,
-          lifeworks: isLifeworks,
-          anticipatedrevenue: anticipatedRevenue,
-          population: population,
-          industrytype: industryType,
-          wintheme:wth,
-        };
+        // let obj = {
+        //   email: "",
+        //   clientname: clientName,
+        //   contracttype: contractType,
+        //   lifeworks: isLifeworks,
+        //   anticipatedrevenue: anticipatedRevenue,
+        //   population: population,
+        //   industrytype: industryType,
+        //   wintheme:wth,
+        // };
 
-        console.log(obj);
-        clientDetailService.updateDate(obj, id); // should be pass client id
+        // console.log(obj);
+        // clientDetailService.updateDate(obj, id); // should be pass client id
       
     }
   }

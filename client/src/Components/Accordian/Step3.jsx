@@ -286,6 +286,40 @@ const Step3 = () => {
     );
   });
   
+
+  function addStep3(id) {
+    
+
+    //console.log(userSelectedThemes);
+     let userSelectedThemes ="";
+    if (userSelectedThemes.length === 0) {
+      // Alert.error("Choose at least 1 win theme");
+      // for (let i = 0; i < winThemelist.length; i++) {
+      //   document.getElementById("themesBtn" + i).style.border = "1px solid red";
+      // }
+    } else {
+      // let wth = "";
+      // for (let i = 0; i < userSelectedThemes.length; i++) {
+      //   wth = wth + "," + userSelectedThemes[i];
+        
+      // }
+        // let obj = {
+        //   email: "",
+        //   clientname: clientName,
+        //   contracttype: contractType,
+        //   lifeworks: isLifeworks,
+        //   anticipatedrevenue: anticipatedRevenue,
+        //   population: population,
+        //   industrytype: industryType,
+        //   wintheme:wth,
+        // };
+
+        // console.log(obj);
+        // clientDetailService.updateDate(obj, id); // should be pass client id
+      
+    }
+  }
+
   return (
     <>
     {isMatchSm ? (
