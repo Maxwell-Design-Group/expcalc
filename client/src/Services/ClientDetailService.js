@@ -1,7 +1,7 @@
 import axios from "axios";
 import Store from "../Redux/Store";
 import Alert from "../Components/Alert/Alert";
-import { completedSteps, nextAccordionOpen, updateClientId } from "../Redux/Actions";
+import { completedSteps, nextAccordionOpen, setClientDetails,  } from "../Redux/Actions";
 class ClientDetailService {
   accordianId = Store.getState.Reducer;
 
@@ -19,12 +19,14 @@ class ClientDetailService {
         );
         Store.dispatch(completedSteps(accordianId - 1));
         Store.dispatch(nextAccordionOpen(accordianId));
+        Store.dispatch(setClientDetails(data));
+
         
       })
       .catch((error) => {});
   }
 
-  updateDate(data, id) {
+  updateData(data, id) {
     axios
       .post(
         "http://localhost:3000/client/" + id,
