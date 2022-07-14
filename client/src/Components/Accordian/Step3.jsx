@@ -11,21 +11,8 @@ import {
 import { useSelector } from "react-redux";
 import "../../Assets/Style/style.css";
 import Alert from "../Alert/Alert";
+import { useMediaQuery, useTheme } from "@mui/material";
 
-const yesDatas = [
-  {
-    value: "Essential",
-  },
-  {
-    value: "Essential+",
-  },
-  {
-    value: "Elevated",
-  },
-  {
-    value: "Elevated+",
-  },
-];
 const footprintData = [
   {
     id: 0,
@@ -106,7 +93,14 @@ const Step3 = () => {
   const [selectedNoOptions, setSelectedNoOptions] = useState([]);
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
+  const { masterData } = useSelector((state) => state.Master);
+  const theme = useTheme();
+  const isMatchSm = useMediaQuery(theme.breakpoints.down("sm"));
 
+  let yesDatas = [];
+  if (masterData.ccoption) {
+    yesDatas = masterData.ccoption;
+  }
 
   const handleYesOrNoChange = (e) => {
     setYesOrNo(e.target.checked);
@@ -119,6 +113,7 @@ const Step3 = () => {
       setYesOption(value);
     }
   };
+
   const handleFootprintButtons = (value) => {
     if (selectedFootprint.includes(value)) {
       setSelectedFootprint((prev) =>
@@ -130,11 +125,9 @@ const Step3 = () => {
       setSelectedFootprint((prev) => [...prev, value]);
     }
   };
+
   const handleNoButtons = (value) => {
-    let obj = {
-      selectedNoOptions: selectedNoOptions,
-      selectedFootprint: selectedFootprint,
-    };
+
     if (selectedNoOptions.includes(value)) {
       setSelectedNoOptions((prev) =>
         prev.filter((item) => {
@@ -145,6 +138,7 @@ const Step3 = () => {
       setSelectedNoOptions((prev) => [...prev, value]);
     }
   };
+
   const selectYesOption = (id) => {
     if (yesOption === "") {
       Alert.error("select any Option");
@@ -158,25 +152,38 @@ const Step3 = () => {
   const onPrevious = (id) => {
     dispatch(prevAccordionOpen(id));
   };
+
   const selectNoOption = (id) => {
-    dispatch(nextAccordionOpen(id));
+    let obj = {
+      selectedNoOptions: selectedNoOptions,
+      selectedFootprint: selectedFootprint,
+    };
+    if(selectedFootprint.length===0){
+      Alert.error("select one option from Footprint");
+    }else{
+      dispatch(completedSteps(id));
+      dispatch(nextAccordionOpen(id+1));
+    }
+    
   };
+
   let yesData = [];
   yesDatas.forEach((data, index) => {
     yesData.push(
       <Button
         className="formButtons"
         variant="light"
-        name={data.value}
-        value={data.value}
-        onClick={(e) => handleYesButtons(data.value)}
+        name={data.custConvOption}
+        value={data.custConvOption}
+        onClick={(e) => handleYesButtons(data.custConvOption)}
         style={{
-          backgroundColor: yesOption === data.value ? "#4BAE4F" : "#fff",
-          color: yesOption === data.value ? "white" : "black",
-          border: yesOption === data.value ? "" : "1px solid #979797",
+          backgroundColor:
+            yesOption === data.custConvOption ? "#4BAE4F" : "#fff",
+          color: yesOption === data.custConvOption ? "white" : "black",
+          border: yesOption === data.custConvOption ? "" : "1px solid #979797",
         }}
       >
-        {data.value}
+        {data.custConvOption}
       </Button>
     );
   });
@@ -205,6 +212,7 @@ const Step3 = () => {
       </Button>
     );
   });
+
   let ontheGoDatas = [];
   onTheGoData.forEach((data, index) => {
     ontheGoDatas.push(
@@ -228,6 +236,7 @@ const Step3 = () => {
       </Button>
     );
   });
+
   let localVarietyDatas = [];
   localVarietyData.forEach((data, index) => {
     localVarietyDatas.push(
@@ -251,6 +260,8 @@ const Step3 = () => {
       </Button>
     );
   });
+
+  
   let alaCarteDatas = [];
   alaCarteData.forEach((data, index) => {
     alaCarteDatas.push(
@@ -274,8 +285,141 @@ const Step3 = () => {
       </Button>
     );
   });
+  
   return (
     <>
+    {isMatchSm ? (
+      <>
+     
+      <Row className="logoNToggleSm">
+        <Col>
+          <Button variant="secondary" className="LogoButton">
+            Logo
+          </Button>
+        </Col>
+        <Col >
+          <Switch
+            inputProps={{ "aria-label": "secondary checkbox" }}
+            color="success"
+            style={{ float: "right" }}
+            checked={yesOrNo}
+            onChange={handleYesOrNoChange}
+          />
+        </Col>
+      </Row>
+      <br />
+      {yesOrNo ? (
+        <>
+          <Row className="Option">
+            <Col className="heading" md={4}>
+              <Typography variant="subtitle1">
+                <b> What option would they like?</b>
+              </Typography>
+            </Col>
+            {yesData}
+          </Row>
+          <br />
+          <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
+            <Col md={6} style={{ textAlign: "left" }}>
+              <Button
+                variant="contained"
+                size="small"
+                type="submit"
+                className="previous_btn3"
+                onClick={() => onPrevious(accordionId - 1)}
+              >
+                Previous
+              </Button>
+            </Col>
+            <Col md={6} style={{ textAlign: "right" }}>
+              <Button
+                variant="contained"
+                size="small"
+                type="submit"
+                className="next_btn3"
+                onClick={() => selectYesOption(accordionId)}
+              >
+                Next
+              </Button>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <>
+          <Row className="Option">
+            <Col className="heading" md={2}>
+              <Typography variant="subtitle1">
+                <b>Footprint</b>
+              </Typography>
+            </Col>
+            {footprintDatas}
+          </Row>
+          <br />
+          <Row className="Option">
+            <Col className="heading" md={2}>
+              <Typography variant="subtitle1">
+                <b>On the go</b>
+              </Typography>
+            </Col>
+            <Col>
+              <Row className="alaCarteRow">{ontheGoDatas}</Row>
+            </Col>
+          </Row>
+          <br />
+          <Row className="Option">
+            <Col className="headingLocal" md={2}>
+              <Typography variant="subtitle1">
+                <b>
+                  Local
+                  <br />
+                  Variety
+                </b>
+              </Typography>
+            </Col>
+            {localVarietyDatas}
+          </Row>
+          <br />
+          <Row className="OptionAla">
+            <Col className="headingAla" md={2}>
+              <Typography variant="subtitle1">
+                <b>A la carte</b>
+              </Typography>
+            </Col>
+            <Col>
+              <Row>{alaCarteDatas}</Row>
+            </Col>
+          </Row>
+          <br />
+          <Row className="" style={{ padding: "0 0.3em" }}>
+            <Col style={{ textAlign: "left" }}>
+              <Button
+                variant="contained"
+                size="small"
+                type="submit"
+                className="previous_btn3"
+                onClick={() => onPrevious(accordionId - 1)}
+              >
+                Previous
+              </Button>
+            </Col>
+            <Col style={{ textAlign: "right" }}>
+              <Button
+                variant="contained"
+                size="small"
+                type="submit"
+                className="next_btn3"
+                onClick={() => selectNoOption(accordionId)}
+              >
+                Next
+              </Button>
+            </Col>
+          </Row>
+        </>
+      )}
+    </>
+    ):(
+      <>
+     
       <Row className="logoNToggle">
         <Col md={2}>
           <Button variant="secondary" className="LogoButton">
@@ -393,7 +537,7 @@ const Step3 = () => {
                 size="small"
                 type="submit"
                 className="next_btn3"
-                onClick={() => selectNoOption(accordionId + 1)}
+                onClick={() => selectNoOption(accordionId)}
               >
                 Next
               </Button>
@@ -402,6 +546,9 @@ const Step3 = () => {
         </>
       )}
     </>
+    )}
+    </>
+   
   );
 };
 
