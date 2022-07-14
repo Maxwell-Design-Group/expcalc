@@ -180,17 +180,17 @@
 // }
 
 
-// exports.findwinTheme = (req, res) => {
-//     winTheme.find()
-//     .then(wintheme => {
-//         res.send(wintheme);       
+exports.findwinTheme = (req, res) => {
+    winTheme.find()
+    .then(wintheme => {
+        res.send(wintheme);       
        
-//     }).catch(err => {
-//         res.status(500).send({
-//             message: err.message || "Something went wrong."
-//         });
-//     });
-// }
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
+}
 
 // exports.findCustomisableConvenienceOption = (req, res) => {
 //     customisableConvenienceOption.find()
