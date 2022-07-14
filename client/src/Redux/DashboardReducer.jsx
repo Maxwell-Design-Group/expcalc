@@ -4,6 +4,7 @@ import * as types from "./ActionType";
 const initialState = {
   accordionId: 0,
   completedSteps: [],
+  themes: [],
 };
 
 const DashboardReducer = (state = initialState, action) => {
