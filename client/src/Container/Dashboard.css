@@ -687,7 +687,7 @@ div label input {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .aramark_dashboard .nav_header {
@@ -939,7 +939,6 @@ div label input {
   position: relative;
   color: white;
   padding-top: 10px;
-  left: 20px;
   display: flex;
   flex: 0;
   align-self: center;

@@ -122,7 +122,8 @@ const Step2 = (props) => {
         columns={{ xs: 2, sm: 6, md: 12 }}
         style={{
           flexWrap: isMobileView ? "nowrap" : "wrap",
-          overflowX: isMobileView ? "scroll" : "hidden"
+          overflowX: isMobileView ? "scroll" : "hidden",
+          marginLeft: isMobileView ? 0 : "-16px"
         }}
       >
 

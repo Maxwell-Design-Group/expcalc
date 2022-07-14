@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { nextAccordionOpen, prevAccordionOpen } from "../../Redux/Actions";
+import "./step4.css"
 
 const Step4 = (props) => {
+  const { isMobileView = false } = props;
   const tableRows = [];
-  const supportingFeatures = [];
   const [checked, setChecked] = useState(false);
-  const [expand, setExpand] = useState(false);
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
   const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);
@@ -38,6 +38,7 @@ const Step4 = (props) => {
       cost: "$ 231,453",
     },
   ]);
+
   const supportingFeatureData = [
     {
       label: "Catertrax Catering",
@@ -46,6 +47,7 @@ const Step4 = (props) => {
       label: "Catering B2C",
     },
   ];
+
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
     let products = userSelectedProducts;
@@ -63,7 +65,8 @@ const Step4 = (props) => {
       }
     }
   };
-  const handleChangeFeatures = (e, rowData, index) => {
+
+  const handleChangeFeatures = (e, rowData) => {
     const { checked } = e.target;
     let features = userSelectedFeatures;
     if (checked === true) {
@@ -80,6 +83,7 @@ const Step4 = (props) => {
       }
     }
   };
+
   tableData.forEach((row, index) => {
     tableRows.push(
       <tr>
@@ -106,102 +110,95 @@ const Step4 = (props) => {
     );
   });
 
-  supportingFeatureData.forEach((feature, index) => {
-    supportingFeatures.push(
-      <div class="catering sports" style={{ width: "158px" }}>
-        <label>
-          <input
-            type="checkbox"
-            value={feature.label}
-            defaultChecked={featureChecked}
-            onChange={(e) => handleChangeFeatures(e, feature, index)}
-          />
-          <span style={{ width: "158px" }}> {feature.label}</span>
-        </label>
-      </div>
-    );
-  });
-  function onAccordianChange(params) {
-    setExpand(!expand);
-  }
   const onPrevious = (id) => {
     dispatch(prevAccordionOpen(id));
   };
+
   const selectNoOption = (id) => {
     dispatch(nextAccordionOpen(id));
   };
-  return (
-    <div className="stepOne">
-      <Row className="pos_row ">
-        <div className="pos_container">
-          <Row>
-            <Col md={3}>
-              <div className="pos">
-                <span className="pos_label">Digital Sinage</span>
-              </div>
-            </Col>
-            <Col md={9}>
-              {" "}
-              <div class="ds_btn">
-                <span
-                  style={{ position: "absolute", top: "-24px", left: "24px" }}
-                >
-                  50&deg;
-                </span>
-                <input
-                  type="text"
-                  id="digitalSinage50"
-                  value={digitalSinage50}
-                  placeholder="Qty"
-                  onChange={(e) => setDigitalSinage50(e.target.value)}
-                />
-              </div>
-              <div class="ds_btn">
-                <span
-                  style={{ position: "absolute", top: "-24px", left: "24px" }}
-                >
-                  55&deg;
-                </span>
-                <input
-                  type="text"
-                  id="digitalSinage50"
-                  placeholder="Qty"
-                  value={digitalSinage55}
-                  onChange={(e) => setDigitalSinage55(e.target.value)}
-                />
-              </div>
-              <div class="ds_btn">
-                <span
-                  style={{ position: "absolute", top: "-24px", left: "24px" }}
-                >
-                  65&deg;
-                </span>
-                <input
-                  type="text"
-                  id="digitalSinage50"
-                  placeholder="Qty"
-                  value={digitalSinage65}
-                  onChange={(e) => setDigitalSinage65(e.target.value)}
-                />
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </Row>
-      <Row className="sf_row">
-        <div className="pos_container" style={{ marginBottom: "2em" }}>
-          <Row>
-            <Col md={3}>
-              <div className="pos">
-                <span className="pos_label">Catring</span>
-              </div>
-            </Col>
-            <Col md={9}> {supportingFeatures}</Col>
-          </Row>
-        </div>
-      </Row>
 
-      <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
+  return (
+    <div>
+      <div className="digital_signage" style={{
+        flexDirection: isMobileView ? "column" : "row"
+      }}>
+        <div className="digital_signage_text">
+          Digital Sinage
+        </div>
+
+        <div style={{
+          height: "80px",
+          display: "flex",
+          alignItems: "center"
+        }}>
+          <div class="ds_btn">
+            <span
+              style={{ position: "absolute", top: "-27px", left: "24px" }}
+            >
+              50&deg;
+            </span>
+            <input
+              type="text"
+              id="digitalSinage50"
+              value={digitalSinage50}
+              placeholder="QTY"
+              onChange={(e) => setDigitalSinage50(e.target.value)}
+            />
+          </div>
+          <div class="ds_btn">
+            <span
+              style={{ position: "absolute", top: "-27px", left: "24px" }}
+            >
+              55&deg;
+            </span>
+            <input
+              type="text"
+              id="digitalSinage50"
+              placeholder="QTY"
+              value={digitalSinage55}
+              onChange={(e) => setDigitalSinage55(e.target.value)}
+            />
+          </div>
+          <div class="ds_btn">
+            <span
+              style={{ position: "absolute", top: "-27px", left: "24px" }}
+            >
+              65&deg;
+            </span>
+            <input
+              type="text"
+              id="digitalSinage50"
+              placeholder="QTY"
+              value={digitalSinage65}
+              onChange={(e) => setDigitalSinage65(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="digital_signage" style={{
+        flexDirection: isMobileView ? "column" : "row"
+      }}>
+        <div className="digital_signage_text">
+          Catering
+        </div>
+        <div className="catering-sports-container"> {supportingFeatureData.map((feature, index) => {
+          return <div class="catering sports">
+            <label>
+              <input
+                type="checkbox"
+                value={feature.label}
+                defaultChecked={featureChecked}
+                onChange={(e) => handleChangeFeatures(e, feature, index)}
+              />
+              <span> {feature.label}</span>
+            </label>
+          </div>
+        })}</div>
+      </div>
+
+      <Row className="rowSeprator" style={{ padding: "0 0.3em", flexWrap: "nowrap" }}>
         <Col md={6} style={{ textAlign: "left" }}>
           <Button
             variant="contained"

@@ -144,7 +144,9 @@ const AccordionComponent = (props) => {
               }
             </div>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails style={{
+            padding: isMobileView ? "0px" : "8px 16px 16px"
+          }}>
             {item.id === 3 ? (
               <Step3 />
             ) : item.id === 1 ? (

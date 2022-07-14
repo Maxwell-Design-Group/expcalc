@@ -43,59 +43,8 @@ body {
   }
 }
 
-/* .css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  width: 995px;
-  min-height: 70px;
-  background: #F4F4F4 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #0000001c;
-  border-radius: 15px;
-  opacity: 0.8;
-  border-left: 15px solid transparent;
-}
-
-.css-viou3o-MuiAutocomplete-root .MuiOutlinedInput-root {
-  padding: 1px !important;
-}
-
-.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  width: 995px;
-  min-height: 70px;
-  background: #F4F4F4 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #0000001c;
-  border-radius: 15px;
-  opacity: 0.8;
-  border-left: 15px solid transparent;
-}
-
-.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
-  border-bottom-left-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
-}
-
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded:first-of-type {
-  margin-top: 0;
-  border-left: 15px solid #FFC52B !important;
-  background-color: #FFFFFF !important;
-  opacity: 1 !important;
-  padding: 0 1em;
-}
-
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded {
-  margin: 16px 0;
-}
-
-
-
-
-
-
-
-.css-viou3o-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input {
-  padding: 7.5px 4px 7.5px 6px;
+/* .stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+  background-color: #f4f4f4 !important;
 } */
 
 .stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
@@ -1296,19 +1245,16 @@ div label input {
 .sports input:checked + span {
   background-color: #4bae4f;
   border-radius: 15px;
-  padding: 5px 15px;
 }
 
 /* form 4 CSS */
 .ds_btn {
   float: left;
-  margin: 11px 5px 0 0;
+  margin: 20px 0px 0px 20px;
   width: 63px;
   height: 45px;
   position: relative;
-  top: 10px;
   border-radius: 25px;
-  border: 2px solid #f4f4f4;
   opacity: 0.5;
 }
 
@@ -1316,7 +1262,7 @@ div label input {
 .ds_btn input {
   display: block;
   position: absolute;
-  top: -5px;
+  top: 0px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1345,11 +1291,9 @@ div label input {
 
 .catering {
   float: left;
-  margin: 0 5px 0 0;
-  width: 121px;
-  height: 32px;
+  margin-left: 15px;
+  height: 100%;
   position: relative;
-  top: 10px;
   background: #ffffff1f 0% 0% no-repeat padding-box;
   border: 1px solid rgba(151, 151, 151, 0.5);
   border-radius: 16px;
@@ -1360,13 +1304,12 @@ div label input {
 .catering label {
   float: left;
   cursor: pointer;
-  width: 8em;
-  height: 3em;
+  width: 100%;
+  margin-bottom: 0px;
 }
 
 .catering label span {
   text-align: center;
-  padding: 3px 0;
   display: block;
 }
 
@@ -1380,13 +1323,16 @@ div label input {
 .catering label input + span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
-  min-width: 121px;
-  height: 32px;
-  padding: 5px 15px;
+  height: 100%;
+  white-space: nowrap;
+  padding: 6px;
+  width: 100%;
+  white-space: break-spaces;
 }
 
 .catering input:checked + span {
   color: #ffffff;
+  padding: 6px;
 }
 
 ::-moz-placeholder {

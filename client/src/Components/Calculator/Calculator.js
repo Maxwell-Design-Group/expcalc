@@ -40,7 +40,7 @@ const Calculator = (props) => {
               <div className="cal-dollar-sign">$</div>
             </div>
             <div>
-              <p className="calculator-cap-label cap-margin mt-10">Cap Ex</p>
+              <p className="calculator-cap-label cap-margin mt-10">OP Ex</p>
               <p className="calculator-cap-price cap-margin">$0</p>
             </div>
           </div>
