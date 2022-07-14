@@ -9,7 +9,7 @@ class ClientDetailService {
 
   sendData(data, accordianId) {
     axios
-      .post("http://localhost:3000/client", data)
+      .post("https://expcalc-dev.herokuapp.com/client", data)
       .then((response) => {
         Alert.success("ClientDetail added successfully");
         console.log(response);
@@ -29,7 +29,7 @@ class ClientDetailService {
   updateData(data, id) {
     axios
       .post(
-        "http://localhost:3000/client/" + id,
+        "https://expcalc-dev.herokuapp.com/client/" + id,
         data
       )
       .then((response) => {
@@ -42,14 +42,14 @@ class ClientDetailService {
 
   deleteData(id) {
     axios
-      .get("http://localhost:3000/client/" + id)
+      .get("https://expcalc-dev.herokuapp.com/client/" + id)
       .then(() => {})
       .catch((error) => {});
   }
 
   getData(id) {
     axios
-      .get("http://localhost:3000/client")
+      .get("https://expcalc-dev.herokuapp.com/client")
       .then((response) => {      
         console.log(response[response.length]);
         

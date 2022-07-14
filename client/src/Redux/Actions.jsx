@@ -67,7 +67,7 @@ export const setClientDetails = (data) => {
 export const getMasterData = () => {
   return function (dispatch) {
     axios
-      .get("http://localhost:3000/master")
+      .get("https://expcalc-dev.herokuapp.com/master")
       .then((response) => {
         dispatch(getMaster(response.data));
       })
