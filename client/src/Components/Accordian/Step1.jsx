@@ -27,13 +27,9 @@ const Step1 = (props) => {
   const [isLifeworks, setIsLifeworks] = useState(false);
   const [anticipatedRevenue, setAnticipatedRevenue] = useState("");
   const [population, setPopulation] = useState("");
-  
 
   const { accordionId } = useSelector((state) => state.Reducer);
-  
   const { masterData } = useSelector((state) => state.Master);
-  
-  console.log("masterData ", masterData);
   let industrytypes = [];
   let contractTypes = [];
   if (masterData.industrytype) {
@@ -42,6 +38,10 @@ const Step1 = (props) => {
   }
 
   const [anticipatedRevenueRange, setAnticipatedRevenueRange] = useState([
+    {
+      value: 0,
+      label: "$0",
+    },
     {
       value: 0,
       label: "$0",
@@ -57,25 +57,39 @@ const Step1 = (props) => {
       label: "0",
     },
     {
+      value: 1000,
+      label: "1000",
+    },
+    {
+      value: 2000,
+      label: "2000",
+    },
+    {
+      value: 3000,
+      label: "3000",
+    },
+    {
+      value: 3000,
+      label: "3000",
+    },
+    {
       value: 5000,
       label: "5000",
     },
   ]);
-  console.log("industrytype ", masterData);
   function onAccordianChange(params) {
     setExpand(!expand);
   }
   function addClient(id) {
     let obj = {
       email: "",
-      clientname: clientName,
-      contracttype: contractType,
-      lifeworks: isLifeworks,
-      anticipatedrevenue: anticipatedRevenue,
-      population: population,
-      industrytype: industryType,
+      ClientName: clientName,
+      ContractType: contractType,
+      LifeWorks: isLifeworks,
+      AnticipatedRevenue: anticipatedRevenue,
+      Population: population,
+      industry_Type: industryType,
     };
-
     if (clientName === "" || clientName.length > 255) {
       Alert.error("Enter client name,0-255 characters");
       document.getElementById("clientName").focus();
@@ -91,20 +105,22 @@ const Step1 = (props) => {
       Alert.error("Estimate the population");
       document.getElementById("Population").focus();
     } else {
-      console.log("id ", id);
-      console.log(obj);
       clientDetailService.sendData(obj, id);
     }
   }
 
   let contractTypeOption = [];
   contractTypes.forEach((data, index) => {
-    contractTypeOption.push(<option>{data.contracttypelist}</option>);
+    contractTypeOption.push(
+      <option value={data.industrytype}>{data.contracttypelist}</option>
+    );
   });
 
   let industrytypeOption = [];
   industrytypes.forEach((data, index) => {
-    industrytypeOption.push(<option>{data.industrytype}</option>);
+    industrytypeOption.push(
+      <option value={data.industrytype}>{data.industrytype}</option>
+    );
   });
   return (
     <div className="stepOne">
@@ -138,11 +154,9 @@ const Step1 = (props) => {
 
           <select
             value={contractType}
-            onChange={(event, value) => {
-              //setContractTypes(value);
-              setContractTypes(event.target.value);
-              console.log('contract type selected');              
-              console.log(event.target.value);
+            className={contractType ? "" : "select_placeholder"}
+            onChange={(e) => {
+              setContractTypes(e.target.value);
             }}
             id="contractType"
             style={{
@@ -150,10 +164,13 @@ const Step1 = (props) => {
               borderRadius: "25px",
 
               height: "45px",
-              padding: "10px",
+              // padding: "10px",
               width: "100%",
             }}
           >
+            <option value="" selected>
+              Select
+            </option>
             {contractTypeOption}
           </select>
         </Col>
@@ -165,10 +182,9 @@ const Step1 = (props) => {
           </label>{" "}
           <select
             id="industryType"
-            options={industrytypes}
+            className={industryType ? "" : "select_placeholder"}
             value={industryType}
-            onChange={(e, value) => {
-              //setiIndustryType(value);
+            onChange={(e) => {
               setiIndustryType(e.target.value);
             }}
             style={{
@@ -176,10 +192,13 @@ const Step1 = (props) => {
               borderRadius: "25px",
 
               height: "45px",
-              padding: "10px",
+
               width: "100%",
             }}
           >
+            <option value="" selected>
+              Select
+            </option>
             {industrytypeOption}
           </select>
         </Col>
@@ -207,6 +226,12 @@ const Step1 = (props) => {
             <Slider
               aria-label="Always visible"
               id="AnticipatedRevenue"
+              style={{
+                color: "#da291c",
+                width: "85% !important",
+                padding: "13px 0px",
+                marginBottom: "20px",
+              }}
               onChange={(e) => setAnticipatedRevenue(e.target.value)}
               value={anticipatedRevenue}
               min={0}
@@ -227,6 +252,12 @@ const Step1 = (props) => {
               id="Population"
               min={0}
               max={5000}
+              style={{
+                color: "#da291c",
+                width: "85% !important",
+                padding: "13px 0px",
+                marginBottom: "20px",
+              }}
               onChange={(e) => setPopulation(e.target.value)}
               value={population}
               step={10}

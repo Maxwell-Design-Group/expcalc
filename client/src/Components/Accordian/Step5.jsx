@@ -14,33 +14,14 @@ const Step5 = (props) => {
   const dispatch = useDispatch();
   const { masterData } = useSelector((state) => state.Master);
   const { accordianId } = useSelector((state) => state.Reducer);
-  const [tableData, setTabledata] = useState([
-    {
-      product: "Yokai",
-      description: "Lorem ipsum dolor sit amet, consetetur sadipssed",
-      cost: "$ 231,453",
-    },
-    {
-      product: "Basil Street",
-      description: "Lorem ipsum dolor sit amet, consetetur sadipssed",
-      cost: "$ 231,453",
-    },
-    {
-      product: "Enable",
-      description: "Lorem ipsum dolor sit amet, consetetur sadipssed",
-      cost: "$ 231,453",
-    },
-    {
-      product: "Marko",
-      description: "Lorem ipsum dolor sit amet, consetetur sadipssed",
-      cost: "$ 231,453",
-    },
-  ]);
+  const { themes } = useSelector((state) => state.Reducer);
+
+  const tableData2 = [];
+
   let supportingFeatureData = [];
   if (masterData.supportingfeature) {
     supportingFeatureData = masterData.supportingfeature;
   }
-
   const onPrevious = (id) => {
     dispatch(prevAccordionOpen(id));
   };
@@ -78,31 +59,33 @@ const Step5 = (props) => {
       }
     }
   };
-  tableData.forEach((row, index) => {
-    tableRows.push(
-      <tr>
-        <td>
-          <input
-            type="checkbox"
-            style={{
-              accentColor: "#4BAE4F",
-              border: "15px solid red",
-            }}
-            labelStyle={{ color: "white" }}
-            iconStyle={{ fill: "white" }}
-            defaultChecked={checked}
-            name="checkedSacCode"
-            id={"theme_check" + index}
-            onChange={(e) => handleChange(e, row, index)}
-          />
-          &nbsp;
-          {row.product}
-        </td>
-        <td>{row.description}</td>
-        <td>{row.cost}</td>
-      </tr>
-    );
-  });
+  if (themes) {
+    themes.forEach((row, index) => {
+      tableRows.push(
+        <tr>
+          <td>
+            <input
+              type="checkbox"
+              style={{
+                accentColor: "#4BAE4F",
+                border: "15px solid red",
+              }}
+              labelStyle={{ color: "white" }}
+              iconStyle={{ fill: "white" }}
+              defaultChecked={checked}
+              name="checkedSacCode"
+              id={"theme_check" + index}
+              onChange={(e) => handleChange(e, row, index)}
+            />
+            &nbsp;
+            {row.product}
+          </td>
+          <td>{row.description}</td>
+          <td>{row.Total}</td>
+        </tr>
+      );
+    });
+  }
 
   supportingFeatureData.forEach((feature, index) => {
     supportingFeatures.push(
@@ -212,18 +195,20 @@ const Step5 = (props) => {
                 <span className="like_label">You may also like</span>
               </div>
             </Col>
-            <Col md={9}>
+            <Col md={9} style={{ overflowY: "scroll" }}>
               <table
                 style={{ width: "90%", top: "2em", position: "absolute" }}
-                className="product_tbl"
+                className="product_tbl "
               >
-                <tr style={{ borderBottom: "1px solid #CFCFCF" }}>
-                  <th>Product</th>
-                  <th>Brief Description</th>
-                  <th>Cost</th>
-                </tr>
-
-                {tableRows}
+                {" "}
+                <thead>
+                  <tr style={{ borderBottom: "1px solid #CFCFCF" }}>
+                    <th>Product</th>
+                    <th>Brief Description</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody> {tableRows}</tbody>
               </table>
             </Col>
           </Row>

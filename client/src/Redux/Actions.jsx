@@ -22,7 +22,10 @@ const getMaster = (data) => ({
   type: types.GET_MASTER_DATA,
   payload: data,
 });
-
+const setTheme = (data) => ({
+  type: types.SET_WINTHEME_DATA,
+  payload: data,
+});
 // const setMasterData = (data) => ({
 //   type: types.SET_MASTER_DATA,
 //   payload: data,
@@ -47,7 +50,11 @@ export const completedSteps = (id) => {
     dispatch(stepsCompletion(id));
   };
 };
-
+export const setWinThemes = (data) => {
+  return function (dispatch) {
+    dispatch(setTheme(data));
+  };
+};
 export const getMasterData = () => {
   return function (dispatch) {
     axios
