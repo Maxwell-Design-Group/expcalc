@@ -5,6 +5,7 @@ const initialState = {
   accordionId: 0,
   completedSteps: [],
   clientDetails: {},
+  themes: [],
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -39,7 +40,7 @@ const DashboardReducer = (state = initialState, action) => {
         ...state,
         themes: action.payload,
       };
-      case types.SET_CLIENT_DETAILS:
+    case types.SET_CLIENT_DETAILS:
       return {
         ...state,
         clientDetails: action.payload,
