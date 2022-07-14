@@ -1,5 +1,5 @@
 //const contractTypeList = require('../models/contracttypelist.js');
-//const industryType = require('../models/industrytype.js');
+const industryType = require('../models/industrytype.js');
 // const stationList = require('../models/stationlist.js');
 // const wtProduct = require('../models/wtproduct.js');
 // const winTheme = require('../models/wintheme.js');
