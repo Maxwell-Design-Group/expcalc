@@ -14,7 +14,7 @@ var winThemData = new Schema({
 },{
     collection: 'winthemdata'
 });
-
+ 
 module.exports = mongoose.model('winThemData', winThemData);
 
 
