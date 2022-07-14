@@ -1,27 +1,25 @@
 module.exports = (app) => {
-    const masterdata = require('../controllers/masterdata.js');
-    //const clientData = require('../controllers/clientdetail.js');
+    //const masterdata = require('../controllers/masterdata.js');
+    const clientData = require('../controllers/clientdetail.js');
 
     
-    // app.post('/add/post', clientData.create);
+    app.post('/client', clientData.create);
 
-    // app.get('/allclient', clientData.findAll);
+    app.get('/client', clientData.find);
 
-    // app.get('/clientbyid/:id', clientData.findOne);
+    app.delete('/client', clientData.delete);
 
-    // app.get('/clientbyemail/:email', clientData.findByEmail);
+    app.put('/client/:id',  clientData.update);
 
-    app.get('/getmasterdata', masterdata.findAll);
 
-    app.get('/contracttypelist', masterdata.findContractTypeList);
+    // app.get('/master', masterdata.findAll);
 
-    app.get('/industrytype', masterdata.findTndustryType);
+    // app.get('/contract', masterdata.findContractTypeList);
 
-    app.get('/wintheme', masterdata.findwinTheme);
+    // app.get('/industry', masterdata.findTndustryType);
 
-    app.get('/customisableconvenienceoption', masterdata.findCustomisableConvenienceOption);
+    // app.get('/wintheme', masterdata.findwinTheme);
+
+    // app.get('/ccoption', masterdata.findCustomisableConvenienceOption);
     
-    // app.put('//update/:id',  clientData.update);
-
-    // app.delete('/delete/:id', clientData.delete);
-}
+   }

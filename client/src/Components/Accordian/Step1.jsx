@@ -30,6 +30,7 @@ const Step1 = (props) => {
 
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
+  const [clientID, setclientId] = useState("");
   console.log("masterData ", masterData);
   let industrytypes = [];
   let contractTypes = [];
@@ -44,10 +45,6 @@ const Step1 = (props) => {
       label: "$0",
     },
     {
-      value: 0,
-      label: "$0",
-    },
-    {
       value: 10,
       label: "$10M",
     },
@@ -56,22 +53,6 @@ const Step1 = (props) => {
     {
       value: 0,
       label: "0",
-    },
-    {
-      value: 1000,
-      label: "1000",
-    },
-    {
-      value: 2000,
-      label: "2000",
-    },
-    {
-      value: 3000,
-      label: "3000",
-    },
-    {
-      value: 3000,
-      label: "3000",
     },
     {
       value: 5000,
@@ -108,6 +89,7 @@ const Step1 = (props) => {
       document.getElementById("Population").focus();
     } else {
       console.log("id ", id);
+        
       clientDetailService.sendData(obj, id);
     }
   }
@@ -154,7 +136,10 @@ const Step1 = (props) => {
           <select
             value={contractType}
             onChange={(event, value) => {
-              setContractTypes(value);
+              //setContractTypes(value);
+              setContractTypes(event.target.value);
+              console.log('contract type selected');              
+              console.log(event.target.value);
             }}
             id="contractType"
             style={{
@@ -180,7 +165,8 @@ const Step1 = (props) => {
             options={industrytypes}
             value={industryType}
             onChange={(e, value) => {
-              setiIndustryType(value);
+              //setiIndustryType(value);
+              setiIndustryType(e.target.value);
             }}
             style={{
               border: "1px solid #D0CDCD",
