@@ -19,6 +19,7 @@ import Sustainability from "../../Assets/images/Sustainability.png";
 import { prevAccordionOpen } from "../../Redux/Actions";
 
 import WinthemeDetailService from "../../Services/WinthemeDetailService";
+import ClientDetailService from "../../Services/ClientDetailService";
 import Alert from "../Alert/Alert";
 
 const Step2 = () => {
@@ -26,6 +27,7 @@ const Step2 = () => {
   const [userSelectedThemes, setUserSelectedThemes] = useState([]);
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
+  const { clientId } = useSelector((state) => state.Reducer);
   const [winThemelist, setWinThemes] = useState([
     {
       theme: "Cost-Consciousness",
@@ -172,10 +174,9 @@ const Step2 = () => {
   }
 
   function addWinThemes(id) {
-    let obj = {
-      email: "",
-      winthemedetail: userSelectedThemes,
-    };
+    
+
+    console.log(userSelectedThemes);
 
     if (userSelectedThemes.length === 0) {
       Alert.error("Choose at least 1 win theme");
@@ -183,13 +184,25 @@ const Step2 = () => {
         document.getElementById("themesBtn" + i).style.border = "1px solid red";
       }
     } else {
+      let wth = "";
       for (let i = 0; i < userSelectedThemes.length; i++) {
+        wth = wth + "," + userSelectedThemes[i];
+        
+      }
         let obj = {
           email: "",
-          winthemedetail: userSelectedThemes,
+          clientname: clientName,
+          contracttype: contractType,
+          lifeworks: isLifeworks,
+          anticipatedrevenue: anticipatedRevenue,
+          population: population,
+          industrytype: industryType,
+          wintheme:wth,
         };
-        winThemeDetails.sendData(obj, id);
-      }
+
+        console.log(obj);
+        clientDetailService.updateDate(obj, id); // should be pass client id
+      
     }
   }
 

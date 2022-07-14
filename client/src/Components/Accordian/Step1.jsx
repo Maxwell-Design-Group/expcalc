@@ -27,10 +27,12 @@ const Step1 = (props) => {
   const [isLifeworks, setIsLifeworks] = useState(false);
   const [anticipatedRevenue, setAnticipatedRevenue] = useState("");
   const [population, setPopulation] = useState("");
+  
 
   const { accordionId } = useSelector((state) => state.Reducer);
+  
   const { masterData } = useSelector((state) => state.Master);
-  const [clientID, setclientId] = useState("");
+  
   console.log("masterData ", masterData);
   let industrytypes = [];
   let contractTypes = [];
@@ -66,13 +68,14 @@ const Step1 = (props) => {
   function addClient(id) {
     let obj = {
       email: "",
-      ClientName: clientName,
-      ContractType: contractType,
-      LifeWorks: isLifeworks,
-      AnticipatedRevenue: anticipatedRevenue,
-      Population: population,
-      industry_Type: industryType,
+      clientname: clientName,
+      contracttype: contractType,
+      lifeworks: isLifeworks,
+      anticipatedrevenue: anticipatedRevenue,
+      population: population,
+      industrytype: industryType,
     };
+
     if (clientName === "" || clientName.length > 255) {
       Alert.error("Enter client name,0-255 characters");
       document.getElementById("clientName").focus();
@@ -89,7 +92,7 @@ const Step1 = (props) => {
       document.getElementById("Population").focus();
     } else {
       console.log("id ", id);
-        
+      console.log(obj);
       clientDetailService.sendData(obj, id);
     }
   }
