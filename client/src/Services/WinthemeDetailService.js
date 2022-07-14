@@ -6,7 +6,7 @@ import { completedSteps, nextAccordionOpen } from "../Redux/Actions";
 class WinthemeDetailService {
   sendData(data, accordianId) {
     axios
-      .post("https://expcalc-dev.herokuapp.com/winthemedetails/add/post", data)
+      .post("https://expcalc-dev.herokuapp.com/wintheme/add/post", data)
       .then((response) => {
         Alert.success("WinthemeDetail added successfully");
         Store.dispatch(completedSteps(accordianId));
@@ -17,10 +17,7 @@ class WinthemeDetailService {
 
   updateDate(data, id) {
     axios
-      .post(
-        "https://expcalc-dev.herokuapp.com/winthemedetails/update/" + id,
-        data
-      )
+      .post("https://expcalc-dev.herokuapp.com/wintheme/update/" + id, data)
       .then((response) => {
         this.asetState({
           winthemedetails: response.data,
@@ -31,7 +28,7 @@ class WinthemeDetailService {
 
   deleteData(id) {
     axios
-      .get("https://expcalc-dev.herokuapp.com/winthemedetails/delete/" + id)
+      .get("https://expcalc-dev.herokuapp.com/wintheme/delete/" + id)
       .then(() => {})
       .catch((error) => {});
   }

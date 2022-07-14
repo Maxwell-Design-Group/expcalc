@@ -43,10 +43,65 @@ body {
   }
 }
 
+/* .css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  width: 995px;
+  min-height: 70px;
+  background: #F4F4F4 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #0000001c;
+  border-radius: 15px;
+  opacity: 0.8;
+  border-left: 15px solid transparent;
+}
 
-/* .stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
-  background-color: #f4f4f4 !important;
+.css-viou3o-MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 1px !important;
+}
+
+.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  width: 995px;
+  min-height: 70px;
+  background: #F4F4F4 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #0000001c;
+  border-radius: 15px;
+  opacity: 0.8;
+  border-left: 15px solid transparent;
+}
+
+.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded:first-of-type {
+  margin-top: 0;
+  border-left: 15px solid #FFC52B !important;
+  background-color: #FFFFFF !important;
+  opacity: 1 !important;
+  padding: 0 1em;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+  margin: 16px 0;
+}
+
+
+
+
+
+
+
+.css-viou3o-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input {
+  padding: 7.5px 4px 7.5px 6px;
 } */
+
+.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+  /* background-color: #EDEAF1 !important; */
+  background-color: #f4f4f4 !important;
+}
 
 /* .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
     background-color: #EDEAF1;
@@ -257,7 +312,7 @@ body {
   border-bottom-right-radius: 10px !important;
 }
 
-/* .stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+.stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
   border-top-left-radius: 10px !important;
   border-top-right-radius: 10px !important;
   width: 995px;
@@ -267,7 +322,7 @@ body {
   border-radius: 15px;
   opacity: 0.8;
   border-left: 15px solid #f4f4f4;
-} */
+}
 
 .stepOne .win_themes {
   border: 2px solid gray;
@@ -351,14 +406,14 @@ body {
     border-top: 1px solid gray !important; 
      padding: 8px 16px 16px;
 } */
-.css-ahj2mt-MuiTypography-root {
+/* .css-ahj2mt-MuiTypography-root {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 600 !important;
   font-size: 1rem;
   line-height: 1.5;
   letter-spacing: 0.00938em;
-}
+} */
 
 div label input {
   margin-right: 100px;
@@ -398,7 +453,7 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.cat label input+span {
+.cat label input + span {
   color: #000;
   font-weight: 500;
   font-size: 0.575rem !important;
@@ -415,13 +470,8 @@ div label input {
 
 .themes {
   margin: 4px;
-  /* background-color: #D5D8DC;
-    border-radius: 15px;
-    border: 1px solid #fff;
-    overflow: hidden;
-    float: left; */
-  /* width: 100%; */
-  width: 200px;
+  max-width: 200px;
+  min-width: 145px;
   height: 165px;
   padding: 0.2em 0 0.2em 0.3em;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
@@ -430,6 +480,10 @@ div label input {
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #ebebeb;
   opacity: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .themes label span {
@@ -454,7 +508,9 @@ div label input {
     color: #808B96;
     line-height: 1.8em; */
 
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) /
+    var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing--0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -545,7 +601,7 @@ div label input {
   height: 300px; 
   background: #ccc;
   padding: 20px; */
-  position: fixed;
+  /* position: fixed;
   z-index: -11;
   top: 0px;
   left: 0px;
@@ -554,7 +610,7 @@ div label input {
   background: var(--unnamed-color-01426a) 0% 0% no-repeat padding-box;
   background: #01426a 0% 0% no-repeat padding-box;
   box-shadow: 3px 3px 6px #00000029;
-  opacity: 1;
+  opacity: 1; */
 }
 
 .stepOne section {
@@ -594,7 +650,6 @@ div label input {
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
-
   .stepOne nav,
   article {
     width: 100%;
@@ -621,7 +676,7 @@ div label input {
   letter-spacing: var(--unnamed-character-spacing-0-16) !important;
   color: var(--unnamed-color-ffffff) !important;
   text-align: center !important;
-  font: normal normal 500 32px/35px "Gotham", sans-serif !important;
+  font: normal normal 500 32px/35px Gotham;
   letter-spacing: 0.16px !important;
   color: #FFFFFF !important;
   text-transform: uppercase !important;
@@ -676,34 +731,20 @@ div label input {
   letter-spacing: var(--unnamed-character-spacing-0-6);
   color: var(--unnamed-color-ffffff);
   text-align: left;
-  font: normal normal medium 20px/21px "Gotham", sans-serif !important;
+  font: normal normal medium 20px/21px Gotham;
   letter-spacing: 0.6px;
   color: #ffffff;
   text-transform: uppercase;
   opacity: 1;
 }
 
-.stepOne .nav_description_container {
-  top: 226px;
-  left: 66px;
-  width: 246px;
-  height: 466px;
-  position: absolute;
-}
-
-.stepOne .nav_description_container_expanded {
-  top: 270px;
-  left: 66px;
-  width: 246px;
-  height: 466px;
-  position: absolute;
-}
-
 .stepOne .nav_description {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
+    var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: left;
-  font: normal normal normal 16px/22px "Gotham", sans-serif !important;
+  font: normal normal normal 16px/22px Gotham;
   letter-spacing: 0.48px;
   color: #ffffff;
   opacity: 0.65;
@@ -754,7 +795,9 @@ div label input {
 }
 
 .stepOne .capExOpex_total {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) / var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) /
+    var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: left;
@@ -783,11 +826,13 @@ div label input {
   left: 1482px;
   width: 18px;
   height: 31px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 28px/31px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 28px/31px
+    var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
-  font: normal normal 500 28px/31px "Gotham", sans-serif !important;
+  font: normal normal 500 28px/31px Gotham;
   letter-spacing: 0px;
   color: #ffffff;
   opacity: 1;
@@ -811,11 +856,13 @@ div label input {
   left: 1482px;
   width: 18px;
   height: 31px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 28px/31px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 28px/31px
+    var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
-  font: normal normal 500 28px/31px "Gotham", sans-serif !important;
+  font: normal normal 500 28px/31px Gotham;
   letter-spacing: 0px;
   color: #ffffff;
   opacity: 1;
@@ -836,10 +883,12 @@ div label input {
   left: 1545px;
   width: 70px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: center;
-  font: normal normal 500 20px/21px "Gotham", sans-serif !important;
+  font: normal normal 500 20px/21px Gotham;
   letter-spacing: 0px;
   color: #0e0e0e;
   opacity: 1;
@@ -851,10 +900,12 @@ div label input {
   left: 1549px;
   width: 27px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
-  font: normal normal 500 20px/21px "Gotham", sans-serif !important;
+  font: normal normal 500 20px/21px Gotham;
   letter-spacing: 0px;
   color: #0e0e0e;
   text-transform: uppercase;
@@ -876,10 +927,12 @@ div label input {
   left: 1545px;
   width: 62px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: center;
-  font: normal normal 500 20px/21px "Gotham", sans-serif !important;
+  font: normal normal 500 20px/21px Gotham;
   letter-spacing: 0px;
   color: #0e0e0e;
   opacity: 1;
@@ -891,10 +944,12 @@ div label input {
   left: 1549px;
   width: 27px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
-  font: normal normal 500 20px/21px "Gotham", sans-serif !important;
+  font: normal normal 500 20px/21px Gotham;
   letter-spacing: 0px;
   color: #0e0e0e;
   text-transform: uppercase;
@@ -902,40 +957,14 @@ div label input {
   position: inherit;
 }
 
-.stepOne .version_details {
-  /* top: 1004px; */
-  top: 870px;
-  left: 22px;
-  width: 334px;
-  height: 0px;
-  border: 1px solid var(--unnamed-color-ffffff);
-  border: 1px solid #ffffff;
-  opacity: 0.59;
-  position: fixed;
-}
-
-.stepOne .version_txt {
-  top: 890px;
-  left: 44px;
-  width: 290px;
-  height: 15px;
-  /* UI Properties */
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / 22px var(--unnamed-font-family-gotham);
-  color: var(--unnamed-color-ffffff);
-  text-align: center;
-  font: normal normal normal 14px/22px "Gotham", sans-serif !important;
-  letter-spacing: 0.42px;
-  color: #ffffff;
-  opacity: 1;
-  position: fixed;
-}
-
 .stepOne .next_btn {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
-  font: normal normal 500 16px/16px "Gotham", sans-serif !important;
+  font: normal normal 500 16px/16px Gotham;
   letter-spacing: 1.42px;
   color: #ffffff;
   opacity: 1;
@@ -952,11 +981,13 @@ div label input {
 }
 
 .stepOne .previous_btn {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
-  font: normal normal 500 16px/16px "Gotham", sans-serif !important;
+  font: normal normal 500 16px/16px Gotham;
   letter-spacing: 1.42px;
   color: #004040;
   opacity: 1;
@@ -974,24 +1005,15 @@ div label input {
 }
 
 .stepOne .theme_label_container {
-  top: 523px;
   line-height: 1.19em;
-  left: 404px;
-  width: 196px;
-  height: 32px;
+  height: auto;
   background: #f8f8f8 0% 0% no-repeat padding-box;
   opacity: 1;
-  margin: 2.8em 0 0 -0.3em;
-}
-
-.stepOne .theme_label_container1 {
-  top: 523px;
-  left: 404px;
-  width: 198px;
-  height: 28px;
-  background: #f8f8f8 0% 0% no-repeat padding-box;
-  opacity: 1;
-  margin: 3.1em 0 0 -0.3em;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  margin: 0px;
+  left: 0px;
 }
 
 .stepOne .aramark_header_logo {
@@ -1005,11 +1027,13 @@ div label input {
 }
 
 .stepOne .css-ahj2mt-MuiTypography-root {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
-  font: normal normal 500 20px/24px "Gotham", sans-serif !important;
+  font: normal normal 500 20px/24px Gotham;
   letter-spacing: 0.14px;
   /* color: #000000; */
   opacity: 0.7;
@@ -1021,11 +1045,13 @@ div label input {
   /* width: 277px; */
   /* position: fixed; */
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
-  font: normal normal normal 20px/24px "Gotham", sans-serif !important;
+  font: normal normal normal 20px/24px Gotham;
   letter-spacing: 0.14px;
   /* color: #000000; */
   opacity: 1;
@@ -1036,10 +1062,12 @@ div label input {
   left: 1446px;
   width: 175px;
   height: 18px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
+    var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: left;
-  font: normal normal 500 16px/22px "Gotham", sans-serif !important;
+  font: normal normal 500 16px/22px Gotham;
   letter-spacing: 0.48px;
   color: #ffffff;
   opacity: 0.7;
@@ -1051,12 +1079,6 @@ div label input {
 
 .stepOne .theme_box {
   border: 1px solid red;
-}
-
-.winthemeScroller {
-  display: flex;
-  overflow-x: product_tbl;
-  min-width: 3em;
 }
 
 /* Step Five Css */
@@ -1140,7 +1162,7 @@ div label input {
   z-index: 100;
 }
 
-.pos_btn input[type="radio"]:checked+label {
+.pos_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1150,7 +1172,7 @@ div label input {
 .pos_btn label {
   cursor: pointer;
   z-index: 90;
-  font: normal normal 500 14px/16px "Gotham", sans-serif !important;
+  font: normal normal 500 14px/16px Gotham;
 }
 
 .sf_btn {
@@ -1179,7 +1201,7 @@ div label input {
   z-index: 100;
 }
 
-.sf_btn input[type="radio"]:checked+label {
+.sf_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1189,7 +1211,7 @@ div label input {
 .sf_btn label {
   cursor: pointer;
   z-index: 90;
-  font: normal normal 500 14px/16px "Gotham", sans-serif !important;
+  font: normal normal 500 14px/16px Gotham;
 }
 
 .like_row {
@@ -1218,7 +1240,7 @@ div label input {
 }
 
 .product_tbl tr {
-  font: normal normal normal 14px/35px "Gotham", sans-serif !important;
+  font: normal normal normal 14px/35px Gotham;
   letter-spacing: 0.25px;
   color: #4b4b4b;
   opacity: 1;
@@ -1259,19 +1281,19 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.fs_button label input+span {
+.fs_button label input + span {
   color: #000;
-  font: normal normal 500 14px/16px "Gotham", sans-serif !important;
+  font: normal normal 500 14px/16px Gotham;
   width: 128px;
   height: 43px;
   padding: 5px 12px;
 }
 
-.fs_button input:checked+span {
+.fs_button input:checked + span {
   color: #ffffff;
 }
 
-.sports input:checked+span {
+.sports input:checked + span {
   background-color: #4bae4f;
   border-radius: 15px;
   padding: 5px 15px;
@@ -1308,7 +1330,7 @@ div label input {
   z-index: 100;
 }
 
-.ds_btn input[type="radio"]:checked+label {
+.ds_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1318,7 +1340,7 @@ div label input {
 .ds_btn label {
   cursor: pointer;
   z-index: 90;
-  font: normal normal 500 14px/40px "Gotham", sans-serif !important;
+  font: normal normal 500 14px/40px Gotham;
 }
 
 .catering {
@@ -1355,15 +1377,15 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.catering label input+span {
+.catering label input + span {
   color: #000;
-  font: normal normal 500 14px/16px "Gotham", sans-serif !important;
+  font: normal normal 500 14px/16px Gotham;
   min-width: 121px;
   height: 32px;
   padding: 5px 15px;
 }
 
-.catering input:checked+span {
+.catering input:checked + span {
   color: #ffffff;
 }
 
@@ -1379,7 +1401,6 @@ div label input {
   padding: 0 0 0 1em;
   color: #666666;
   opacity: 0.4;
-
 }
 
 :-ms-input-placeholder {

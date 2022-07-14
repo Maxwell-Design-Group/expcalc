@@ -4,6 +4,8 @@ import Avatar from "@mui/material/Avatar";
 import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import CommunityInvolvement from "../../Assets/images/Community-Involvement.png";
 import CostConsciousnes from "../../Assets/images/Cost-Consciousnes.png";
 import DEI from "../../Assets/images/DEI.png";
@@ -18,16 +20,18 @@ import WinthemeDetailService from "../../Services/WinthemeDetailService";
 import Alert from "../Alert/Alert";
 
 const Step2 = (props) => {
-  const winThemeDetails = new WinthemeDetailService();
-  let themes = [];
+  const { isMobileView = false } = props;
   const [expand, setExpand] = useState(false);
   const [selectedTheme, setTheme] = useState(false);
+
+  const winThemeDetails = new WinthemeDetailService();
   const [userSelectedThemes, setUserSelectedThemes] = useState([]);
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
+  const { clientId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
-  // const [winThemelist, setWinThemes] = useState();
-  let winThemelist = [
+
+  const winThemelist = [
     {
       img: CostConsciousnes,
       description: "",
@@ -61,6 +65,7 @@ const Step2 = (props) => {
       description: "DEEP CLIENT UNDERSTANDING",
     },
   ];
+
   const tableData2 = [];
   var master = [];
 
@@ -83,9 +88,9 @@ const Step2 = (props) => {
     dispatch(prevAccordionOpen(id));
   };
 
-  function selectedThemes(e, theme, index) {
-    const { checked } = e.target;
-    themes = userSelectedThemes;
+  function selectedThemes(theme, index) {
+    const checked = !userSelectedThemes.includes(theme);
+    let themes = [...userSelectedThemes];
     if (checked === true) {
       document.getElementById("themesBtn" + index).style.backgroundColor =
         "#fff";
@@ -94,7 +99,6 @@ const Step2 = (props) => {
       document.getElementById("theme_check" + index).style.opacity = "1";
       document.getElementById("thmsLbl" + index).style.color = "#566573";
       themes.push(theme);
-
       setUserSelectedThemes(themes);
     } else {
       for (let i = 0; i < themes.length; i++) {
@@ -104,63 +108,78 @@ const Step2 = (props) => {
           document.getElementById("themesBtn" + index).style.border =
             "1px solid #fff";
           document.getElementById("thmsLbl" + index).style.color = "#808B96";
-
           setUserSelectedThemes(themes);
         }
       }
     }
   }
-  let winThemes = [];
-  master.forEach((theme, index) => {
-    winThemes.push(
-      <Col md={3} style={{ marginBottom: "0.5em" }} key={index}>
-        <div className="themes action" id={"themesBtn" + index}>
-          <input
-            type="checkbox"
-            style={{
-              width: "100%",
-              margin: "-1em 0px 0px -11.4em",
-              height: "21px",
-              accentColor: "#4BAE4F",
-              border: "15px solid red",
-            }}
-            labelStyle={{ color: "white" }}
-            iconStyle={{ fill: "white" }}
-            defaultChecked={selectedTheme}
-            name="checkedSacCode"
-            id={"theme_check" + index}
-            className="theme_checkbox_color"
-            onChange={(e) => selectedThemes(e, theme.wintheme, index)}
-          />
-          <img
-            src={theme.image}
-            style={{ display: "block", margin: "0.5em 3.5em" }}
-          />
-          <div className="theme_label_container">
-            <span className="themesLabel" id={"thmsLbl" + index}>
-              {theme.wintheme}
-            </span>
-            {index === 5 || index === 6 || index === 7 ? (
-              <span
-                style={{
-                  display: "block",
-                  fontSize: "0.5em",
-                  marginTop: "-1.5em",
-                }}
-              >
-                {theme.description}
-              </span>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-      </Col>
-    );
-  });
-  function onAccordianChange(params) {
-    setExpand(!expand);
+
+  function createGridView() {
+    return <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto" }}>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 2 }}
+        columns={{ xs: 2, sm: 6, md: 12 }}
+        style={{
+          flexWrap: isMobileView ? "nowrap" : "wrap",
+          overflowX: isMobileView ? "scroll" : "hidden"
+        }}
+      >
+
+        {master.map((theme, index) => {
+          return <Grid item xs={2} sm={3} key={index}>
+            <div style={{ marginBottom: "0.5em" }} key={index}>
+              <div className="themes action" id={"themesBtn" + index} onClick={() => selectedThemes(theme.wintheme, index)}>
+                <input
+                  type="checkbox"
+                  style={{
+                    width: "21px",
+                    height: "21px",
+                    accentColor: "#4BAE4F",
+                    border: "15px solid red",
+                    position: "absolute",
+                    left: "0px",
+                    top: "0px"
+                  }}
+                  labelStyle={{ color: "white" }}
+                  iconStyle={{ fill: "white" }}
+                  checked={userSelectedThemes.includes(theme.wintheme)}
+                  name="checkedSacCode"
+                  id={"theme_check" + index}
+                  className="theme_checkbox_color"
+                  onChange={(e) => selectedThemes(theme.wintheme, index)}
+                />
+                <img
+                  src={theme.image}
+                  alt={theme.image}
+                  style={{ display: "block", margin: "0.5em 3.5em", top: "20%", position: "absolute" }}
+                />
+                <div className="theme_label_container">
+                  <span className="themesLabel" id={"thmsLbl" + index}>
+                    {theme.wintheme}
+                  </span>
+                  {index === 5 || index === 6 || index === 7 ? (
+                    <span
+                      style={{
+                        display: "block",
+                        fontSize: "0.5em",
+                        marginTop: "-1.5em",
+                      }}
+                    >
+                      {theme.description}
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+            </div>
+          </Grid>
+        })}
+      </Grid>
+    </Box>
   }
+
   function addWinThemes(id) {
     let obj = {
       email: "",
@@ -198,10 +217,11 @@ const Step2 = (props) => {
       }
     }
   }
+
   return (
     <div className="stepOne">
-      <Row className="rowSeprator ">{winThemes}</Row>
-      <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
+      <Row className="rowSeprator ">{createGridView()}</Row>
+      <Row className="rowSeprator" style={{ padding: "0 0.3em", flexWrap: "nowrap" }}>
         <Col md={6} style={{ textAlign: "left" }}>
           <Button
             variant="contained"
@@ -228,7 +248,5 @@ const Step2 = (props) => {
     </div>
   );
 };
-
-Step2.propTypes = {};
 
 export default Step2;

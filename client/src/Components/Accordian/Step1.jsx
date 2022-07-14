@@ -228,7 +228,7 @@ const Step1 = (props) => {
               id="AnticipatedRevenue"
               style={{
                 color: "#da291c",
-                width: "85%",
+                width: "85% !important",
                 padding: "13px 0px",
                 marginBottom: "20px",
               }}

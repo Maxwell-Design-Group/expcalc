@@ -62,6 +62,6 @@ export const getMasterData = () => {
       .then((response) => {
         dispatch(getMaster(response.data));
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 };
