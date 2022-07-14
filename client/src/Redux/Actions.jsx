@@ -58,7 +58,7 @@ export const setWinThemes = (data) => {
 export const getMasterData = () => {
   return function (dispatch) {
     axios
-      .get("https://expcalc-dev.herokuapp.com/client")
+      .get("https://expcalc-dev.herokuapp.com/master")
       .then((response) => {
         dispatch(getMaster(response.data));
       })
