@@ -3,7 +3,7 @@ import * as types from "./ActionType";
 //defining initial state of application
 const initialState = {
   accordionId: 0,
-  completedSteps:[],
+  completedSteps: [],
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const DashboardReducer = (state = initialState, action) => {
     case types.NEXT_ACCORDION:
       return {
         ...state,
-        accordionId:action.payload,
+        accordionId: action.payload,
       };
     case types.UPDATE_ACCORDION_ID:
       return {
@@ -23,11 +23,21 @@ const DashboardReducer = (state = initialState, action) => {
         ...state,
         accordionId: action.payload,
       };
-      case types.COMPLETED_STEPS:
-        return {
-          ...state,
-          completedSteps: [...state.completedSteps,action.payload],
-        };
+    case types.COMPLETED_STEPS:
+      return {
+        ...state,
+        completedSteps: [...state.completedSteps, action.payload],
+      };
+    case types.GET_WINTHEME_DATA:
+      return {
+        ...state,
+        themes: action.payload,
+      };
+    case types.SET_WINTHEME_DATA:
+      return {
+        ...state,
+        themes: action.payload,
+      };
     default:
       return state;
   }
