@@ -80,7 +80,7 @@ const Step5 = (props) => {
             &nbsp;
             {row.product}
           </td>
-          <td>{row.description}</td>
+          <td>{row.productDescription}</td>
           <td>{row.Total}</td>
         </tr>
       );
