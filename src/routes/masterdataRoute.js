@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const common = require('../controllers/common.js');
+    //const masterdata = require('../controllers/masterdata.js');
     const clientData = require('../controllers/clientdetail.js');
 
     
@@ -21,15 +21,5 @@ module.exports = (app) => {
     // app.get('/wintheme', masterdata.findwinTheme);
 
     // app.get('/ccoption', masterdata.findCustomisableConvenienceOption);
-
-    // app.get('/master', common.findAll);
-
-    // app.get('/contract', common.findContractTypeList);
-
-    // app.get('/industry', common.findTndustryType);
-
-    // app.get('/wintheme', common.findwinTheme);
-
-    // app.get('/ccoption', common.findCustomisableConvenienceOption);
     
    }
