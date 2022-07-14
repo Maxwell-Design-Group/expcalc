@@ -42,8 +42,8 @@
   font: normal normal normal 14px/20px Gotham;
   letter-spacing: 0.25px;
   opacity: 1;
-  margin-left: 10px;
-  padding: 5px 15px;
+  margin-left: 2%;
+  padding: 5px 10px;
   margin-bottom: 1%;
   margin-top: 1%;
 }
@@ -113,11 +113,14 @@
   background: var(--unnamed-color-000000) 0% 0% no-repeat padding-box;
   background: #000000 0% 0% no-repeat padding-box;
   border-radius: 24px;
+  border: 1px solid #000000;
   opacity: 1;
-  width: 38%;
+  width: 35%;
   height: 100%;
-  padding-top: 4%;
-  padding-bottom: 4%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-right: 4%;
+  padding-left: 4%;
 }
 
 .previous_btn3 {
@@ -131,7 +134,7 @@
   letter-spacing: 1.42px;
   color: #004040;
   opacity: 1;
-  width: 38%;
+  width: 35%;
   height: 100%;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 1px solid var(--unnamed-color-000000);
@@ -139,6 +142,10 @@
   border: 1px solid #000000;
   border-radius: 24px;
   opacity: 1;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-right: 4%;
+  padding-left: 4%;
 }
 
 .MuiSwitch-root {
@@ -192,4 +199,113 @@
 .Mui-checked {
   color: #23bf58 !important;
   transform: translateX(26px) !important;
+}
+
+
+/* Step3 Responsive */
+.logoNToggleRs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.LogoButtonRs {
+  color: black;
+  font-weight: bold;
+  background-color: lightgrey;
+  width: 25%;
+  height: auto;
+}
+.switchButtonRs{
+  margin-left: 5%;
+}
+
+.OptionRs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #cfcfcf;
+  border-radius: 15px;
+  opacity: 1;
+}
+.DataScrollRs{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  margin-top: 1%;
+    margin-bottom: 1%;
+    width: 90%;
+}
+.DataScrollRs::-webkit-scrollbar{
+  display: none;
+}
+.formButtonsRs {
+  border: 1px solid #979797;
+  border-radius: 16px;
+  opacity: 1;
+  margin-left: 8%;
+  padding: 1% 4%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+  white-space: nowrap;
+}
+.headingRs {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background-color: #00000013;
+  border-radius: 15px 0px 0px 15px;
+  align-items: center;
+  font-weight: bolder;
+  overflow: hidden;
+}
+.lastButtons{
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between  ;
+}
+ .next_btn3Rs {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  letter-spacing: var(--unnamed-character-spacing-1-42) !important;
+  color: var(--unnamed-color-ffffff);
+  text-align: center !important;
+  font: normal normal 500 16px/16px Gotham;
+  letter-spacing: 1.42px;
+  color: #ffffff;
+  opacity: 1;
+  background: var(--unnamed-color-000000) 0% 0% no-repeat padding-box;
+  background: #000000 0% 0% no-repeat padding-box;
+  border: 1px solid #000000;
+  border-radius: 24px;
+  opacity: 1;
+  width: 25%;
+  height: 50%;
+}
+
+.previous_btn3Rs {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  letter-spacing: var(--unnamed-character-spacing-1-42) !important;
+  color: var(--unnamed-color-ffffff);
+  text-align: center !important;
+  font: normal normal 500 16px/16px Gotham;
+  letter-spacing: 1.42px;
+  color: #004040;
+  opacity: 1;
+  width: 25%;
+  height: 50%;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--unnamed-color-000000);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #000000;
+  border-radius: 24px;
+  opacity: 1;
+  margin-left: 0;
 }

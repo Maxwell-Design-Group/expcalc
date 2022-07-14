@@ -96,6 +96,7 @@ const Step3 = () => {
   const { masterData } = useSelector((state) => state.Master);
   const theme = useTheme();
   const isMatchSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMatchMd = useMediaQuery(theme.breakpoints.down("md"));
 
   let yesDatas = [];
   if (masterData.ccoption) {
@@ -165,124 +166,6 @@ const Step3 = () => {
     }
   };
 
-  let yesData = [];
-  yesDatas.forEach((data, index) => {
-    yesData.push(
-      <Button
-        className="formButtons"
-        variant="light"
-        name={data.custConvOption}
-        value={data.custConvOption}
-        onClick={(e) => handleYesButtons(data.custConvOption)}
-        style={{
-          backgroundColor:
-            yesOption === data.custConvOption ? "#4BAE4F" : "#fff",
-          color: yesOption === data.custConvOption ? "white" : "black",
-          border: yesOption === data.custConvOption ? "" : "1px solid #979797",
-        }}
-      >
-        {data.custConvOption}
-      </Button>
-    );
-  });
-
-  let footprintDatas = [];
-  footprintData.forEach((data, index) => {
-    footprintDatas.push(
-      <Button
-        className="formButtons"
-        variant="light"
-        key={data.value}
-        name={data.value}
-        value={data.value}
-        onClick={() => handleFootprintButtons(data.value)}
-        style={{
-          backgroundColor: selectedFootprint.includes(data.value)
-            ? "#4BAE4F"
-            : "#fff",
-          color: selectedFootprint.includes(data.value) ? "white" : "black",
-          border: selectedFootprint.includes(data.value)
-            ? ""
-            : "1px solid #979797",
-        }}
-      >
-        {data.value}
-      </Button>
-    );
-  });
-
-  let ontheGoDatas = [];
-  onTheGoData.forEach((data, index) => {
-    ontheGoDatas.push(
-      <Button
-        className="formButtons"
-        variant="light"
-        name={data.value}
-        value={data.value}
-        onClick={() => handleNoButtons(data.value)}
-        style={{
-          backgroundColor: selectedNoOptions.includes(data.value)
-            ? "#4BAE4F"
-            : "#fff",
-          color: selectedNoOptions.includes(data.value) ? "white" : "black",
-          border: selectedNoOptions.includes(data.value)
-            ? ""
-            : "1px solid #979797",
-        }}
-      >
-        {data.value}
-      </Button>
-    );
-  });
-
-  let localVarietyDatas = [];
-  localVarietyData.forEach((data, index) => {
-    localVarietyDatas.push(
-      <Button
-        className="formButtons"
-        variant="light"
-        name={data.value}
-        value={data.value}
-        onClick={(e) => handleNoButtons(data.value)}
-        style={{
-          backgroundColor: selectedNoOptions.includes(data.value)
-            ? "#4BAE4F"
-            : "#fff",
-          color: selectedNoOptions.includes(data.value) ? "white" : "black",
-          border: selectedNoOptions.includes(data.value)
-            ? ""
-            : "1px solid #979797",
-        }}
-      >
-        {data.value}
-      </Button>
-    );
-  });
-
-  let alaCarteDatas = [];
-  alaCarteData.forEach((data, index) => {
-    alaCarteDatas.push(
-      <Button
-        className="formButtonsAla"
-        variant="light"
-        name={data.value}
-        value={data.value}
-        onClick={(e) => handleNoButtons(data.value)}
-        style={{
-          backgroundColor: selectedNoOptions.includes(data.value)
-            ? "#4BAE4F"
-            : "#fff",
-          color: selectedNoOptions.includes(data.value) ? "white" : "black",
-          border: selectedNoOptions.includes(data.value)
-            ? ""
-            : "1px solid #979797",
-        }}
-      >
-        {data.value}
-      </Button>
-    );
-  });
-
   function addStep3(id) {
     //console.log(userSelectedThemes);
     let userSelectedThemes = "";
@@ -313,85 +196,150 @@ const Step3 = () => {
 
   return (
     <>
-      {isMatchSm ? (
+      {isMatchSm || isMatchMd ? (
         <>
-          <Row className="logoNToggleSm">
-            <Col>
-              <Button variant="secondary" className="LogoButton">
-                Logo
-              </Button>
-            </Col>
-            <Col>
-              <Switch
-                inputProps={{ "aria-label": "secondary checkbox" }}
-                color="success"
-                style={{ float: "right" }}
-                checked={yesOrNo}
-                onChange={handleYesOrNoChange}
-              />
-            </Col>
+          <Row className="logoNToggleRs">
+            <Button variant="secondary" className="LogoButtonRs">
+              Logo
+            </Button>
+            <Switch
+              className="switchButtonRs"
+              inputProps={{ "aria-label": "secondary checkbox" }}
+              color="success"
+              style={{ float: "right" }}
+              checked={yesOrNo}
+              onChange={handleYesOrNoChange}
+            />
           </Row>
           <br />
           {yesOrNo ? (
             <>
-              <Row className="Option">
-                <Col className="heading" md={4}>
+              <Row className="OptionRs">
+                <Col className="heading" md={12}>
                   <Typography variant="subtitle1">
                     <b> What option would they like?</b>
                   </Typography>
                 </Col>
-                {yesData}
+                <Row className="DataScrollRs">
+                  {yesDatas.map((data, index) => (
+                    <Button
+                      className="formButtonsRs"
+                      variant="light"
+                      name={data.custConvOption}
+                      value={data.custConvOption}
+                      onClick={(e) => handleYesButtons(data.custConvOption)}
+                      style={{
+                        backgroundColor:
+                          yesOption === data.custConvOption
+                            ? "#4BAE4F"
+                            : "#fff",
+                        color:
+                          yesOption === data.custConvOption ? "white" : "black",
+                        border:
+                          yesOption === data.custConvOption
+                            ? ""
+                            : "1px solid #979797",
+                      }}
+                    >
+                      <Typography variant="h6">
+                        {" "}
+                        {data.custConvOption}
+                      </Typography>
+                    </Button>
+                  ))}
+                </Row>
               </Row>
               <br />
-              <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
-                <Col md={6} style={{ textAlign: "left" }}>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    type="submit"
-                    className="previous_btn3"
-                    onClick={() => onPrevious(accordionId - 1)}
-                  >
-                    Previous
-                  </Button>
-                </Col>
-                <Col md={6} style={{ textAlign: "right" }}>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    type="submit"
-                    className="next_btn3"
-                    onClick={() => selectYesOption(accordionId)}
-                  >
-                    Next
-                  </Button>
-                </Col>
+              <Row className="lastButtons">
+                <Button
+                  variant="contained"
+                  size="small"
+                  type="submit"
+                  className="previous_btn3Rs"
+                  onClick={() => onPrevious(accordionId - 1)}
+                >
+                  <Typography variant="subtitle2">Previous</Typography>
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  type="submit"
+                  className="next_btn3Rs"
+                  onClick={() => selectYesOption(accordionId)}
+                >
+                  <Typography variant="subtitle2">Next</Typography>
+                </Button>
               </Row>
             </>
           ) : (
             <>
-              <Row className="Option">
-                <Col className="heading" md={2}>
+              <Row className="OptionRs">
+                <Col className="heading" md={12}>
                   <Typography variant="subtitle1">
                     <b>Footprint</b>
                   </Typography>
                 </Col>
-                {footprintDatas}
+                <Row className="DataScrollRs">
+                  {footprintData.map((data, index) => (
+                    <Button
+                      className="formButtonsRs"
+                      variant="light"
+                      key={data.value}
+                      name={data.value}
+                      value={data.value}
+                      onClick={() => handleFootprintButtons(data.value)}
+                      style={{
+                        backgroundColor: selectedFootprint.includes(data.value)
+                          ? "#4BAE4F"
+                          : "#fff",
+                        color: selectedFootprint.includes(data.value)
+                          ? "white"
+                          : "black",
+                        border: selectedFootprint.includes(data.value)
+                          ? ""
+                          : "1px solid #979797",
+                      }}
+                    >
+                      <Typography variant="h6">{data.value}</Typography>
+                    </Button>
+                  ))}
+                </Row>
               </Row>
               <br />
-              <Row className="Option">
-                <Col className="heading" md={2}>
+              <Row className="OptionRs">
+                <Col className="heading" md={12}>
                   <Typography variant="subtitle1">
                     <b>On the go</b>
                   </Typography>
                 </Col>
-                <Col>
-                  <Row className="alaCarteRow">{ontheGoDatas}</Row>
-                </Col>
+                <Row className="DataScrollRs">
+                  {onTheGoData.map((data, index) => (
+                    <Button
+                      className="formButtonsRs"
+                      variant="light"
+                      name={data.value}
+                      value={data.value}
+                      onClick={() => handleNoButtons(data.value)}
+                      style={{
+                        backgroundColor: selectedNoOptions.includes(data.value)
+                          ? "#4BAE4F"
+                          : "#fff",
+                        color: selectedNoOptions.includes(data.value)
+                          ? "white"
+                          : "black",
+                        border: selectedNoOptions.includes(data.value)
+                          ? ""
+                          : "1px solid #979797",
+                      }}
+                    >
+                      <Typography variant="h6">{data.value}</Typography>
+                    </Button>
+                  ))}
+                </Row>
               </Row>
               <br />
-              <Row className="Option">
-                <Col className="headingLocal" md={2}>
+              <Row className="OptionRs">
+                <Col className="heading" md={12}>
                   <Typography variant="subtitle1">
                     <b>
                       Local
@@ -400,43 +348,83 @@ const Step3 = () => {
                     </b>
                   </Typography>
                 </Col>
-                {localVarietyDatas}
+                <Row className="DataScrollRs">
+                  {localVarietyData.map((data, index) => (
+                    <Button
+                      className="formButtonsRs"
+                      variant="light"
+                      name={data.value}
+                      value={data.value}
+                      onClick={(e) => handleNoButtons(data.value)}
+                      style={{
+                        backgroundColor: selectedNoOptions.includes(data.value)
+                          ? "#4BAE4F"
+                          : "#fff",
+                        color: selectedNoOptions.includes(data.value)
+                          ? "white"
+                          : "black",
+                        border: selectedNoOptions.includes(data.value)
+                          ? ""
+                          : "1px solid #979797",
+                      }}
+                    >
+                      <Typography variant="h6">{data.value}</Typography>
+                    </Button>
+                  ))}
+                </Row>
               </Row>
               <br />
-              <Row className="OptionAla">
-                <Col className="headingAla" md={2}>
+              <Row className="OptionRs">
+                <Col className="heading" md={12}>
                   <Typography variant="subtitle1">
                     <b>A la carte</b>
                   </Typography>
                 </Col>
-                <Col>
-                  <Row>{alaCarteDatas}</Row>
-                </Col>
+                <Row className="DataScrollRs">
+                  {alaCarteData.map((data, index) => (
+                    <Button
+                      className="formButtonsRs"
+                      variant="light"
+                      name={data.value}
+                      value={data.value}
+                      onClick={(e) => handleNoButtons(data.value)}
+                      style={{
+                        backgroundColor: selectedNoOptions.includes(data.value)
+                          ? "#4BAE4F"
+                          : "#fff",
+                        color: selectedNoOptions.includes(data.value)
+                          ? "white"
+                          : "black",
+                        border: selectedNoOptions.includes(data.value)
+                          ? ""
+                          : "1px solid #979797",
+                      }}
+                    >
+                      <Typography variant="h6">{data.value}</Typography>
+                    </Button>
+                  ))}
+                </Row>
               </Row>
               <br />
-              <Row className="" style={{ padding: "0 0.3em" }}>
-                <Col style={{ textAlign: "left" }}>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    type="submit"
-                    className="previous_btn3"
-                    onClick={() => onPrevious(accordionId - 1)}
-                  >
-                    Previous
-                  </Button>
-                </Col>
-                <Col style={{ textAlign: "right" }}>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    type="submit"
-                    className="next_btn3"
-                    onClick={() => selectNoOption(accordionId)}
-                  >
-                    Next
-                  </Button>
-                </Col>
+              <Row className="lastButtons">
+                <Button
+                  variant="contained"
+                  size="small"
+                  type="submit"
+                  className="previous_btn3Rs"
+                  onClick={() => onPrevious(accordionId - 1)}
+                >
+                  <Typography variant="subtitle2">Previous</Typography>
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  type="submit"
+                  className="next_btn3Rs"
+                  onClick={() => selectYesOption(accordionId)}
+                >
+                  <Typography variant="subtitle2">Next</Typography>
+                </Button>
               </Row>
             </>
           )}
@@ -468,7 +456,27 @@ const Step3 = () => {
                     <b> What option would they like?</b>
                   </Typography>
                 </Col>
-                {yesData}
+                {yesDatas.map((data, index) => (
+                  <Button
+                    className="formButtons"
+                    variant="light"
+                    name={data.custConvOption}
+                    value={data.custConvOption}
+                    onClick={(e) => handleYesButtons(data.custConvOption)}
+                    style={{
+                      backgroundColor:
+                        yesOption === data.custConvOption ? "#4BAE4F" : "#fff",
+                      color:
+                        yesOption === data.custConvOption ? "white" : "black",
+                      border:
+                        yesOption === data.custConvOption
+                          ? ""
+                          : "1px solid #979797",
+                    }}
+                  >
+                    {data.custConvOption}
+                  </Button>
+                ))}
               </Row>
               <br />
               <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
@@ -504,7 +512,29 @@ const Step3 = () => {
                     <b>Footprint</b>
                   </Typography>
                 </Col>
-                {footprintDatas}
+                {footprintData.map((data, index) => (
+                  <Button
+                    className="formButtons"
+                    variant="light"
+                    key={data.value}
+                    name={data.value}
+                    value={data.value}
+                    onClick={() => handleFootprintButtons(data.value)}
+                    style={{
+                      backgroundColor: selectedFootprint.includes(data.value)
+                        ? "#4BAE4F"
+                        : "#fff",
+                      color: selectedFootprint.includes(data.value)
+                        ? "white"
+                        : "black",
+                      border: selectedFootprint.includes(data.value)
+                        ? ""
+                        : "1px solid #979797",
+                    }}
+                  >
+                    {data.value}
+                  </Button>
+                ))}
               </Row>
               <br />
               <Row className="Option">
@@ -514,7 +544,32 @@ const Step3 = () => {
                   </Typography>
                 </Col>
                 <Col>
-                  <Row className="alaCarteRow">{ontheGoDatas}</Row>
+                  <Row className="alaCarteRow">
+                    {onTheGoData.map((data, index) => (
+                      <Button
+                        className="formButtons"
+                        variant="light"
+                        name={data.value}
+                        value={data.value}
+                        onClick={() => handleNoButtons(data.value)}
+                        style={{
+                          backgroundColor: selectedNoOptions.includes(
+                            data.value
+                          )
+                            ? "#4BAE4F"
+                            : "#fff",
+                          color: selectedNoOptions.includes(data.value)
+                            ? "white"
+                            : "black",
+                          border: selectedNoOptions.includes(data.value)
+                            ? ""
+                            : "1px solid #979797",
+                        }}
+                      >
+                        {data.value}
+                      </Button>
+                    ))}
+                  </Row>
                 </Col>
               </Row>
               <br />
@@ -528,7 +583,28 @@ const Step3 = () => {
                     </b>
                   </Typography>
                 </Col>
-                {localVarietyDatas}
+                {localVarietyData.map((data, index) => (
+                  <Button
+                    className="formButtons"
+                    variant="light"
+                    name={data.value}
+                    value={data.value}
+                    onClick={(e) => handleNoButtons(data.value)}
+                    style={{
+                      backgroundColor: selectedNoOptions.includes(data.value)
+                        ? "#4BAE4F"
+                        : "#fff",
+                      color: selectedNoOptions.includes(data.value)
+                        ? "white"
+                        : "black",
+                      border: selectedNoOptions.includes(data.value)
+                        ? ""
+                        : "1px solid #979797",
+                    }}
+                  >
+                    {data.value}
+                  </Button>
+                ))}
               </Row>
               <br />
               <Row className="OptionAla">
@@ -538,7 +614,32 @@ const Step3 = () => {
                   </Typography>
                 </Col>
                 <Col>
-                  <Row>{alaCarteDatas}</Row>
+                  <Row>
+                    {alaCarteData.map((data, index) => (
+                      <Button
+                        className="formButtonsAla"
+                        variant="light"
+                        name={data.value}
+                        value={data.value}
+                        onClick={(e) => handleNoButtons(data.value)}
+                        style={{
+                          backgroundColor: selectedNoOptions.includes(
+                            data.value
+                          )
+                            ? "#4BAE4F"
+                            : "#fff",
+                          color: selectedNoOptions.includes(data.value)
+                            ? "white"
+                            : "black",
+                          border: selectedNoOptions.includes(data.value)
+                            ? ""
+                            : "1px solid #979797",
+                        }}
+                      >
+                        {data.value}
+                      </Button>
+                    ))}
+                  </Row>
                 </Col>
               </Row>
               <br />
