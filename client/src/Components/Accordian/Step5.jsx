@@ -16,7 +16,7 @@ const Step5 = (props) => {
   const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);
   const dispatch = useDispatch();
   const { masterData } = useSelector((state) => state.Master);
-  const { accordianId } = useSelector((state) => state.Reducer);
+  const { accordionId } = useSelector((state) => state.Reducer);
   const { themes } = useSelector((state) => state.Reducer);
   const { isMobileView = false } = props;
   const tableData2 = [];
@@ -324,7 +324,7 @@ const Step5 = (props) => {
               size="small"
               type="submit"
               className="previous_btn"
-              onClick={() => onPrevious(accordianId - 1)}
+              onClick={() => onPrevious(accordionId - 1)}
             >
               Previous
             </Button>

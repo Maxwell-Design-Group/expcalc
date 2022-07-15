@@ -4,6 +4,7 @@ import Alert from "../Components/Alert/Alert";
 import {
   completedSteps,
   nextAccordionOpen,
+  setClientDetails,
   updateClientId,
 } from "../Redux/Actions";
 class ClientDetailService {
@@ -14,11 +15,8 @@ class ClientDetailService {
       .post("https://expcalc-dev.herokuapp.com/client", data)
       .then((response) => {
         Alert.success("ClientDetail added successfully");
-        console.log(response);
-        console.log(
-          "current id" + accordianId + "response",
-          response + "next acc" + accordianId + 1
-        );
+
+        Store.dispatch(setClientDetails(response.data));
         Store.dispatch(completedSteps(accordianId - 1));
         Store.dispatch(nextAccordionOpen(accordianId));
       })
@@ -47,8 +45,6 @@ class ClientDetailService {
     axios
       .get("http://localhost:3000/client")
       .then((response) => {
-        console.log(response[response.length]);
-
         return response[response.length];
       })
       .catch((error) => {});

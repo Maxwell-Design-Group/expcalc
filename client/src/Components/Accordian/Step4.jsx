@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { nextAccordionOpen, prevAccordionOpen } from "../../Redux/Actions";
-import "./step4.css"
+import {
+  completedSteps,
+  nextAccordionOpen,
+  prevAccordionOpen,
+} from "../../Redux/Actions";
+import "./step4.css";
 
 const Step4 = (props) => {
   const { isMobileView = false } = props;
@@ -15,7 +19,7 @@ const Step4 = (props) => {
   const [digitalSinage55, setDigitalSinage55] = useState([]);
   const [digitalSinage65, setDigitalSinage65] = useState([]);
   const dispatch = useDispatch();
-  const { accordianId } = useSelector((state) => state.Reducer);
+  const { accordionId } = useSelector((state) => state.Reducer);
   const [tableData, setTabledata] = useState([
     {
       product: "Yokai",
@@ -115,27 +119,29 @@ const Step4 = (props) => {
   };
 
   const selectNoOption = (id) => {
-    dispatch(nextAccordionOpen(id));
+    dispatch(completedSteps(id));
+    dispatch(nextAccordionOpen(id + 1));
   };
 
   return (
     <div>
-      <div className="digital_signage" style={{
-        flexDirection: isMobileView ? "column" : "row"
-      }}>
-        <div className="digital_signage_text">
-          Digital Sinage
-        </div>
+      <div
+        className="digital_signage"
+        style={{
+          flexDirection: isMobileView ? "column" : "row",
+        }}
+      >
+        <div className="digital_signage_text">Digital Sinage</div>
 
-        <div style={{
-          height: "80px",
-          display: "flex",
-          alignItems: "center"
-        }}>
+        <div
+          style={{
+            height: "80px",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <div class="ds_btn">
-            <span
-              style={{ position: "absolute", top: "-27px", left: "24px" }}
-            >
+            <span style={{ position: "absolute", top: "-27px", left: "24px" }}>
               50&deg;
             </span>
             <input
@@ -147,9 +153,7 @@ const Step4 = (props) => {
             />
           </div>
           <div class="ds_btn">
-            <span
-              style={{ position: "absolute", top: "-27px", left: "24px" }}
-            >
+            <span style={{ position: "absolute", top: "-27px", left: "24px" }}>
               55&deg;
             </span>
             <input
@@ -161,9 +165,7 @@ const Step4 = (props) => {
             />
           </div>
           <div class="ds_btn">
-            <span
-              style={{ position: "absolute", top: "-27px", left: "24px" }}
-            >
+            <span style={{ position: "absolute", top: "-27px", left: "24px" }}>
               65&deg;
             </span>
             <input
@@ -177,35 +179,44 @@ const Step4 = (props) => {
         </div>
       </div>
 
-      <div className="digital_signage" style={{
-        flexDirection: isMobileView ? "column" : "row"
-      }}>
-        <div className="digital_signage_text">
-          Catering
+      <div
+        className="digital_signage"
+        style={{
+          flexDirection: isMobileView ? "column" : "row",
+        }}
+      >
+        <div className="digital_signage_text">Catering</div>
+        <div className="catering-sports-container">
+          {" "}
+          {supportingFeatureData.map((feature, index) => {
+            return (
+              <div class="catering sports">
+                <label>
+                  <input
+                    type="checkbox"
+                    value={feature.label}
+                    defaultChecked={featureChecked}
+                    onChange={(e) => handleChangeFeatures(e, feature, index)}
+                  />
+                  <span> {feature.label}</span>
+                </label>
+              </div>
+            );
+          })}
         </div>
-        <div className="catering-sports-container"> {supportingFeatureData.map((feature, index) => {
-          return <div class="catering sports">
-            <label>
-              <input
-                type="checkbox"
-                value={feature.label}
-                defaultChecked={featureChecked}
-                onChange={(e) => handleChangeFeatures(e, feature, index)}
-              />
-              <span> {feature.label}</span>
-            </label>
-          </div>
-        })}</div>
       </div>
 
-      <Row className="rowSeprator" style={{ padding: "0 0.3em", flexWrap: "nowrap" }}>
+      <Row
+        className="rowSeprator"
+        style={{ padding: "0 0.3em", flexWrap: "nowrap" }}
+      >
         <Col md={6} style={{ textAlign: "left" }}>
           <Button
             variant="contained"
             size="small"
             type="submit"
             className="previous_btn"
-            onClick={() => onPrevious(accordianId - 1)}
+            onClick={() => onPrevious(accordionId - 1)}
           >
             Previous
           </Button>
@@ -216,7 +227,7 @@ const Step4 = (props) => {
             size="small"
             type="submit"
             className="next_btn"
-            onClick={() => selectNoOption(accordianId + 1)}
+            onClick={() => selectNoOption(accordionId)}
           >
             Next
           </Button>

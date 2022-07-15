@@ -80,12 +80,12 @@ const Step1 = (props) => {
   function addClient(id) {
     let obj = {
       email: "",
-      ClientName: clientName,
-      ContractType: contractType,
-      LifeWorks: isLifeworks,
-      AnticipatedRevenue: anticipatedRevenue,
-      Population: population,
-      industry_Type: industryType,
+      clientname: clientName,
+      contracttype: contractType,
+      lifeworks: isLifeworks,
+      anticipatedrevenue: anticipatedRevenue,
+      population: population,
+      industrytype: industryType,
     };
     if (clientName === "" || clientName.length > 255) {
       Alert.error("Enter client name,0-255 characters");
@@ -172,9 +172,12 @@ const Step1 = (props) => {
           </select>
         </Col>
       </Row>
-      <Row className="rowSeprator" style={{
-        flexWrap: "nowrap"
-      }}>
+      <Row
+        className="rowSeprator"
+        style={{
+          flexWrap: "nowrap",
+        }}
+      >
         <Col md={6}>
           <label style={{ float: "left" }} className="switchLabel">
             Industry Type<span style={{ color: "red" }}>*</span>
@@ -215,7 +218,10 @@ const Step1 = (props) => {
       <Row className="slider-container">
         <Col md={6}>
           <div>
-            <label style={{ float: "left", whiteSpace: "nowrap", margin: "0px" }} className="switchLabel">
+            <label
+              style={{ float: "left", whiteSpace: "nowrap", margin: "0px" }}
+              className="switchLabel"
+            >
               Anticipated Revenue<span style={{ color: "red" }}>*</span>
             </label>
             <Slider
@@ -238,7 +244,10 @@ const Step1 = (props) => {
         </Col>
         <Col md={6} style={{ marginBottom: "1em" }}>
           <div>
-            <label style={{ float: "left", whiteSpace: "nowrap", margin: "0px" }} className="switchLabel">
+            <label
+              style={{ float: "left", whiteSpace: "nowrap", margin: "0px" }}
+              className="switchLabel"
+            >
               Population<span style={{ color: "red" }}>*</span>
             </label>
             <Slider

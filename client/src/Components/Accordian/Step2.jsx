@@ -28,9 +28,8 @@ const Step2 = (props) => {
   const [userSelectedThemes, setUserSelectedThemes] = useState([]);
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
-  const { clientId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
-
+  const { clientDetails } = useSelector((state) => state.Reducer);
   const winThemelist = [
     {
       img: CostConsciousnes,
@@ -115,90 +114,101 @@ const Step2 = (props) => {
   }
 
   function createGridView() {
-    return <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto" }}>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 2 }}
-        columns={{ xs: 2, sm: 6, md: 12 }}
-        style={{
-          flexWrap: isMobileView ? "nowrap" : "wrap",
-          overflowX: isMobileView ? "scroll" : "hidden",
-          marginLeft: isMobileView ? 0 : "-16px"
-        }}
-      >
-
-        {master.map((theme, index) => {
-          return <Grid item xs={2} sm={3} key={index}>
-            <div style={{ marginBottom: "0.5em" }} key={index}>
-              <div className="themes action" id={"themesBtn" + index} onClick={() => selectedThemes(theme.wintheme, index)}>
-                <input
-                  type="checkbox"
-                  style={{
-                    width: "21px",
-                    height: "21px",
-                    accentColor: "#4BAE4F",
-                    border: "15px solid red",
-                    position: "absolute",
-                    left: "0px",
-                    top: "0px"
-                  }}
-                  labelStyle={{ color: "white" }}
-                  iconStyle={{ fill: "white" }}
-                  checked={userSelectedThemes.includes(theme.wintheme)}
-                  name="checkedSacCode"
-                  id={"theme_check" + index}
-                  className="theme_checkbox_color"
-                  onChange={(e) => selectedThemes(theme.wintheme, index)}
-                />
-                <img
-                  src={theme.image}
-                  alt={theme.image}
-                  style={{ display: "block", margin: "0.5em 3.5em", top: "20%", position: "absolute" }}
-                />
-                <div className="theme_label_container">
-                  <span className="themesLabel" id={"thmsLbl" + index}>
-                    {theme.wintheme}
-                  </span>
-                  {index === 5 || index === 6 || index === 7 ? (
-                    <span
+    return (
+      <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto" }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 2 }}
+          columns={{ xs: 2, sm: 6, md: 12 }}
+          style={{
+            flexWrap: isMobileView ? "nowrap" : "wrap",
+            overflowX: isMobileView ? "scroll" : "hidden",
+            marginLeft: isMobileView ? 0 : "-16px",
+          }}
+        >
+          {master.map((theme, index) => {
+            return (
+              <Grid item xs={2} sm={3} key={index}>
+                <div style={{ marginBottom: "0.5em" }} key={index}>
+                  <div
+                    className="themes action"
+                    id={"themesBtn" + index}
+                    onClick={() => selectedThemes(theme.wintheme, index)}
+                  >
+                    <input
+                      type="checkbox"
+                      style={{
+                        width: "21px",
+                        height: "21px",
+                        accentColor: "#4BAE4F",
+                        border: "15px solid red",
+                        position: "absolute",
+                        left: "0px",
+                        top: "0px",
+                      }}
+                      labelStyle={{ color: "white" }}
+                      iconStyle={{ fill: "white" }}
+                      checked={userSelectedThemes.includes(theme.wintheme)}
+                      name="checkedSacCode"
+                      id={"theme_check" + index}
+                      className="theme_checkbox_color"
+                      onChange={(e) => selectedThemes(theme.wintheme, index)}
+                    />
+                    <img
+                      src={theme.image}
+                      alt={theme.image}
                       style={{
                         display: "block",
-                        fontSize: "0.5em",
-                        marginTop: "-1.5em",
+                        margin: "0.5em 3.5em",
+                        top: "20%",
+                        position: "absolute",
                       }}
-                    >
-                      {theme.description}
-                    </span>
-                  ) : (
-                    ""
-                  )}
+                    />
+                    <div className="theme_label_container">
+                      <span className="themesLabel" id={"thmsLbl" + index}>
+                        {theme.wintheme}
+                      </span>
+                      {index === 5 || index === 6 || index === 7 ? (
+                        <span
+                          style={{
+                            display: "block",
+                            fontSize: "0.5em",
+                            marginTop: "-1.5em",
+                          }}
+                        >
+                          {theme.description}
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </Grid>
-        })}
-      </Grid>
-    </Box>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
+    );
   }
 
   function addWinThemes(id) {
-    let obj = {
-      email: "",
-      winthemedetail: userSelectedThemes,
-    };
-
     if (userSelectedThemes.length === 0) {
       Alert.error("Choose at least 1 win theme");
       for (let i = 0; i < winThemelist.length; i++) {
         document.getElementById("themesBtn" + i).style.border = "1px solid red";
       }
     } else {
-      for (let i = 0; i < userSelectedThemes.length; i++) {
-        let obj = {
-          email: "",
-          winthemedetail: userSelectedThemes,
-        };
+      let wintheme = "";
+      if (userSelectedThemes) {
+        wintheme = userSelectedThemes.toString();
+      }
 
+      let obj = {
+        email: "",
+        wintheme: wintheme,
+      };
+      for (let i = 0; i < userSelectedThemes.length; i++) {
         if (masterData.wtproduct.length !== 0) {
           let wtProducts = masterData.wtproduct;
           for (let j = 0; j < wtProducts.length; j++) {
@@ -211,18 +221,20 @@ const Step2 = (props) => {
               tableData2.push(wtProducts[j]);
               dispatch(setWinThemes(tableData2));
             }
-            // }
           }
         }
-        winThemeDetails.sendData(obj, id);
       }
+      winThemeDetails.sendData(obj, id, clientDetails);
     }
   }
 
   return (
     <div className="stepOne">
       <Row className="rowSeprator ">{createGridView()}</Row>
-      <Row className="rowSeprator" style={{ padding: "0 0.3em", flexWrap: "nowrap" }}>
+      <Row
+        className="rowSeprator"
+        style={{ padding: "0 0.3em", flexWrap: "nowrap" }}
+      >
         <Col md={6} style={{ textAlign: "left" }}>
           <Button
             variant="contained"

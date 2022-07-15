@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import "../../Assets/Style/style.css";
 import Alert from "../Alert/Alert";
 import { useMediaQuery, useTheme } from "@mui/material";
+import DiningExperienceService from "../../Services/DiningExperienceService";
 
 const footprintData = [
   {
@@ -87,6 +88,7 @@ const alaCarteData = [
 ];
 
 const Step3 = () => {
+  const DiningExperience = new DiningExperienceService();
   const [yesOrNo, setYesOrNo] = useState(false);
   const [yesOption, setYesOption] = useState("");
   const [selectedFootprint, setSelectedFootprint] = useState([]);
@@ -97,7 +99,7 @@ const Step3 = () => {
   const theme = useTheme();
   const isMatchSm = useMediaQuery(theme.breakpoints.down("sm"));
   const isMatchMd = useMediaQuery(theme.breakpoints.down("md"));
-
+  const { clientDetails } = useSelector((state) => state.Reducer);
   let yesDatas = [];
   if (masterData.ccoption) {
     yesDatas = masterData.ccoption;
@@ -142,7 +144,6 @@ const Step3 = () => {
   const selectYesOption = (id) => {
     if (yesOption === "") {
       Alert.error("select any Option");
-      console.log("empty yes option");
     } else {
       dispatch(completedSteps(id));
       dispatch(nextAccordionOpen(id + 1));
@@ -154,20 +155,30 @@ const Step3 = () => {
   };
 
   const selectNoOption = (id) => {
-    let obj = {
-      selectedNoOptions: selectedNoOptions,
-      selectedFootprint: selectedFootprint,
-    };
+    let station = "";
+
     if (selectedFootprint.length === 0) {
       Alert.error("select one option from Footprint");
     } else {
-      dispatch(completedSteps(id));
-      dispatch(nextAccordionOpen(id + 1));
+      if (selectedNoOptions.length > 0) {
+        station = selectedNoOptions.toString();
+      }
+      let obj = {
+        customisableconvenience: yesOrNo,
+        customisableconvenienceoption: yesOption,
+        digitalsignage: true,
+        mobile: false,
+        kiosk: true,
+        selfcheckout: false,
+        station: station,
+      };
+
+      console.log("obj ", obj);
+      DiningExperience.sendData(obj, id, clientDetails);
     }
   };
 
   function addStep3(id) {
-    //console.log(userSelectedThemes);
     let userSelectedThemes = "";
     if (userSelectedThemes.length === 0) {
       // Alert.error("Choose at least 1 win theme");
@@ -189,7 +200,6 @@ const Step3 = () => {
       //   industrytype: industryType,
       //   wintheme:wth,
       // };
-      // console.log(obj);
       // clientDetailService.updateDate(obj, id); // should be pass client id
     }
   }
