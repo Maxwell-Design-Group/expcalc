@@ -282,7 +282,7 @@ const Step5 = (props) => {
           }}
         >
           <div className="you-may-also-like">You may also like</div>
-          <div className="POS_main_container">
+          <div className="you-may-also-like-main-container">
             {" "}
             <Col md={12}>
               <table

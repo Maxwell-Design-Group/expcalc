@@ -53,6 +53,14 @@
     flex-wrap: wrap;
 }
 
+.you-may-also-like-main-container {
+    min-height: 80px;
+    max-height: 200px;
+    /* display: flex; */
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 @media (max-width: 1000px) {
     .POS_Container {
         flex-direction: column !important;
@@ -62,6 +70,11 @@
         height: 45px;
         width: 100%;
         max-width: 100%;
+    }
+
+    .pos_btn {
+        margin: -5px 0px 0px 10px;
+
     }
 
     .you-may-also-like {
