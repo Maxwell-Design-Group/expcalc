@@ -121,6 +121,11 @@ body {
   margin: 0em 0 0 0;
 }
 
+.stepOne .switch-container {
+  border: 1px solid rgb(208, 205, 205);
+  border-radius: 25px;
+}
+
 .stepOne .toggle_switch_rounded_bg {
   border: 1px solid gray;
   height: 2.5em;
@@ -129,13 +134,6 @@ body {
 
 .stepOne .css-julti5-MuiSwitch-root {
   float: left !important;
-}
-
-.switchLabel {
-  float: left;
-  line-height: 3em;
-  font-size: 0.75em;
-  margin: 0 0 0 1em;
 }
 
 .stepOne .themesLabelActive {
@@ -958,6 +956,11 @@ div label input {
 
 .stepOne .rowSeprator {
   margin-bottom: 10px;
+}
+
+.stepOne .slider-container {
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
 }
 
 .stepOne .css-ahj2mt-MuiTypography-root {

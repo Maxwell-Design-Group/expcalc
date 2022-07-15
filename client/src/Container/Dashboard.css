@@ -71,7 +71,7 @@ div#panel1a-header {
   color: #da291c;
   -webkit-tap-highlight-color: transparent;
   height: 4px;
-  width: 85% !important;
+  width: 93% !important;
   padding: 13px 0px;
   margin-bottom: 20px;
   /* margin-top: 2.5em !important; */
@@ -542,12 +542,24 @@ div label input {
   padding-right: 0px;
 }
 
+.MuiSlider-thumb {
+  height: 24px;
+  background: url(../Assets/images/radio_on_button.png);
+  width: 24px;
+}
+
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
   .aramark_dashboard nav,
   article {
     width: 100%;
     height: auto;
+  }
+
+  .aramark_dashboard .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    width: 90%;
   }
 
   .accordian-summary-header {
@@ -1083,5 +1095,8 @@ div label input {
 }
 
 .switchColumn {
-  top: 2em;
+  top: 1em;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }

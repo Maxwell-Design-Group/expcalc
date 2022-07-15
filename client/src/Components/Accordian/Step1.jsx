@@ -20,7 +20,6 @@ const Step1 = (props) => {
   const dispatch = useDispatch();
 
   const clientDetailService = new ClientDetailService();
-  const [expand, setExpand] = useState(false);
   const [clientName, setClientName] = useState("");
   const [contractType, setContractTypes] = useState(null);
   const [industryType, setiIndustryType] = useState(null);
@@ -42,10 +41,10 @@ const Step1 = (props) => {
       value: 0,
       label: "$0",
     },
-    {
-      value: 0,
-      label: "$0",
-    },
+    // {
+    //   value: 0,
+    //   label: "$0",
+    // },
     {
       value: 10,
       label: "$10M",
@@ -56,30 +55,28 @@ const Step1 = (props) => {
       value: 0,
       label: "0",
     },
-    {
-      value: 1000,
-      label: "1000",
-    },
-    {
-      value: 2000,
-      label: "2000",
-    },
-    {
-      value: 3000,
-      label: "3000",
-    },
-    {
-      value: 3000,
-      label: "3000",
-    },
+    // {
+    //   value: 1000,
+    //   label: "1000",
+    // },
+    // {
+    //   value: 2000,
+    //   label: "2000",
+    // },
+    // {
+    //   value: 3000,
+    //   label: "3000",
+    // },
+    // {
+    //   value: 4000,
+    //   label: "4000",
+    // },
     {
       value: 5000,
       label: "5000",
     },
   ]);
-  function onAccordianChange(params) {
-    setExpand(!expand);
-  }
+
   function addClient(id) {
     let obj = {
       email: "",
@@ -122,6 +119,7 @@ const Step1 = (props) => {
       <option value={data.industrytype}>{data.industrytype}</option>
     );
   });
+
   return (
     <div className="stepOne">
       <Row className="rowSeprator">
@@ -151,7 +149,6 @@ const Step1 = (props) => {
           <label style={{ float: "left" }} className="switchLabel">
             Contract Type<span style={{ color: "red" }}>*</span>
           </label>
-
           <select
             value={contractType}
             className={contractType ? "" : "select_placeholder"}
@@ -175,7 +172,9 @@ const Step1 = (props) => {
           </select>
         </Col>
       </Row>
-      <Row className="rowSeprator">
+      <Row className="rowSeprator" style={{
+        flexWrap: "nowrap"
+      }}>
         <Col md={6}>
           <label style={{ float: "left" }} className="switchLabel">
             Industry Type<span style={{ color: "red" }}>*</span>
@@ -203,10 +202,7 @@ const Step1 = (props) => {
           </select>
         </Col>
         <Col md={6} className="switchColumn">
-          <span className="switchLabel">
-            {" "}
-            <img src={LifeWork} alt="lifeWork" />
-          </span>
+          <img src={LifeWork} alt="lifeWork" />
           <Switch
             id="Lifeworks"
             color="success"
@@ -216,11 +212,10 @@ const Step1 = (props) => {
           />
         </Col>
       </Row>
-      <Row className="rowSeprator">
+      <Row className="slider-container">
         <Col md={6}>
           <div>
-            &nbsp;
-            <label style={{ float: "left" }} className="switchLabel">
+            <label style={{ float: "left", whiteSpace: "nowrap", margin: "0px" }} className="switchLabel">
               Anticipated Revenue<span style={{ color: "red" }}>*</span>
             </label>
             <Slider
@@ -228,7 +223,7 @@ const Step1 = (props) => {
               id="AnticipatedRevenue"
               style={{
                 color: "#da291c",
-                width: "85% !important",
+                width: "90% !important",
                 padding: "13px 0px",
                 marginBottom: "20px",
               }}
@@ -243,8 +238,7 @@ const Step1 = (props) => {
         </Col>
         <Col md={6} style={{ marginBottom: "1em" }}>
           <div>
-            &nbsp;
-            <label style={{ float: "left" }} className="switchLabel">
+            <label style={{ float: "left", whiteSpace: "nowrap", margin: "0px" }} className="switchLabel">
               Population<span style={{ color: "red" }}>*</span>
             </label>
             <Slider
@@ -254,7 +248,7 @@ const Step1 = (props) => {
               max={5000}
               style={{
                 color: "#da291c",
-                width: "85%",
+                width: "90% !important",
                 padding: "13px 0px",
                 marginBottom: "20px",
               }}
