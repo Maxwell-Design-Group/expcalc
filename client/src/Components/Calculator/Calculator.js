@@ -32,7 +32,7 @@ const Calculator = (props) => {
             </div>
             <div>
               <p className="calculator-cap-label cap-margin mt-10">Cap Ex</p>
-              <p className="calculator-cap-price cap-margin">$0</p>
+              <p className="calculator-cap-price cap-margin" id="capex">$0</p>
             </div>
           </div>
           <div className="dashboard-calculator-cap-ex">
@@ -40,12 +40,12 @@ const Calculator = (props) => {
               <div className="cal-dollar-sign">$</div>
             </div>
             <div>
-              <p className="calculator-cap-label cap-margin mt-10">OP Ex</p>
-              <p className="calculator-cap-price cap-margin">$0</p>
+              <p className="calculator-cap-label cap-margin mt-10" >OP Ex</p>
+              <p className="calculator-cap-price cap-margin" id="opex">$0</p>
             </div>
           </div>
         </div>
-        {isMobileView === false && <div className="total-cost">$0</div>}
+        {isMobileView === false && <div className="total-cost"  id="total">$0</div>}
       </div>
     </>
   );
