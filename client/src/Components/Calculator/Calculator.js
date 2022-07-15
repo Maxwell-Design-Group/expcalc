@@ -1,8 +1,9 @@
 import React from "react";
 import "./Calculator.css";
-
+import { useSelector } from "react-redux";
 const Calculator = (props) => {
   const { isMobileView = false } = props;
+  const { clientDetails } = useSelector((state) => state.Reducer);
   return (
     <>
       <div className="calculator-main-container">
@@ -15,7 +16,9 @@ const Calculator = (props) => {
         >
           <div>
             <h5 className="dashboard-calculator-heder">ESTIMATED COSTS</h5>
-            <p className="dashboard-calculator-text">ACME Insurance Ltd.</p>
+            <p className="dashboard-calculator-text">
+              {clientDetails ? clientDetails.clientname : ""}
+            </p>
           </div>
           {isMobileView && <div className="total-cost">$0</div>}
         </div>
@@ -32,7 +35,9 @@ const Calculator = (props) => {
             </div>
             <div>
               <p className="calculator-cap-label cap-margin mt-10">Cap Ex</p>
-              <p className="calculator-cap-price cap-margin" id="capex">$0</p>
+              <p className="calculator-cap-price cap-margin" id="capex">
+                $0
+              </p>
             </div>
           </div>
           <div className="dashboard-calculator-cap-ex">
@@ -40,12 +45,18 @@ const Calculator = (props) => {
               <div className="cal-dollar-sign">$</div>
             </div>
             <div>
-              <p className="calculator-cap-label cap-margin mt-10" >OP Ex</p>
-              <p className="calculator-cap-price cap-margin" id="opex">$0</p>
+              <p className="calculator-cap-label cap-margin mt-10">OP Ex</p>
+              <p className="calculator-cap-price cap-margin" id="opex">
+                $0
+              </p>
             </div>
           </div>
         </div>
-        {isMobileView === false && <div className="total-cost"  id="total">$0</div>}
+        {isMobileView === false && (
+          <div className="total-cost" id="total">
+            $0
+          </div>
+        )}
       </div>
     </>
   );

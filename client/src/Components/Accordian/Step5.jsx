@@ -6,11 +6,15 @@ import "./Step5.css";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Table from "react-bootstrap/Table";
+import SupportingQuestionService from "../../Services/SupportingQuestionService";
 const Step5 = (props) => {
+  const SupportingQuestion = new SupportingQuestionService();
   const tableRows = [];
   const supportingFeatures = [];
+  const POSData = [];
   const [checked, setChecked] = useState(false);
   const [expand, setExpand] = useState(false);
+  const [pos, setPos] = useState("");
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
   const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);
@@ -18,15 +22,38 @@ const Step5 = (props) => {
   const { masterData } = useSelector((state) => state.Master);
   const { accordionId } = useSelector((state) => state.Reducer);
   const { themes } = useSelector((state) => state.Reducer);
+  const { clientDetails } = useSelector((state) => state.Reducer);
   const { isMobileView = false } = props;
   const tableData2 = [];
-
+  const POS = [
+    { label: "Dish $2345", value: "Dish" },
+    { label: "365 Retail $3445", value: "365 Retail" },
+    { label: "Micros $5345", value: "Micros" },
+  ];
   let supportingFeatureData = [];
   if (masterData.supportingfeature) {
     supportingFeatureData = masterData.supportingfeature;
   }
   const onPrevious = (id) => {
     dispatch(prevAccordionOpen(id));
+  };
+
+  const selectNoOption = (id) => {
+    let suportingfeature = "";
+    // if (features.length > 0) {
+    //   suportingfeature = features.toString();
+    // }
+    let wtproduct = "";
+    // if (features.length > 0) {
+    //   wtproduct = features.toString();
+    // }
+    let obj = {
+      ...clientDetails,
+      pos: pos,
+      suportingfeature: suportingfeature,
+      wtproduct: wtproduct,
+    };
+    SupportingQuestion.sendData(obj, id, clientDetails);
   };
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
@@ -105,114 +132,34 @@ const Step5 = (props) => {
       </div>
     );
   });
+
+  const handlePosChange = (ev) => {
+    //save your value here with state variable
+    console.log(ev.target.value);
+    setPos(ev.target.value);
+  };
+  POS.forEach((pos, index) => {
+    POSData.push(
+      <div class="pos_btn">
+        <input
+          type="radio"
+          id="a25"
+          name="check-substitution-2"
+          onChange={handlePosChange}
+          value={pos.value}
+        />
+        <label class="btn btn-default" for="a25">
+          {pos.label}
+        </label>
+      </div>
+    );
+  });
   function onAccordianChange(params) {
     setExpand(!expand);
   }
+
   return (
     <>
-      {/* <div className="stepOne">
-        <Row className="pos_row ">
-          <div className="pos_container">
-            <Row>
-              <Col md={3}>
-                <div className="pos">
-                  <span className="pos_label">POS</span>
-                </div>
-              </Col>
-              <Col md={9}>
-                {" "}
-                <div class="pos_btn">
-                  <input
-                    type="radio"
-                    id="a25"
-                    name="check-substitution-2"
-                    value="Dish $2345"
-                  />
-                  <label class="btn btn-default" for="a25">
-                    Dish $2345
-                  </label>
-                </div>
-                <div class="pos_btn">
-                  <input
-                    type="radio"
-                    id="a50"
-                    name="check-substitution-2"
-                    value="365 Retail $3445"
-                  />
-                  <label class="btn btn-default" for="a50">
-                    365 Retail $3445
-                  </label>
-                </div>
-                <div class="pos_btn">
-                  <input
-                    type="radio"
-                    id="a75"
-                    name="check-substitution-2"
-                    value="Micros $5345"
-                  />
-                  <label class="btn btn-default" for="a75">
-                    Micros $5345
-                  </label>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        </Row>
-        <Row className="sf_row">
-          <div className="pos_container">
-            <Row>
-              <Col md={3}>
-                <div className="pos">
-                  <span className="pos_label">Supporting Features</span>
-                </div>
-              </Col>
-              <Col md={9}> {supportingFeatures}</Col>
-            </Row>
-          </div>
-        </Row>
-
-        <Row className="like_row">
-          <div className="like_container" style={{ marginBottom: "2em" }}>
-            <Row>
-              <Col md={3}>
-                <div className="like">
-                  <span className="like_label">You may also like</span>
-                </div>
-              </Col>
-              <Col md={9} style={{ overflowY: "scroll" }}>
-                <table
-                  style={{ width: "90%", top: "2em", position: "absolute" }}
-                  className="product_tbl "
-                >
-                  {" "}
-                  <thead>
-                    <tr style={{ borderBottom: "1px solid #CFCFCF" }}>
-                      <th>Product</th>
-                      <th>Brief Description</th>
-                      <th>Cost</th>
-                    </tr>
-                  </thead>
-                  <tbody> {tableRows}</tbody>
-                </table>
-              </Col>
-            </Row>
-          </div>
-        </Row>
-        <Row className="rowSeprator" style={{ padding: "0 0.6em" }}>
-          <Col md={6} style={{ textAlign: "left" }}>
-            <Button
-              variant="contained"
-              size="small"
-              type="submit"
-              className="previous_btn"
-              onClick={() => onPrevious(accordianId - 1)}
-            >
-              Previous
-            </Button>
-          </Col>
-        </Row>
-      </div> */}
-
       <div>
         <div
           className="POS_Container"
@@ -229,23 +176,15 @@ const Step5 = (props) => {
               alignItems: "center",
             }}
           >
-            <div class="pos_btn">
-              <input
-                type="radio"
-                id="a25"
-                name="check-substitution-2"
-                value="Dish $2345"
-              />
-              <label class="btn btn-default" for="a25">
-                Dish $2345
-              </label>
-            </div>
-            <div class="pos_btn">
+            {POSData}
+
+            {/* <div class="pos_btn">
               <input
                 type="radio"
                 id="a50"
                 name="check-substitution-2"
-                value="365 Retail $3445"
+                onChange={handlePosChange}
+                value="365 Retail"
               />
               <label class="btn btn-default" for="a50">
                 365 Retail $3445
@@ -256,12 +195,13 @@ const Step5 = (props) => {
                 type="radio"
                 id="a75"
                 name="check-substitution-2"
-                value="Micros $5345"
+                onChange={handlePosChange}
+                value="Micros"
               />
               <label class="btn btn-default" for="a75">
                 Micros $5345
               </label>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -327,6 +267,18 @@ const Step5 = (props) => {
               onClick={() => onPrevious(accordionId - 1)}
             >
               Previous
+            </Button>
+          </Col>
+
+          <Col md={6} style={{ textAlign: "right" }}>
+            <Button
+              variant="contained"
+              size="small"
+              type="submit"
+              className="next_btn"
+              onClick={() => selectNoOption(accordionId)}
+            >
+              Submit
             </Button>
           </Col>
         </Row>

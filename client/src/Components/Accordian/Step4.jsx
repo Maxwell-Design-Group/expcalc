@@ -6,18 +6,22 @@ import {
   nextAccordionOpen,
   prevAccordionOpen,
 } from "../../Redux/Actions";
+import ExperienceService from "../../Services/ExperienceService";
 import "./step4.css";
 
 const Step4 = (props) => {
+  const Experience = new ExperienceService();
+  const { clientDetails } = useSelector((state) => state.Reducer);
   const { isMobileView = false } = props;
   const tableRows = [];
+  let features = [];
   const [checked, setChecked] = useState(false);
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
   const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);
-  const [digitalSinage50, setDigitalSinage50] = useState([]);
-  const [digitalSinage55, setDigitalSinage55] = useState([]);
-  const [digitalSinage65, setDigitalSinage65] = useState([]);
+  const [digitalSinage50, setDigitalSinage50] = useState("");
+  const [digitalSinage55, setDigitalSinage55] = useState("");
+  const [digitalSinage65, setDigitalSinage65] = useState("");
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const [tableData, setTabledata] = useState([
@@ -72,7 +76,7 @@ const Step4 = (props) => {
 
   const handleChangeFeatures = (e, rowData) => {
     const { checked } = e.target;
-    let features = userSelectedFeatures;
+    features = userSelectedFeatures;
     if (checked === true) {
       features.push(rowData.label);
 
@@ -119,8 +123,18 @@ const Step4 = (props) => {
   };
 
   const selectNoOption = (id) => {
-    dispatch(completedSteps(id));
-    dispatch(nextAccordionOpen(id + 1));
+    let catering = "";
+    if (features.length > 0) {
+      catering = features.toString();
+    }
+    let obj = {
+      ...clientDetails,
+      digitalsignage50: digitalSinage50,
+      digitalsignage55: digitalSinage55,
+      digitalsignage65: digitalSinage65,
+      catering: catering,
+    };
+    Experience.sendData(obj, id, clientDetails);
   };
 
   return (

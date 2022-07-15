@@ -206,6 +206,7 @@ const Step2 = (props) => {
 
       let obj = {
         email: "",
+        ...clientDetails,
         wintheme: wintheme,
       };
       for (let i = 0; i < userSelectedThemes.length; i++) {
