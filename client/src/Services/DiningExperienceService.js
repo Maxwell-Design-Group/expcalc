@@ -12,7 +12,7 @@ class DiningExperienceService {
       )
       .then((response) => {
         console.log("response", response);
-        // Alert.success("WinthemeDetail added successfully");
+        Alert.success("Dining Experience added successfully");
         Store.dispatch(completedSteps(accordianId));
         Store.dispatch(nextAccordionOpen(accordianId + 1));
       })

@@ -2,6 +2,7 @@
 
 * {
   font-family: "Gotham", sans-serif !important;
+  font-size: small;
 }
 
 .LogoButton {
@@ -42,12 +43,11 @@
   font: normal normal normal 14px/20px Gotham;
   letter-spacing: 0.25px;
   opacity: 1;
-  margin-left: 2%;
-  padding: 5px 10px;
+  margin-left: 1%;
+  padding: 2px 6px;
   margin-bottom: 1%;
   margin-top: 1%;
 }
-
 .heading {
   padding-top: 3%;
   padding-bottom: 3%;
@@ -57,8 +57,7 @@
   font-weight: bolder;
   overflow: hidden;
 }
-
-.headingLocal {
+.headingLocal{
   padding-top: 1%;
   padding-bottom: 1%;
   background-color: #00000013;
@@ -67,7 +66,6 @@
   font-weight: bolder;
   overflow: hidden;
 }
-
 .OptionAla {
   display: flex;
   flex-direction: row;
@@ -80,7 +78,6 @@
   opacity: 1;
   margin-left: 0.2%;
 }
-
 .headingAla {
   padding-top: 5%;
   padding-bottom: 5%;
@@ -90,7 +87,6 @@
   font-weight: bolder;
   overflow: hidden;
 }
-
 .formButtonsAla {
   border: 1px solid #979797;
   border-radius: 16px;
@@ -99,13 +95,16 @@
   letter-spacing: 0.25px;
   color: #000000de;
   opacity: 1;
-  margin-left: 20px;
+  margin-left: 1%;
+  padding: 2px 6px;
   margin-bottom: 1%;
   margin-top: 1%;
 }
 
 .stepOne .next_btn3 {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -127,7 +126,9 @@
 }
 
 .previous_btn3 {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -149,8 +150,7 @@
   padding-left: 4%;
 }
 
-/* 
-.MuiSwitch-root {
+/* .MuiSwitch-root {
   width: 50px;
   height: 24px;
   padding: 0px;
@@ -209,6 +209,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: 2%;
 }
 
 .LogoButtonRs {
@@ -218,8 +219,7 @@
   width: 25%;
   height: auto;
 }
-
-.switchButtonRs {
+.switchButtonRs{
   margin-left: 5%;
 }
 
@@ -233,22 +233,20 @@
   border: 1px solid #cfcfcf;
   border-radius: 15px;
   opacity: 1;
+  margin-left: 2%;
 }
-
-.DataScrollRs {
+.DataScrollRs{
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: scroll;
   margin-top: 1%;
-  margin-bottom: 1%;
-  width: 90%;
+    margin-bottom: 1%;
+    width: 90%;
 }
-
-.DataScrollRs::-webkit-scrollbar {
+.DataScrollRs::-webkit-scrollbar{
   display: none;
 }
-
 .formButtonsRs {
   border: 1px solid #979797;
   border-radius: 16px;
@@ -259,7 +257,6 @@
   margin-top: 1%;
   white-space: nowrap;
 }
-
 .headingRs {
   padding-top: 3%;
   padding-bottom: 3%;
@@ -269,16 +266,17 @@
   font-weight: bolder;
   overflow: hidden;
 }
-
-.lastButtons {
+.lastButtons{
   max-width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-between  ;
+  margin-left: 2%;
 }
-
-.next_btn3Rs {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+ .next_btn3Rs {
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -296,7 +294,9 @@
 }
 
 .previous_btn3Rs {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;

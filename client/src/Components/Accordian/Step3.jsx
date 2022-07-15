@@ -3,33 +3,34 @@ import React from "react";
 import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import {
-  completedSteps,
-  nextAccordionOpen,
-  prevAccordionOpen,
-} from "../../Redux/Actions";
+import { prevAccordionOpen } from "../../Redux/Actions";
 import { useSelector } from "react-redux";
 import "../../Assets/Style/style.css";
 import Alert from "../Alert/Alert";
 import { useMediaQuery, useTheme } from "@mui/material";
 import DiningExperienceService from "../../Services/DiningExperienceService";
+import { useEffect } from "react";
 
 const footprintData = [
   {
     id: 0,
     value: "Mobile",
+    name: "mobile",
   },
   {
     id: 1,
     value: "Kiosk",
+    name: "kiosk",
   },
   {
     id: 2,
     value: "Self-Checkout",
+    name: "selfCheckout",
   },
   {
     id: 3,
     value: "Cashier",
+    name: "cashier",
   },
 ];
 const onTheGoData = [
@@ -93,6 +94,19 @@ const Step3 = () => {
   const [yesOption, setYesOption] = useState("");
   const [selectedFootprint, setSelectedFootprint] = useState([]);
   const [selectedNoOptions, setSelectedNoOptions] = useState([]);
+  const [selectedFootprintBool, setSelectedFootprintBool] = useState({
+    mobile: false,
+    kiosk: false,
+    selfCheckout: false,
+    cashier: false,
+  });
+  const { mobile, kiosk, selfCheckout, cashier } = selectedFootprintBool;
+  const [footButtons, setFootButtons] = useState([
+    {
+      value: "",
+      name: "",
+    },
+  ]);
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
@@ -124,8 +138,10 @@ const Step3 = () => {
           return item !== value;
         })
       );
+      setSelectedFootprintBool({ ...selectedFootprintBool, [value]: false });
     } else {
       setSelectedFootprint((prev) => [...prev, value]);
+      setSelectedFootprintBool({ ...selectedFootprintBool, [value]: true });
     }
   };
 
@@ -145,8 +161,11 @@ const Step3 = () => {
     if (yesOption === "") {
       Alert.error("select any Option");
     } else {
-      dispatch(completedSteps(id));
-      dispatch(nextAccordionOpen(id + 1));
+      let obj = {
+        customisableconvenience: yesOrNo,
+        customisableconvenienceoption: yesOption,
+      };
+      DiningExperience.sendData(obj, id, clientDetails);
     }
   };
 
@@ -165,44 +184,76 @@ const Step3 = () => {
       }
       let obj = {
         customisableconvenience: yesOrNo,
-        customisableconvenienceoption: yesOption,
-        digitalsignage: true,
-        mobile: false,
-        kiosk: true,
-        selfcheckout: false,
+        mobile: mobile,
+        kiosk: kiosk,
+        selfCheckout: selfCheckout,
+        cashier: cashier,
         station: station,
       };
-
-      console.log("obj ", obj);
       DiningExperience.sendData(obj, id, clientDetails);
     }
   };
 
-  function addStep3(id) {
-    let userSelectedThemes = "";
-    if (userSelectedThemes.length === 0) {
-      // Alert.error("Choose at least 1 win theme");
-      // for (let i = 0; i < winThemelist.length; i++) {
-      //   document.getElementById("themesBtn" + i).style.border = "1px solid red";
-      // }
-    } else {
-      // let wth = "";
-      // for (let i = 0; i < userSelectedThemes.length; i++) {
-      //   wth = wth + "," + userSelectedThemes[i];
-      // }
-      // let obj = {
-      //   email: "",
-      //   clientname: clientName,
-      //   contracttype: contractType,
-      //   lifeworks: isLifeworks,
-      //   anticipatedrevenue: anticipatedRevenue,
-      //   population: population,
-      //   industrytype: industryType,
-      //   wintheme:wth,
-      // };
-      // clientDetailService.updateDate(obj, id); // should be pass client id
+  const filteringFootButtons = () => {
+    if (clientDetails.population < 100) {
+      setFootButtons(
+        footprintData.filter((data) => {
+          return data.name === "mobile" || data.name === "selfCheckout";
+        })
+      );
+    }else if(clientDetails.population >= 101 && clientDetails.population <= 149){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "kiosk" || data.name === "selfCheckout";
+        }));
+    }else if(clientDetails.population >= 150 && clientDetails.population <= 200){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "mobile" 
+        }));
+    }else if(clientDetails.population >= 201 && clientDetails.population <= 300){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "cashier" || data.name === "selfCheckout";
+        }));
+    }else if(clientDetails.population >= 301 && clientDetails.population <= 499){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "kiosk" || data.name === "cashier";
+        }));
+    }else if(clientDetails.population >= 500 && clientDetails.population <= 550){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "cashier";
+        }));
+    }else if(clientDetails.population >= 551 && clientDetails.population <= 600){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "selfCheckout";
+        }));
+    }else if(clientDetails.population >= 601 && clientDetails.population <= 1000){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "kiosk";
+        }));
+    }else if(clientDetails.population >= 1001 && clientDetails.population <= 3000){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "mobile" || data.name === "kiosk";
+        }));
+    }else if(clientDetails.population >= 3001 && clientDetails.population <= 5000){
+      setFootButtons(
+        footprintData.filter((data) => {
+      return data.name === "mobile" || data.name === "kiosk" || data.name === "cashier";
+        }));
     }
-  }
+  };
+
+  useEffect(() => {
+    filteringFootButtons();
+    console.log("footButtons" + JSON.stringify(footButtons));
+    console.log("clientDetailsss" + JSON.stringify(clientDetails.population));
+  }, [accordionId]);
 
   return (
     <>
@@ -268,7 +319,7 @@ const Step3 = () => {
                   className="previous_btn3Rs"
                   onClick={() => onPrevious(accordionId - 1)}
                 >
-                  <Typography variant="subtitle2">Previous</Typography>
+                  <Typography variant="subtitle1">Previous</Typography>
                 </Button>
                 <Button
                   variant="contained"
@@ -277,9 +328,10 @@ const Step3 = () => {
                   className="next_btn3Rs"
                   onClick={() => selectYesOption(accordionId)}
                 >
-                  <Typography variant="subtitle2">Next</Typography>
+                  <Typography variant="subtitle1">Next</Typography>
                 </Button>
               </Row>
+              <br/>
             </>
           ) : (
             <>
@@ -297,7 +349,7 @@ const Step3 = () => {
                       key={data.value}
                       name={data.value}
                       value={data.value}
-                      onClick={() => handleFootprintButtons(data.value)}
+                      onClick={() => handleFootprintButtons(data.name)}
                       style={{
                         backgroundColor: selectedFootprint.includes(data.value)
                           ? "#4BAE4F"
@@ -424,18 +476,19 @@ const Step3 = () => {
                   className="previous_btn3Rs"
                   onClick={() => onPrevious(accordionId - 1)}
                 >
-                  <Typography variant="subtitle2">Previous</Typography>
+                  <Typography variant="subtitle1">Previous</Typography>
                 </Button>
                 <Button
                   variant="contained"
                   size="small"
                   type="submit"
                   className="next_btn3Rs"
-                  onClick={() => selectYesOption(accordionId)}
+                  onClick={() => selectNoOption(accordionId)}
                 >
-                  <Typography variant="subtitle2">Next</Typography>
+                  <Typography variant="subtitle1">Next</Typography>
                 </Button>
               </Row>
+              <br/>
             </>
           )}
         </>
@@ -462,7 +515,7 @@ const Step3 = () => {
             <>
               <Row className="Option">
                 <Col className="heading" md={4}>
-                  <Typography variant="subtitle1">
+                  <Typography variant="subtitle2">
                     <b> What option would they like?</b>
                   </Typography>
                 </Col>
@@ -484,7 +537,10 @@ const Step3 = () => {
                           : "1px solid #979797",
                     }}
                   >
-                    {data.custConvOption}
+                    <Typography variant="subtitle2">
+                      {" "}
+                      {data.custConvOption}
+                    </Typography>
                   </Button>
                 ))}
               </Row>
@@ -522,16 +578,16 @@ const Step3 = () => {
                     <b>Footprint</b>
                   </Typography>
                 </Col>
-                {footprintData.map((data, index) => (
+                {footButtons.map((data, index) => (
                   <Button
                     className="formButtons"
                     variant="light"
                     key={data.value}
                     name={data.value}
                     value={data.value}
-                    onClick={() => handleFootprintButtons(data.value)}
+                    onClick={() => handleFootprintButtons(data.name)}
                     style={{
-                      backgroundColor: selectedFootprint.includes(data.value)
+                      backgroundColor: selectedFootprint.includes(data.name)
                         ? "#4BAE4F"
                         : "#fff",
                       color: selectedFootprint.includes(data.value)
@@ -542,7 +598,7 @@ const Step3 = () => {
                         : "1px solid #979797",
                     }}
                   >
-                    {data.value}
+                    <Typography variant="subtitle2"> {data.value}</Typography>
                   </Button>
                 ))}
               </Row>
@@ -576,7 +632,10 @@ const Step3 = () => {
                             : "1px solid #979797",
                         }}
                       >
-                        {data.value}
+                        <Typography variant="subtitle2">
+                          {" "}
+                          {data.value}
+                        </Typography>
                       </Button>
                     ))}
                   </Row>
@@ -612,7 +671,7 @@ const Step3 = () => {
                         : "1px solid #979797",
                     }}
                   >
-                    {data.value}
+                    <Typography variant="subtitle2"> {data.value}</Typography>
                   </Button>
                 ))}
               </Row>
@@ -623,7 +682,7 @@ const Step3 = () => {
                     <b>A la carte</b>
                   </Typography>
                 </Col>
-                <Col>
+                <Col md={9}>
                   <Row>
                     {alaCarteData.map((data, index) => (
                       <Button
@@ -646,7 +705,10 @@ const Step3 = () => {
                             : "1px solid #979797",
                         }}
                       >
-                        {data.value}
+                        <Typography variant="subtitle2">
+                          {" "}
+                          {data.value}
+                        </Typography>
                       </Button>
                     ))}
                   </Row>
