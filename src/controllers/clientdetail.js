@@ -45,6 +45,7 @@ exports.create = (req, res) => {
    // Save Category in the database
     clientdetails.save()
         .then(data => {
+            console.log(data);
             res.send(data);
         }).catch(err => {
             res.status(500).send({
@@ -65,7 +66,7 @@ exports.update = (req, res) => {
 
     clientDetails.findById(req.params.id, function(err, clientdetail) {
     if(!clientdetail) {
-        return next(new Error('could not load Document'));
+        return res.send('could not load Document');
     }
     else { // do your update here
         clientdetail.email= req.body.email,
@@ -91,8 +92,10 @@ exports.update = (req, res) => {
         clientdetail.suportingfeature= req.body.suportingfeature,
         clientdetail.wtproduct= req.body.wtproduct
                     
-        clientdetail.save().then(clientdetail => {
-            res.json('Update complete');
+        clientdetail.save()
+        .then(data => {
+            console.log(data);
+            res.send(data);
         })
         .catch((err) => {
             res.status(400).send("unable to update the database");
