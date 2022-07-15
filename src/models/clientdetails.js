@@ -30,6 +30,9 @@ var clientDetails = new Schema({
     customisableconvenience: {
         type: Boolean
     },
+    customisableconvenienceoption: {
+        type: String
+    },
 	digitalsignage: {
         type: String
     },
