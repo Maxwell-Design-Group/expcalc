@@ -21,5 +21,7 @@ module.exports = (app) => {
     app.get('/wintheme', masterdata.findwinTheme);
 
     app.get('/ccoption', masterdata.findCustomisableConvenienceOption);
+
+    app.get('/calculate', masterdata.calculecapexopex);
     
    }
