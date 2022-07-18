@@ -6,7 +6,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import { Typography } from "@mui/material";
 import "../../Assets/Style/accordianStyle.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import InfoIcon from '@mui/icons-material/Info';
+import InfoIcon from "@mui/icons-material/Info";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,9 +18,11 @@ import Step5 from "./Step5";
 import Step4 from "./Step4";
 
 const AccordionComponent = (props) => {
-  const { handleAccordionChange = () => { },
+  const {
+    handleAccordionChange = () => {},
     isMobileView = false,
-    handleOpenModal = () => { } } = props;
+    handleOpenModal = () => {},
+  } = props;
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { completedSteps } = useSelector((state) => state.Reducer);
@@ -107,8 +109,8 @@ const AccordionComponent = (props) => {
             completedSteps.includes(item.id) && item.expanded === true
               ? "step_edit"
               : completedSteps.includes(item.id) && item.expanded === false
-                ? "step_completed"
-                : null
+              ? "step_completed"
+              : null
           }
         >
           <AccordionSummary
@@ -117,7 +119,11 @@ const AccordionComponent = (props) => {
                 <CheckCircleIcon className="icon_step_complete" />
               ) : item.expanded === true ? (
                 <RemoveCircleIcon
-                  style={{ margin: "0px 0px 0px 10px !important", color: "black", opacity: 1 }}
+                  style={{
+                    margin: "0px 0px 0px 10px !important",
+                    color: "black",
+                    opacity: 1,
+                  }}
                 />
               ) : (
                 <AddCircleIcon />
@@ -129,24 +135,32 @@ const AccordionComponent = (props) => {
             style={{
               flexDirection: "row-reverse",
               margin: "11px 0 0 0",
-              padding: item.expanded ? "0px" : "16px"
+              padding: item.expanded ? "0px" : "16px",
             }}
           >
-            <div style={{
-              display: "flex",
-              padding: isMobileView ? "0px" : "0px 20px",
-              justifyContent: "space-between",
-              flex: 1
-            }}>
+            <div
+              style={{
+                display: "flex",
+                padding: isMobileView ? "0px" : "0px 20px",
+                marginLeft: "-5px",
+                justifyContent: "space-between",
+                flex: 1,
+              }}
+            >
               <Typography>{item.title}</Typography>
-              {
-                isMobileView && item.expanded === true && <InfoIcon style={{ color: "black", opacity: 1 }} onClick={(e) => handleOpenModal(e)} />
-              }
+              {isMobileView && item.expanded === true && (
+                <InfoIcon
+                  style={{ color: "black", opacity: 1 }}
+                  onClick={(e) => handleOpenModal(e)}
+                />
+              )}
             </div>
           </AccordionSummary>
-          <AccordionDetails style={{
-            padding: isMobileView ? "0px" : "8px 16px 16px"
-          }}>
+          <AccordionDetails
+            style={{
+              padding: isMobileView ? "0px" : "8px 16px 16px",
+            }}
+          >
             {item.id === 3 ? (
               <Step3 />
             ) : item.id === 1 ? (

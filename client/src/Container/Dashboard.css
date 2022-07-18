@@ -79,6 +79,10 @@ div#panel1a-header {
   /* margin-top: 2.5em !important; */
 }
 
+.MuiSlider-rail {
+  background: #dbd8d8 0% 0% no-repeat padding-box !important;
+}
+
 .aramark_dashboard .css-133uy8j-MuiButtonBase-root-MuiFab-root {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -422,7 +426,7 @@ div label input {
 .aramark_dashboard .step_edit {
   color: #000;
   border-left: 11px solid #4bae4f;
-  background: #edeaf1 !important;
+  /* background: #edeaf1 !important; */
 }
 
 /* Style the header */
@@ -743,7 +747,7 @@ div label input {
   font: normal normal normal 16px/22px Gotham;
   letter-spacing: 0.48px;
   color: #ffffff;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .aramark_dashboard .tootalCalculationSection_container {
