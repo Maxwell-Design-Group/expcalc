@@ -7,10 +7,12 @@ import {
   prevAccordionOpen,
 } from "../../Redux/Actions";
 import ExperienceService from "../../Services/ExperienceService";
+import calculatedataService from "../../Services/calculatedataService";
 import "./step4.css";
 
 const Step4 = (props) => {
   const Experience = new ExperienceService();
+  const calculatedata = new calculatedataService();
   const { clientDetails } = useSelector((state) => state.Reducer);
   const { isMobileView = false } = props;
   const tableRows = [];
@@ -24,6 +26,7 @@ const Step4 = (props) => {
   const [digitalSinage65, setDigitalSinage65] = useState("");
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
+  const { masterData } = useSelector((state) => state.Master);
   const [tableData, setTabledata] = useState([
     {
       product: "Yokai",
@@ -72,6 +75,7 @@ const Step4 = (props) => {
         }
       }
     }
+    calculation();
   };
 
   const handleChangeFeatures = (e, rowData) => {
@@ -90,6 +94,7 @@ const Step4 = (props) => {
         }
       }
     }
+    calculation();
   };
 
   tableData.forEach((row, index) => {
@@ -122,6 +127,46 @@ const Step4 = (props) => {
     dispatch(prevAccordionOpen(id));
   };
 
+
+  
+function calculation() {
+
+  var digiSign = [];
+
+  if (digitalSinage50>0){
+    digiSign.push(digitalSinage50);
+  }
+  else if (digitalSinage55>0){
+    digiSign.push(digitalSinage55);
+  }
+  else if (digitalSinage65>0){
+    digiSign.push(digitalSinage65);
+  }
+
+  let calcObj ={
+    "population":clientDetails.population,  
+    "wintheme":clientDetails.wintheme,
+    "customisableconvenience":clientDetails.yesOrNo,
+    "customisableconvenienceoption":clientDetails.yesOption,
+    "mobile":clientDetails.mobile,
+    "kiosk":clientDetails.kiosk,
+    "selfcheckout":clientDetails.selfCheckout,
+    "cashier":clientDetails.cashier,
+    "station":clientDetails.selectedNoOptions,
+    "digitalsignage": digiSign,
+    "digitalsignageqty":undefined,
+    "catering":undefined,
+    "pos":undefined,
+    "suportingfeature":userSelectedFeatures,
+    "wtproduct":userSelectedProducts,
+    "master":masterData
+  }
+  calculatedata.getcalculation(calcObj);
+  
+}
+
+
+
   const selectNoOption = (id) => {
     let catering = "";
     if (features.length > 0) {
@@ -135,6 +180,7 @@ const Step4 = (props) => {
       catering: catering,
     };
     Experience.sendData(obj, id, clientDetails);
+    calculation();
   };
 
   return (
