@@ -24,7 +24,7 @@ module.exports = (app) => {
 
     app.get('/pos', masterdata.pos);
 
-    app.get('/supportingfeatures', masterdata.pos);
+    app.get('/supportingfeatures', masterdata.getSupportingFeatures);
 
     app.get('/calculate', masterdata.calculecapexopex);
     
