@@ -21,7 +21,7 @@ class calculatedataService {
          
         const ccoption = master.ccoption.filter(e=>e.custConvOption===data.customisableconvenienceoption);
        
-        if (ccoption!=null && ccoption.length>0){
+        if (ccoption!==null && ccoption.length>0){
             capex=  capex + Number( ccoption[0].capex);
             opex= opex + Number(ccoption[0].opex);
             total= total + (Number(ccoption[0].capex) + Number(ccoption[0].opex));
@@ -32,7 +32,7 @@ class calculatedataService {
      else{
 
            
-      if( data.pos!=undefined){
+      if( data.pos!==undefined){
             const pos = master.data.pos.filter(e=>e.range1 <= data.population && e.range2 >= data.population);
             pos.forEach(p => {
               if(p!=null && p.length>0){
@@ -55,7 +55,7 @@ class calculatedataService {
 
      }
 
-     if( data.digitalsignage!=undefined){
+     if( data.digitalsignage!==undefined){
         const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  === data.digitalsignage);
 
         if(ydigitalsignage!=null && ydigitalsignage.length>0){
@@ -66,7 +66,7 @@ class calculatedataService {
      }
 
      
-     if(data.catering!=undefined){
+     if(data.catering!==undefined){
         var categorylist =  data.catering.split(',');
 
         categorylist.forEach(category => {
@@ -79,7 +79,7 @@ class calculatedataService {
         });
      }
 
-     if(data.wtproduct!=undefined){
+     if(data.wtproduct!==undefined){
         var wtproductlist =  data.wtproduct.split(',');
 
         wtproductlist.forEach(category => {
@@ -93,10 +93,12 @@ class calculatedataService {
         });
      }
      
-
-        document.getElementById("capex").innerHTML = '$' + capex.toFixed(2);
-        document.getElementById("opex").innerHTML= '$' + opex.toFixed(2);
-        document.getElementById("total").innerHTML = '$' + total.toFixed(2);
+if(capex!==0 && opex!==0 && total!==0){
+   document.getElementById("capex").innerHTML = '$' + capex.toFixed(2);
+   document.getElementById("opex").innerHTML= '$' + opex.toFixed(2);
+   document.getElementById("total").innerHTML = '$' + total.toFixed(2);
+}
+       
         
        var obj= {
           finalcapex:capex,

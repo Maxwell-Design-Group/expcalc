@@ -115,7 +115,7 @@ const AccordionComponent = (props) => {
         >
           <AccordionSummary
             expandIcon={
-              completedSteps.includes(item.id) ? (
+              completedSteps.includes(item.id) && item.expanded === false ? (
                 <CheckCircleIcon className="icon_step_complete" />
               ) : item.expanded === true ? (
                 <RemoveCircleIcon

@@ -106,13 +106,7 @@ const Step3 = () => {
     selfCheckout: false,
     cashier: false,
   });
-  const { mobile, kiosk, selfCheckout, cashier } = selectedFootprintBool;
-  const [footButtons, setFootButtons] = useState([
-    {
-      value: "",
-      name: "",
-    },
-  ]);
+  
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
@@ -120,6 +114,10 @@ const Step3 = () => {
   const isMatchSm = useMediaQuery(theme.breakpoints.down("sm"));
   const isMatchMd = useMediaQuery(theme.breakpoints.down("md"));
   const { clientDetails } = useSelector((state) => state.Reducer);
+  const { mobile, kiosk, selfCheckout, cashier } = selectedFootprintBool;
+
+
+
   let yesDatas = [];
   if (masterData.ccoption) {
     yesDatas = masterData.ccoption;
@@ -127,7 +125,6 @@ const Step3 = () => {
 
   const handleYesOrNoChange = (e) => {
     setYesOrNo(e.target.checked);
-    calculation();
   };
 
   const handleYesButtons = (value) => {
@@ -136,7 +133,6 @@ const Step3 = () => {
     } else {
       setYesOption(value);
     }
-    calculation();
   };
 
   const handleFootprintButtons = (value) => {
@@ -151,7 +147,6 @@ const Step3 = () => {
       setSelectedFootprint((prev) => [...prev, value]);
       setSelectedFootprintBool({ ...selectedFootprintBool, [value]: true });
     }
-    calculation();
   };
 
   const handleNoButtons = (value) => {
@@ -164,7 +159,6 @@ const Step3 = () => {
     } else {
       setSelectedNoOptions((prev) => [...prev, value]);
     }
-    calculation();
   };
 
   const selectYesOption = (id) => {
@@ -184,11 +178,8 @@ const Step3 = () => {
   };
 
   const selectNoOption = (id) => {
-
-    
-    let station = "";
-
-    if (selectedFootprint.length === 0) {
+ let station = "";
+  if (selectedFootprint.length === 0) {
       Alert.error("select one option from Footprint");
     } else {
       if (selectedNoOptions.length > 0) {
@@ -205,75 +196,6 @@ const Step3 = () => {
       DiningExperience.sendData(obj, id, clientDetails);
     }
   };
-
-  const filteringFootButtons = () => {
-
-       setFootButtons(
-        footprintData.filter((data) => {
-          return data.name === "mobile" || data.name === "kiosk" || data.name === "selfCheckout" || data.name === "cashier" ;
-        })
-      );
-
-    // if (clientDetails.population < 100) {
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //       return data.name === "mobile" || data.name === "selfCheckout";
-    //     })
-    //   );
-    // }else if(clientDetails.population >= 101 && clientDetails.population <= 149){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "kiosk" || data.name === "selfCheckout";
-    //     }));
-    // }else if(clientDetails.population >= 150 && clientDetails.population <= 200){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "mobile" 
-    //     }));
-    // }else if(clientDetails.population >= 201 && clientDetails.population <= 300){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "cashier" || data.name === "selfCheckout";
-    //     }));
-    // }else if(clientDetails.population >= 301 && clientDetails.population <= 499){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "kiosk" || data.name === "cashier";
-    //     }));
-    // }else if(clientDetails.population >= 500 && clientDetails.population <= 550){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "cashier";
-    //     }));
-    // }else if(clientDetails.population >= 551 && clientDetails.population <= 600){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "selfCheckout";
-    //     }));
-    // }else if(clientDetails.population >= 601 && clientDetails.population <= 1000){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "kiosk";
-    //     }));
-    // }else if(clientDetails.population >= 1001 && clientDetails.population <= 3000){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "mobile" || data.name === "kiosk";
-    //     }));
-    // }else if(clientDetails.population >= 3001 && clientDetails.population <= 5000){
-    //   setFootButtons(
-    //     footprintData.filter((data) => {
-    //   return data.name === "mobile" || data.name === "kiosk" || data.name === "cashier";
-    //     }));
-    // }
-  };
-
-  useEffect(() => {
-    filteringFootButtons();
-    console.log("footButtons" + JSON.stringify(footButtons));
-    console.log("clientDetailsss" + JSON.stringify(clientDetails.population));
-  }, [accordionId]);
-
 
   function calculation() {
     let calcObj ={
@@ -298,7 +220,10 @@ const Step3 = () => {
     
   }
 
-
+  useEffect(() => {
+    calculation()
+  }, [yesOption]);
+  
   return (
     <>
       {isMatchSm || isMatchMd ? (
@@ -622,7 +547,7 @@ const Step3 = () => {
                     <b>Footprint</b>
                   </Typography>
                 </Col>
-                {footButtons.map((data, index) => (
+                {footprintData.map((data, index) => (
                   <Button
                     className="formButtons"
                     variant="light"
