@@ -2,9 +2,14 @@ import { CircularProgress } from "@mui/material";
 import { Suspense } from "react";
 import { lazy } from "react";
 import { Route, Routes } from "react-router";
-// import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import "./Assets/font/GothamBold.ttf";
+import "./Assets/font/GothamBook.ttf";
+import "./Assets/font/GothamLight.ttf";
+import "./Assets/font/GothamMedium.ttf";
+
 const Dashboard = lazy(() => import("./Container/Dashboard"));
 
 function App() {
