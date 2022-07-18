@@ -9,7 +9,12 @@ import "../../Assets/Style/style.css";
 import Alert from "../Alert/Alert";
 import { useMediaQuery, useTheme } from "@mui/material";
 import DiningExperienceService from "../../Services/DiningExperienceService";
+import calculatedataService from "../../Services/calculatedataService";
 import { useEffect } from "react";
+//import stationlist from "../../../src/models/stationlist";
+// import digitalsignage from "../../../src/models/digitalsignage";
+// import posdata from "../../../src/models/posdata";
+// import wtproduct from "../../../src/models/wtproduct";
 
 const footprintData = [
   {
@@ -90,6 +95,7 @@ const alaCarteData = [
 
 const Step3 = () => {
   const DiningExperience = new DiningExperienceService();
+  const calculatedata = new calculatedataService()
   const [yesOrNo, setYesOrNo] = useState(false);
   const [yesOption, setYesOption] = useState("");
   const [selectedFootprint, setSelectedFootprint] = useState([]);
@@ -121,6 +127,7 @@ const Step3 = () => {
 
   const handleYesOrNoChange = (e) => {
     setYesOrNo(e.target.checked);
+    calculation();
   };
 
   const handleYesButtons = (value) => {
@@ -129,6 +136,7 @@ const Step3 = () => {
     } else {
       setYesOption(value);
     }
+    calculation();
   };
 
   const handleFootprintButtons = (value) => {
@@ -143,6 +151,7 @@ const Step3 = () => {
       setSelectedFootprint((prev) => [...prev, value]);
       setSelectedFootprintBool({ ...selectedFootprintBool, [value]: true });
     }
+    calculation();
   };
 
   const handleNoButtons = (value) => {
@@ -155,6 +164,7 @@ const Step3 = () => {
     } else {
       setSelectedNoOptions((prev) => [...prev, value]);
     }
+    calculation();
   };
 
   const selectYesOption = (id) => {
@@ -174,6 +184,8 @@ const Step3 = () => {
   };
 
   const selectNoOption = (id) => {
+
+    
     let station = "";
 
     if (selectedFootprint.length === 0) {
@@ -254,6 +266,31 @@ const Step3 = () => {
     console.log("footButtons" + JSON.stringify(footButtons));
     console.log("clientDetailsss" + JSON.stringify(clientDetails.population));
   }, [accordionId]);
+
+
+  function calculation() {
+    let calcObj ={
+      "population":clientDetails.population,  
+      "wintheme":clientDetails.wintheme,
+      "customisableconvenience":yesOrNo,
+      "customisableconvenienceoption":yesOption,
+      "mobile":selectedFootprintBool.mobile,
+      "kiosk":selectedFootprintBool.kiosk,
+      "selfcheckout":selectedFootprintBool.selfCheckout,
+      "cashier":selectedFootprintBool.cashier,
+      "station":selectedNoOptions,
+      "digitalsignage": undefined,
+      "digitalsignageqty":undefined,
+      "catering":undefined,
+      "pos":undefined,
+      "suportingfeature":undefined,
+      "wtproduct":undefined,
+      "master":masterData
+    }
+    calculatedata.getcalculation(calcObj);
+    
+  }
+
 
   return (
     <>
