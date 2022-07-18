@@ -232,6 +232,16 @@ exports.getSupportingFeatures = async (req, res) => {
     let digitalSignageResult = [];
     const digitalSignages = await digitalSignageService.findAll();
     console.log(digitalSignages);
+
+    let digitsign = {
+        supportingFeature50:0,
+        supportingFeature55value:0,
+        supportingFeature55:0,
+        supportingFeature50value:0,
+        supportingFeature65:0,
+        supportingFeature65value:0
+    }
+
     for (let i = 0; i < digitalSignages.length; i++) {
         if (digitalSignages[i]['digitalsign'] == '50') {
             ds50Total =Number(digitalSignages[i]['capex']) +Number(digitalSignages[i]['opex']);
@@ -250,18 +260,27 @@ exports.getSupportingFeatures = async (req, res) => {
             digitalSignageResult.push('Digital Signage  $'  + total)
 
             digitalSignageResult.push('Digital Signagevalue:'  + total)
+           
+            digitsign.supportingFeature50 = 'Digital Signage  $'  + total;
+            digitsign.supportingFeature50value = total;
         }
         if (req.body.digitalSignage['55']) {
             let total = Number(req.body.digitalSignage['55']) * Number(ds50Total);
             digitalSignageResult.push('Digital Signage ' + '$' + total)
             digitalSignageResult.push('Digital Signagevalue:'  + total)
+
+            digitsign.supportingFeature55 = 'Digital Signage  $'  + total;
+            digitsign.supportingFeature55value = total;
         }
         if (req.body.digitalSignage['65']) {
             let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
             digitalSignageResult.push('Digital Signage ' + '$' + total)
             digitalSignageResult.push('Digital Signagevalue:'  + total)
+
+            digitsign.supportingFeature65 = 'Digital Signage  $'  + total;
+            digitsign.supportingFeature65value = total;
         }
-        return res.send(digitalSignageResult);
+        return res.send(digitsign);
     }
 }
 
