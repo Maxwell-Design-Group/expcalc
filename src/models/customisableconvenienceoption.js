@@ -6,6 +6,18 @@ var customisableConvenienceOption = new Schema({
 custConvOption: {
         type: String
     },
+    capex: {
+        type: Number
+    },
+    opex: {
+        type: Number
+    },
+    Total: {
+        type: Number
+    },
+    pos:{
+        type: String 
+    }
 
 },{
     collection: 'customisableconvenienceoption'

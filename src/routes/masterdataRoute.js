@@ -22,6 +22,8 @@ module.exports = (app) => {
 
     app.get('/ccoption', masterdata.findCustomisableConvenienceOption);
 
+    app.get('/pos', masterdata.pos);
+
     app.get('/calculate', masterdata.calculecapexopex);
     
    }

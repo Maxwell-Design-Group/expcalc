@@ -7,6 +7,7 @@ const customisableConvenienceOption = require('../models/customisableconvenience
 const supportingFeature = require('../models/supportingfeature.js');
 const digitalSignage = require('../models/digitalsignage.js');
 const cateringDetail = require('../models/cateringdetail.js');
+const posData = require('../models/posdata.js');
 
 exports.findAll = (req, res) => {
 
@@ -20,6 +21,7 @@ exports.findAll = (req, res) => {
     var gcateringdetail=[];
     var gwth=[];
     var gccoption =[];
+    var gpos = [];
     
 
 	contractTypeList.find()
@@ -120,6 +122,18 @@ exports.findAll = (req, res) => {
         });
     });
 
+    //-----------------------------------------
+    posData.find()
+    .then(pos => {
+       
+        gpos = pos;
+        console.log(gpos);
+        
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
 
     //-----------------------------------------
     cateringDetail.find()
@@ -128,6 +142,7 @@ exports.findAll = (req, res) => {
 
         gcateringdetail = cateringdetail;
         console.log(gwth);
+        console.log(gpos);
         return res.status(200).send({
             success: true,        
             contracttypelist:gcontracttypelist,
@@ -140,7 +155,8 @@ exports.findAll = (req, res) => {
             cateringdetail:gcateringdetail,
 
             ccoption: gccoption,
-            wintheme:gwth 
+            wintheme: gwth ,
+            pos: gpos,
             
           });
     }).catch(err => {
@@ -208,6 +224,89 @@ exports.findCustomisableConvenienceOption = (req, res) => {
 
 
 
+exports.pos = (req, res) => {
+
+    var gpos = [];
+    var capex=  "0";
+    var opex= "0";
+    var total="0";
+        if (req.body.customisableconvenience === 'true'){
+         
+       
+        //-----------------------------------------
+        customisableConvenienceOption.find()
+        .then(c => {
+    
+            const ccoption = c.filter(e=>e.custConvOption===req.body.customisableconvenienceoption);
+           
+            if (ccoption!=null && ccoption.length>0){
+                ccoption.forEach(cco => {
+                    capex=  capex + Number( cco.capex);
+                    opex= opex + Number(cco.opex);
+                    total= total + (Number(cco.capex) + Number(cco.opex));
+    
+                   return res.send({ /// the block will return single only due to validation to chose single ccoption
+                      pos:{ 
+                        pos:cco.pos,
+                       capex:capex,
+                       opex:opex,
+                       total:total
+                   }
+                });
+                }); 
+            }
+            else{
+                return res.send("Data not found");
+            }      
+            
+            
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
+        });
+        
+     }
+     else {
+
+
+            //-----------------------------------------
+            posData.find()
+            .then(pos => {
+            
+                const poslist = pos.filter(e=>e.range1 <= req.body.population && e.range2 >= req.body.population);
+           
+                if (poslist!=null && poslist.length>0){
+                    poslist.forEach(l => {
+
+                        console.log(l);
+                    
+                    }); 
+
+                       return res.send({ 
+                        pos:poslist
+                                       });
+
+                }
+                else{
+                    return res.send("Data not found");
+                }
+                
+
+            }).catch(err => {
+                res.status(500).send({
+                    message: err.message || "Something went wrong."
+                });
+            });
+
+           // console.log('gpos details');
+            //console.log(gpos);
+        }
+
+        
+    
+}
+
 exports.calculecapexopex = (req, res) => {
     
      var master = req.body.master;
@@ -232,65 +331,97 @@ exports.calculecapexopex = (req, res) => {
      }
      else{
 
-        
+           var networkinstallation = [
+            {"Item":"I","Range1":"0","Range2":"100","capex":"54947.0","opex":"4200"},
+            {"Item":"N","Range1":"0","Range2":"100","capex":"9318.0","opex":"10800.0"},
+            {"Item":"I","Range1":"101","Range2":"200","capex":"60489.0","opex":"4200.0"},
+            {"Item":"N","Range1":"101","Range2":"200","capex":"12424.0","opex":"14400.0"},
+            {"Item":"I","Range1":"201","Range2":"300","capex":"549470.0","opex":"4200.0"},
+            {"Item":"N","Range1":"201","Range2":"300","capex":"9318.0","opex":"10800.0"},
+            {"Item":"I","Range1":"301","Range2":"400","capex":"549470.0","opex":"4200.0"},
+            {"Item":"N","Range1":"301","Range2":"400","capex":"9318.0","opex":"10800.0"},
+            {"Item":"I","Range1":"401","Range2":"499","capex":"54947.0","opex":"4200.0"},
+            {"Item":"N","Range1":"401","Range2":"499","capex":"9318.0","opex":"10800.0"},
+            {"Item":"I","Range1":"500","Range2":"550","capex":"54947.0","opex":"4200.0"},
+            {"Item":"N","Range1":"500","Range2":"550","capex":"9318.0","opex":"10800.0"},
+            {"Item":"I","Range1":"551","Range2":"600","capex":"54947.0","opex":"4200.0"},
+            {"Item":"N","Range1":"551","Range2":"600","capex":"9318.0","opex":"10800.0"},
+            {"Item":"I","Range1":"601","Range2":"1000","capex":"54947.0","opex":"4200.0"},
+            {"Item":"N","Range1":"601","Range2":"1000","capex":"9318.0","opex":"10800.0"},
+            {"Item":"I","Range1":"1001","Range2":"2000","capex":"54947.0","opex":"4200.0"},
+            {"Item":"N","Range1":"1001","Range2":"2000","capex":"9318.00","opex":"10800.0"},
+            {"Item":"I","Range1":"2001","Range2":"3000","capex":"549470.0","opex":"4200.0"},
+            {"Item":"N","Range1":"2001","Range2":"3000","capex":"9318.0","opex":"10800.0"},
+            {"Item":"I","Range1":"3001","Range2":"5000","capex":"54947.0","opex":"4200.0"},
+            {"Item":"N","Range1":"3001","Range2":"5000","capex":"9318.0","opex":"10800.0"}
+            ];
+
+            console.log(networkinstallation);
+
+            let netinst = networkinstallation.filter(e=>e.Range1 <= Number( req.body.population) && e.Range2 >= Number( req.body.population));
+                if(netinst!=null && netinst.length>0){
+
+                    netinst.forEach(item => {
+                        capex=  capex + Number( item.capex);
+                        opex= opex +  Number( item.opex);
+                        total= total + ( Number( item.capex) + Number( item.opex));  
+                    });
+                }
            
-           var stationlist =  req.body.station.split(',');
-     
+                if(req.body.station!=undefined && req.body.station!=""){
+                    var stationlist =  req.body.station.split(',');
 
-           stationlist.forEach(station => {
-            let stationdata = master.stationdata.filter(e=>e.station === station);
-            if(stationdata!=null && stationdata.length>0){
-                capex=  capex + Number( stationdata[0].capex);
-                opex= opex +  Number( stationdata[0].opex);
-                total= total + ( Number( stationdata[0].capex) + Number( stationdata[0].opex));
-            }
-         });
+                    stationlist.forEach(station => {
+                     let stationdata = master.stationdata.filter(e=>e.station === station);
+                     if(stationdata!=null && stationdata.length>0){
+                         capex=  capex + Number( stationdata[0].capex);
+                         opex= opex +  Number( stationdata[0].opex);
+                         total= total + ( Number( stationdata[0].capex) + Number( stationdata[0].opex));
+                     }
+                  });
+                }
+           
 
-        console.log(footprintdt);
-        console.log(posdatalist);
-
-        
 
      }
 
-     
-     const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  === req.body.digitalsignage);
+     if( req.body.digitalsignage!=undefined){
+        const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  === req.body.digitalsignage);
 
-     if(ydigitalsignage!=null && ydigitalsignage.length>0){
-        capex=  capex + Number( ydigitalsignage[0].capex) * Number(req.body.digitalsignageqty);
-        opex= opex + Number( ydigitalsignage[0].opex) * Number(req.body.digitalsignageqty);
-        total= total + ( (Number( ydigitalsignage[0].capex) * Number(req.body.digitalsignageqty)) + (Number( ydigitalsignage[0].opex) * Number(req.body.digitalsignageqty)));
+        if(ydigitalsignage!=null && ydigitalsignage.length>0){
+           capex=  capex + Number( ydigitalsignage[0].capex) * Number(req.body.digitalsignageqty);
+           opex= opex + Number( ydigitalsignage[0].opex) * Number(req.body.digitalsignageqty);
+           total= total + ( (Number( ydigitalsignage[0].capex) * Number(req.body.digitalsignageqty)) + (Number( ydigitalsignage[0].opex) * Number(req.body.digitalsignageqty)));
+        }
      }
-    
 
-    
-
-     var categorylist =  req.body.catering.split(',');
      
+     if(req.body.catering!=undefined){
+        var categorylist =  req.body.catering.split(',');
 
-     categorylist.forEach(category => {
-        let categorydata = master.cateringdetail.filter(e=>e.digitalsign===category);
-        if(categorydata!=null && categorydata.length>0){
-            capex=  capex + Number( categorydata[0].capex);
-            opex= opex +  Number( categorydata[0].opex);
-            total= total + ( Number( categorydata[0].capex) + Number( categorydata[0].opex));
-        }
-     });
+        categorylist.forEach(category => {
+           let categorydata = master.cateringdetail.filter(e=>e.digitalsign===category);
+           if(categorydata!=null && categorydata.length>0){
+               capex=  capex + Number( categorydata[0].capex);
+               opex= opex +  Number( categorydata[0].opex);
+               total= total + ( Number( categorydata[0].capex) + Number( categorydata[0].opex));
+           }
+        });
+     }
 
-    
+     if(req.body.wtproduct!=undefined){
+        var wtproductlist =  req.body.wtproduct.split(',');
 
-     var wtproductlist =  req.body.wtproduct.split(',');
-
-     wtproductlist.forEach(category => {
-        let wtproductdata = master.wtproduct.filter(e=>e.digitalsign===category);
-         
-        if(wtproductdata!=null && wtproductdata.length>0){
-            capex=  capex + Number( wtproductdata[0].capex);
-            opex= opex + Number( wtproductdata[0].opex);
-            total= total + ( Number( wtproductdata[0].capex) + Number( categorydata[0].opex));
-        }
-     });
-
+        wtproductlist.forEach(category => {
+           let wtproductdata = master.wtproduct.filter(e=>e.digitalsign===category);
+            
+           if(wtproductdata!=null && wtproductdata.length>0){
+               capex=  capex + Number( wtproductdata[0].capex);
+               opex= opex + Number( wtproductdata[0].opex);
+               total= total + ( Number( wtproductdata[0].capex) + Number( categorydata[0].opex));
+           }
+        });
+     }
      
 
      res.send(
