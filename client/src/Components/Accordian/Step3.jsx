@@ -207,58 +207,65 @@ const Step3 = () => {
   };
 
   const filteringFootButtons = () => {
-    if (clientDetails.population < 100) {
-      setFootButtons(
+
+       setFootButtons(
         footprintData.filter((data) => {
-          return data.name === "mobile" || data.name === "selfCheckout";
+          return data.name === "mobile" || data.name === "kiosk" || data.name === "selfCheckout" || data.name === "cashier" ;
         })
       );
-    }else if(clientDetails.population >= 101 && clientDetails.population <= 149){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "kiosk" || data.name === "selfCheckout";
-        }));
-    }else if(clientDetails.population >= 150 && clientDetails.population <= 200){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "mobile" 
-        }));
-    }else if(clientDetails.population >= 201 && clientDetails.population <= 300){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "cashier" || data.name === "selfCheckout";
-        }));
-    }else if(clientDetails.population >= 301 && clientDetails.population <= 499){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "kiosk" || data.name === "cashier";
-        }));
-    }else if(clientDetails.population >= 500 && clientDetails.population <= 550){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "cashier";
-        }));
-    }else if(clientDetails.population >= 551 && clientDetails.population <= 600){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "selfCheckout";
-        }));
-    }else if(clientDetails.population >= 601 && clientDetails.population <= 1000){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "kiosk";
-        }));
-    }else if(clientDetails.population >= 1001 && clientDetails.population <= 3000){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "mobile" || data.name === "kiosk";
-        }));
-    }else if(clientDetails.population >= 3001 && clientDetails.population <= 5000){
-      setFootButtons(
-        footprintData.filter((data) => {
-      return data.name === "mobile" || data.name === "kiosk" || data.name === "cashier";
-        }));
-    }
+
+    // if (clientDetails.population < 100) {
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //       return data.name === "mobile" || data.name === "selfCheckout";
+    //     })
+    //   );
+    // }else if(clientDetails.population >= 101 && clientDetails.population <= 149){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "kiosk" || data.name === "selfCheckout";
+    //     }));
+    // }else if(clientDetails.population >= 150 && clientDetails.population <= 200){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "mobile" 
+    //     }));
+    // }else if(clientDetails.population >= 201 && clientDetails.population <= 300){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "cashier" || data.name === "selfCheckout";
+    //     }));
+    // }else if(clientDetails.population >= 301 && clientDetails.population <= 499){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "kiosk" || data.name === "cashier";
+    //     }));
+    // }else if(clientDetails.population >= 500 && clientDetails.population <= 550){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "cashier";
+    //     }));
+    // }else if(clientDetails.population >= 551 && clientDetails.population <= 600){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "selfCheckout";
+    //     }));
+    // }else if(clientDetails.population >= 601 && clientDetails.population <= 1000){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "kiosk";
+    //     }));
+    // }else if(clientDetails.population >= 1001 && clientDetails.population <= 3000){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "mobile" || data.name === "kiosk";
+    //     }));
+    // }else if(clientDetails.population >= 3001 && clientDetails.population <= 5000){
+    //   setFootButtons(
+    //     footprintData.filter((data) => {
+    //   return data.name === "mobile" || data.name === "kiosk" || data.name === "cashier";
+    //     }));
+    // }
   };
 
   useEffect(() => {
