@@ -247,15 +247,19 @@ exports.getSupportingFeatures = async (req, res) => {
     if (req.body.digitalSignage) {
         if (req.body.digitalSignage['50']) {
             let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
-            digitalSignageResult.push('Digital Signage ' + '$' + total)
+            digitalSignageResult.push('Digital Signage  $'  + total)
+
+            digitalSignageResult.push('Digital Signagevalue:'  + total)
         }
         if (req.body.digitalSignage['55']) {
             let total = Number(req.body.digitalSignage['55']) * Number(ds50Total);
             digitalSignageResult.push('Digital Signage ' + '$' + total)
+            digitalSignageResult.push('Digital Signagevalue:'  + total)
         }
         if (req.body.digitalSignage['65']) {
             let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
             digitalSignageResult.push('Digital Signage ' + '$' + total)
+            digitalSignageResult.push('Digital Signagevalue:'  + total)
         }
         return res.send(digitalSignageResult);
     }
@@ -368,56 +372,23 @@ exports.calculecapexopex = (req, res) => {
      }
      else{
 
-           var networkinstallation = [
-            {"Item":"I","Range1":"0","Range2":"100","capex":"54947.0","opex":"4200"},
-            {"Item":"N","Range1":"0","Range2":"100","capex":"9318.0","opex":"10800.0"},
-            {"Item":"I","Range1":"101","Range2":"200","capex":"60489.0","opex":"4200.0"},
-            {"Item":"N","Range1":"101","Range2":"200","capex":"12424.0","opex":"14400.0"},
-            {"Item":"I","Range1":"201","Range2":"300","capex":"549470.0","opex":"4200.0"},
-            {"Item":"N","Range1":"201","Range2":"300","capex":"9318.0","opex":"10800.0"},
-            {"Item":"I","Range1":"301","Range2":"400","capex":"549470.0","opex":"4200.0"},
-            {"Item":"N","Range1":"301","Range2":"400","capex":"9318.0","opex":"10800.0"},
-            {"Item":"I","Range1":"401","Range2":"499","capex":"54947.0","opex":"4200.0"},
-            {"Item":"N","Range1":"401","Range2":"499","capex":"9318.0","opex":"10800.0"},
-            {"Item":"I","Range1":"500","Range2":"550","capex":"54947.0","opex":"4200.0"},
-            {"Item":"N","Range1":"500","Range2":"550","capex":"9318.0","opex":"10800.0"},
-            {"Item":"I","Range1":"551","Range2":"600","capex":"54947.0","opex":"4200.0"},
-            {"Item":"N","Range1":"551","Range2":"600","capex":"9318.0","opex":"10800.0"},
-            {"Item":"I","Range1":"601","Range2":"1000","capex":"54947.0","opex":"4200.0"},
-            {"Item":"N","Range1":"601","Range2":"1000","capex":"9318.0","opex":"10800.0"},
-            {"Item":"I","Range1":"1001","Range2":"2000","capex":"54947.0","opex":"4200.0"},
-            {"Item":"N","Range1":"1001","Range2":"2000","capex":"9318.00","opex":"10800.0"},
-            {"Item":"I","Range1":"2001","Range2":"3000","capex":"549470.0","opex":"4200.0"},
-            {"Item":"N","Range1":"2001","Range2":"3000","capex":"9318.0","opex":"10800.0"},
-            {"Item":"I","Range1":"3001","Range2":"5000","capex":"54947.0","opex":"4200.0"},
-            {"Item":"N","Range1":"3001","Range2":"5000","capex":"9318.0","opex":"10800.0"}
-            ];
-
-            console.log(networkinstallation);
-
-            let netinst = networkinstallation.filter(e=>e.Range1 <= Number( req.body.population) && e.Range2 >= Number( req.body.population));
-                if(netinst!=null && netinst.length>0){
-
-                    netinst.forEach(item => {
-                        capex=  capex + Number( item.capex);
-                        opex= opex +  Number( item.opex);
-                        total= total + ( Number( item.capex) + Number( item.opex));  
-                    });
-                }
            
-                if(req.body.station!=undefined && req.body.station!=""){
-                    var stationlist =  req.body.station.split(',');
+        const pos = master.data.pos.filter(e=>e.range1 <= req.body.population && e.range2 >= req.body.population);
+        pos.forEach(p => {
+          if(p!=null && p.length>0){
+            capex=  capex + Number( p.capex) 
+            opex= opex + Number( p.opex) 
+            total= total +  Number( p.capex) ;
 
-                    stationlist.forEach(station => {
-                     let stationdata = master.stationdata.filter(e=>e.station === station);
-                     if(stationdata!=null && stationdata.length>0){
-                         capex=  capex + Number( stationdata[0].capex);
-                         opex= opex +  Number( stationdata[0].opex);
-                         total= total + ( Number( stationdata[0].capex) + Number( stationdata[0].opex));
-                     }
-                  });
-                }
-           
+            capex=  capex + Number( p.icapex) 
+            opex= opex + Number( p.iopex) 
+            total= total +  Number( p.icapex) +Number( p.iopex);
+
+            capex=  capex + Number( p.ncapex) 
+            opex= opex + Number( p.nopex) 
+            total= total +  Number( p.ncapex) +Number( p.nopex);
+        }
+      });
 
 
      }
