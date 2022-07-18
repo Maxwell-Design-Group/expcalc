@@ -22,9 +22,9 @@ module.exports = (app) => {
 
     app.get('/ccoption', masterdata.findCustomisableConvenienceOption);
 
-    app.get('/pos', masterdata.pos);
+    app.post('/pos', masterdata.pos);
 
-    app.get('/supportingfeatures', masterdata.getSupportingFeatures);
+    app.post('/supportingfeatures', masterdata.getSupportingFeatures);
 
     app.get('/calculate', masterdata.calculecapexopex);
     
