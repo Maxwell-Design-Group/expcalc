@@ -139,7 +139,7 @@ const Step1 = (props) => {
                 borderRadius: "25px",
 
                 height: "45px",
-                padding: "10px",
+                padding: "10px 15px",
                 width: "100%",
               }}
             />
@@ -159,10 +159,14 @@ const Step1 = (props) => {
             style={{
               border: "1px solid #D0CDCD",
               borderRadius: "25px",
-
               height: "45px",
-              // padding: "10px",
+              padding: "10px 15px",
               width: "100%",
+              borderRight: "16px solid transparent",
+              borderLeft: "1px solid transparent",
+              borderTop: "1px solid transparent",
+              borderBottom: "1px solid transparent",
+              outline: "1px solid rgb(208, 205, 205)",
             }}
           >
             <option value="" selected>
@@ -192,10 +196,14 @@ const Step1 = (props) => {
             style={{
               border: "1px solid #D0CDCD",
               borderRadius: "25px",
-
               height: "45px",
-
+              padding: "10px 15px",
               width: "100%",
+              borderRight: "16px solid transparent",
+              borderLeft: "1px solid transparent",
+              borderTop: "1px solid transparent",
+              borderBottom: "1px solid transparent",
+              outline: "1px solid rgb(208, 205, 205)",
             }}
           >
             <option value="" selected>

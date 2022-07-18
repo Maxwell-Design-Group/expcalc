@@ -526,7 +526,7 @@ div label input {
 .stepOne .step_edit {
   color: #000;
   border-left: 11px solid #4bae4f;
-  background: #edeaf1 !important;
+  /* background: #edeaf1 !important; */
 }
 
 /* Style the header */
