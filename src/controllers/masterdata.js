@@ -8,6 +8,7 @@ const supportingFeature = require('../models/supportingfeature.js');
 const digitalSignage = require('../models/digitalsignage.js');
 const cateringDetail = require('../models/cateringdetail.js');
 const posData = require('../models/posdata.js');
+const digitalSignageService = require('../services/digital-signage.service');
 
 exports.findAll = (req, res) => {
 
@@ -223,6 +224,42 @@ exports.findCustomisableConvenienceOption = (req, res) => {
 }
 
 
+
+exports.getSupportingFeatures = async (req, res) => {
+    let ds50Total = 0;
+    let ds55Total = 0;
+    let ds65Total = 0;
+    let digitalSignageResult = [];
+    const digitalSignages = await digitalSignageService.findAll();
+    console.log(digitalSignages);
+    for (let i = 0; i < digitalSignages.length; i++) {
+        if (digitalSignages[i]['digitalsign'] == '50') {
+            ds50Total =Number(digitalSignages[i]['capex']) +Number(digitalSignages[i]['opex']);
+        }
+        else if (digitalSignages[i]['digitalsign'] == '55') {
+            ds55Total =Number(digitalSignages[i]['capex']) +Number(digitalSignages[i]['opex']);
+        }
+        else if (digitalSignages[i]['digitalsign'] == '65') {
+            ds65Total =Number(digitalSignages[i]['capex']) +Number(digitalSignages[i]['opex']);
+        }
+    }
+
+    if (req.body.digitalSignage) {
+        if (req.body.digitalSignage['50']) {
+            let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
+            digitalSignageResult.push('Digital Signage ' + '$' + total)
+        }
+        if (req.body.digitalSignage['55']) {
+            let total = Number(req.body.digitalSignage['55']) * Number(ds50Total);
+            digitalSignageResult.push('Digital Signage ' + '$' + total)
+        }
+        if (req.body.digitalSignage['65']) {
+            let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
+            digitalSignageResult.push('Digital Signage ' + '$' + total)
+        }
+        return res.send(digitalSignageResult);
+    }
+}
 
 exports.pos = (req, res) => {
 
