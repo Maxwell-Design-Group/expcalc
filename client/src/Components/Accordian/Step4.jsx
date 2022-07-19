@@ -9,6 +9,7 @@ import {
 import ExperienceService from "../../Services/ExperienceService";
 import calculatedataService from "../../Services/calculatedataService";
 import "./step4.css";
+import Alert from "../Alert/Alert";
 
 const Step4 = (props) => {
   const Experience = new ExperienceService();
@@ -94,7 +95,7 @@ const Step4 = (props) => {
         }
       }
     }
-    calculation();
+    // calculation();
   };
 
   tableData.forEach((row, index) => {
@@ -127,60 +128,70 @@ const Step4 = (props) => {
     dispatch(prevAccordionOpen(id));
   };
 
+  function calculation() {
+    var digiSign = [];
 
-  
-function calculation() {
+    if (digitalSinage50 > 0) {
+      digiSign.push(digitalSinage50);
+    } else if (digitalSinage55 > 0) {
+      digiSign.push(digitalSinage55);
+    } else if (digitalSinage65 > 0) {
+      digiSign.push(digitalSinage65);
+    }
 
-  var digiSign = [];
-
-  if (digitalSinage50>0){
-    digiSign.push(digitalSinage50);
+    let calcObj = {
+      population: clientDetails.population,
+      wintheme: clientDetails.wintheme,
+      customisableconvenience: clientDetails.yesOrNo,
+      customisableconvenienceoption: clientDetails.yesOption,
+      mobile: clientDetails.mobile,
+      kiosk: clientDetails.kiosk,
+      selfcheckout: clientDetails.selfCheckout,
+      cashier: clientDetails.cashier,
+      station: clientDetails.selectedNoOptions,
+      digitalsignage: digiSign,
+      digitalsignageqty: undefined,
+      catering: undefined,
+      pos: undefined,
+      suportingfeature: userSelectedFeatures,
+      wtproduct: userSelectedProducts,
+      master: masterData,
+    };
+    calculatedata.getcalculation(calcObj);
   }
-  else if (digitalSinage55>0){
-    digiSign.push(digitalSinage55);
-  }
-  else if (digitalSinage65>0){
-    digiSign.push(digitalSinage65);
-  }
-
-  let calcObj ={
-    "population":clientDetails.population,  
-    "wintheme":clientDetails.wintheme,
-    "customisableconvenience":clientDetails.yesOrNo,
-    "customisableconvenienceoption":clientDetails.yesOption,
-    "mobile":clientDetails.mobile,
-    "kiosk":clientDetails.kiosk,
-    "selfcheckout":clientDetails.selfCheckout,
-    "cashier":clientDetails.cashier,
-    "station":clientDetails.selectedNoOptions,
-    "digitalsignage": digiSign,
-    "digitalsignageqty":undefined,
-    "catering":undefined,
-    "pos":undefined,
-    "suportingfeature":userSelectedFeatures,
-    "wtproduct":userSelectedProducts,
-    "master":masterData
-  }
-  calculatedata.getcalculation(calcObj);
-  
-}
-
-
 
   const selectNoOption = (id) => {
     let catering = "";
-    if (features.length > 0) {
-      catering = features.toString();
+    console.log("digitalSinage50 ", digitalSinage50);
+    console.log("digitalSinage55 ", digitalSinage55);
+    console.log("digitalSinage65 ", digitalSinage65);
+    console.log("features ", features);
+    if (
+      digitalSinage50 == "" &&
+      digitalSinage55 == "" &&
+      digitalSinage65 == ""
+    ) {
+      Alert.error(
+        "It looks like you are not requesting any digital signage or catering for this client.  Is that correct?"
+      );
+    } else if (features.length == 0) {
+      Alert.error(
+        "It looks like you are not requesting any digital signage or catering for this client.  Is that correct?"
+      );
+    } else {
+      if (features.length > 0) {
+        catering = features.toString();
+      }
+      let obj = {
+        ...clientDetails,
+        digitalsignage50: digitalSinage50,
+        digitalsignage55: digitalSinage55,
+        digitalsignage65: digitalSinage65,
+        catering: catering,
+      };
+      Experience.sendData(obj, id, clientDetails);
+      // calculation();
     }
-    let obj = {
-      ...clientDetails,
-      digitalsignage50: digitalSinage50,
-      digitalsignage55: digitalSinage55,
-      digitalsignage65: digitalSinage65,
-      catering: catering,
-    };
-    Experience.sendData(obj, id, clientDetails);
-    calculation();
   };
 
   return (
