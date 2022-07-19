@@ -22,7 +22,15 @@ const Resultset = () => {
             <button
               className="dashboard-resultset-email-btn"
               type="button"
-              class="next_btn btn btn-contained btn-small"
+              // class="result_next_btn btn btn-contained btn-small"
+              style={{
+                width: "265px",
+                height: "48px",
+                background: "#000000 0% 0% no-repeat padding-box",
+                borderRadius: "24px",
+                opacity: "1",
+                color: "#FFFFFF",
+              }}
             >
               EMAIL ME THE ESTIMATES
             </button>

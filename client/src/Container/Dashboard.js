@@ -9,6 +9,7 @@ import AccordionComponent from "../Components/Accordian/AccordionComponent";
 import Calculator from "../Components/Calculator/Calculator";
 import { useDispatch, useSelector } from "react-redux";
 import { getMasterData } from "../Redux/Actions";
+import Resultset from "../Components/ResultSet/Resultset";
 
 const mobileViewSize = 600;
 
@@ -166,6 +167,14 @@ function Dashboard() {
                 </div>
               ) : (
                 <Calculator />
+              )}
+
+              {selectedAccordion === 5 ? (
+                <div style={{ margin: "1em 0 0 0 " }}>
+                  <Resultset />
+                </div>
+              ) : (
+                ""
               )}
             </Col>
           )}

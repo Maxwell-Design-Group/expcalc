@@ -3,7 +3,11 @@ import Store from "../Redux/Store";
 import Config from "../Config/Config.json";
 
 import Alert from "../Components/Alert/Alert";
-import { completedSteps, nextAccordionOpen } from "../Redux/Actions";
+import {
+  completedSteps,
+  nextAccordionOpen,
+  setClientDetails,
+} from "../Redux/Actions";
 class SupportingQuestionService {
   sendData(data, accordianId, clientDetails) {
     axios
@@ -14,8 +18,9 @@ class SupportingQuestionService {
       .then((response) => {
         console.log("response", response);
         // Alert.success("WinthemeDetail added successfully");
+        Store.dispatch(setClientDetails(response.data));
         Store.dispatch(completedSteps(accordianId));
-        Store.dispatch(nextAccordionOpen(accordianId + 1));
+        Store.dispatch(nextAccordionOpen(accordianId));
       })
       .catch((error) => { });
   }
