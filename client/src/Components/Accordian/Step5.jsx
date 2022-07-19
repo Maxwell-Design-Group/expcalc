@@ -39,9 +39,9 @@ const Step5 = (props) => {
   //   { label: "Micros $5345", value: "Micros" },
   // ];
   let supportingFeatureData = [];
-  if (masterData.supportingfeature) {
-    supportingFeatureData = masterData.supportingfeature;
-  }
+  // if (masterData.supportingfeature) {
+  //   supportingFeatureData = masterData.supportingfeature;
+  // }
   console.log("posDetails ", posDetails);
   console.log("supportingFeatureDetails ", supportingFeatureDetails);
   useEffect(() => {
@@ -58,20 +58,22 @@ const Step5 = (props) => {
   };
 
   const selectNoOption = (id) => {
+    console.log("id ", id);
     let suportingfeature = "";
-    // if (features.length > 0) {
-    //   suportingfeature = features.toString();
-    // }
+    if (userSelectedFeatures.length > 0) {
+      suportingfeature = userSelectedFeatures.toString();
+    }
     let wtproduct = "";
-    // if (features.length > 0) {
-    //   wtproduct = features.toString();
-    // }
+    if (userSelectedProducts.length > 0) {
+      wtproduct = userSelectedProducts.toString();
+    }
     let obj = {
       ...clientDetails,
       pos: pos,
       suportingfeature: suportingfeature,
       wtproduct: wtproduct,
     };
+    console.log("obj ", obj);
     SupportingQuestion.sendData(obj, id, clientDetails);
   };
   const handleChange = (e, rowData, index) => {
@@ -95,12 +97,12 @@ const Step5 = (props) => {
     const { checked } = e.target;
     let features = userSelectedFeatures;
     if (checked === true) {
-      features.push(rowData.Name);
+      features.push(rowData);
 
       setUserSelectedFeatures(features);
     } else {
       for (let i = 0; i < features.length; i++) {
-        if (features[i] === rowData.Name) {
+        if (features[i] === rowData) {
           features.splice(i, 1);
 
           setUserSelectedFeatures(features);
@@ -136,21 +138,24 @@ const Step5 = (props) => {
     });
   }
 
-  supportingFeatureData.forEach((feature, index) => {
-    supportingFeatures.push(
-      <div class="fs_button sports">
-        <label>
-          <input
-            type="checkbox"
-            value={feature.label}
-            defaultChecked={featureChecked}
-            onChange={(e) => handleChangeFeatures(e, feature, index)}
-          />
-          <span> {feature.Name + " " + "$" + feature.value}</span>
-        </label>
-      </div>
-    );
-  });
+  if (supportingFeatureDetails.length > 0) {
+    supportingFeatureData = supportingFeatureDetails;
+    supportingFeatureData.forEach((feature, index) => {
+      supportingFeatures.push(
+        <div class="fs_button sports">
+          <label>
+            <input
+              type="checkbox"
+              value={feature.label}
+              defaultChecked={featureChecked}
+              onChange={(e) => handleChangeFeatures(e, feature, index)}
+            />
+            <span>{feature}</span>
+          </label>
+        </div>
+      );
+    });
+  }
 
   const handlePosChange = (ev) => {
     //save your value here with state variable

@@ -1092,6 +1092,7 @@ div label input {
 .pos_btn input[type="radio"] {
   opacity: 0.011;
   z-index: 100;
+  cursor: pointer;
 }
 
 .pos_btn input[type="radio"]:checked+label {
@@ -1196,7 +1197,7 @@ div label input {
 .fs_button label {
   float: left;
   cursor: pointer;
-  width: 6em;
+  width: auto;
   height: 3em;
 }
 
@@ -1216,7 +1217,7 @@ div label input {
 .fs_button label input+span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
-  width: 102px;
+  width: auto;
   height: 43px;
   padding: 5px 12px;
 }
