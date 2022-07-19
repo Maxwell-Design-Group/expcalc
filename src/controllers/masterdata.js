@@ -290,8 +290,7 @@ exports.getSupportingFeatures = async (req, res) => {
         }
         if (req.body.digitalSignage['55']) {
             let total = Number(req.body.digitalSignage['55']) * Number(ds50Total);
-            // digitalSignageResult.push('Digital Signage ' + '$' + total)
-            // digitalSignageResult.push('Digital Signagevalue:'  + total)
+            
 
             digitsign55.supportingFeature55 = 'Digital Signage  $' + total;
             digitsign55.supportingFeature55value = total;
@@ -304,13 +303,21 @@ exports.getSupportingFeatures = async (req, res) => {
             digitsign65.supportingFeature65 = 'Digital Signage  $' + total;
             digitsign65.supportingFeature65value = total;
 
-            digitalSignageResult.push(digitsign65);
+            digitalSignageResult.push('Digital Signage65 $'  + total);
         }
 
 
 
-        return res.send(digitalSignageResult);
+       
     }
+
+
+    
+
+    return res.send(digitalSignageResult);
+    
+
+
 }
 
 exports.pos = (req, res) => {

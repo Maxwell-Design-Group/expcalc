@@ -95,7 +95,7 @@ const alaCarteData = [
 
 const Step3 = () => {
   const DiningExperience = new DiningExperienceService();
-  const calculatedata = new calculatedataService()
+  const calculatedata = new calculatedataService();
   const [yesOrNo, setYesOrNo] = useState(false);
   const [yesOption, setYesOption] = useState("");
   const [selectedFootprint, setSelectedFootprint] = useState([]);
@@ -106,7 +106,7 @@ const Step3 = () => {
     selfCheckout: false,
     cashier: false,
   });
-  
+
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
@@ -115,8 +115,6 @@ const Step3 = () => {
   const isMatchMd = useMediaQuery(theme.breakpoints.down("md"));
   const { clientDetails } = useSelector((state) => state.Reducer);
   const { mobile, kiosk, selfCheckout, cashier } = selectedFootprintBool;
-
-
 
   let yesDatas = [];
   if (masterData.ccoption) {
@@ -178,14 +176,15 @@ const Step3 = () => {
   };
 
   const selectNoOption = (id) => {
- let station = "";
-  if (selectedFootprint.length === 0) {
+    let station = "";
+    if (selectedFootprint.length === 0) {
       Alert.error("select one option from Footprint");
     } else {
       if (selectedNoOptions.length > 0) {
         station = selectedNoOptions.toString();
       }
       let obj = {
+        ...clientDetails,
         customisableconvenience: yesOrNo,
         mobile: mobile,
         kiosk: kiosk,
@@ -198,32 +197,31 @@ const Step3 = () => {
   };
 
   function calculation() {
-    let calcObj ={
-      "population":clientDetails.population,  
-      "wintheme":clientDetails.wintheme,
-      "customisableconvenience":yesOrNo,
-      "customisableconvenienceoption":yesOption,
-      "mobile":selectedFootprintBool.mobile,
-      "kiosk":selectedFootprintBool.kiosk,
-      "selfcheckout":selectedFootprintBool.selfCheckout,
-      "cashier":selectedFootprintBool.cashier,
-      "station":selectedNoOptions,
-      "digitalsignage": undefined,
-      "digitalsignageqty":undefined,
-      "catering":undefined,
-      "pos":undefined,
-      "suportingfeature":undefined,
-      "wtproduct":undefined,
-      "master":masterData
-    }
+    let calcObj = {
+      population: clientDetails.population,
+      wintheme: clientDetails.wintheme,
+      customisableconvenience: yesOrNo,
+      customisableconvenienceoption: yesOption,
+      mobile: selectedFootprintBool.mobile,
+      kiosk: selectedFootprintBool.kiosk,
+      selfcheckout: selectedFootprintBool.selfCheckout,
+      cashier: selectedFootprintBool.cashier,
+      station: selectedNoOptions,
+      digitalsignage: undefined,
+      digitalsignageqty: undefined,
+      catering: undefined,
+      pos: undefined,
+      suportingfeature: undefined,
+      wtproduct: undefined,
+      master: masterData,
+    };
     calculatedata.getcalculation(calcObj);
-    
   }
 
   useEffect(() => {
-    calculation()
+    calculation();
   }, [yesOption]);
-  
+
   return (
     <>
       {isMatchSm || isMatchMd ? (
@@ -300,7 +298,7 @@ const Step3 = () => {
                   <Typography variant="subtitle1">Next</Typography>
                 </Button>
               </Row>
-              <br/>
+              <br />
             </>
           ) : (
             <>
@@ -457,7 +455,7 @@ const Step3 = () => {
                   <Typography variant="subtitle1">Next</Typography>
                 </Button>
               </Row>
-              <br/>
+              <br />
             </>
           )}
         </>
