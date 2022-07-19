@@ -8,3 +8,4 @@ exports.findAll = async () => {
         return null;
     }
 }
+

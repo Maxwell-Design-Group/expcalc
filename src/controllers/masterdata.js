@@ -9,218 +9,219 @@ const digitalSignage = require('../models/digitalsignage.js');
 const cateringDetail = require('../models/cateringdetail.js');
 const posData = require('../models/posdata.js');
 const digitalSignageService = require('../services/digital-signage.service');
+const cateringService = require('../services/catering.service');
 
 exports.findAll = async (req, res) => {
 
     var gcontracttypelist = [];
-    var gindustrytype=[];
-    var gstationList=[];
-    var gwtproduct=[];
+    var gindustrytype = [];
+    var gstationList = [];
+    var gwtproduct = [];
 
-    var gsupportingfeature=[];
-    var gdigitalsignage=[];
-    var gcateringdetail=[];
-    var gwth=[];
-    var gccoption =[];
+    var gsupportingfeature = [];
+    var gdigitalsignage = [];
+    var gcateringdetail = [];
+    var gwth = [];
+    var gccoption = [];
     var gpos = [];
-    
 
-	await contractTypeList.find()
-    .then(contracttypelist => {
-       
-       gcontracttypelist=contracttypelist;
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+
+    await contractTypeList.find()
+        .then(contracttypelist => {
+
+            gcontracttypelist = contracttypelist;
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
     //-----------------------------------------
     await industryType.find()
-    .then(industrytype => {
-       
-        gindustrytype = industrytype;
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(industrytype => {
+
+            gindustrytype = industrytype;
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
     //-----------------------------------------
     await stationList.find()
-    .then(stationList => {
-       
-        gstationList = stationList;
-       
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(stationList => {
+
+            gstationList = stationList;
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
     //-----------------------------------------
     await wtProduct.find()
-    .then(wtproduct => {
-       
-        gwtproduct = wtproduct;
-       
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(wtproduct => {
+
+            gwtproduct = wtproduct;
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
-    
+
 
     //-----------------------------------------
     await winTheme.find()
-    .then(wintheme => {
-       
-        gwth = wintheme;
-       
-       
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(wintheme => {
+
+            gwth = wintheme;
+
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
     //-----------------------------------------
     await customisableConvenienceOption.find()
-    .then(c => {
-       
-        gccoption = c;       
+        .then(c => {
 
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+            gccoption = c;
+
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
     //-----------------------------------------
     await supportingFeature.find()
-    .then(supportingfeature => {
-       
-        gsupportingfeature = supportingfeature;
-       
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(supportingfeature => {
+
+            gsupportingfeature = supportingfeature;
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
     //-----------------------------------------
     await digitalSignage.find()
-    .then(digitalsignage => {
-       
-        gdigitalsignage = digitalsignage;
-        console.log(gdigitalsignage);
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(digitalsignage => {
+
+            gdigitalsignage = digitalsignage;
+            console.log(gdigitalsignage);
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
     //-----------------------------------------
     await posData.find()
-    .then(pos => {
-       
-        gpos = pos;
-        console.log(gpos);
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(pos => {
+
+            gpos = pos;
+            console.log(gpos);
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
     //-----------------------------------------
     await cateringDetail.find()
-    .then(cateringdetail => {
-       
+        .then(cateringdetail => {
 
-        gcateringdetail = cateringdetail;
-        console.log(gwth);
-        console.log(gpos);
-        return res.status(200).send({
-            success: true,        
-            contracttypelist:gcontracttypelist,
-            industrytype: gindustrytype,
-            stationdata:gstationList,
-            wtproduct: gwtproduct, 
 
-            supportingfeature:gsupportingfeature,
-            digitalsignage:gdigitalsignage,
-            cateringdetail:gcateringdetail,
+            gcateringdetail = cateringdetail;
+            console.log(gwth);
+            console.log(gpos);
+            return res.status(200).send({
+                success: true,
+                contracttypelist: gcontracttypelist,
+                industrytype: gindustrytype,
+                stationdata: gstationList,
+                wtproduct: gwtproduct,
 
-            ccoption: gccoption,
-            wintheme: gwth ,
-            pos: gpos,
-            
-          });
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+                supportingfeature: gsupportingfeature,
+                digitalsignage: gdigitalsignage,
+                cateringdetail: gcateringdetail,
+
+                ccoption: gccoption,
+                wintheme: gwth,
+                pos: gpos,
+
+            });
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 
-    
+
 };
 
 exports.findContractTypeList = (req, res) => {
 
     contractTypeList.find()
-    .then(contracttypelist => {
-        res.send(contracttypelist);
-       
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(contracttypelist => {
+            res.send(contracttypelist);
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 }
 
 
 exports.findTndustryType = (req, res) => {
     industryType.find()
-    .then(industrytype => {
-        res.send(industrytype);
-        
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(industrytype => {
+            res.send(industrytype);
+
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 }
 
 
 exports.findwinTheme = (req, res) => {
     winTheme.find()
-    .then(wintheme => {
-        res.send(wintheme);       
-       
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(wintheme => {
+            res.send(wintheme);
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 }
 
 exports.findCustomisableConvenienceOption = (req, res) => {
     customisableConvenienceOption.find()
-    .then(c => {
-       
-              
-        res.send(c); 
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
+        .then(c => {
+
+
+            res.send(c);
+
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
         });
-    });
 }
 
 
@@ -229,38 +230,50 @@ exports.getSupportingFeatures = async (req, res) => {
     let ds50Total = 0;
     let ds55Total = 0;
     let ds65Total = 0;
+
     let digitalSignageResult = [];
+    let result=[];
     const digitalSignages = await digitalSignageService.findAll();
-    console.log(digitalSignages);
+    const catering = await cateringService.findAll();
 
     let digitsign50 = {
-        supportingFeature50:0,
-        supportingFeature55value:0,
-        
+        supportingFeature50: 0,
+        supportingFeature55value: 0,
+
     }
 
     let digitsign55 = {
-       
-        supportingFeature55:0,
-        supportingFeature50value:0,
-        
+
+        supportingFeature55: 0,
+        supportingFeature50value: 0,
+
     }
 
     let digitsign65 = {
-        
-        supportingFeature65:0,
-        supportingFeature65value:0
+
+        supportingFeature65: 0,
+        supportingFeature65value: 0
     }
 
     for (let i = 0; i < digitalSignages.length; i++) {
         if (digitalSignages[i]['digitalsign'] == '50') {
-            ds50Total =Number(digitalSignages[i]['capex']) +Number(digitalSignages[i]['opex']);
+            ds50Total = Number(digitalSignages[i]['capex']) + Number(digitalSignages[i]['opex']);
         }
         else if (digitalSignages[i]['digitalsign'] == '55') {
-            ds55Total =Number(digitalSignages[i]['capex']) +Number(digitalSignages[i]['opex']);
+            ds55Total = Number(digitalSignages[i]['capex']) + Number(digitalSignages[i]['opex']);
         }
         else if (digitalSignages[i]['digitalsign'] == '65') {
-            ds65Total =Number(digitalSignages[i]['capex']) +Number(digitalSignages[i]['opex']);
+            ds65Total = Number(digitalSignages[i]['capex']) + Number(digitalSignages[i]['opex']);
+        }
+    }
+    if (req.body.catering) {
+        for (let i = 0; i < catering.length; i++) {
+            for (let j = 0; j < req.body.catering; j++) {
+                if (catering[i].digitalsign == req.body.catering[j]) {
+                    let total = Number(catering[i].capex) + Number(catering[i].opex);
+                    //let outPutParam={'supportingFeatur}
+                }
+            }
         }
     }
 
@@ -270,8 +283,8 @@ exports.getSupportingFeatures = async (req, res) => {
             // digitalSignageResult.push('Digital Signage  $'  + total)
 
             // digitalSignageResult.push('Digital Signagevalue:'  + total)
-           
-            digitsign50.supportingFeature50 = 'Digital Signage  $'  + total;
+
+            digitsign50.supportingFeature50 = 'Digital Signage  $' + total;
             digitsign50.supportingFeature50value = total;
             digitalSignageResult.push(digitsign50);
         }
@@ -280,21 +293,21 @@ exports.getSupportingFeatures = async (req, res) => {
             // digitalSignageResult.push('Digital Signage ' + '$' + total)
             // digitalSignageResult.push('Digital Signagevalue:'  + total)
 
-            digitsign55.supportingFeature55 = 'Digital Signage  $'  + total;
+            digitsign55.supportingFeature55 = 'Digital Signage  $' + total;
             digitsign55.supportingFeature55value = total;
             digitalSignageResult.push(digitsign55);
         }
         if (req.body.digitalSignage['65']) {
             let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
-            
 
-            digitsign65.supportingFeature65 = 'Digital Signage  $'  + total;
+
+            digitsign65.supportingFeature65 = 'Digital Signage  $' + total;
             digitsign65.supportingFeature65value = total;
 
             digitalSignageResult.push(digitsign65);
         }
 
-        
+
 
         return res.send(digitalSignageResult);
     }
@@ -303,71 +316,38 @@ exports.getSupportingFeatures = async (req, res) => {
 exports.pos = (req, res) => {
 
     var gpos = [];
-    var capex=  "0";
-    var opex= "0";
-    var total="0";
-        if (req.body.customisableconvenience === 'true'){
-         
-       
+    var capex = "0";
+    var opex = "0";
+    var total = "0";
+    if (req.body.customisableconvenience === 'true') {
+
+
         //-----------------------------------------
         customisableConvenienceOption.find()
-        .then(c => {
-    
-            const ccoption = c.filter(e=>e.custConvOption===req.body.customisableconvenienceoption);
-           
-            if (ccoption!=null && ccoption.length>0){
-                ccoption.forEach(cco => {
-                    capex=  capex + Number( cco.capex);
-                    opex= opex + Number(cco.opex);
-                    total= total + (Number(cco.capex) + Number(cco.opex));
-    
-                   return res.send({ /// the block will return single only due to validation to chose single ccoption
-                      pos:{ 
-                        pos:cco.pos,
-                       capex:capex,
-                       opex:opex,
-                       total:total
-                   }
-                });
-                }); 
-            }
-            else{
-                return res.send("Data not found");
-            }      
-            
-            
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Something went wrong."
-            });
-        });
-        
-     }
-     else {
+            .then(c => {
 
+                const ccoption = c.filter(e => e.custConvOption === req.body.customisableconvenienceoption);
 
-            //-----------------------------------------
-            posData.find()
-            .then(pos => {
-            
-                const poslist = pos.filter(e=>e.range1 <= req.body.population && e.range2 >= req.body.population);
-           
-                if (poslist!=null && poslist.length>0){
-                    poslist.forEach(l => {
+                if (ccoption != null && ccoption.length > 0) {
+                    ccoption.forEach(cco => {
+                        capex = capex + Number(cco.capex);
+                        opex = opex + Number(cco.opex);
+                        total = total + (Number(cco.capex) + Number(cco.opex));
 
-                        console.log(l);
-                    
-                    }); 
-
-                       return res.send({ 
-                        pos:poslist
-                                       });
-
+                        return res.send({ /// the block will return single only due to validation to chose single ccoption
+                            pos: {
+                                pos: cco.pos,
+                                capex: capex,
+                                opex: opex,
+                                total: total
+                            }
+                        });
+                    });
                 }
-                else{
+                else {
                     return res.send("Data not found");
                 }
-                
+
 
             }).catch(err => {
                 res.status(500).send({
@@ -375,104 +355,137 @@ exports.pos = (req, res) => {
                 });
             });
 
-           // console.log('gpos details');
-            //console.log(gpos);
-        }
+    }
+    else {
 
-        
-    
+
+        //-----------------------------------------
+        posData.find()
+            .then(pos => {
+
+                const poslist = pos.filter(e => e.range1 <= req.body.population && e.range2 >= req.body.population);
+
+                if (poslist != null && poslist.length > 0) {
+                    poslist.forEach(l => {
+
+                        console.log(l);
+
+                    });
+
+                    return res.send({
+                        pos: poslist
+                    });
+
+                }
+                else {
+                    return res.send("Data not found");
+                }
+
+
+            }).catch(err => {
+                res.status(500).send({
+                    message: err.message || "Something went wrong."
+                });
+            });
+
+        // console.log('gpos details');
+        //console.log(gpos);
+    }
+
+
+
 }
 
 exports.calculecapexopex = (req, res) => {
-    
-     var master = req.body.master;
+
+    var master = req.body.master;
 
     // console.log(master);
-     var capex=0;
-     var opex=0;
-     var total=0;
-     
-    
-     if (req.body.customisableconvenience === 'true'){
-         
-        const ccoption = master.ccoption.filter(e=>e.custConvOption===req.body.customisableconvenienceoption);
-       
-        if (ccoption!=null && ccoption.length>0){
-            capex=  capex + Number( ccoption[0].capex);
-            opex= opex + Number(ccoption[0].opex);
-            total= total + (Number(ccoption[0].capex) + Number(ccoption[0].opex));
-        }
-        
-        
-     }
-     else{
+    var capex = 0;
+    var opex = 0;
+    var total = 0;
 
-           
-        const pos = master.data.pos.filter(e=>e.range1 <= req.body.population && e.range2 >= req.body.population);
+
+    if (req.body.customisableconvenience === 'true') {
+
+        const ccoption = master.ccoption.filter(e => e.custConvOption === req.body.customisableconvenienceoption);
+
+        if (ccoption != null && ccoption.length > 0) {
+            capex = capex + Number(ccoption[0].capex);
+            opex = opex + Number(ccoption[0].opex);
+            total = total + (Number(ccoption[0].capex) + Number(ccoption[0].opex));
+        }
+
+
+    }
+    else {
+
+
+        const pos = master.data.pos.filter(e => e.range1 <= req.body.population && e.range2 >= req.body.population);
         pos.forEach(p => {
-          if(p!=null && p.length>0){
-            capex=  capex + Number( p.capex) 
-            opex= opex + Number( p.opex) 
-            total= total +  Number( p.capex) ;
+            if (p != null && p.length > 0) {
+                capex = capex + Number(p.capex)
+                opex = opex + Number(p.opex)
+                total = total + Number(p.capex);
 
-            capex=  capex + Number( p.icapex) 
-            opex= opex + Number( p.iopex) 
-            total= total +  Number( p.icapex) +Number( p.iopex);
+                capex = capex + Number(p.icapex)
+                opex = opex + Number(p.iopex)
+                total = total + Number(p.icapex) + Number(p.iopex);
 
-            capex=  capex + Number( p.ncapex) 
-            opex= opex + Number( p.nopex) 
-            total= total +  Number( p.ncapex) +Number( p.nopex);
+                capex = capex + Number(p.ncapex)
+                opex = opex + Number(p.nopex)
+                total = total + Number(p.ncapex) + Number(p.nopex);
+            }
+        });
+
+
+    }
+
+    if (req.body.digitalsignage != undefined) {
+        const ydigitalsignage = master.digitalsignage.filter(e => e.digitalsign === req.body.digitalsignage);
+
+        if (ydigitalsignage != null && ydigitalsignage.length > 0) {
+            capex = capex + Number(ydigitalsignage[0].capex) * Number(req.body.digitalsignageqty);
+            opex = opex + Number(ydigitalsignage[0].opex) * Number(req.body.digitalsignageqty);
+            total = total + ((Number(ydigitalsignage[0].capex) * Number(req.body.digitalsignageqty)) + (Number(ydigitalsignage[0].opex) * Number(req.body.digitalsignageqty)));
         }
-      });
+    }
 
 
-     }
-
-     if( req.body.digitalsignage!=undefined){
-        const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  === req.body.digitalsignage);
-
-        if(ydigitalsignage!=null && ydigitalsignage.length>0){
-           capex=  capex + Number( ydigitalsignage[0].capex) * Number(req.body.digitalsignageqty);
-           opex= opex + Number( ydigitalsignage[0].opex) * Number(req.body.digitalsignageqty);
-           total= total + ( (Number( ydigitalsignage[0].capex) * Number(req.body.digitalsignageqty)) + (Number( ydigitalsignage[0].opex) * Number(req.body.digitalsignageqty)));
-        }
-     }
-
-     
-     if(req.body.catering!=undefined){
-        var categorylist =  req.body.catering.split(',');
+    if (req.body.catering != undefined) {
+        var categorylist = req.body.catering.split(',');
 
         categorylist.forEach(category => {
-           let categorydata = master.cateringdetail.filter(e=>e.digitalsign===category);
-           if(categorydata!=null && categorydata.length>0){
-               capex=  capex + Number( categorydata[0].capex);
-               opex= opex +  Number( categorydata[0].opex);
-               total= total + ( Number( categorydata[0].capex) + Number( categorydata[0].opex));
-           }
+            let categorydata = master.cateringdetail.filter(e => e.digitalsign === category);
+            if (categorydata != null && categorydata.length > 0) {
+                capex = capex + Number(categorydata[0].capex);
+                opex = opex + Number(categorydata[0].opex);
+                total = total + (Number(categorydata[0].capex) + Number(categorydata[0].opex));
+            }
         });
-     }
+    }
 
-     if(req.body.wtproduct!=undefined){
-        var wtproductlist =  req.body.wtproduct.split(',');
+    if (req.body.wtproduct != undefined) {
+        var wtproductlist = req.body.wtproduct.split(',');
 
         wtproductlist.forEach(category => {
-           let wtproductdata = master.wtproduct.filter(e=>e.digitalsign===category);
-            
-           if(wtproductdata!=null && wtproductdata.length>0){
-               capex=  capex + Number( wtproductdata[0].capex);
-               opex= opex + Number( wtproductdata[0].opex);
-               total= total + ( Number( wtproductdata[0].capex) + Number( categorydata[0].opex));
-           }
-        });
-     }
-     
+            let wtproductdata = master.wtproduct.filter(e => e.digitalsign === category);
 
-     res.send(
+            if (wtproductdata != null && wtproductdata.length > 0) {
+                capex = capex + Number(wtproductdata[0].capex);
+                opex = opex + Number(wtproductdata[0].opex);
+                total = total + (Number(wtproductdata[0].capex) + Number(categorydata[0].opex));
+            }
+        });
+    }
+
+
+    res.send(
         {
-          capex:capex ,
-          opex:opex ,
-          total:total
+            capex: capex,
+            opex: opex,
+            total: total
         }
-     );
+    );
 
 }
