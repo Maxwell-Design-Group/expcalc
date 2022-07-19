@@ -8,10 +8,9 @@ class calculatedataService {
 
   getcalculation(data) {
    
-
     var master = data.master;
 
-    // console.log(master);
+     console.log(data);
      var capex=0;
      var opex=0;
      var total=0;
@@ -79,7 +78,7 @@ class calculatedataService {
         });
      }
 
-     if(data.wtproduct!==undefined){
+     if(data.wtproduct!==undefined && data.wtproduct!== null && data.wtproduct.length>0){
         var wtproductlist =  data.wtproduct.split(',');
 
         wtproductlist.forEach(category => {
