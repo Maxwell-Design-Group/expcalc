@@ -138,7 +138,7 @@ const Step5 = (props) => {
     });
   }
 
-  if (supportingFeatureDetails.length > 0) {
+  if (supportingFeatureDetails) {
     supportingFeatureData = supportingFeatureDetails;
     supportingFeatureData.forEach((feature, index) => {
       supportingFeatures.push(
@@ -162,7 +162,8 @@ const Step5 = (props) => {
     console.log(ev.target.value);
     setPos(ev.target.value);
   };
-  if (posDetails.length > 0) {
+  console.log("posDetails ", posDetails);
+  if (posDetails) {
     POS = posDetails;
     console.log("POS ", POS);
     POS.forEach((pos, index) => {
