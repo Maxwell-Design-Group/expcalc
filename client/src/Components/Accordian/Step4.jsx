@@ -242,7 +242,7 @@ const Step4 = (props) => {
               </span>
               <input
                 type="text"
-                id="digitalSinage50"
+                id="digitalSinage55"
                 placeholder="QTY"
                 value={digitalSinage55}
                 onChange={(e) => setDigitalSinage55(e.target.value)}
@@ -256,7 +256,7 @@ const Step4 = (props) => {
               </span>
               <input
                 type="text"
-                id="digitalSinage50"
+                id="digitalSinage65"
                 placeholder="QTY"
                 value={digitalSinage65}
                 onChange={(e) => setDigitalSinage65(e.target.value)}

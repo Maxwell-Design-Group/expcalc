@@ -263,7 +263,7 @@ exports.getSupportingFeatures = async (req, res) => {
         if (req.body.digitalSignage['55']) {
             let total = Number(req.body.digitalSignage['55']) * Number(ds50Total);
             
-            digitalSignageResult.push('Digital Signage $' + total);
+            digitalSignageResult.push('Digital Signage55 $' + total);
         }
         if (req.body.digitalSignage['65']) {
             let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);

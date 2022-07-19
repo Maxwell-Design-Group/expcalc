@@ -174,16 +174,33 @@ const Step3 = (props) => {
       digitalsignage: undefined,
       digitalsignageqty: undefined,
       catering: undefined,
-      pos: undefined,
+      pos: masterData.pos,
       suportingfeature: undefined,
       wtproduct: undefined,
       master: masterData,
     };
+    
+   
+   
+
     calculatedata.getcalculation(calcObj);
   }
   useEffect(() => {
     calculation();
   }, [yesOption]);
+
+  useEffect(() => {
+    calculation();
+    
+    console.log(selectedNoOptions.toString());
+  }, [selectedNoOptions]);
+
+  useEffect(() => {
+    calculation();
+    console.log(selectedFootprintBool);
+    console.log(selectedNoOptions.toString());
+  }, [selectedFootprintBool]);
+
 
   function isFormEnableOrDisabled() {
     let isFormActive = "stepOne isStepDiabled";

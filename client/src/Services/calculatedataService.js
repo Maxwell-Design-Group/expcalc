@@ -10,12 +10,66 @@ class calculatedataService {
    
     var master = data.master;
 
-     console.log(data);
+    console.log('calcuation func');
+    console.log(data);
+   
+     
      var capex=0;
      var opex=0;
      var total=0;
      
+     var footprint = "";
+
+     if (data.mobile==true){
+      footprint =   "Mobile";
+     } else if (data.mobile==true && data.kiosk==true){
+      footprint =   "Mobile + Kiosk";
+     
+    } else if (data.mobile==true && data.selfCheckout==true){
+      footprint =   "Mobile + Self-Checkout";
     
+    } else if (data.mobile==true && data.cashier==true){
+      footprint =   "Mobile + Cashier";
+  
+    } else if (data.mobile==true && data.Kiosk==true && data.selfCheckout==true){  
+      footprint =   "Mobile + Kiosk + Self-Checkout";
+
+    } else if (data.mobile==true && data.Kiosk==true && data.cashier==true){ 
+      footprint =   "Mobile + Kiosk + Cashier"; 
+
+    } else if (data.mobile==true && data.selfCheckout==true && data.cashier==true){  
+      footprint =   "Mobile + Self-Checkout + Cashier";
+
+    } else if (data.mobile==true && data.kiosk==true && data.selfCheckout==true && data.cashier==true){ 
+      footprint =   "Mobile + Kiosk + Self-Checkout + Cashier"; 
+
+    } else if (data.kiosk==true){ 
+      footprint =   "Kiosk"; 
+
+    } else if (data.kiosk==true  && data.selfCheckout==true){ 
+      footprint =   "Kiosk + Self-Checkout"; 
+
+    } else if (data.kiosk==true  && data.cashier==true){ 
+      footprint =   "Kiosk + Cashier"; 
+
+    } else if (data.kiosk==true  && data.selfCheckout==true && data.cashier==true) { 
+      footprint =   "Kiosk + Self-Checkout + Cashier"; 
+
+    } else if (data.selfCheckout==true){ 
+      footprint =   "Self-Checkout"; 
+
+    } else if (data.selfCheckout==true && data.cashier==true){ 
+      footprint =   "Self-Checkout + Cashier"; 
+
+    } else if (data.cashier==true){ 
+      footprint =   "Cashier"; 
+
+    }
+
+     
+
+
+
      if (data.customisableconvenience === true){
          
         const ccoption = master.ccoption.filter(e=>e.custConvOption===data.customisableconvenienceoption);
@@ -30,32 +84,54 @@ class calculatedataService {
      }
      else{
 
-           
-      if( data.pos!==undefined){
-            const pos = master.data.pos.filter(e=>e.range1 <= data.population && e.range2 >= data.population);
-            pos.forEach(p => {
-              if(p!=null && p.length>0){
-                capex=  capex + Number( p.capex) 
-                opex= opex + Number( p.opex) 
-                total= total +  Number( p.capex) ;
+      
+              if( data.pos!==undefined && footprint!=""){
 
-                capex=  capex + Number( p.icapex) 
-                opex= opex + Number( p.iopex) 
-                total= total +  Number( p.icapex) +Number( p.iopex);
+                    
+                    const pos = master.pos.filter(e=>e.range1 <= Number(data.population) && e.range2 >= Number(data.population));
+                  
+                    pos.forEach(p => {              
+                      if(p!=null){
+                        if(p.pos==data.pos){
+                          capex=  capex + Number( p.capex) 
+                          opex= opex + Number( p.opex) 
+                          total= total +  Number( p.capex) ;
+                        }
 
-                capex=  capex + Number( p.ncapex) 
-                opex= opex + Number( p.nopex) 
-                total= total +  Number( p.ncapex) +Number( p.nopex);
-            }
-          });
-        
-     }  
+                        capex=  capex + Number( p.icapex) 
+                        opex= opex + Number( p.iopex) 
+                        total= total +  Number( p.icapex) +Number( p.iopex);
+
+                        capex=  capex + Number( p.ncapex) 
+                        opex= opex + Number( p.nopex) 
+                        total= total +  Number( p.ncapex) +Number( p.nopex);
+                        
+                    }
+                  });
+                
+            }  
+
+            if( data.station!==undefined && master.stationdata!==undefined){
+                    
+                    const st = master.stationdata.filter(e=>e.station == data.station);
+                    console.log(st);
+                    st.forEach(s => {              
+                      if(s!=null){
+                        capex=  capex + Number( s.capex) 
+                        opex= opex + Number( s.opex) 
+                        total= total +  Number( s.capex) ;
+                      
+                        console.log('total stations');
+                    }
+                  });
+          
+            } 
 
 
      }
 
      if( data.digitalsignage!==undefined){
-        const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  === data.digitalsignage);
+        const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  == data.digitalsignage);
 
         if(ydigitalsignage!=null && ydigitalsignage.length>0){
            capex=  capex + Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty);
@@ -69,7 +145,7 @@ class calculatedataService {
         var categorylist =  data.catering.split(',');
 
         categorylist.forEach(category => {
-           let categorydata = master.cateringdetail.filter(e=>e.digitalsign===category);
+           let categorydata = master.cateringdetail.filter(e=>e.digitalsign == category);
            if(categorydata!=null && categorydata.length>0){
                capex=  capex + Number( categorydata[0].capex);
                opex= opex +  Number( categorydata[0].opex);
@@ -80,9 +156,9 @@ class calculatedataService {
 
      if(data.wtproduct!==undefined && data.wtproduct!== null && data.wtproduct.length>0){
         var wtproductlist =  data.wtproduct.split(',');
-
+        
         wtproductlist.forEach(category => {
-           let wtproductdata = master.wtproduct.filter(e=>e.digitalsign===category);
+           let wtproductdata = master.wtproduct.filter(e=>e.product==category);
             
            if(wtproductdata!=null && wtproductdata.length>0){
                capex=  capex + Number( wtproductdata[0].capex);
@@ -91,19 +167,23 @@ class calculatedataService {
            }
         });
      }
-     
-if(capex!==0 && opex!==0 && total!==0){
-   document.getElementById("capex").innerHTML = '$' + capex.toFixed(2);
-   document.getElementById("opex").innerHTML= '$' + opex.toFixed(2);
-   document.getElementById("total").innerHTML = '$' + total.toFixed(2);
-}
+        
+    if(capex!==0 && opex!==0 && total!==0){
+      document.getElementById("capex").innerHTML = '$' + capex.toFixed(2);
+      document.getElementById("opex").innerHTML= '$' + opex.toFixed(2);
+      document.getElementById("total").innerHTML = '$' + total.toFixed(2);
+    }
+    else{
+      if (document.getElementById("capex")!=undefined){
+        document.getElementById("capex").innerHTML = '$0.00';
+        document.getElementById("opex").innerHTML= '$0.00' ;
+        document.getElementById("total").innerHTML = '$0.00';
+      }
+    }
+
        
         
-       var obj= {
-          finalcapex:capex,
-          finalopex:opex ,
-          finaltotal:total
-        };
+      
        
 
   }

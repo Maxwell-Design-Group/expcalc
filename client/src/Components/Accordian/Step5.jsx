@@ -11,9 +11,12 @@ import Grid from "@mui/material/Grid";
 import Table from "react-bootstrap/Table";
 import SupportingQuestionService from "../../Services/SupportingQuestionService";
 import Alert from "../Alert/Alert";
+import calculatedataService from "../../Services/calculatedataService";
+
 const Step5 = (props) => {
   const { isMobileView = false, disabled = disabled } = props;
   const SupportingQuestion = new SupportingQuestionService();
+  const calculatedata = new calculatedataService();
   const tableRows = [];
   const supportingFeatures = [];
   const POSData = [];
@@ -71,12 +74,45 @@ const Step5 = (props) => {
     };
     SupportingQuestion.sendData(obj, id, clientDetails);
   };
+
+  function calculation() {
+    let calcObj = {
+      population: clientDetails.population,
+      wintheme: clientDetails.wintheme,
+      customisableconvenience: clientDetails.yesOrNo,
+      customisableconvenienceoption: clientDetails.yesOption,
+      mobile: clientDetails.mobile,
+      kiosk: clientDetails.kiosk,
+      selfcheckout: clientDetails.selfCheckout,
+      cashier: clientDetails.cashier,
+      station: clientDetails.station,
+      digitalsignage: undefined,
+      digitalsignageqty: undefined,
+      catering: undefined,
+      pos: pos,
+      suportingfeature: undefined,
+      wtproduct: userSelectedProducts.toString(),
+      master: masterData,
+    };
+   
+    calculatedata.getcalculation(calcObj);
+  }
+
+ 
+  useEffect(() => {
+    console.log("pos");
+    console.log(pos);
+    calculation();
+  }, [pos]);
+
+
+
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
     let products = userSelectedProducts;
     if (checked === true) {
       products.push(rowData.product);
-
+      
       setUserSelectedProducts(products);
     } else {
       for (let i = 0; i < products.length; i++) {
@@ -87,6 +123,7 @@ const Step5 = (props) => {
         }
       }
     }
+     calculation();
   };
   const handleChangeFeatures = (e, rowData, index) => {
     const { checked } = e.target;
@@ -104,6 +141,9 @@ const Step5 = (props) => {
         }
       }
     }
+    console.log('userSelectedFeatures');
+    console.log(userSelectedFeatures);
+    calculation();
   };
   if (themes) {
     themes.forEach((row, index) => {
