@@ -1,0 +1,6 @@
+{
+    "baseUrl":"https://expcalc-dev.herokuapp.com/",
+    "client":"client/",
+    "winthemeUpdate":"wintheme/update/",
+    "winthemeDelete":"wintheme/delete/"
+}
