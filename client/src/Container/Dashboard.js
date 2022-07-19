@@ -160,7 +160,7 @@ function Dashboard() {
             </article>
           </Col>
           {isMobileView === false && (
-            <Col md={4}>
+            <Col md={4} className="dashboard-rhs">
               {selectedAccordion === 0 ? (
                 <div className="tootalCalculationSection">
                   <div className="tootalCalculationSection_container"></div>
@@ -170,7 +170,7 @@ function Dashboard() {
               )}
 
               {selectedAccordion === 5 ? (
-                <div style={{ margin: "1em 0 0 0 " }}>
+                <div style={{ margin: "1em 0" }}>
                   <Resultset />
                 </div>
               ) : (
