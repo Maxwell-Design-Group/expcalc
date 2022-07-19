@@ -227,12 +227,12 @@ const Step1 = (props) => {
           />
         </Col>
       </Row>
-      <Row className="slider-container">
+      <Row className="slider-container" style={{ paddingTop: "15px" }}>
         <Col md={6}>
           <div>
             <label
               style={{ float: "left", whiteSpace: "nowrap", margin: "0px" }}
-              className="switchLabel"
+              className="switchLabel-slider"
             >
               Anticipated Revenue<span style={{ color: "red" }}>*</span>
             </label>
@@ -241,7 +241,7 @@ const Step1 = (props) => {
               id="AnticipatedRevenue"
               style={{
                 color: "#da291c",
-                width: "90% !important",
+                width: "91%",
                 padding: "13px 0px",
                 marginBottom: "20px",
               }}
@@ -257,8 +257,8 @@ const Step1 = (props) => {
         <Col md={6} style={{ marginBottom: "1em" }}>
           <div>
             <label
-              style={{ float: "left", whiteSpace: "nowrap", margin: "0px" }}
-              className="switchLabel"
+              style={{ float: "left", whiteSpace: "nowrap" }}
+              className="switchLabel-slider switchLabel-slider-pop"
             >
               Population<span style={{ color: "red" }}>*</span>
             </label>
@@ -269,7 +269,7 @@ const Step1 = (props) => {
               max={5000}
               style={{
                 color: "#da291c",
-                width: "90% !important",
+                width: "91%",
                 padding: "13px 0px",
                 marginBottom: "20px",
               }}

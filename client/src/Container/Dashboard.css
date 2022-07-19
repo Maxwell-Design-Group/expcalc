@@ -42,7 +42,16 @@ div#panel1a-header {
   float: left;
   line-height: 3em;
   font-size: 0.75em;
-  margin: 0 0 0 2em;
+  margin: 0 0 0 1.5em;
+}
+.switchLabel-slider {
+  float: left;
+  line-height: 3em;
+  font-size: 0.75em;
+  margin: 0px 0 0 3px;
+}
+.switchLabel-slider-pop {
+  margin-left: 7px;
 }
 
 .aramark_dashboard .themesLabelActive {
@@ -73,7 +82,7 @@ div#panel1a-header {
   color: #da291c;
   -webkit-tap-highlight-color: transparent;
   height: 4px;
-  width: 93% !important;
+  /* width: 93% !important; */
   padding: 13px 0px;
   margin-bottom: 20px;
   /* margin-top: 2.5em !important; */
@@ -81,6 +90,7 @@ div#panel1a-header {
 
 .MuiSlider-rail {
   background: #dbd8d8 0% 0% no-repeat padding-box !important;
+  width: 106% !important;
 }
 
 .aramark_dashboard .css-133uy8j-MuiButtonBase-root-MuiFab-root {
@@ -417,18 +427,16 @@ div label input {
 #AnticipatedRevenue,
 #Population {
   position: relative !important;
-
   top: 21px !important;
-
-  left: -11px !important;
+  left: -2px !important;
+  margin-top: 10px !important;
 }
 
 .MuiSlider-markLabel {
   position: absolute !important;
-
   /* left: 3% !important; */
-
-  top: -18px !important;
+  top: -30px !important;
+  /* margin: -7px 0px !important */
 }
 
 .MuiSlider-mark {
@@ -526,7 +534,6 @@ div label input {
 }
 
 .aramark_header_text {
-  right: 70px;
   font: normal normal medium 32px/35px Gotham !important;
   color: var(--unnamed-color-ffffff) !important;
   text-align: center !important;
@@ -534,6 +541,9 @@ div label input {
   color: #ffffff !important;
   text-transform: uppercase !important;
   opacity: 1;
+  right: 76px !important;
+  font-size: 32px !important;
+  position: relative !important;
 }
 
 .aramark_dashboard .main_header {
@@ -635,7 +645,8 @@ div label input {
   }
 
   .aramark_header_bg {
-    background: url(http://localhost:3000/static/media/Header-image.ed09048….png) top center no-repeat;
+    background: url(http://localhost:3000/static/media/Header-image.ed09048….png)
+      top center no-repeat;
     margin: -1.8em 0 0 2.63em !important;
     height: 1.3em !important;
     border-radius: 0px 40px 40px 0px;
@@ -644,7 +655,7 @@ div label input {
     padding-right: 20px !important;
   }
 
-  .aramark_header_text {
+  /* .aramark_header_text {
     right: 70px;
     font: normal normal 600 14px/17px Gotham !important;
     color: var(--unnamed-color-ffffff) !important;
@@ -654,7 +665,7 @@ div label input {
     text-transform: uppercase !important;
     opacity: 1;
     white-space: nowrap;
-  }
+  } */
 
   .aramark_dashboard .main_header {
     flex-wrap: nowrap;
@@ -766,6 +777,7 @@ div label input {
   color: #ffffff;
   text-transform: uppercase;
   opacity: 1;
+  padding-bottom: 15px;
 }
 
 .aramark_dashboard .nav_description_container {
@@ -1083,7 +1095,7 @@ div label input {
 }
 
 .mains-cs-all {
-  padding: 20px 0px;
+  padding: 50px 0px;
   overflow-y: hidden;
 }
 
