@@ -6,6 +6,8 @@ const initialState = {
   completedSteps: [],
   themes: [],
   clientDetails: {},
+  posDetails: [],
+  supportingFeatureDetails: [],
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -45,6 +47,26 @@ const DashboardReducer = (state = initialState, action) => {
         ...state,
 
         clientDetails: action.payload,
+      };
+    case types.SET_POS_DATA:
+      return {
+        ...state,
+        posDetails: action.payload,
+      };
+    case types.GET_POS_DATA:
+      return {
+        ...state,
+        posDetails: action.payload,
+      };
+    case types.SET_SUPPORTING_FEATURE_DATA:
+      return {
+        ...state,
+        supportingFeatureDetails: action.payload,
+      };
+    case types.GET_SUPPORTING_FEATURE_DATA:
+      return {
+        ...state,
+        supportingFeatureDetails: action.payload,
       };
     default:
       return state;

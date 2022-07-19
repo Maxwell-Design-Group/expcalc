@@ -2,7 +2,11 @@ import axios from "axios";
 import Store from "../Redux/Store";
 
 import Alert from "../Components/Alert/Alert";
-import { completedSteps, nextAccordionOpen } from "../Redux/Actions";
+import {
+  completedSteps,
+  nextAccordionOpen,
+  setClientDetails,
+} from "../Redux/Actions";
 class DiningExperienceService {
   sendData(data, accordianId, clientDetails) {
     axios
@@ -13,6 +17,7 @@ class DiningExperienceService {
       .then((response) => {
         console.log("response", response);
         Alert.success("Dining Experience added successfully");
+        Store.dispatch(setClientDetails(response.data));
         Store.dispatch(completedSteps(accordianId));
         Store.dispatch(nextAccordionOpen(accordianId + 1));
       })

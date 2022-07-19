@@ -411,6 +411,34 @@ div label input {
   opacity: 1;
 }
 
+#AnticipatedRevenue,
+
+#Population {
+
+  position: relative !important;
+
+  top: 21px !important;
+
+  left: -11px !important;
+
+}
+
+.MuiSlider-markLabel {
+
+  position: absolute !important;
+
+  /* left: 3% !important; */
+
+  top: -18px !important;
+
+}
+
+.MuiSlider-mark {
+
+  background-color: transparent !important;
+
+}
+
 .aramark_dashboard .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
   -webkit-transform: rotate(0deg) !important;
   -moz-transform: rotate(0deg) !important;
@@ -542,13 +570,20 @@ div label input {
   scrollbar-width: none;
   overflow-y: auto;
   padding-right: 0px;
+  margin-top: -11px;
 }
 
 .MuiSlider-thumb {
+  height: 24px !important;
+  background: url(../Assets/images/radio_on_button.png) !important;
+  width: 24px !important;
+}
+
+/* .MuiSlider-thumb {
   height: 24px;
   background: url(../Assets/images/radio_on_button.png);
   width: 24px;
-}
+} */
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
@@ -688,6 +723,7 @@ div label input {
 .tootalCalculationSection {
   background: #01426a 0% 0% no-repeat padding-box;
   top: 172px;
+  border-radius: 15px;
   /* left: 1416px;
   width: 452px; */
   width: 90%;
@@ -716,6 +752,7 @@ div label input {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  margin-top: 55px;
 }
 
 .aramark_dashboard .nav_header {
@@ -1022,6 +1059,12 @@ div label input {
 
 .aramark_dashboard .rowSeprator {
   margin-bottom: 10px;
+}
+
+.mains-cs-all {
+
+  margin-top: 50px;
+
 }
 
 .aramark_dashboard .css-ahj2mt-MuiTypography-root {

@@ -90,10 +90,10 @@ const Step1 = (props) => {
     if (clientName === "" || clientName.length > 255) {
       Alert.error("Enter client name,0-255 characters");
       document.getElementById("clientName").focus();
-    } else if (contractType === null) {
+    } else if (contractType === null || contractType === "") {
       Alert.error("Choose a contract type");
       document.getElementById("contractType").focus();
-    } else if (industryType === null) {
+    } else if (industryType === null || industryType === "") {
       Alert.error("Select at least one industry type");
     } else if (anticipatedRevenue === 0) {
       Alert.error("Select the anticipated revenue");
@@ -139,7 +139,7 @@ const Step1 = (props) => {
                 borderRadius: "25px",
 
                 height: "45px",
-                padding: "10px 15px",
+                padding: "10px 20px",
                 width: "100%",
               }}
             />
@@ -213,7 +213,11 @@ const Step1 = (props) => {
           </select>
         </Col>
         <Col md={6} className="switchColumn">
-          <img src={LifeWork} alt="lifeWork" />
+          <img
+            src={LifeWork}
+            alt="lifeWork"
+            style={{ width: "104px", height: "20px" }}
+          />
           <Switch
             id="Lifeworks"
             color="success"

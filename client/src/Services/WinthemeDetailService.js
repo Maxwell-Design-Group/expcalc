@@ -2,7 +2,11 @@ import axios from "axios";
 import Store from "../Redux/Store";
 
 import Alert from "../Components/Alert/Alert";
-import { completedSteps, nextAccordionOpen } from "../Redux/Actions";
+import {
+  completedSteps,
+  nextAccordionOpen,
+  setClientDetails,
+} from "../Redux/Actions";
 class WinthemeDetailService {
   sendData(data, accordianId, clientDetails) {
     axios
@@ -12,6 +16,7 @@ class WinthemeDetailService {
       )
       .then((response) => {
         Alert.success("WinthemeDetail added successfully");
+        Store.dispatch(setClientDetails(response.data));
         Store.dispatch(completedSteps(accordianId));
         Store.dispatch(nextAccordionOpen(accordianId + 1));
       })

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { prevAccordionOpen } from "../../Redux/Actions";
+import {
+  getSupportingQuestionDetails,
+  prevAccordionOpen,
+} from "../../Redux/Actions";
 import "./Step5.css";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -12,6 +15,8 @@ const Step5 = (props) => {
   const tableRows = [];
   const supportingFeatures = [];
   const POSData = [];
+  let POS = [];
+
   const [checked, setChecked] = useState(false);
   const [expand, setExpand] = useState(false);
   const [pos, setPos] = useState("");
@@ -23,17 +28,31 @@ const Step5 = (props) => {
   const { accordionId } = useSelector((state) => state.Reducer);
   const { themes } = useSelector((state) => state.Reducer);
   const { clientDetails } = useSelector((state) => state.Reducer);
+  const { posDetails } = useSelector((state) => state.Reducer);
+  const { supportingFeatureDetails } = useSelector((state) => state.Reducer);
   const { isMobileView = false } = props;
+  const [supportingQuestionData, setSupportingQuestionData] = useState([]);
   const tableData2 = [];
-  const POS = [
-    { label: "Dish $2345", value: "Dish" },
-    { label: "365 Retail $3445", value: "365 Retail" },
-    { label: "Micros $5345", value: "Micros" },
-  ];
+  // const POS = [
+  //   { label: "Dish $2345", value: "Dish" },
+  //   { label: "365 Retail $3445", value: "365 Retail" },
+  //   { label: "Micros $5345", value: "Micros" },
+  // ];
   let supportingFeatureData = [];
   if (masterData.supportingfeature) {
     supportingFeatureData = masterData.supportingfeature;
   }
+  console.log("posDetails ", posDetails);
+  console.log("supportingFeatureDetails ", supportingFeatureDetails);
+  useEffect(() => {
+    // console.log("clientDetails ", clientDetails);
+    // var clientDetailsObj = Object.keys(clientDetails).length;
+    // console.log("clientDetailsObj ", clientDetailsObj);
+    // if (clientDetailsObj > 0) {
+    //   console.log("47 ");
+    //   dispatch(getSupportingQuestionDetails());
+    // }
+  }, []);
   const onPrevious = (id) => {
     dispatch(prevAccordionOpen(id));
   };
@@ -138,22 +157,27 @@ const Step5 = (props) => {
     console.log(ev.target.value);
     setPos(ev.target.value);
   };
-  POS.forEach((pos, index) => {
-    POSData.push(
-      <div class="pos_btn">
-        <input
-          type="radio"
-          id="a25"
-          name="check-substitution-2"
-          onChange={handlePosChange}
-          value={pos.value}
-        />
-        <label class="btn btn-default" for="a25">
-          {pos.label}
-        </label>
-      </div>
-    );
-  });
+  if (posDetails.length > 0) {
+    POS = posDetails;
+    console.log("POS ", POS);
+    POS.forEach((pos, index) => {
+      POSData.push(
+        <div class="pos_btn">
+          <input
+            type="radio"
+            id="a25"
+            name="check-substitution-2"
+            onChange={handlePosChange}
+            value={pos.pos}
+          />
+          <label class="btn btn-default" for="a25">
+            {pos.pos}
+          </label>
+        </div>
+      );
+    });
+  }
+
   function onAccordianChange(params) {
     setExpand(!expand);
   }
