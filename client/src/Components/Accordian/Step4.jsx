@@ -77,7 +77,7 @@ const Step4 = (props) => {
         }
       }
     }
-    calculation();
+    
   };
 
   const handleChangeFeatures = (e, rowData) => {
@@ -129,37 +129,7 @@ const Step4 = (props) => {
     dispatch(prevAccordionOpen(id));
   };
 
-  function calculation() {
-    var digiSign = [];
-
-    if (digitalSinage50 > 0) {
-      digiSign.push(digitalSinage50);
-    } else if (digitalSinage55 > 0) {
-      digiSign.push(digitalSinage55);
-    } else if (digitalSinage65 > 0) {
-      digiSign.push(digitalSinage65);
-    }
-
-    let calcObj = {
-      population: clientDetails.population,
-      wintheme: clientDetails.wintheme,
-      customisableconvenience: clientDetails.yesOrNo,
-      customisableconvenienceoption: clientDetails.yesOption,
-      mobile: clientDetails.mobile,
-      kiosk: clientDetails.kiosk,
-      selfcheckout: clientDetails.selfCheckout,
-      cashier: clientDetails.cashier,
-      station: clientDetails.selectedNoOptions,
-      digitalsignage: digiSign,
-      digitalsignageqty: undefined,
-      catering: undefined,
-      pos: undefined,
-      suportingfeature: userSelectedFeatures,
-      wtproduct: userSelectedProducts,
-      master: masterData,
-    };
-    calculatedata.getcalculation(calcObj);
-  }
+  
 
   const selectNoOption = (id) => {
     let catering = "";

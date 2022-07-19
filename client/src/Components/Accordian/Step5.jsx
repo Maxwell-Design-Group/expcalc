@@ -27,7 +27,7 @@ const Step5 = (props) => {
   const [pos, setPos] = useState("");
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
-  const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);
+  const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);  
   const dispatch = useDispatch();
   const { masterData } = useSelector((state) => state.Master);
   const { accordionId } = useSelector((state) => state.Reducer);
@@ -86,8 +86,10 @@ const Step5 = (props) => {
       selfcheckout: clientDetails.selfCheckout,
       cashier: clientDetails.cashier,
       station: clientDetails.station,
-      digitalsignage: undefined,
-      digitalsignageqty: undefined,
+      digitalsignage: userSelectedFeatures.toString(),
+      digitalsignageqty55: clientDetails.digitalsignage55,
+      digitalsignageqty50: clientDetails.digitalsignage50,
+      digitalsignageqty65: clientDetails.digitalsignage65,
       catering: undefined,
       pos: pos,
       suportingfeature: undefined,
@@ -128,9 +130,19 @@ const Step5 = (props) => {
   const handleChangeFeatures = (e, rowData, index) => {
     const { checked } = e.target;
     let features = userSelectedFeatures;
-    if (checked === true) {
-      features.push(rowData);
+    
 
+    if (checked === true) {
+      if( rowData.indexOf("Digital Signage55")!== -1){
+        features.push("55");
+      }
+      if( rowData.indexOf("Digital Signage50")!== -1){
+        features.push("50");
+      }
+      if( rowData.indexOf("Digital Signage65")!== -1){
+        features.push("65");
+      }
+            
       setUserSelectedFeatures(features);
     } else {
       for (let i = 0; i < features.length; i++) {
@@ -141,8 +153,7 @@ const Step5 = (props) => {
         }
       }
     }
-    console.log('userSelectedFeatures');
-    console.log(userSelectedFeatures);
+   
     calculation();
   };
   if (themes) {

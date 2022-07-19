@@ -130,14 +130,30 @@ class calculatedataService {
 
      }
 
-     if( data.digitalsignage!==undefined){
-        const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  == data.digitalsignage);
+     if( data.digitalsignage!==undefined && master.digitalsignage!=undefined){
 
-        if(ydigitalsignage!=null && ydigitalsignage.length>0){
-           capex=  capex + Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty);
-           opex= opex + Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty);
-           total= total + ( (Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty)) + (Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty)));
-        }
+        var suportingFeatureslist =  data.digitalsignage.split(',');
+
+        suportingFeatureslist.forEach(sp => {
+          const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  == sp);
+            if(ydigitalsignage!=null && ydigitalsignage.length>0){
+              if(sp=="50"){
+                capex=  capex + Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty50);
+                opex= opex + Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty50);
+                total= total + ( (Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty50)) + (Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty50)));
+              }else if(sp=="55"){
+                capex=  capex + Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty55);
+                opex= opex + Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty55);
+                total= total + ( (Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty55)) + (Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty55)));
+              }else if(sp=="65"){
+                capex=  capex + Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty65);
+                opex= opex + Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty65);
+                total= total + ( (Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty65)) + (Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty65)));
+              }
+              
+            }
+        });
+        
      }
 
      
