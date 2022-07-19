@@ -38,60 +38,6 @@ const footprintData = [
     name: "cashier",
   },
 ];
-const onTheGoData = [
-  {
-    value: "Grab-n-go(in cafe)",
-  },
-  {
-    value: "Micromarket(Standalone)",
-  },
-  {
-    value: "Coffee-Barista",
-  },
-  {
-    value: "Coffee-Self-Serve",
-  },
-];
-const localVarietyData = [
-  {
-    value: "Local restaurant row",
-  },
-  {
-    value: "Pop-up",
-  },
-  {
-    value: "Flex",
-  },
-];
-const alaCarteData = [
-  {
-    value: "Honor Market/Pantry",
-  },
-  {
-    value: "Market/Salad Bar",
-  },
-  {
-    value: "MTO salad",
-  },
-  {
-    value: "Deli",
-  },
-  {
-    value: "Global",
-  },
-  {
-    value: "Grill",
-  },
-  {
-    value: "Entree/Exhibition",
-  },
-  {
-    value: "Sushi/Poke Bowl",
-  },
-  {
-    value: "Pizza/Italian",
-  },
-];
 
 const Step3 = () => {
   const DiningExperience = new DiningExperienceService();
@@ -120,6 +66,22 @@ const Step3 = () => {
   if (masterData.ccoption) {
     yesDatas = masterData.ccoption;
   }
+
+  let stationData = [];
+  if (masterData.stationdata) {
+    stationData = masterData.stationdata;
+  }
+
+  var stationList = [];
+  stationData.filter(function (item) {
+    var i = stationList.findIndex(
+      (x) => x.station === item.station && x.type === item.type
+    );
+    if (i <= -1) {
+      stationList.push(item);
+    }
+    return null;
+  });
 
   const handleYesOrNoChange = (e) => {
     setYesOrNo(e.target.checked);
@@ -164,6 +126,7 @@ const Step3 = () => {
       Alert.error("select any Option");
     } else {
       let obj = {
+        ...clientDetails,
         customisableconvenience: yesOrNo,
         customisableconvenienceoption: yesOption,
       };
@@ -217,7 +180,6 @@ const Step3 = () => {
     };
     calculatedata.getcalculation(calcObj);
   }
-
   useEffect(() => {
     calculation();
   }, [yesOption]);
@@ -316,7 +278,7 @@ const Step3 = () => {
                       key={data.value}
                       name={data.value}
                       value={data.value}
-                      onClick={() => handleFootprintButtons(data.name)}
+                      onClick={() => handleFootprintButtons(data.value)}
                       style={{
                         backgroundColor: selectedFootprint.includes(data.value)
                           ? "#4BAE4F"
@@ -342,28 +304,32 @@ const Step3 = () => {
                   </Typography>
                 </Col>
                 <Row className="DataScrollRs">
-                  {onTheGoData.map((data, index) => (
-                    <Button
-                      className="formButtonsRs"
-                      variant="light"
-                      name={data.value}
-                      value={data.value}
-                      onClick={() => handleNoButtons(data.value)}
-                      style={{
-                        backgroundColor: selectedNoOptions.includes(data.value)
-                          ? "#4BAE4F"
-                          : "#fff",
-                        color: selectedNoOptions.includes(data.value)
-                          ? "white"
-                          : "black",
-                        border: selectedNoOptions.includes(data.value)
-                          ? ""
-                          : "1px solid #979797",
-                      }}
-                    >
-                      <Typography variant="h6">{data.value}</Typography>
-                    </Button>
-                  ))}
+                  {stationList
+                    .filter((item) => item.type === "On the go")
+                    .map((data, index) => (
+                      <Button
+                        className="formButtonsRs"
+                        variant="light"
+                        name={data.station}
+                        value={data.station}
+                        onClick={() => handleNoButtons(data.station)}
+                        style={{
+                          backgroundColor: selectedNoOptions.includes(
+                            data.station
+                          )
+                            ? "#4BAE4F"
+                            : "#fff",
+                          color: selectedNoOptions.includes(data.station)
+                            ? "white"
+                            : "black",
+                          border: selectedNoOptions.includes(data.station)
+                            ? ""
+                            : "1px solid #979797",
+                        }}
+                      >
+                        <Typography variant="h6">{data.station}</Typography>
+                      </Button>
+                    ))}
                 </Row>
               </Row>
               <br />
@@ -378,28 +344,32 @@ const Step3 = () => {
                   </Typography>
                 </Col>
                 <Row className="DataScrollRs">
-                  {localVarietyData.map((data, index) => (
-                    <Button
-                      className="formButtonsRs"
-                      variant="light"
-                      name={data.value}
-                      value={data.value}
-                      onClick={(e) => handleNoButtons(data.value)}
-                      style={{
-                        backgroundColor: selectedNoOptions.includes(data.value)
-                          ? "#4BAE4F"
-                          : "#fff",
-                        color: selectedNoOptions.includes(data.value)
-                          ? "white"
-                          : "black",
-                        border: selectedNoOptions.includes(data.value)
-                          ? ""
-                          : "1px solid #979797",
-                      }}
-                    >
-                      <Typography variant="h6">{data.value}</Typography>
-                    </Button>
-                  ))}
+                  {stationList
+                    .filter((item) => item.type === "Local Veriety")
+                    .map((data, index) => (
+                      <Button
+                        className="formButtonsRs"
+                        variant="light"
+                        name={data.value}
+                        value={data.value}
+                        onClick={(e) => handleNoButtons(data.station)}
+                        style={{
+                          backgroundColor: selectedNoOptions.includes(
+                            data.station
+                          )
+                            ? "#4BAE4F"
+                            : "#fff",
+                          color: selectedNoOptions.includes(data.station)
+                            ? "white"
+                            : "black",
+                          border: selectedNoOptions.includes(data.station)
+                            ? ""
+                            : "1px solid #979797",
+                        }}
+                      >
+                        <Typography variant="h6">{data.station}</Typography>
+                      </Button>
+                    ))}
                 </Row>
               </Row>
               <br />
@@ -410,28 +380,32 @@ const Step3 = () => {
                   </Typography>
                 </Col>
                 <Row className="DataScrollRs">
-                  {alaCarteData.map((data, index) => (
-                    <Button
-                      className="formButtonsRs"
-                      variant="light"
-                      name={data.value}
-                      value={data.value}
-                      onClick={(e) => handleNoButtons(data.value)}
-                      style={{
-                        backgroundColor: selectedNoOptions.includes(data.value)
-                          ? "#4BAE4F"
-                          : "#fff",
-                        color: selectedNoOptions.includes(data.value)
-                          ? "white"
-                          : "black",
-                        border: selectedNoOptions.includes(data.value)
-                          ? ""
-                          : "1px solid #979797",
-                      }}
-                    >
-                      <Typography variant="h6">{data.value}</Typography>
-                    </Button>
-                  ))}
+                  {stationList
+                    .filter((item) => item.type === "alacarte")
+                    .map((data, index) => (
+                      <Button
+                        className="formButtonsRs"
+                        variant="light"
+                        name={data.value}
+                        value={data.value}
+                        onClick={(e) => handleNoButtons(data.station)}
+                        style={{
+                          backgroundColor: selectedNoOptions.includes(
+                            data.station
+                          )
+                            ? "#4BAE4F"
+                            : "#fff",
+                          color: selectedNoOptions.includes(data.station)
+                            ? "white"
+                            : "black",
+                          border: selectedNoOptions.includes(data.station)
+                            ? ""
+                            : "1px solid #979797",
+                        }}
+                      >
+                        <Typography variant="h6">{data.station}</Typography>
+                      </Button>
+                    ))}
                 </Row>
               </Row>
               <br />
@@ -578,33 +552,35 @@ const Step3 = () => {
                 </Col>
                 <Col>
                   <Row className="alaCarteRow">
-                    {onTheGoData.map((data, index) => (
-                      <Button
-                        className="formButtons"
-                        variant="light"
-                        name={data.value}
-                        value={data.value}
-                        onClick={() => handleNoButtons(data.value)}
-                        style={{
-                          backgroundColor: selectedNoOptions.includes(
-                            data.value
-                          )
-                            ? "#4BAE4F"
-                            : "#fff",
-                          color: selectedNoOptions.includes(data.value)
-                            ? "white"
-                            : "black",
-                          border: selectedNoOptions.includes(data.value)
-                            ? ""
-                            : "1px solid #979797",
-                        }}
-                      >
-                        <Typography variant="subtitle2">
-                          {" "}
-                          {data.value}
-                        </Typography>
-                      </Button>
-                    ))}
+                    {stationList
+                      .filter((item) => item.type === "On the go")
+                      .map((data, index) => (
+                        <Button
+                          className="formButtons"
+                          variant="light"
+                          name={data.station}
+                          value={data.station}
+                          onClick={() => handleNoButtons(data.station)}
+                          style={{
+                            backgroundColor: selectedNoOptions.includes(
+                              data.station
+                            )
+                              ? "#4BAE4F"
+                              : "#fff",
+                            color: selectedNoOptions.includes(data.station)
+                              ? "white"
+                              : "black",
+                            border: selectedNoOptions.includes(data.station)
+                              ? ""
+                              : "1px solid #979797",
+                          }}
+                        >
+                          <Typography variant="subtitle2">
+                            {" "}
+                            {data.station}
+                          </Typography>
+                        </Button>
+                      ))}
                   </Row>
                 </Col>
               </Row>
@@ -619,28 +595,35 @@ const Step3 = () => {
                     </b>
                   </Typography>
                 </Col>
-                {localVarietyData.map((data, index) => (
-                  <Button
-                    className="formButtons"
-                    variant="light"
-                    name={data.value}
-                    value={data.value}
-                    onClick={(e) => handleNoButtons(data.value)}
-                    style={{
-                      backgroundColor: selectedNoOptions.includes(data.value)
-                        ? "#4BAE4F"
-                        : "#fff",
-                      color: selectedNoOptions.includes(data.value)
-                        ? "white"
-                        : "black",
-                      border: selectedNoOptions.includes(data.value)
-                        ? ""
-                        : "1px solid #979797",
-                    }}
-                  >
-                    <Typography variant="subtitle2"> {data.value}</Typography>
-                  </Button>
-                ))}
+                {stationList
+                  .filter((item) => item.type === "Local Veriety")
+                  .map((data, index) => (
+                    <Button
+                      className="formButtons"
+                      variant="light"
+                      name={data.station}
+                      value={data.station}
+                      onClick={(e) => handleNoButtons(data.station)}
+                      style={{
+                        backgroundColor: selectedNoOptions.includes(
+                          data.station
+                        )
+                          ? "#4BAE4F"
+                          : "#fff",
+                        color: selectedNoOptions.includes(data.station)
+                          ? "white"
+                          : "black",
+                        border: selectedNoOptions.includes(data.station)
+                          ? ""
+                          : "1px solid #979797",
+                      }}
+                    >
+                      <Typography variant="subtitle2">
+                        {" "}
+                        {data.station}
+                      </Typography>
+                    </Button>
+                  ))}
               </Row>
               <br />
               <Row className="OptionAla">
@@ -651,33 +634,35 @@ const Step3 = () => {
                 </Col>
                 <Col md={9}>
                   <Row>
-                    {alaCarteData.map((data, index) => (
-                      <Button
-                        className="formButtonsAla"
-                        variant="light"
-                        name={data.value}
-                        value={data.value}
-                        onClick={(e) => handleNoButtons(data.value)}
-                        style={{
-                          backgroundColor: selectedNoOptions.includes(
-                            data.value
-                          )
-                            ? "#4BAE4F"
-                            : "#fff",
-                          color: selectedNoOptions.includes(data.value)
-                            ? "white"
-                            : "black",
-                          border: selectedNoOptions.includes(data.value)
-                            ? ""
-                            : "1px solid #979797",
-                        }}
-                      >
-                        <Typography variant="subtitle2">
-                          {" "}
-                          {data.value}
-                        </Typography>
-                      </Button>
-                    ))}
+                    {stationList
+                      .filter((item) => item.type === "alacarte")
+                      .map((data, index) => (
+                        <Button
+                          className="formButtonsAla"
+                          variant="light"
+                          name={data.value}
+                          value={data.value}
+                          onClick={(e) => handleNoButtons(data.station)}
+                          style={{
+                            backgroundColor: selectedNoOptions.includes(
+                              data.value
+                            )
+                              ? "#4BAE4F"
+                              : "#fff",
+                            color: selectedNoOptions.includes(data.station)
+                              ? "white"
+                              : "black",
+                            border: selectedNoOptions.includes(data.station)
+                              ? ""
+                              : "1px solid #979797",
+                          }}
+                        >
+                          <Typography variant="subtitle2">
+                            {" "}
+                            {data.station}
+                          </Typography>
+                        </Button>
+                      ))}
                   </Row>
                 </Col>
               </Row>
