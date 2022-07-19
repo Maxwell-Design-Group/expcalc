@@ -267,37 +267,41 @@ exports.getSupportingFeatures = async (req, res) => {
     if (req.body.digitalSignage) {
         if (req.body.digitalSignage['50']) {
             let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
-            // digitalSignageResult.push('Digital Signage  $'  + total)
-
-            // digitalSignageResult.push('Digital Signagevalue:'  + total)
+            
            
-            digitsign50.supportingFeature50 = 'Digital Signage  $'  + total;
-            digitsign50.supportingFeature50value = total;
-            digitalSignageResult.push(digitsign50);
+            // digitsign50.supportingFeature50 = 'Digital Signage $'  + total;
+            // digitsign50.supportingFeature50value = total;
+            digitalSignageResult.push('Digital Signage50 $'  + total);
         }
         if (req.body.digitalSignage['55']) {
             let total = Number(req.body.digitalSignage['55']) * Number(ds50Total);
-            // digitalSignageResult.push('Digital Signage ' + '$' + total)
-            // digitalSignageResult.push('Digital Signagevalue:'  + total)
+            
 
-            digitsign55.supportingFeature55 = 'Digital Signage  $'  + total;
-            digitsign55.supportingFeature55value = total;
-            digitalSignageResult.push(digitsign55);
+            // digitsign55.supportingFeature55 = 'Digital Signage  $'  + total;
+            // digitsign55.supportingFeature55value = total;
+            digitalSignageResult.push('Digital Signage55 $'  + total);
         }
         if (req.body.digitalSignage['65']) {
             let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
             
 
-            digitsign65.supportingFeature65 = 'Digital Signage  $'  + total;
-            digitsign65.supportingFeature65value = total;
+            // digitsign65.supportingFeature65 = 'Digital Signage  $'  + total;
+            // digitsign65.supportingFeature65value = total;
 
-            digitalSignageResult.push(digitsign65);
+            digitalSignageResult.push('Digital Signage65 $'  + total);
         }
-
         
 
-        return res.send(digitalSignageResult);
+       
     }
+
+
+    
+
+    return res.send(digitalSignageResult);
+    
+
+
 }
 
 exports.pos = (req, res) => {
