@@ -201,7 +201,7 @@ const Step4 = (props) => {
   return (
     <div
       onClick={() =>
-        disabled === true ? Alert.error("Step 1 is not yet completed") : ""
+        disabled === true ? Alert.error("Step 3 is not yet completed") : ""
       }
     >
       <div className={isFormEnableOrDisabled()}>
