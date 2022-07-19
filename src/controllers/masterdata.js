@@ -10,7 +10,7 @@ const cateringDetail = require('../models/cateringdetail.js');
 const posData = require('../models/posdata.js');
 const digitalSignageService = require('../services/digital-signage.service');
 
-exports.findAll = (req, res) => {
+exports.findAll = async (req, res) => {
 
     var gcontracttypelist = [];
     var gindustrytype=[];
@@ -25,7 +25,7 @@ exports.findAll = (req, res) => {
     var gpos = [];
     
 
-	contractTypeList.find()
+	await contractTypeList.find()
     .then(contracttypelist => {
        
        gcontracttypelist=contracttypelist;
@@ -36,7 +36,7 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    industryType.find()
+    await industryType.find()
     .then(industrytype => {
        
         gindustrytype = industrytype;
@@ -48,7 +48,7 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    stationList.find()
+    await stationList.find()
     .then(stationList => {
        
         gstationList = stationList;
@@ -60,7 +60,7 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    wtProduct.find()
+    await wtProduct.find()
     .then(wtproduct => {
        
         gwtproduct = wtproduct;
@@ -73,7 +73,7 @@ exports.findAll = (req, res) => {
     
 
     //-----------------------------------------
-    winTheme.find()
+    await winTheme.find()
     .then(wintheme => {
        
         gwth = wintheme;
@@ -86,7 +86,7 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    customisableConvenienceOption.find()
+    await customisableConvenienceOption.find()
     .then(c => {
        
         gccoption = c;       
@@ -99,7 +99,7 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    supportingFeature.find()
+    await supportingFeature.find()
     .then(supportingfeature => {
        
         gsupportingfeature = supportingfeature;
@@ -111,7 +111,7 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    digitalSignage.find()
+    await digitalSignage.find()
     .then(digitalsignage => {
        
         gdigitalsignage = digitalsignage;
@@ -124,7 +124,7 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    posData.find()
+    await posData.find()
     .then(pos => {
        
         gpos = pos;
@@ -137,7 +137,7 @@ exports.findAll = (req, res) => {
     });
 
     //-----------------------------------------
-    cateringDetail.find()
+    await cateringDetail.find()
     .then(cateringdetail => {
        
 
