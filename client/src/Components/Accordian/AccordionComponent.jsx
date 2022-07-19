@@ -31,8 +31,8 @@ const AccordionComponent = (props) => {
       id: 1,
       title: "Tell us about your prospect",
       data: null,
-
       expanded: false,
+      disabled: false,
       backgroundColor: "#808080",
     },
     {
@@ -40,6 +40,7 @@ const AccordionComponent = (props) => {
       title: "What is important to them?",
       data: null,
       expanded: false,
+      disabled: true,
       backgroundColor: "#000080",
     },
     {
@@ -47,6 +48,7 @@ const AccordionComponent = (props) => {
       title: "How do they envision the dining experience?",
       data: null,
       expanded: false,
+      disabled: true,
       backgroundColor: "#A93226",
     },
     {
@@ -54,6 +56,7 @@ const AccordionComponent = (props) => {
       title: "What additional services will best support this experience?",
       data: null,
       expanded: false,
+      disabled: true,
       backgroundColor: "#16A085",
     },
     {
@@ -61,6 +64,7 @@ const AccordionComponent = (props) => {
       title: "Supporting Question?",
       data: null,
       expanded: false,
+      disabled: true,
       backgroundColor: "#16A085",
     },
   ]);
@@ -162,15 +166,32 @@ const AccordionComponent = (props) => {
             }}
           >
             {item.id === 3 ? (
-              <Step3 />
+              <Step3
+                disabled={
+                  completedSteps.includes(item.id - 1) ? false : item.disabled
+                }
+              />
             ) : item.id === 1 ? (
               <Step1 />
             ) : item.id === 2 ? (
-              <Step2 isMobileView={isMobileView} />
+              <Step2
+                isMobileView={isMobileView}
+                disabled={
+                  completedSteps.includes(item.id - 1) ? false : item.disabled
+                }
+              />
             ) : item.id === 5 ? (
-              <Step5 />
+              <Step5
+                disabled={
+                  completedSteps.includes(item.id - 1) ? false : item.disabled
+                }
+              />
             ) : item.id === 4 ? (
-              <Step4 />
+              <Step4
+                disabled={
+                  completedSteps.includes(item.id - 1) ? false : item.disabled
+                }
+              />
             ) : null}
           </AccordionDetails>
         </Accordions>

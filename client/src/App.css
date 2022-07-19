@@ -1416,3 +1416,13 @@ select option[value=""] {
   color: #666666;
   opacity: 0.5;
 }
+
+.isStepDiabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.isStepActive {
+  pointer-events: auto;
+  opacity: 1;
+}

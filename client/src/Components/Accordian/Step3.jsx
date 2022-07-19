@@ -39,7 +39,8 @@ const footprintData = [
   },
 ];
 
-const Step3 = () => {
+const Step3 = (props) => {
+  const { disabled = disabled } = props;
   const DiningExperience = new DiningExperienceService();
   const calculatedata = new calculatedataService();
   const [yesOrNo, setYesOrNo] = useState(false);
@@ -184,379 +185,147 @@ const Step3 = () => {
     calculation();
   }, [yesOption]);
 
+  function isFormEnableOrDisabled() {
+    let isFormActive = "stepOne isStepDiabled";
+    if (disabled === false) {
+      isFormActive = "stepOne isStepActive";
+    }
+    return isFormActive;
+  }
   return (
-    <>
-      {isMatchSm || isMatchMd ? (
-        <>
-          <Row className="logoNToggleRs">
-            <Button variant="secondary" className="LogoButtonRs">
-              Logo
-            </Button>
-            <Switch
-              className="switchButtonRs"
-              inputProps={{ "aria-label": "secondary checkbox" }}
-              color="success"
-              style={{ float: "right" }}
-              checked={yesOrNo}
-              onChange={handleYesOrNoChange}
-            />
-          </Row>
-          <br />
-          {yesOrNo ? (
-            <>
-              <Row className="OptionRs">
-                <Col className="heading" md={12}>
-                  <Typography variant="subtitle1">
-                    <b> What option would they like?</b>
-                  </Typography>
-                </Col>
-                <Row className="DataScrollRs">
-                  {yesDatas.map((data, index) => (
-                    <Button
-                      className="formButtonsRs"
-                      variant="light"
-                      name={data.custConvOption}
-                      value={data.custConvOption}
-                      onClick={(e) => handleYesButtons(data.custConvOption)}
-                      style={{
-                        backgroundColor:
-                          yesOption === data.custConvOption
-                            ? "#4BAE4F"
-                            : "#fff",
-                        color:
-                          yesOption === data.custConvOption ? "white" : "black",
-                        border:
-                          yesOption === data.custConvOption
-                            ? ""
-                            : "1px solid #979797",
-                      }}
-                    >
-                      <Typography variant="h6">
-                        {" "}
-                        {data.custConvOption}
-                      </Typography>
-                    </Button>
-                  ))}
-                </Row>
-              </Row>
-              <br />
-              <Row className="lastButtons">
-                <Button
-                  variant="contained"
-                  size="small"
-                  type="submit"
-                  className="previous_btn3Rs"
-                  onClick={() => onPrevious(accordionId - 1)}
-                >
-                  <Typography variant="subtitle1">Previous</Typography>
-                </Button>
-                <Button
-                  variant="contained"
-                  size="small"
-                  type="submit"
-                  className="next_btn3Rs"
-                  onClick={() => selectYesOption(accordionId)}
-                >
-                  <Typography variant="subtitle1">Next</Typography>
-                </Button>
-              </Row>
-              <br />
-            </>
-          ) : (
-            <>
-              <Row className="OptionRs">
-                <Col className="heading" md={12}>
-                  <Typography variant="subtitle1">
-                    <b>Footprint</b>
-                  </Typography>
-                </Col>
-                <Row className="DataScrollRs">
-                  {footprintData.map((data, index) => (
-                    <Button
-                      className="formButtonsRs"
-                      variant="light"
-                      key={data.value}
-                      name={data.value}
-                      value={data.value}
-                      onClick={() => handleFootprintButtons(data.value)}
-                      style={{
-                        backgroundColor: selectedFootprint.includes(data.value)
-                          ? "#4BAE4F"
-                          : "#fff",
-                        color: selectedFootprint.includes(data.value)
-                          ? "white"
-                          : "black",
-                        border: selectedFootprint.includes(data.value)
-                          ? ""
-                          : "1px solid #979797",
-                      }}
-                    >
-                      <Typography variant="h6">{data.value}</Typography>
-                    </Button>
-                  ))}
-                </Row>
-              </Row>
-              <br />
-              <Row className="OptionRs">
-                <Col className="heading" md={12}>
-                  <Typography variant="subtitle1">
-                    <b>On the go</b>
-                  </Typography>
-                </Col>
-                <Row className="DataScrollRs">
-                  {stationList
-                    .filter((item) => item.type === "On the go")
-                    .map((data, index) => (
-                      <Button
-                        className="formButtonsRs"
-                        variant="light"
-                        name={data.station}
-                        value={data.station}
-                        onClick={() => handleNoButtons(data.station)}
-                        style={{
-                          backgroundColor: selectedNoOptions.includes(
-                            data.station
-                          )
-                            ? "#4BAE4F"
-                            : "#fff",
-                          color: selectedNoOptions.includes(data.station)
-                            ? "white"
-                            : "black",
-                          border: selectedNoOptions.includes(data.station)
-                            ? ""
-                            : "1px solid #979797",
-                        }}
-                      >
-                        <Typography variant="h6">{data.station}</Typography>
-                      </Button>
-                    ))}
-                </Row>
-              </Row>
-              <br />
-              <Row className="OptionRs">
-                <Col className="heading" md={12}>
-                  <Typography variant="subtitle1">
-                    <b>
-                      Local
-                      <br />
-                      Variety
-                    </b>
-                  </Typography>
-                </Col>
-                <Row className="DataScrollRs">
-                  {stationList
-                    .filter((item) => item.type === "Local Veriety")
-                    .map((data, index) => (
-                      <Button
-                        className="formButtonsRs"
-                        variant="light"
-                        name={data.value}
-                        value={data.value}
-                        onClick={(e) => handleNoButtons(data.station)}
-                        style={{
-                          backgroundColor: selectedNoOptions.includes(
-                            data.station
-                          )
-                            ? "#4BAE4F"
-                            : "#fff",
-                          color: selectedNoOptions.includes(data.station)
-                            ? "white"
-                            : "black",
-                          border: selectedNoOptions.includes(data.station)
-                            ? ""
-                            : "1px solid #979797",
-                        }}
-                      >
-                        <Typography variant="h6">{data.station}</Typography>
-                      </Button>
-                    ))}
-                </Row>
-              </Row>
-              <br />
-              <Row className="OptionRs">
-                <Col className="heading" md={12}>
-                  <Typography variant="subtitle1">
-                    <b>A la carte</b>
-                  </Typography>
-                </Col>
-                <Row className="DataScrollRs">
-                  {stationList
-                    .filter((item) => item.type === "alacarte")
-                    .map((data, index) => (
-                      <Button
-                        className="formButtonsRs"
-                        variant="light"
-                        name={data.value}
-                        value={data.value}
-                        onClick={(e) => handleNoButtons(data.station)}
-                        style={{
-                          backgroundColor: selectedNoOptions.includes(
-                            data.station
-                          )
-                            ? "#4BAE4F"
-                            : "#fff",
-                          color: selectedNoOptions.includes(data.station)
-                            ? "white"
-                            : "black",
-                          border: selectedNoOptions.includes(data.station)
-                            ? ""
-                            : "1px solid #979797",
-                        }}
-                      >
-                        <Typography variant="h6">{data.station}</Typography>
-                      </Button>
-                    ))}
-                </Row>
-              </Row>
-              <br />
-              <Row className="lastButtons">
-                <Button
-                  variant="contained"
-                  size="small"
-                  type="submit"
-                  className="previous_btn3Rs"
-                  onClick={() => onPrevious(accordionId - 1)}
-                >
-                  <Typography variant="subtitle1">Previous</Typography>
-                </Button>
-                <Button
-                  variant="contained"
-                  size="small"
-                  type="submit"
-                  className="next_btn3Rs"
-                  onClick={() => selectNoOption(accordionId)}
-                >
-                  <Typography variant="subtitle1">Next</Typography>
-                </Button>
-              </Row>
-              <br />
-            </>
-          )}
-        </>
-      ) : (
-        <>
-          <Row className="logoNToggle">
-            <Col md={2}>
-              <Button variant="secondary" className="LogoButton">
+    <div
+      onClick={() =>
+        disabled === true ? Alert.error("Step 1 is not yet completed") : ""
+      }
+    >
+      <div className={isFormEnableOrDisabled()}>
+        {isMatchSm || isMatchMd ? (
+          <>
+            <Row className="logoNToggleRs">
+              <Button variant="secondary" className="LogoButtonRs">
                 Logo
               </Button>
-            </Col>
-            <Col md={1}>
               <Switch
+                className="switchButtonRs"
                 inputProps={{ "aria-label": "secondary checkbox" }}
                 color="success"
                 style={{ float: "right" }}
                 checked={yesOrNo}
                 onChange={handleYesOrNoChange}
               />
-            </Col>
-          </Row>
-          <br />
-          {yesOrNo ? (
-            <>
-              <Row className="Option">
-                <Col className="heading" md={4}>
-                  <Typography variant="subtitle2">
-                    <b> What option would they like?</b>
-                  </Typography>
-                </Col>
-                {yesDatas.map((data, index) => (
-                  <Button
-                    className="formButtons"
-                    variant="light"
-                    name={data.custConvOption}
-                    value={data.custConvOption}
-                    onClick={(e) => handleYesButtons(data.custConvOption)}
-                    style={{
-                      backgroundColor:
-                        yesOption === data.custConvOption ? "#4BAE4F" : "#fff",
-                      color:
-                        yesOption === data.custConvOption ? "white" : "black",
-                      border:
-                        yesOption === data.custConvOption
-                          ? ""
-                          : "1px solid #979797",
-                    }}
-                  >
-                    <Typography variant="subtitle2">
-                      {" "}
-                      {data.custConvOption}
+            </Row>
+            <br />
+            {yesOrNo ? (
+              <>
+                <Row className="OptionRs">
+                  <Col className="heading" md={12}>
+                    <Typography variant="subtitle1">
+                      <b> What option would they like?</b>
                     </Typography>
-                  </Button>
-                ))}
-              </Row>
-              <br />
-              <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
-                <Col md={6} style={{ textAlign: "left" }}>
+                  </Col>
+                  <Row className="DataScrollRs">
+                    {yesDatas.map((data, index) => (
+                      <Button
+                        className="formButtonsRs"
+                        variant="light"
+                        name={data.custConvOption}
+                        value={data.custConvOption}
+                        onClick={(e) => handleYesButtons(data.custConvOption)}
+                        style={{
+                          backgroundColor:
+                            yesOption === data.custConvOption
+                              ? "#4BAE4F"
+                              : "#fff",
+                          color:
+                            yesOption === data.custConvOption
+                              ? "white"
+                              : "black",
+                          border:
+                            yesOption === data.custConvOption
+                              ? ""
+                              : "1px solid #979797",
+                        }}
+                      >
+                        <Typography variant="h6">
+                          {" "}
+                          {data.custConvOption}
+                        </Typography>
+                      </Button>
+                    ))}
+                  </Row>
+                </Row>
+                <br />
+                <Row className="lastButtons">
                   <Button
                     variant="contained"
                     size="small"
                     type="submit"
-                    className="previous_btn3"
+                    className="previous_btn3Rs"
                     onClick={() => onPrevious(accordionId - 1)}
                   >
-                    Previous
+                    <Typography variant="subtitle1">Previous</Typography>
                   </Button>
-                </Col>
-                <Col md={6} style={{ textAlign: "right" }}>
                   <Button
                     variant="contained"
                     size="small"
                     type="submit"
-                    className="next_btn3"
+                    className="next_btn3Rs"
                     onClick={() => selectYesOption(accordionId)}
                   >
-                    Next
+                    <Typography variant="subtitle1">Next</Typography>
                   </Button>
-                </Col>
-              </Row>
-            </>
-          ) : (
-            <>
-              <Row className="Option">
-                <Col className="heading" md={2}>
-                  <Typography variant="subtitle1">
-                    <b>Footprint</b>
-                  </Typography>
-                </Col>
-                {footprintData.map((data, index) => (
-                  <Button
-                    className="formButtons"
-                    variant="light"
-                    key={data.value}
-                    name={data.value}
-                    value={data.value}
-                    onClick={() => handleFootprintButtons(data.name)}
-                    style={{
-                      backgroundColor: selectedFootprint.includes(data.name)
-                        ? "#4BAE4F"
-                        : "#fff",
-                      color: selectedFootprint.includes(data.value)
-                        ? "white"
-                        : "black",
-                      border: selectedFootprint.includes(data.value)
-                        ? ""
-                        : "1px solid #979797",
-                    }}
-                  >
-                    <Typography variant="subtitle2"> {data.value}</Typography>
-                  </Button>
-                ))}
-              </Row>
-              <br />
-              <Row className="Option">
-                <Col className="heading" md={2}>
-                  <Typography variant="subtitle1">
-                    <b>On the go</b>
-                  </Typography>
-                </Col>
-                <Col>
-                  <Row className="alaCarteRow">
+                </Row>
+                <br />
+              </>
+            ) : (
+              <>
+                <Row className="OptionRs">
+                  <Col className="heading" md={12}>
+                    <Typography variant="subtitle1">
+                      <b>Footprint</b>
+                    </Typography>
+                  </Col>
+                  <Row className="DataScrollRs">
+                    {footprintData.map((data, index) => (
+                      <Button
+                        className="formButtonsRs"
+                        variant="light"
+                        key={data.value}
+                        name={data.value}
+                        value={data.value}
+                        onClick={() => handleFootprintButtons(data.value)}
+                        style={{
+                          backgroundColor: selectedFootprint.includes(
+                            data.value
+                          )
+                            ? "#4BAE4F"
+                            : "#fff",
+                          color: selectedFootprint.includes(data.value)
+                            ? "white"
+                            : "black",
+                          border: selectedFootprint.includes(data.value)
+                            ? ""
+                            : "1px solid #979797",
+                        }}
+                      >
+                        <Typography variant="h6">{data.value}</Typography>
+                      </Button>
+                    ))}
+                  </Row>
+                </Row>
+                <br />
+                <Row className="OptionRs">
+                  <Col className="heading" md={12}>
+                    <Typography variant="subtitle1">
+                      <b>On the go</b>
+                    </Typography>
+                  </Col>
+                  <Row className="DataScrollRs">
                     {stationList
                       .filter((item) => item.type === "On the go")
                       .map((data, index) => (
                         <Button
-                          className="formButtons"
+                          className="formButtonsRs"
                           variant="light"
                           name={data.station}
                           value={data.station}
@@ -575,77 +344,35 @@ const Step3 = () => {
                               : "1px solid #979797",
                           }}
                         >
-                          <Typography variant="subtitle2">
-                            {" "}
-                            {data.station}
-                          </Typography>
+                          <Typography variant="h6">{data.station}</Typography>
                         </Button>
                       ))}
                   </Row>
-                </Col>
-              </Row>
-              <br />
-              <Row className="Option">
-                <Col className="headingLocal" md={2}>
-                  <Typography variant="subtitle1">
-                    <b>
-                      Local
-                      <br />
-                      Variety
-                    </b>
-                  </Typography>
-                </Col>
-                {stationList
-                  .filter((item) => item.type === "Local Veriety")
-                  .map((data, index) => (
-                    <Button
-                      className="formButtons"
-                      variant="light"
-                      name={data.station}
-                      value={data.station}
-                      onClick={(e) => handleNoButtons(data.station)}
-                      style={{
-                        backgroundColor: selectedNoOptions.includes(
-                          data.station
-                        )
-                          ? "#4BAE4F"
-                          : "#fff",
-                        color: selectedNoOptions.includes(data.station)
-                          ? "white"
-                          : "black",
-                        border: selectedNoOptions.includes(data.station)
-                          ? ""
-                          : "1px solid #979797",
-                      }}
-                    >
-                      <Typography variant="subtitle2">
-                        {" "}
-                        {data.station}
-                      </Typography>
-                    </Button>
-                  ))}
-              </Row>
-              <br />
-              <Row className="OptionAla">
-                <Col className="headingAla" md={2}>
-                  <Typography variant="subtitle1">
-                    <b>A la carte</b>
-                  </Typography>
-                </Col>
-                <Col md={9}>
-                  <Row>
+                </Row>
+                <br />
+                <Row className="OptionRs">
+                  <Col className="heading" md={12}>
+                    <Typography variant="subtitle1">
+                      <b>
+                        Local
+                        <br />
+                        Variety
+                      </b>
+                    </Typography>
+                  </Col>
+                  <Row className="DataScrollRs">
                     {stationList
-                      .filter((item) => item.type === "alacarte")
+                      .filter((item) => item.type === "Local Veriety")
                       .map((data, index) => (
                         <Button
-                          className="formButtonsAla"
+                          className="formButtonsRs"
                           variant="light"
                           name={data.value}
                           value={data.value}
                           onClick={(e) => handleNoButtons(data.station)}
                           style={{
                             backgroundColor: selectedNoOptions.includes(
-                              data.value
+                              data.station
                             )
                               ? "#4BAE4F"
                               : "#fff",
@@ -657,45 +384,338 @@ const Step3 = () => {
                               : "1px solid #979797",
                           }}
                         >
-                          <Typography variant="subtitle2">
-                            {" "}
-                            {data.station}
-                          </Typography>
+                          <Typography variant="h6">{data.station}</Typography>
                         </Button>
                       ))}
                   </Row>
-                </Col>
-              </Row>
-              <br />
-              <Row className="" style={{ padding: "0 0.3em" }}>
-                <Col style={{ textAlign: "left" }}>
+                </Row>
+                <br />
+                <Row className="OptionRs">
+                  <Col className="heading" md={12}>
+                    <Typography variant="subtitle1">
+                      <b>A la carte</b>
+                    </Typography>
+                  </Col>
+                  <Row className="DataScrollRs">
+                    {stationList
+                      .filter((item) => item.type === "alacarte")
+                      .map((data, index) => (
+                        <Button
+                          className="formButtonsRs"
+                          variant="light"
+                          name={data.value}
+                          value={data.value}
+                          onClick={(e) => handleNoButtons(data.station)}
+                          style={{
+                            backgroundColor: selectedNoOptions.includes(
+                              data.station
+                            )
+                              ? "#4BAE4F"
+                              : "#fff",
+                            color: selectedNoOptions.includes(data.station)
+                              ? "white"
+                              : "black",
+                            border: selectedNoOptions.includes(data.station)
+                              ? ""
+                              : "1px solid #979797",
+                          }}
+                        >
+                          <Typography variant="h6">{data.station}</Typography>
+                        </Button>
+                      ))}
+                  </Row>
+                </Row>
+                <br />
+                <Row className="lastButtons">
                   <Button
                     variant="contained"
                     size="small"
                     type="submit"
-                    className="previous_btn3"
+                    className="previous_btn3Rs"
                     onClick={() => onPrevious(accordionId - 1)}
                   >
-                    Previous
+                    <Typography variant="subtitle1">Previous</Typography>
                   </Button>
-                </Col>
-                <Col style={{ textAlign: "right" }}>
                   <Button
                     variant="contained"
                     size="small"
                     type="submit"
-                    className="next_btn3"
+                    className="next_btn3Rs"
                     onClick={() => selectNoOption(accordionId)}
                   >
-                    Next
+                    <Typography variant="subtitle1">Next</Typography>
                   </Button>
-                </Col>
-              </Row>
-            </>
-          )}
-        </>
-      )}
-    </>
+                </Row>
+                <br />
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            <Row className="logoNToggle">
+              <Col md={2}>
+                <Button variant="secondary" className="LogoButton">
+                  Logo
+                </Button>
+              </Col>
+              <Col md={1}>
+                <Switch
+                  inputProps={{ "aria-label": "secondary checkbox" }}
+                  color="success"
+                  style={{ float: "right" }}
+                  checked={yesOrNo}
+                  onChange={handleYesOrNoChange}
+                />
+              </Col>
+            </Row>
+            <br />
+            {yesOrNo ? (
+              <>
+                <Row className="Option">
+                  <Col className="heading" md={4}>
+                    <Typography variant="subtitle2">
+                      <b> What option would they like?</b>
+                    </Typography>
+                  </Col>
+                  {yesDatas.map((data, index) => (
+                    <Button
+                      className="formButtons"
+                      variant="light"
+                      name={data.custConvOption}
+                      value={data.custConvOption}
+                      onClick={(e) => handleYesButtons(data.custConvOption)}
+                      style={{
+                        backgroundColor:
+                          yesOption === data.custConvOption
+                            ? "#4BAE4F"
+                            : "#fff",
+                        color:
+                          yesOption === data.custConvOption ? "white" : "black",
+                        border:
+                          yesOption === data.custConvOption
+                            ? ""
+                            : "1px solid #979797",
+                      }}
+                    >
+                      <Typography variant="subtitle2">
+                        {" "}
+                        {data.custConvOption}
+                      </Typography>
+                    </Button>
+                  ))}
+                </Row>
+                <br />
+                <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
+                  <Col md={6} style={{ textAlign: "left" }}>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      type="submit"
+                      className="previous_btn3"
+                      onClick={() => onPrevious(accordionId - 1)}
+                    >
+                      Previous
+                    </Button>
+                  </Col>
+                  <Col md={6} style={{ textAlign: "right" }}>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      type="submit"
+                      className="next_btn3"
+                      onClick={() => selectYesOption(accordionId)}
+                    >
+                      Next
+                    </Button>
+                  </Col>
+                </Row>
+              </>
+            ) : (
+              <>
+                <Row className="Option">
+                  <Col className="heading" md={2}>
+                    <Typography variant="subtitle1">
+                      <b>Footprint</b>
+                    </Typography>
+                  </Col>
+                  {footprintData.map((data, index) => (
+                    <Button
+                      className="formButtons"
+                      variant="light"
+                      key={data.value}
+                      name={data.value}
+                      value={data.value}
+                      onClick={() => handleFootprintButtons(data.name)}
+                      style={{
+                        backgroundColor: selectedFootprint.includes(data.name)
+                          ? "#4BAE4F"
+                          : "#fff",
+                        color: selectedFootprint.includes(data.value)
+                          ? "white"
+                          : "black",
+                        border: selectedFootprint.includes(data.value)
+                          ? ""
+                          : "1px solid #979797",
+                      }}
+                    >
+                      <Typography variant="subtitle2"> {data.value}</Typography>
+                    </Button>
+                  ))}
+                </Row>
+                <br />
+                <Row className="Option">
+                  <Col className="heading" md={2}>
+                    <Typography variant="subtitle1">
+                      <b>On the go</b>
+                    </Typography>
+                  </Col>
+                  <Col>
+                    <Row className="alaCarteRow">
+                      {stationList
+                        .filter((item) => item.type === "On the go")
+                        .map((data, index) => (
+                          <Button
+                            className="formButtons"
+                            variant="light"
+                            name={data.station}
+                            value={data.station}
+                            onClick={() => handleNoButtons(data.station)}
+                            style={{
+                              backgroundColor: selectedNoOptions.includes(
+                                data.station
+                              )
+                                ? "#4BAE4F"
+                                : "#fff",
+                              color: selectedNoOptions.includes(data.station)
+                                ? "white"
+                                : "black",
+                              border: selectedNoOptions.includes(data.station)
+                                ? ""
+                                : "1px solid #979797",
+                            }}
+                          >
+                            <Typography variant="subtitle2">
+                              {" "}
+                              {data.station}
+                            </Typography>
+                          </Button>
+                        ))}
+                    </Row>
+                  </Col>
+                </Row>
+                <br />
+                <Row className="Option">
+                  <Col className="headingLocal" md={2}>
+                    <Typography variant="subtitle1">
+                      <b>
+                        Local
+                        <br />
+                        Variety
+                      </b>
+                    </Typography>
+                  </Col>
+                  {stationList
+                    .filter((item) => item.type === "Local Veriety")
+                    .map((data, index) => (
+                      <Button
+                        className="formButtons"
+                        variant="light"
+                        name={data.station}
+                        value={data.station}
+                        onClick={(e) => handleNoButtons(data.station)}
+                        style={{
+                          backgroundColor: selectedNoOptions.includes(
+                            data.station
+                          )
+                            ? "#4BAE4F"
+                            : "#fff",
+                          color: selectedNoOptions.includes(data.station)
+                            ? "white"
+                            : "black",
+                          border: selectedNoOptions.includes(data.station)
+                            ? ""
+                            : "1px solid #979797",
+                        }}
+                      >
+                        <Typography variant="subtitle2">
+                          {" "}
+                          {data.station}
+                        </Typography>
+                      </Button>
+                    ))}
+                </Row>
+                <br />
+                <Row className="OptionAla">
+                  <Col className="headingAla" md={2}>
+                    <Typography variant="subtitle1">
+                      <b>A la carte</b>
+                    </Typography>
+                  </Col>
+                  <Col md={9}>
+                    <Row>
+                      {stationList
+                        .filter((item) => item.type === "alacarte")
+                        .map((data, index) => (
+                          <Button
+                            className="formButtonsAla"
+                            variant="light"
+                            name={data.value}
+                            value={data.value}
+                            onClick={(e) => handleNoButtons(data.station)}
+                            style={{
+                              backgroundColor: selectedNoOptions.includes(
+                                data.value
+                              )
+                                ? "#4BAE4F"
+                                : "#fff",
+                              color: selectedNoOptions.includes(data.station)
+                                ? "white"
+                                : "black",
+                              border: selectedNoOptions.includes(data.station)
+                                ? ""
+                                : "1px solid #979797",
+                            }}
+                          >
+                            <Typography variant="subtitle2">
+                              {" "}
+                              {data.station}
+                            </Typography>
+                          </Button>
+                        ))}
+                    </Row>
+                  </Col>
+                </Row>
+                <br />
+                <Row className="" style={{ padding: "0 0.3em" }}>
+                  <Col style={{ textAlign: "left" }}>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      type="submit"
+                      className="previous_btn3"
+                      onClick={() => onPrevious(accordionId - 1)}
+                    >
+                      Previous
+                    </Button>
+                  </Col>
+                  <Col style={{ textAlign: "right" }}>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      type="submit"
+                      className="next_btn3"
+                      onClick={() => selectNoOption(accordionId)}
+                    >
+                      Next
+                    </Button>
+                  </Col>
+                </Row>
+              </>
+            )}
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

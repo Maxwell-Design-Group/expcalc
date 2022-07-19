@@ -10,7 +10,9 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Table from "react-bootstrap/Table";
 import SupportingQuestionService from "../../Services/SupportingQuestionService";
+import Alert from "../Alert/Alert";
 const Step5 = (props) => {
+  const { isMobileView = false, disabled = disabled } = props;
   const SupportingQuestion = new SupportingQuestionService();
   const tableRows = [];
   const supportingFeatures = [];
@@ -30,7 +32,7 @@ const Step5 = (props) => {
   const { clientDetails } = useSelector((state) => state.Reducer);
   const { posDetails } = useSelector((state) => state.Reducer);
   const { supportingFeatureDetails } = useSelector((state) => state.Reducer);
-  const { isMobileView = false } = props;
+
   const [supportingQuestionData, setSupportingQuestionData] = useState([]);
   const tableData2 = [];
   // const POS = [
@@ -42,14 +44,9 @@ const Step5 = (props) => {
   // if (masterData.supportingfeature) {
   //   supportingFeatureData = masterData.supportingfeature;
   // }
-  console.log("posDetails ", posDetails);
-  console.log("supportingFeatureDetails ", supportingFeatureDetails);
   useEffect(() => {
-    // console.log("clientDetails ", clientDetails);
     // var clientDetailsObj = Object.keys(clientDetails).length;
-    // console.log("clientDetailsObj ", clientDetailsObj);
     // if (clientDetailsObj > 0) {
-    //   console.log("47 ");
     //   dispatch(getSupportingQuestionDetails());
     // }
   }, []);
@@ -58,7 +55,6 @@ const Step5 = (props) => {
   };
 
   const selectNoOption = (id) => {
-    console.log("id ", id);
     let suportingfeature = "";
     if (userSelectedFeatures.length > 0) {
       suportingfeature = userSelectedFeatures.toString();
@@ -73,7 +69,6 @@ const Step5 = (props) => {
       suportingfeature: suportingfeature,
       wtproduct: wtproduct,
     };
-    console.log("obj ", obj);
     SupportingQuestion.sendData(obj, id, clientDetails);
   };
   const handleChange = (e, rowData, index) => {
@@ -159,13 +154,10 @@ const Step5 = (props) => {
 
   const handlePosChange = (ev) => {
     //save your value here with state variable
-    console.log(ev.target.value);
     setPos(ev.target.value);
   };
-  console.log("posDetails ", posDetails);
   if (posDetails) {
     POS = posDetails;
-    console.log("POS ", POS);
     POS.forEach((pos, index) => {
       POSData.push(
         <div class="pos_btn">
@@ -188,9 +180,20 @@ const Step5 = (props) => {
     setExpand(!expand);
   }
 
+  function isFormEnableOrDisabled() {
+    let isFormActive = "stepOne isStepDiabled";
+    if (disabled === false) {
+      isFormActive = "stepOne isStepActive";
+    }
+    return isFormActive;
+  }
   return (
-    <>
-      <div>
+    <div
+      onClick={() =>
+        disabled === true ? Alert.error("Step 1 is not yet completed") : ""
+      }
+    >
+      <div className={isFormEnableOrDisabled()}>
         <div
           className="POS_Container"
           style={{
@@ -313,7 +316,7 @@ const Step5 = (props) => {
           </Col>
         </Row>
       </div>
-    </>
+    </div>
   );
 };
 
