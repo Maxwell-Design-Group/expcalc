@@ -1,5 +1,6 @@
 import axios from "axios";
 import Store from "../Redux/Store";
+import Config from "../Config/Config.json";
 
 import Alert from "../Components/Alert/Alert";
 import { completedSteps, nextAccordionOpen } from "../Redux/Actions";
@@ -7,7 +8,7 @@ class SupportingQuestionService {
   sendData(data, accordianId, clientDetails) {
     axios
       .put(
-        "https://expcalc-dev.herokuapp.com/client/" + clientDetails._id,
+        Config.baseUrl + Config.client + clientDetails._id,
         data
       )
       .then((response) => {
@@ -16,25 +17,25 @@ class SupportingQuestionService {
         Store.dispatch(completedSteps(accordianId));
         Store.dispatch(nextAccordionOpen(accordianId + 1));
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }
 
   updateDate(data, id) {
     axios
-      .post("https://expcalc-dev.herokuapp.com/wintheme/update/" + id, data)
+      .post(Config.baseUrl + Config.winthemeUpdate + id, data)
       .then((response) => {
         this.asetState({
           winthemedetails: response.data,
         });
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }
 
   deleteData(id) {
     axios
-      .get("https://expcalc-dev.herokuapp.com/wintheme/delete/" + id)
-      .then(() => {})
-      .catch((error) => {});
+      .get(Config.baseUrl + Config.winthemeDelete + id)
+      .then(() => { })
+      .catch((error) => { });
   }
 }
 

@@ -1,6 +1,9 @@
 import axios from "axios";
 import Store from "../Redux/Store";
 import Alert from "../Components/Alert/Alert";
+import Config from "../Config/Config.json";
+
+
 import {
   completedSteps,
   nextAccordionOpen,
@@ -12,7 +15,7 @@ class ClientDetailService {
 
   sendData(data, accordianId) {
     axios
-      .post("https://expcalc-dev.herokuapp.com/client", data)
+      .post(Config.baseUrl + Config.client, data)
       .then((response) => {
         Alert.success("ClientDetail added successfully");
 
@@ -20,34 +23,34 @@ class ClientDetailService {
         Store.dispatch(completedSteps(accordianId - 1));
         Store.dispatch(nextAccordionOpen(accordianId));
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }
 
   updateDate(data, id) {
     axios
-      .post("https://expcalc-dev.herokuapp.com/client/" + id, data)
+      .post(Config.baseUrl + Config.client + id, data)
       .then((response) => {
         this.asetState({
           clientdetails: response.data,
         });
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }
 
   deleteData(id) {
     axios
-      .get("https://expcalc-dev.herokuapp.com/client/" + id)
-      .then(() => {})
-      .catch((error) => {});
+      .get(Config.baseUrl + Config.client + id)
+      .then(() => { })
+      .catch((error) => { });
   }
 
   getData(id) {
     axios
-      .get("http://localhost:3000/client")
+      .get(Config.baseUrl + Config.client)
       .then((response) => {
         return response[response.length];
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }
 }
 

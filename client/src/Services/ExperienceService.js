@@ -1,5 +1,6 @@
 import axios from "axios";
 import Store from "../Redux/Store";
+import Config from "../Config/Config.json";
 
 import Alert from "../Components/Alert/Alert";
 import {
@@ -12,7 +13,7 @@ class ExperienceService {
   sendData(data, accordianId, clientDetails) {
     axios
       .put(
-        "https://expcalc-dev.herokuapp.com/client/" + clientDetails._id,
+        Config.baseUrl + Config.client + clientDetails._id,
         data
       )
       .then((response) => {
@@ -30,7 +31,7 @@ class ExperienceService {
 
   updateDate(data, id) {
     axios
-      .post("https://expcalc-dev.herokuapp.com/wintheme/update/" + id, data)
+      .post(Config.baseUrl+Config.winthemeUpdate+ id, data)
       .then((response) => {
         this.asetState({
           winthemedetails: response.data,
@@ -41,7 +42,7 @@ class ExperienceService {
 
   deleteData(id) {
     axios
-      .get("https://expcalc-dev.herokuapp.com/wintheme/delete/" + id)
+      .get(Config.baseUrl+Config.winthemeDelete + id)
       .then(() => {})
       .catch((error) => {});
   }
