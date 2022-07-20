@@ -160,7 +160,7 @@ function Dashboard() {
           </Col>
           {isMobileView === false && (
             <Col md={4} className="dashboard-rhs">
-              {selectedAccordion === 0 ? (
+              {selectedAccordion === 0 || selectedAccordion === 1 ? (
                 <div className="tootalCalculationSection">
                   <div className="tootalCalculationSection_container"></div>
                 </div>

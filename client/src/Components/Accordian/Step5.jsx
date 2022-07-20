@@ -27,7 +27,7 @@ const Step5 = (props) => {
   const [pos, setPos] = useState("");
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
-  const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);  
+  const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);
   const dispatch = useDispatch();
   const { masterData } = useSelector((state) => state.Master);
   const { accordionId } = useSelector((state) => state.Reducer);
@@ -96,75 +96,71 @@ const Step5 = (props) => {
       wtproduct: userSelectedProducts.toString(),
       master: masterData,
     };
-   
+
     calculatedata.getcalculation(calcObj);
   }
 
- 
   useEffect(() => {
     console.log("pos");
     console.log(pos);
     calculation();
   }, [pos]);
 
-
-
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
     let products = userSelectedProducts;
     if (checked === true) {
       products.push(rowData.product);
-      
+
       setUserSelectedProducts(products);
     } else {
       for (let i = 0; i < products.length; i++) {
         if (products[i] === rowData.product) {
           products.splice(i, 1);
-           
+
           setUserSelectedProducts(products);
         }
       }
     }
-     calculation();
+    calculation();
   };
   const handleChangeFeatures = (e, rowData, index) => {
     const { checked } = e.target;
     let features = userSelectedFeatures;
-    
 
     if (checked === true) {
-      if( rowData.indexOf("Digital Signage55")!== -1){
+      if (rowData.indexOf("Digital Signage55") !== -1) {
         features.push("55");
       }
-      if( rowData.indexOf("Digital Signage50")!== -1){
+      if (rowData.indexOf("Digital Signage50") !== -1) {
         features.push("50");
       }
-      if( rowData.indexOf("Digital Signage65")!== -1){
+      if (rowData.indexOf("Digital Signage65") !== -1) {
         features.push("65");
       }
-            
+
       setUserSelectedFeatures(features);
     } else {
       for (let i = 0; i < features.length; i++) {
-        let rfeature="";
-        if( rowData.indexOf("Digital Signage55")!== -1){
-          rfeature ="55";
+        let rfeature = "";
+        if (rowData.indexOf("Digital Signage55") !== -1) {
+          rfeature = "55";
         }
-        if( rowData.indexOf("Digital Signage50")!== -1){
-          rfeature ="50";
+        if (rowData.indexOf("Digital Signage50") !== -1) {
+          rfeature = "50";
         }
-        if( rowData.indexOf("Digital Signage65")!== -1){
-          rfeature ="65";
+        if (rowData.indexOf("Digital Signage65") !== -1) {
+          rfeature = "65";
         }
-              
+
         if (features[i] === rfeature) {
           features.splice(i, 1);
-          
+
           setUserSelectedFeatures(features);
         }
       }
     }
-   
+
     calculation();
   };
   if (themes) {
@@ -306,7 +302,7 @@ const Step5 = (props) => {
             flexDirection: isMobileView ? "column" : "row",
           }}
         >
-          <div className="POS_text">Supporting Feature</div>
+          <div className="SF_text">Supporting Feature</div>
           <div className="POS_main_container">{supportingFeatures}</div>
         </div>
 
@@ -320,39 +316,52 @@ const Step5 = (props) => {
           <div className="you-may-also-like-main-container">
             {" "}
             <Col md={12}>
-              <table
-                striped
-                bordered
-                hover
-                style={{
-                  tableLayout: "fixed",
-                  width: "100%",
-                  textAlign: "left",
-                }}
-              >
-                <thead
+              <div class="tableFixHead">
+                <table
+                  striped
+                  bordered
+                  hover
                   style={{
-                    borderBottom: "1px solid #cfcfcf",
+                    tableLayout: "fixed",
+                    width: "100%",
                     textAlign: "left",
-                    font: "normal normal 400 14px/36px Gotham",
-                    letterSpacing: "0.25px",
-                    color: "#4B4B4B",
-                    opacity: "1",
                   }}
                 >
-                  <tr>
-                    <th style={{ width: "20%" }}>Product</th>
-                    <th style={{ width: "45%" }}>Brief Description</th>
-                    <th style={{ width: "10%" }}>Cost</th>
-                  </tr>
-                </thead>
+                  <thead
+                    style={{
+                      borderBottom: "1px solid #cfcfcf",
+                      textAlign: "left",
+                      font: "normal normal 400 14px/36px Gotham",
+                      letterSpacing: "0.25px",
+                      color: "#4B4B4B",
+                      opacity: "1",
+                    }}
+                  >
+                    <tr>
+                      <th style={{ width: "20%", background: "#fff" }}>
+                        Product
+                      </th>
+                      <th style={{ width: "45%", background: "#fff" }}>
+                        Brief Description
+                      </th>
+                      <th
+                        style={{
+                          width: "10%",
+                          background: "#fff",
+                        }}
+                      >
+                        Cost
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>{tableRows}</tbody>
-              </table>
+                  <tbody>{tableRows}</tbody>
+                </table>
+              </div>
             </Col>
           </div>
         </div>
-        <Row className="rowSeprator" style={{ padding: "0 0.6em" }}>
+        <Row className="rowSeprator">
           <Col md={6} style={{ textAlign: "left" }}>
             <Button
               variant="contained"
