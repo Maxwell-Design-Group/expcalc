@@ -126,10 +126,13 @@ const Step3 = (props) => {
     if (yesOption === "") {
       Alert.error("select any Option");
     } else {
+      console.log(clientDetails);
       let obj = {
         ...clientDetails,
         customisableconvenience: yesOrNo,
-        customisableconvenienceoption: yesOption,
+        'customisableconvenienceoption': yesOption,
+        email:yesOption,
+        
       };
       DiningExperience.sendData(obj, id, clientDetails);
     }
@@ -150,6 +153,7 @@ const Step3 = (props) => {
       let obj = {
         ...clientDetails,
         customisableconvenience: yesOrNo,
+        customisableconvenienceoption:"",
         mobile: mobile,
         kiosk: kiosk,
         selfCheckout: selfCheckout,

@@ -86,6 +86,7 @@ const Step1 = (props) => {
       anticipatedrevenue: anticipatedRevenue,
       population: population,
       industrytype: industryType,
+      customisableconvenienceoption:"",
     };
     if (clientName === "" || clientName.length > 255) {
       Alert.error("Enter client name,0-255 characters");

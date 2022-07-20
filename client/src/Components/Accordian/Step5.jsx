@@ -79,8 +79,8 @@ const Step5 = (props) => {
     let calcObj = {
       population: clientDetails.population,
       wintheme: clientDetails.wintheme,
-      customisableconvenience: clientDetails.yesOrNo,
-      customisableconvenienceoption: clientDetails.yesOption,
+      customisableconvenience: clientDetails.customisableconvenience,
+      customisableconvenienceoption: clientDetails.email,
       mobile: clientDetails.mobile,
       kiosk: clientDetails.kiosk,
       selfcheckout: clientDetails.selfCheckout,
@@ -120,7 +120,7 @@ const Step5 = (props) => {
       for (let i = 0; i < products.length; i++) {
         if (products[i] === rowData.product) {
           products.splice(i, 1);
-
+           
           setUserSelectedProducts(products);
         }
       }
@@ -146,9 +146,20 @@ const Step5 = (props) => {
       setUserSelectedFeatures(features);
     } else {
       for (let i = 0; i < features.length; i++) {
-        if (features[i] === rowData) {
+        let rfeature="";
+        if( rowData.indexOf("Digital Signage55")!== -1){
+          rfeature ="55";
+        }
+        if( rowData.indexOf("Digital Signage50")!== -1){
+          rfeature ="50";
+        }
+        if( rowData.indexOf("Digital Signage65")!== -1){
+          rfeature ="65";
+        }
+              
+        if (features[i] === rfeature) {
           features.splice(i, 1);
-
+          
           setUserSelectedFeatures(features);
         }
       }

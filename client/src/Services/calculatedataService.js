@@ -92,11 +92,11 @@ class calculatedataService {
                   
                     pos.forEach(p => {              
                       if(p!=null){
-                        if(p.pos==data.pos){
-                          capex=  capex + Number( p.capex) 
-                          opex= opex + Number( p.opex) 
-                          total= total +  Number( p.capex) ;
-                        }
+                        // if(p.pos==data.pos){
+                        //   capex=  capex + Number( p.capex) 
+                        //   opex= opex + Number( p.opex) 
+                        //   total= total +  Number( p.capex) ;
+                        // }
 
                         capex=  capex + Number( p.icapex) 
                         opex= opex + Number( p.iopex) 
@@ -129,6 +129,22 @@ class calculatedataService {
 
 
      }
+
+     if( data.pos!==undefined  && master.pos!=undefined){
+                    
+          const pos = master.pos.filter(e=>e.pos === data.pos);
+        
+          pos.forEach(p => {              
+            if(p!=null){
+              if(p.pos==data.pos){
+                capex=  capex + Number( p.capex) 
+                opex= opex + Number( p.opex) 
+                total= total +  Number( p.capex) ;
+              }
+          }
+        });
+  
+    } 
 
      if( data.digitalsignage!==undefined && master.digitalsignage!=undefined){
 
