@@ -572,7 +572,7 @@ console.log("yesOptionsss"+yesOption);
       ) : (
         <>
           <Row className="logoNToggle">
-            <Col md={4}>
+            <Col md={5}>
             <img
                       src={ccOption}
                       alt={ccOption}
