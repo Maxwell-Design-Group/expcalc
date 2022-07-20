@@ -40,6 +40,7 @@ const footprintData = [
 ];
 
 const Step3 = (props) => {
+
   const { disabled = disabled } = props;
   const DiningExperience = new DiningExperienceService();
   const calculatedata = new calculatedataService();
@@ -84,6 +85,25 @@ const Step3 = (props) => {
     return null;
   });
 
+
+     let population = clientDetails.population;
+
+      if (document.getElementsByName("Mobile")[0]!=undefined){
+        document.getElementsByName("Mobile")[0].disabled=false;
+        document.getElementsByName("Cashier")[0].disabled=false;
+        document.getElementsByName("Self-Checkout")[0].disabled=false;
+        document.getElementsByName("Kiosk")[0].disabled=false;
+      }
+      
+     if (population>=0 && population<=250){
+      
+         document.getElementsByName("Kiosk")[0].disabled=true;
+         document.getElementsByName("Self-Checkout")[0].disabled=true;
+                    
+     } 
+
+
+
   const handleYesOrNoChange = (e) => {
     setYesOrNo(e.target.checked);
   };
@@ -97,6 +117,9 @@ const Step3 = (props) => {
   };
 
   const handleFootprintButtons = (value) => {
+
+    console.log( document.getElementsByName(value)[0]);
+
     if (selectedFootprint.includes(value)) {
       setSelectedFootprint((prev) =>
         prev.filter((item) => {
@@ -126,12 +149,12 @@ const Step3 = (props) => {
     if (yesOption === "") {
       Alert.error("select any Option");
     } else {
-      console.log(clientDetails);
+      
       let obj = {
         ...clientDetails,
-        customisableconvenience: yesOrNo,
-        'customisableconvenienceoption': yesOption,
+        customisableconvenience: yesOrNo,        
         email:yesOption,
+        'clientDetails.ccopt':yesOption,
         
       };
       DiningExperience.sendData(obj, id, clientDetails);
