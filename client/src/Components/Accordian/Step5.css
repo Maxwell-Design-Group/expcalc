@@ -16,11 +16,30 @@
     opacity: 1;
     height: 90px;
     max-width: 170px;
+    padding: 0 0 0 10px;
+    min-width: 162px;
+    text-align: center;
+    white-space: break-spaces;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    text-align: left;
+    font: normal normal medium 14px/15px Gotham;
+    letter-spacing: 0px;
+    color: #000000;
+}
+
+.SF_text {
+    background: #f8f8f8 0% 0% no-repeat padding-box;
+    opacity: 1;
+    height: 90px;
+    max-width: 170px;
+    padding: 0 0 0 10px;
     min-width: 140px;
     text-align: center;
     white-space: break-spaces;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     text-align: left;
     font: normal normal medium 14px/15px Gotham;
@@ -31,11 +50,12 @@
 .you-may-also-like {
     background: #f8f8f8 0% 0% no-repeat padding-box;
     opacity: 1;
-    height: 90px;
+    min-height: 200px;
     max-width: 170px;
-    min-width: 140px;
+    min-width: 162px;
     text-align: center;
     white-space: break-spaces;
+    padding: 0 0 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,6 +90,14 @@
         height: 45px;
         width: 100%;
         max-width: 100%;
+        justify-content: center;
+    }
+
+    .SF_text {
+        height: 45px;
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
     }
 
     .pos_btn {
@@ -78,7 +106,7 @@
     }
 
     .you-may-also-like {
-        height: 45px;
+        min-height: 45px;
         width: 100%;
         max-width: 100%;
     }
@@ -92,7 +120,40 @@
 
 }
 
+.tableFixHead:hover {
+    overflow-y: scroll;
+
+}
+
 /* .you-may-also-like-mbl {
     min-height: 45px;
     width: 100% !important;
+} */
+
+
+
+.tableFixHead {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 190px;
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+}
+
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background: #eee;
 } */

@@ -9,14 +9,16 @@ import {
 import ExperienceService from "../../Services/ExperienceService";
 import calculatedataService from "../../Services/calculatedataService";
 import "./step4.css";
+import Alert from "../Alert/Alert";
 
 const Step4 = (props) => {
+  const { isMobileView = false, disabled = disabled } = props;
   const Experience = new ExperienceService();
   const calculatedata = new calculatedataService();
   const { clientDetails } = useSelector((state) => state.Reducer);
-  const { isMobileView = false } = props;
+
   const tableRows = [];
-  let features = [];
+  let selectedFeatures = [];
   const [checked, setChecked] = useState(false);
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
@@ -75,26 +77,26 @@ const Step4 = (props) => {
         }
       }
     }
-    calculation();
   };
 
   const handleChangeFeatures = (e, rowData) => {
     const { checked } = e.target;
-    features = userSelectedFeatures;
+    selectedFeatures = userSelectedFeatures;
+
     if (checked === true) {
-      features.push(rowData.label);
+      selectedFeatures.push(rowData.label);
 
-      setUserSelectedFeatures(features);
+      setUserSelectedFeatures(selectedFeatures);
     } else {
-      for (let i = 0; i < features.length; i++) {
-        if (features[i] === rowData.label) {
-          features.splice(i, 1);
+      for (let i = 0; i < selectedFeatures.length; i++) {
+        if (selectedFeatures[i] === rowData.label) {
+          selectedFeatures.splice(i, 1);
 
-          setUserSelectedFeatures(features);
+          setUserSelectedFeatures(selectedFeatures);
         }
       }
     }
-    calculation();
+    // calculation();
   };
 
   tableData.forEach((row, index) => {
@@ -127,172 +129,166 @@ const Step4 = (props) => {
     dispatch(prevAccordionOpen(id));
   };
 
-
-  
-function calculation() {
-
-  var digiSign = [];
-
-  if (digitalSinage50>0){
-    digiSign.push(digitalSinage50);
-  }
-  else if (digitalSinage55>0){
-    digiSign.push(digitalSinage55);
-  }
-  else if (digitalSinage65>0){
-    digiSign.push(digitalSinage65);
-  }
-
-  let calcObj ={
-    "population":clientDetails.population,  
-    "wintheme":clientDetails.wintheme,
-    "customisableconvenience":clientDetails.yesOrNo,
-    "customisableconvenienceoption":clientDetails.yesOption,
-    "mobile":clientDetails.mobile,
-    "kiosk":clientDetails.kiosk,
-    "selfcheckout":clientDetails.selfCheckout,
-    "cashier":clientDetails.cashier,
-    "station":clientDetails.selectedNoOptions,
-    "digitalsignage": digiSign,
-    "digitalsignageqty":undefined,
-    "catering":undefined,
-    "pos":undefined,
-    "suportingfeature":userSelectedFeatures,
-    "wtproduct":userSelectedProducts,
-    "master":masterData
-  }
-  calculatedata.getcalculation(calcObj);
-  
-}
-
-
-
   const selectNoOption = (id) => {
+    console.log("features ", selectedFeatures);
     let catering = "";
-    if (features.length > 0) {
-      catering = features.toString();
+    if (
+      digitalSinage50 == "" &&
+      digitalSinage55 == "" &&
+      digitalSinage65 == ""
+    ) {
+      Alert.error(
+        "It looks like you are not requesting any digital signage or catering for this client.  Is that correct?"
+      );
+    } else if (userSelectedFeatures.length == 0) {
+      Alert.error(
+        "It looks like you are not requesting any digital signage or catering for this client.  Is that correct?"
+      );
+    } else {
+      if (userSelectedFeatures.length > 0) {
+        catering = userSelectedFeatures.toString();
+      }
+      let obj = {
+        ...clientDetails,
+        digitalsignage50: digitalSinage50,
+        digitalsignage55: digitalSinage55,
+        digitalsignage65: digitalSinage65,
+        catering: catering,
+      };
+      Experience.sendData(obj, id, clientDetails);
+      // calculation();
     }
-    let obj = {
-      ...clientDetails,
-      digitalsignage50: digitalSinage50,
-      digitalsignage55: digitalSinage55,
-      digitalsignage65: digitalSinage65,
-      catering: catering,
-    };
-    Experience.sendData(obj, id, clientDetails);
-    calculation();
   };
 
+  function isFormEnableOrDisabled() {
+    let isFormActive = "stepOne isStepDiabled";
+    if (disabled === false) {
+      isFormActive = "stepOne isStepActive";
+    }
+    return isFormActive;
+  }
   return (
-    <div>
-      <div
-        className="digital_signage"
-        style={{
-          flexDirection: isMobileView ? "column" : "row",
-        }}
-      >
-        <div className="digital_signage_text">Digital Sinage</div>
-
+    <div
+      onClick={() =>
+        disabled === true ? Alert.error("Step 3 is not yet completed") : ""
+      }
+    >
+      <div className={isFormEnableOrDisabled()}>
         <div
+          className="digital_signage"
           style={{
-            height: "80px",
-            display: "flex",
-            alignItems: "center",
+            flexDirection: isMobileView ? "column" : "row",
           }}
         >
-          <div class="ds_btn">
-            <span style={{ position: "absolute", top: "-27px", left: "24px" }}>
-              50&deg;
-            </span>
-            <input
-              type="text"
-              id="digitalSinage50"
-              value={digitalSinage50}
-              placeholder="QTY"
-              onChange={(e) => setDigitalSinage50(e.target.value)}
-            />
-          </div>
-          <div class="ds_btn">
-            <span style={{ position: "absolute", top: "-27px", left: "24px" }}>
-              55&deg;
-            </span>
-            <input
-              type="text"
-              id="digitalSinage50"
-              placeholder="QTY"
-              value={digitalSinage55}
-              onChange={(e) => setDigitalSinage55(e.target.value)}
-            />
-          </div>
-          <div class="ds_btn">
-            <span style={{ position: "absolute", top: "-27px", left: "24px" }}>
-              65&deg;
-            </span>
-            <input
-              type="text"
-              id="digitalSinage50"
-              placeholder="QTY"
-              value={digitalSinage65}
-              onChange={(e) => setDigitalSinage65(e.target.value)}
-            />
+          <div className="digital_signage_text">Digital Sinage</div>
+
+          <div
+            style={{
+              height: "80px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <div class="ds_btn">
+              <span
+                style={{ position: "absolute", top: "-27px", left: "24px" }}
+              >
+                50&deg;
+              </span>
+              <input
+                type="text"
+                id="digitalSinage50"
+                value={digitalSinage50}
+                placeholder="QTY"
+                onChange={(e) => setDigitalSinage50(e.target.value)}
+              />
+            </div>
+            <div class="ds_btn">
+              <span
+                style={{ position: "absolute", top: "-27px", left: "24px" }}
+              >
+                55&deg;
+              </span>
+              <input
+                type="text"
+                id="digitalSinage55"
+                placeholder="QTY"
+                value={digitalSinage55}
+                onChange={(e) => setDigitalSinage55(e.target.value)}
+              />
+            </div>
+            <div class="ds_btn">
+              <span
+                style={{ position: "absolute", top: "-27px", left: "24px" }}
+              >
+                65&deg;
+              </span>
+              <input
+                type="text"
+                id="digitalSinage65"
+                placeholder="QTY"
+                value={digitalSinage65}
+                onChange={(e) => setDigitalSinage65(e.target.value)}
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div
-        className="digital_signage"
-        style={{
-          flexDirection: isMobileView ? "column" : "row",
-        }}
-      >
-        <div className="digital_signage_text">Catering</div>
-        <div className="catering-sports-container">
-          {" "}
-          {supportingFeatureData.map((feature, index) => {
-            return (
-              <div class="catering sports">
-                <label>
-                  <input
-                    type="checkbox"
-                    value={feature.label}
-                    defaultChecked={featureChecked}
-                    onChange={(e) => handleChangeFeatures(e, feature, index)}
-                  />
-                  <span> {feature.label}</span>
-                </label>
-              </div>
-            );
-          })}
+        <div
+          className="digital_signage"
+          style={{
+            flexDirection: isMobileView ? "column" : "row",
+          }}
+        >
+          <div className="digital_signage_text">Catering</div>
+          <div className="catering-sports-container">
+            {" "}
+            {supportingFeatureData.map((feature, index) => {
+              return (
+                <div class="catering sports">
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={feature.label}
+                      defaultChecked={featureChecked}
+                      onChange={(e) => handleChangeFeatures(e, feature, index)}
+                    />
+                    <span> {feature.label}</span>
+                  </label>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      <Row
-        className="rowSeprator"
-        style={{ padding: "0 0.3em", flexWrap: "nowrap" }}
-      >
-        <Col md={6} style={{ textAlign: "left" }}>
-          <Button
-            variant="contained"
-            size="small"
-            type="submit"
-            className="previous_btn"
-            onClick={() => onPrevious(accordionId - 1)}
-          >
-            Previous
-          </Button>
-        </Col>
-        <Col md={6} style={{ textAlign: "right" }}>
-          <Button
-            variant="contained"
-            size="small"
-            type="submit"
-            className="next_btn"
-            onClick={() => selectNoOption(accordionId)}
-          >
-            Next
-          </Button>
-        </Col>
-      </Row>
+        <Row
+          className="rowSeprator"
+          style={{ padding: "0 0.3em", flexWrap: "nowrap" }}
+        >
+          <Col md={6} style={{ textAlign: "left" }}>
+            <Button
+              variant="contained"
+              size="small"
+              type="submit"
+              className="previous_btn"
+              onClick={() => onPrevious(accordionId - 1)}
+            >
+              Previous
+            </Button>
+          </Col>
+          <Col md={6} style={{ textAlign: "right" }}>
+            <Button
+              variant="contained"
+              size="small"
+              type="submit"
+              className="next_btn"
+              onClick={() => selectNoOption(accordionId)}
+            >
+              Next
+            </Button>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

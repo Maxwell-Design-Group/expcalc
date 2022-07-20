@@ -1,8 +1,7 @@
 /* step3style */
 
 * {
-  font-family: "Gotham", sans-serif !important;
- 
+  font-family: normal !important;
 }
 
 .LogoButton {
@@ -57,7 +56,7 @@
   font-weight: bolder;
   overflow: hidden;
 }
-.headingLocal{
+.headingLocal {
   padding-top: 1%;
   padding-bottom: 1%;
   background-color: #00000013;
@@ -203,7 +202,6 @@
   transform: translateX(26px) !important;
 } */
 
-
 /* Step3 Responsive */
 .logoNToggleRs {
   display: flex;
@@ -219,7 +217,7 @@
   width: 25%;
   height: auto;
 }
-.switchButtonRs{
+.switchButtonRs {
   margin-left: 5%;
 }
 
@@ -234,17 +232,18 @@
   border-radius: 15px;
   opacity: 1;
   margin-left: 2%;
+  overflow-x: scroll;
 }
-.DataScrollRs{
+.DataScrollRs {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: scroll;
   margin-top: 1%;
-    margin-bottom: 1%;
-    width: 90%;
+  margin-bottom: 1%;
+  width: 90%;
 }
-.DataScrollRs::-webkit-scrollbar{
+.DataScrollRs::-webkit-scrollbar {
   display: none;
 }
 .formButtonsRs {
@@ -266,14 +265,14 @@
   font-weight: bolder;
   overflow: hidden;
 }
-.lastButtons{
+.lastButtons {
   max-width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between  ;
+  justify-content: space-between;
   margin-left: 2%;
 }
- .next_btn3Rs {
+.next_btn3Rs {
   font: var(--unnamed-font-style-normal) normal
     var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
     var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
@@ -313,4 +312,68 @@
   border-radius: 24px;
   opacity: 1;
   margin-left: 0;
+}
+
+.yesOptions {
+  margin: 4%;
+  max-width: 200px;
+  min-width: 145px;
+  height: 165px;
+  padding: 15%;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--unnamed-color-ebebeb);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #ebebeb;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yesOptions label span {
+  text-align: center;
+  padding: 2px 0;
+  display: block;
+}
+
+.yesOptions label input {
+  /* position: absolute;
+    display: none; */
+  color: #fff !important;
+  padding: 0px;
+  font-size: 0.575rem !important;
+  margin: 0em 0 0 -20.1em;
+  font-size: 0.575rem !important;
+}
+
+.yesOptions .themesLabel {
+  /* font-size: 1.2em;
+    font-weight: bold;
+    color: #808B96;
+    line-height: 1.8em; */
+
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) /
+    var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
+  letter-spacing: var(--unnamed-character-spacing--0-14);
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal 500 12px/29px "Gotham", sans-serif !important;
+  letter-spacing: -0.14px;
+  color: #000000;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.themesLabelActive {
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.themesLabel {
+  font-size: 0.75em;
+  font-weight: bold;
+  color: #808b96;
 }

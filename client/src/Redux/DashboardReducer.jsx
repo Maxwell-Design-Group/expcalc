@@ -2,7 +2,7 @@ import * as types from "./ActionType";
 
 //defining initial state of application
 const initialState = {
-  accordionId: 0,
+  accordionId: 1,
   completedSteps: [],
   themes: [],
   clientDetails: {},

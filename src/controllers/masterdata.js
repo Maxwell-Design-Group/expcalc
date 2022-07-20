@@ -237,24 +237,7 @@ exports.getSupportingFeatures = async (req, res) => {
     const digitalSignages = await digitalSignageService.findAll();
     const catering = await cateringService.findAll();
 
-    let digitsign50 = {
-        supportingFeature50: 0,
-        supportingFeature55value: 0,
-
-    }
-
-    let digitsign55 = {
-
-        supportingFeature55: 0,
-        supportingFeature50value: 0,
-
-    }
-
-    let digitsign65 = {
-
-        supportingFeature65: 0,
-        supportingFeature65value: 0
-    }
+   
 
     for (let i = 0; i < digitalSignages.length; i++) {
         if (digitalSignages[i]['digitalsign'] == '50') {
@@ -267,16 +250,7 @@ exports.getSupportingFeatures = async (req, res) => {
             ds65Total = Number(digitalSignages[i]['capex']) + Number(digitalSignages[i]['opex']);
         }
     }
-    if (req.body.catering) {
-        for (let i = 0; i < catering.length; i++) {
-            for (let j = 0; j < req.body.catering; j++) {
-                if (catering[i].digitalsign == req.body.catering[j]) {
-                    let total = Number(catering[i].capex) + Number(catering[i].opex);
-                    //let outPutParam={'supportingFeatur}
-                }
-            }
-        }
-    }
+    
 
     if (req.body.digitalSignage) {
         if (req.body.digitalSignage['50']) {
@@ -285,36 +259,37 @@ exports.getSupportingFeatures = async (req, res) => {
 
             // digitalSignageResult.push('Digital Signagevalue:'  + total)
 
-            digitsign50.supportingFeature50 = 'Digital Signage  $' + total;
-            digitsign50.supportingFeature50value = total;
-            digitalSignageResult.push(digitsign50);
+            digitalSignageResult.push('Digital Signage50 $' + total);
         }
         if (req.body.digitalSignage['55']) {
             let total = Number(req.body.digitalSignage['55']) * Number(ds50Total);
             
-
-            digitsign55.supportingFeature55 = 'Digital Signage  $' + total;
-            digitsign55.supportingFeature55value = total;
-            digitalSignageResult.push(digitsign55);
+            digitalSignageResult.push('Digital Signage55 $' + total);
         }
         if (req.body.digitalSignage['65']) {
             let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
 
 
-            digitsign65.supportingFeature65 = 'Digital Signage  $' + total;
-            digitsign65.supportingFeature65value = total;
-
             digitalSignageResult.push('Digital Signage65 $'  + total);
         }
 
-
-
+        if (req.body.catering) {
+            for (let i = 0; i < catering.length; i++) {
+                for (let j = 0; j < req.body.catering; j++) {
+                    if (catering[i].digitalsign == req.body.catering[j]) {
+                        let total = Number(catering[i].capex) + Number(catering[i].opex);
+                        //let outPutParam={'supportingFeatur}
+                        console.log(catering.digitalsign);
+                        digitalSignageResult.push(catering.digitalsign+ ' $'  + total);
+                    }
+                }
+            }
+        }
        
     }
 
 
     
-
     return res.send(digitalSignageResult);
     
 

@@ -116,9 +116,8 @@ function Dashboard() {
               className="aramark_header_logo"
             />
           </Col>
-          <Col md={isMobileView ? 8 : 9} className="aramark_header_bg">
-            <div className="aramark_header_text">Experience calculator</div>
-          </Col>
+          <Col md={isMobileView ? 8 : 9} className="aramark_header_bg" />
+          <div className="aramark_header_text">Experience calculator</div>
         </Row>
       </header>
     );
@@ -147,7 +146,7 @@ function Dashboard() {
       {headerBar()}
 
       <section>
-        <Row className="aramark_section mains-cs-all">
+        <Row className={`aramark_section ${!isMobileView && "mains-cs-all"}`}>
           <Col md={8} className="accordianContent">
             {isMobileView && <Calculator isMobileView={true} />}
             <article>
@@ -160,8 +159,8 @@ function Dashboard() {
             </article>
           </Col>
           {isMobileView === false && (
-            <Col md={4}>
-              {selectedAccordion === 0 ? (
+            <Col md={4} className="dashboard-rhs">
+              {selectedAccordion === 0 || selectedAccordion === 1 ? (
                 <div className="tootalCalculationSection">
                   <div className="tootalCalculationSection_container"></div>
                 </div>
@@ -170,7 +169,7 @@ function Dashboard() {
               )}
 
               {selectedAccordion === 5 ? (
-                <div style={{ margin: "1em 0 0 0 " }}>
+                <div style={{ margin: "1em 0" }}>
                   <Resultset />
                 </div>
               ) : (

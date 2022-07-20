@@ -10,8 +10,13 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Table from "react-bootstrap/Table";
 import SupportingQuestionService from "../../Services/SupportingQuestionService";
+import Alert from "../Alert/Alert";
+import calculatedataService from "../../Services/calculatedataService";
+
 const Step5 = (props) => {
+  const { isMobileView = false, disabled = disabled } = props;
   const SupportingQuestion = new SupportingQuestionService();
+  const calculatedata = new calculatedataService();
   const tableRows = [];
   const supportingFeatures = [];
   const POSData = [];
@@ -30,7 +35,7 @@ const Step5 = (props) => {
   const { clientDetails } = useSelector((state) => state.Reducer);
   const { posDetails } = useSelector((state) => state.Reducer);
   const { supportingFeatureDetails } = useSelector((state) => state.Reducer);
-  const { isMobileView = false } = props;
+
   const [supportingQuestionData, setSupportingQuestionData] = useState([]);
   const tableData2 = [];
   // const POS = [
@@ -42,14 +47,9 @@ const Step5 = (props) => {
   // if (masterData.supportingfeature) {
   //   supportingFeatureData = masterData.supportingfeature;
   // }
-  console.log("posDetails ", posDetails);
-  console.log("supportingFeatureDetails ", supportingFeatureDetails);
   useEffect(() => {
-    // console.log("clientDetails ", clientDetails);
     // var clientDetailsObj = Object.keys(clientDetails).length;
-    // console.log("clientDetailsObj ", clientDetailsObj);
     // if (clientDetailsObj > 0) {
-    //   console.log("47 ");
     //   dispatch(getSupportingQuestionDetails());
     // }
   }, []);
@@ -58,7 +58,6 @@ const Step5 = (props) => {
   };
 
   const selectNoOption = (id) => {
-    console.log("id ", id);
     let suportingfeature = "";
     if (userSelectedFeatures.length > 0) {
       suportingfeature = userSelectedFeatures.toString();
@@ -73,9 +72,40 @@ const Step5 = (props) => {
       suportingfeature: suportingfeature,
       wtproduct: wtproduct,
     };
-    console.log("obj ", obj);
     SupportingQuestion.sendData(obj, id, clientDetails);
   };
+
+  function calculation() {
+    let calcObj = {
+      population: clientDetails.population,
+      wintheme: clientDetails.wintheme,
+      customisableconvenience: clientDetails.customisableconvenience,
+      customisableconvenienceoption: clientDetails.email,
+      mobile: clientDetails.mobile,
+      kiosk: clientDetails.kiosk,
+      selfcheckout: clientDetails.selfCheckout,
+      cashier: clientDetails.cashier,
+      station: clientDetails.station,
+      digitalsignage: userSelectedFeatures.toString(),
+      digitalsignageqty55: clientDetails.digitalsignage55,
+      digitalsignageqty50: clientDetails.digitalsignage50,
+      digitalsignageqty65: clientDetails.digitalsignage65,
+      catering: undefined,
+      pos: pos,
+      suportingfeature: undefined,
+      wtproduct: userSelectedProducts.toString(),
+      master: masterData,
+    };
+
+    calculatedata.getcalculation(calcObj);
+  }
+
+  useEffect(() => {
+    console.log("pos");
+    console.log(pos);
+    calculation();
+  }, [pos]);
+
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
     let products = userSelectedProducts;
@@ -92,23 +122,46 @@ const Step5 = (props) => {
         }
       }
     }
+    calculation();
   };
   const handleChangeFeatures = (e, rowData, index) => {
     const { checked } = e.target;
     let features = userSelectedFeatures;
+
     if (checked === true) {
-      features.push(rowData);
+      if (rowData.indexOf("Digital Signage55") !== -1) {
+        features.push("55");
+      }
+      if (rowData.indexOf("Digital Signage50") !== -1) {
+        features.push("50");
+      }
+      if (rowData.indexOf("Digital Signage65") !== -1) {
+        features.push("65");
+      }
 
       setUserSelectedFeatures(features);
     } else {
       for (let i = 0; i < features.length; i++) {
-        if (features[i] === rowData) {
+        let rfeature = "";
+        if (rowData.indexOf("Digital Signage55") !== -1) {
+          rfeature = "55";
+        }
+        if (rowData.indexOf("Digital Signage50") !== -1) {
+          rfeature = "50";
+        }
+        if (rowData.indexOf("Digital Signage65") !== -1) {
+          rfeature = "65";
+        }
+
+        if (features[i] === rfeature) {
           features.splice(i, 1);
 
           setUserSelectedFeatures(features);
         }
       }
     }
+
+    calculation();
   };
   if (themes) {
     themes.forEach((row, index) => {
@@ -159,13 +212,10 @@ const Step5 = (props) => {
 
   const handlePosChange = (ev) => {
     //save your value here with state variable
-    console.log(ev.target.value);
     setPos(ev.target.value);
   };
-  console.log("posDetails ", posDetails);
   if (posDetails) {
     POS = posDetails;
-    console.log("POS ", POS);
     POS.forEach((pos, index) => {
       POSData.push(
         <div class="pos_btn">
@@ -188,9 +238,20 @@ const Step5 = (props) => {
     setExpand(!expand);
   }
 
+  function isFormEnableOrDisabled() {
+    let isFormActive = "stepOne isStepDiabled";
+    if (disabled === false) {
+      isFormActive = "stepOne isStepActive";
+    }
+    return isFormActive;
+  }
   return (
-    <>
-      <div>
+    <div
+      onClick={() =>
+        disabled === true ? Alert.error("Step 4 is not yet completed") : ""
+      }
+    >
+      <div className={isFormEnableOrDisabled()}>
         <div
           className="POS_Container"
           style={{
@@ -241,7 +302,7 @@ const Step5 = (props) => {
             flexDirection: isMobileView ? "column" : "row",
           }}
         >
-          <div className="POS_text">Supporting Feature</div>
+          <div className="SF_text">Supporting Feature</div>
           <div className="POS_main_container">{supportingFeatures}</div>
         </div>
 
@@ -255,39 +316,52 @@ const Step5 = (props) => {
           <div className="you-may-also-like-main-container">
             {" "}
             <Col md={12}>
-              <table
-                striped
-                bordered
-                hover
-                style={{
-                  tableLayout: "fixed",
-                  width: "100%",
-                  textAlign: "left",
-                }}
-              >
-                <thead
+              <div class="tableFixHead">
+                <table
+                  striped
+                  bordered
+                  hover
                   style={{
-                    borderBottom: "1px solid #cfcfcf",
+                    tableLayout: "fixed",
+                    width: "100%",
                     textAlign: "left",
-                    font: "normal normal 400 14px/36px Gotham",
-                    letterSpacing: "0.25px",
-                    color: "#4B4B4B",
-                    opacity: "1",
                   }}
                 >
-                  <tr>
-                    <th style={{ width: "20%" }}>Product</th>
-                    <th style={{ width: "45%" }}>Brief Description</th>
-                    <th style={{ width: "10%" }}>Cost</th>
-                  </tr>
-                </thead>
+                  <thead
+                    style={{
+                      borderBottom: "1px solid #cfcfcf",
+                      textAlign: "left",
+                      font: "normal normal 400 14px/36px Gotham",
+                      letterSpacing: "0.25px",
+                      color: "#4B4B4B",
+                      opacity: "1",
+                    }}
+                  >
+                    <tr>
+                      <th style={{ width: "20%", background: "#fff" }}>
+                        Product
+                      </th>
+                      <th style={{ width: "45%", background: "#fff" }}>
+                        Brief Description
+                      </th>
+                      <th
+                        style={{
+                          width: "10%",
+                          background: "#fff",
+                        }}
+                      >
+                        Cost
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>{tableRows}</tbody>
-              </table>
+                  <tbody>{tableRows}</tbody>
+                </table>
+              </div>
             </Col>
           </div>
         </div>
-        <Row className="rowSeprator" style={{ padding: "0 0.6em" }}>
+        <Row className="rowSeprator">
           <Col md={6} style={{ textAlign: "left" }}>
             <Button
               variant="contained"
@@ -313,7 +387,7 @@ const Step5 = (props) => {
           </Col>
         </Row>
       </div>
-    </>
+    </div>
   );
 };
 

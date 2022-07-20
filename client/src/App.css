@@ -12,6 +12,46 @@ body {
   overflow-y: hidden;
 }
 
+@font-face {
+  font-family: "light";
+  src: local("GothamLight"),
+    url("./Assets/font/GothamLight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "normal";
+  src: local("GothamBook"),
+    url("./Assets/font/GothamBook.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "medium";
+  src: local("GothamMedium"),
+    url("./Assets/font/GothamMedium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "bold";
+  src: local("GothamBold"),
+    url("./Assets/font/GothamBold.ttf") format("truetype");
+}
+
+.lightFont {
+  font-family: light !important;
+}
+
+.normalFont {
+  font-family: normal !important;
+}
+
+.mediumFont {
+  font-family: medium !important;
+}
+
+.boldFont {
+  font-family: bold !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -116,9 +156,13 @@ body {
   border-left: 15px solid #f4f4f4;
 }
 
+.MuiPaper-root::before {
+  height: 0 !important;
+}
+
 .stepOne {
   /* width: 100%; */
-  margin: 0em 0 0 0;
+  margin: -5px 0 0 0;
 }
 
 .stepOne .switch-container {
@@ -164,7 +208,7 @@ body {
   color: #da291c;
   -webkit-tap-highlight-color: transparent;
   height: 4px;
-  width: 85% !important;
+  /* width: 85% !important; */
   padding: 13px 0px;
   margin-bottom: 20px;
   /* margin-top: 2.5em !important; */
@@ -259,6 +303,7 @@ body {
   background-color: #ffffff !important;
   opacity: 1 !important;
   padding: 0 1em;
+  margin: 16px 4px !important;
 }
 
 .stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
@@ -964,15 +1009,16 @@ div label input {
   flex-wrap: nowrap;
 }
 
-.stepOne .css-ahj2mt-MuiTypography-root {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+
+.accordion-name {
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
-  font: normal normal 500 20px/24px Gotham;
+  font-size: 20px;
   letter-spacing: 0.14px;
   /* color: #000000; */
-  opacity: 0.7;
+  opacity: 1;
+  font-family: normal;
 }
 
 .stepOne .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
@@ -980,7 +1026,7 @@ div label input {
         left: 416px; */
   /* width: 277px; */
   /* position: fixed; */
-  height: 21px;
+  min-height: 70px;
   font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
@@ -1183,7 +1229,7 @@ div label input {
 .fs_button {
   float: left;
   margin: -5px 0px 0px 20px;
-  min-width: 102px;
+  min-width: 140px;
   height: 43px;
   position: relative;
   top: 10px;
@@ -1217,7 +1263,7 @@ div label input {
 .fs_button label input+span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
-  width: auto;
+  width: 149px;
   height: 43px;
   padding: 5px 12px;
 }
@@ -1391,4 +1437,19 @@ select option[value=""] {
   letter-spacing: -0.14px;
   color: #666666;
   opacity: 0.5;
+}
+
+.isStepDiabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.isStepActive {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+::-webkit-scrollbar {
+  width: 2em;
+  height: 2em
 }

@@ -3,7 +3,6 @@ import Step3 from "./Step3";
 import Accordions from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import { Typography } from "@mui/material";
 import "../../Assets/Style/accordianStyle.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import InfoIcon from "@mui/icons-material/Info";
@@ -31,8 +30,8 @@ const AccordionComponent = (props) => {
       id: 1,
       title: "Tell us about your prospect",
       data: null,
-
-      expanded: false,
+      expanded: true,
+      disabled: false,
       backgroundColor: "#808080",
     },
     {
@@ -40,6 +39,7 @@ const AccordionComponent = (props) => {
       title: "What is important to them?",
       data: null,
       expanded: false,
+      disabled: true,
       backgroundColor: "#000080",
     },
     {
@@ -47,6 +47,7 @@ const AccordionComponent = (props) => {
       title: "How do they envision the dining experience?",
       data: null,
       expanded: false,
+      disabled: true,
       backgroundColor: "#A93226",
     },
     {
@@ -54,6 +55,7 @@ const AccordionComponent = (props) => {
       title: "What additional services will best support this experience?",
       data: null,
       expanded: false,
+      disabled: true,
       backgroundColor: "#16A085",
     },
     {
@@ -61,6 +63,7 @@ const AccordionComponent = (props) => {
       title: "Supporting Question?",
       data: null,
       expanded: false,
+      disabled: true,
       backgroundColor: "#16A085",
     },
   ]);
@@ -100,81 +103,107 @@ const AccordionComponent = (props) => {
   }, [accordionId]);
   return (
     <div className="aramark_section stepOne">
-      {steps.map((item, index) => (
-        <Accordions
-          onChange={() => onAccordionChange(item.id)}
-          id={"accordion" + item.id}
-          expanded={item.expanded}
-          className={
-            completedSteps.includes(item.id) && item.expanded === true
-              ? "step_edit"
-              : completedSteps.includes(item.id) && item.expanded === false
-              ? "step_completed"
-              : null
-          }
-        >
-          <AccordionSummary
-            expandIcon={
-              completedSteps.includes(item.id) && item.expanded === false ? (
-                <CheckCircleIcon className="icon_step_complete" />
-              ) : item.expanded === true ? (
-                <RemoveCircleIcon
-                  style={{
-                    margin: "0px 0px 0px 10px !important",
-                    color: "black",
-                    opacity: 1,
-                  }}
-                />
-              ) : (
-                <AddCircleIcon />
-              )
+      {steps.map((item) => {
+        return (
+          <Accordions
+            key={item.id}
+            onChange={() => onAccordionChange(item.id)}
+            id={"accordion" + item.id}
+            expanded={item.expanded}
+            className={
+              completedSteps.includes(item.id) && item.expanded === true
+                ? "step_edit"
+                : completedSteps.includes(item.id) && item.expanded === false
+                ? "step_completed"
+                : null
             }
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-            className="accordian-summary-header"
-            style={{
-              flexDirection: "row-reverse",
-              margin: "11px 0 0 0",
-              padding: item.expanded ? "0px" : "16px",
-            }}
           >
-            <div
+            <AccordionSummary
+              expandIcon={
+                completedSteps.includes(item.id) && item.expanded === false ? (
+                  <CheckCircleIcon className="icon_step_complete" />
+                ) : item.expanded === true ? (
+                  <RemoveCircleIcon
+                    style={{
+                      margin: "0px 0px 0px 10px !important",
+                      color: "black",
+                      opacity: 1,
+                    }}
+                  />
+                ) : (
+                  <AddCircleIcon />
+                )
+              }
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+              className="accordian-summary-header"
               style={{
-                display: "flex",
-                padding: isMobileView ? "0px" : "0px 20px",
-                marginLeft: "-5px",
-                justifyContent: "space-between",
-                flex: 1,
+                flexDirection: "row-reverse",
+                margin: "11px 0 0 0",
+                padding: item.expanded && "0px 0px 0px 0px !important",
               }}
             >
-              <Typography>{item.title}</Typography>
-              {isMobileView && item.expanded === true && (
-                <InfoIcon
-                  style={{ color: "black", opacity: 1 }}
-                  onClick={(e) => handleOpenModal(e)}
+              <div
+                style={{
+                  display: "flex",
+                  padding: item.expanded ? "0px" : "0px 20px",
+                  // marginLeft: "-5px",
+                  justifyContent: "space-between",
+                  flex: 1,
+                }}
+              >
+                <div
+                  className={`accordion-name ${
+                    item.expanded ? "mediumFont" : ""
+                  }`}
+                >
+                  {item.title}
+                </div>
+                {isMobileView && item.expanded === true && (
+                  <InfoIcon
+                    style={{ color: "black", opacity: 1 }}
+                    onClick={(e) => handleOpenModal(e)}
+                  />
+                )}
+              </div>
+            </AccordionSummary>
+            <AccordionDetails
+              style={{
+                padding: isMobileView ? "0px" : "8px 16px 16px",
+              }}
+            >
+              {item.id === 3 ? (
+                <Step3
+                  disabled={
+                    completedSteps.includes(item.id - 1) ? false : item.disabled
+                  }
                 />
-              )}
-            </div>
-          </AccordionSummary>
-          <AccordionDetails
-            style={{
-              padding: isMobileView ? "0px" : "8px 16px 16px",
-            }}
-          >
-            {item.id === 3 ? (
-              <Step3 />
-            ) : item.id === 1 ? (
-              <Step1 />
-            ) : item.id === 2 ? (
-              <Step2 isMobileView={isMobileView} />
-            ) : item.id === 5 ? (
-              <Step5 />
-            ) : item.id === 4 ? (
-              <Step4 />
-            ) : null}
-          </AccordionDetails>
-        </Accordions>
-      ))}
+              ) : item.id === 1 ? (
+                <Step1 />
+              ) : item.id === 2 ? (
+                <Step2
+                  isMobileView={isMobileView}
+                  disabled={
+                    completedSteps.includes(item.id - 1) ? false : item.disabled
+                  }
+                />
+              ) : item.id === 5 ? (
+                <Step5
+                  disabled={
+                    completedSteps.includes(item.id - 1) ? false : item.disabled
+                  }
+                />
+              ) : item.id === 4 ? (
+                <Step4
+                  disabled={
+                    completedSteps.includes(item.id - 1) ? false : item.disabled
+                  }
+                />
+              ) : null}
+            </AccordionDetails>
+          </Accordions>
+        );
+      })}
     </div>
   );
 };

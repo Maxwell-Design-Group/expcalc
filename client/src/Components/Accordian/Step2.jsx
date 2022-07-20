@@ -20,7 +20,7 @@ import WinthemeDetailService from "../../Services/WinthemeDetailService";
 import Alert from "../Alert/Alert";
 
 const Step2 = (props) => {
-  const { isMobileView = false } = props;
+  const { isMobileView = false, disabled = disabled } = props;
   const [expand, setExpand] = useState(false);
   const [selectedTheme, setTheme] = useState(false);
 
@@ -115,7 +115,7 @@ const Step2 = (props) => {
 
   function createGridView() {
     return (
-      <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto" }}>
+      <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto", overflow: "hidden" }}>
         <Grid
           container
           spacing={{ xs: 2, md: 2 }}
@@ -124,6 +124,7 @@ const Step2 = (props) => {
             flexWrap: isMobileView ? "nowrap" : "wrap",
             overflowX: isMobileView ? "scroll" : "hidden",
             marginLeft: isMobileView ? 0 : "-16px",
+            width: isMobileView ? "100%" : "calc(100% + 16px)"
           }}
         >
           {master.map((theme, index) => {
@@ -229,36 +230,50 @@ const Step2 = (props) => {
     }
   }
 
+  function isFormEnableOrDisabled() {
+    let isFormActive = "stepOne isStepDiabled";
+    if (disabled === false) {
+      isFormActive = "stepOne isStepActive";
+    }
+    return isFormActive;
+  }
+
   return (
-    <div className="stepOne">
-      <Row className="rowSeprator ">{createGridView()}</Row>
-      <Row
-        className="rowSeprator"
-        style={{ padding: "0 0.3em", flexWrap: "nowrap" }}
-      >
-        <Col md={6} style={{ textAlign: "left" }}>
-          <Button
-            variant="contained"
-            size="small"
-            type="submit"
-            className="previous_btn"
-            onClick={() => onPrevious(accordionId - 1)}
-          >
-            Previous
-          </Button>
-        </Col>
-        <Col md={6} style={{ textAlign: "right" }}>
-          <Button
-            variant="contained"
-            size="small"
-            type="submit"
-            className="next_btn"
-            onClick={() => addWinThemes(accordionId)}
-          >
-            Next
-          </Button>
-        </Col>
-      </Row>
+    <div
+      onClick={() =>
+        disabled === true ? Alert.error("Step 1 is not yet completed") : ""
+      }
+    >
+      <div className={isFormEnableOrDisabled()}>
+        <Row className="rowSeprator ">{createGridView()}</Row>
+        <Row
+          className="rowSeprator"
+          style={{ padding: "0 0.3em", flexWrap: "nowrap" }}
+        >
+          <Col md={6} style={{ textAlign: "left" }}>
+            <Button
+              variant="contained"
+              size="small"
+              type="submit"
+              className="previous_btn"
+              onClick={() => onPrevious(accordionId - 1)}
+            >
+              Previous
+            </Button>
+          </Col>
+          <Col md={6} style={{ textAlign: "right" }}>
+            <Button
+              variant="contained"
+              size="small"
+              type="submit"
+              className="next_btn"
+              onClick={() => addWinThemes(accordionId)}
+            >
+              Next
+            </Button>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

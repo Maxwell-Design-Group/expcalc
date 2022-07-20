@@ -11,18 +11,15 @@ import {
 class SupportingQuestionService {
   sendData(data, accordianId, clientDetails) {
     axios
-      .put(
-        Config.baseUrl + Config.client + clientDetails._id,
-        data
-      )
+      .put(Config.baseUrl + Config.client + clientDetails._id, data)
       .then((response) => {
         console.log("response", response);
-        // Alert.success("WinthemeDetail added successfully");
+        Alert.success("Okie Dokie, the estimates are on its' way!");
         Store.dispatch(setClientDetails(response.data));
         Store.dispatch(completedSteps(accordianId));
         Store.dispatch(nextAccordionOpen(accordianId));
       })
-      .catch((error) => { });
+      .catch((error) => {});
   }
 
   updateDate(data, id) {
@@ -33,14 +30,14 @@ class SupportingQuestionService {
           winthemedetails: response.data,
         });
       })
-      .catch((error) => { });
+      .catch((error) => {});
   }
 
   deleteData(id) {
     axios
       .get(Config.baseUrl + Config.winthemeDelete + id)
-      .then(() => { })
-      .catch((error) => { });
+      .then(() => {})
+      .catch((error) => {});
   }
 }
 
