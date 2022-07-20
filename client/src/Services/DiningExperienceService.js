@@ -16,6 +16,7 @@ class DiningExperienceService {
         data
       )
       .then((response) => {
+        console.log(data);
         console.log("response", response);
         Alert.success("Dining Experience added successfully");
         Store.dispatch(setClientDetails(response.data));
