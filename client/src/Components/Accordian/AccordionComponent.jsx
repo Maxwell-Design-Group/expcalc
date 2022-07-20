@@ -3,7 +3,6 @@ import Step3 from "./Step3";
 import Accordions from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import { Typography } from "@mui/material";
 import "../../Assets/Style/accordianStyle.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import InfoIcon from "@mui/icons-material/Info";
@@ -19,9 +18,9 @@ import Step4 from "./Step4";
 
 const AccordionComponent = (props) => {
   const {
-    handleAccordionChange = () => {},
+    handleAccordionChange = () => { },
     isMobileView = false,
-    handleOpenModal = () => {},
+    handleOpenModal = () => { },
   } = props;
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
@@ -104,8 +103,9 @@ const AccordionComponent = (props) => {
   }, [accordionId]);
   return (
     <div className="aramark_section stepOne">
-      {steps.map((item, index) => (
-        <Accordions
+      {steps.map((item) => {
+        return <Accordions
+          key={item.id}
           onChange={() => onAccordionChange(item.id)}
           id={"accordion" + item.id}
           expanded={item.expanded}
@@ -113,8 +113,8 @@ const AccordionComponent = (props) => {
             completedSteps.includes(item.id) && item.expanded === true
               ? "step_edit"
               : completedSteps.includes(item.id) && item.expanded === false
-              ? "step_completed"
-              : null
+                ? "step_completed"
+                : null
           }
         >
           <AccordionSummary
@@ -139,19 +139,19 @@ const AccordionComponent = (props) => {
             style={{
               flexDirection: "row-reverse",
               margin: "11px 0 0 0",
-              padding: item.expanded ? "0px" : "16px",
+              padding: item.expanded && '0px 0px 0px 0px !important',
             }}
           >
             <div
               style={{
                 display: "flex",
-                padding: isMobileView ? "0px" : "0px 20px",
+                padding: item.expanded ? "0px" : "0px 20px",
                 marginLeft: "-5px",
                 justifyContent: "space-between",
                 flex: 1,
               }}
             >
-              <Typography>{item.title}</Typography>
+              <div className={`accordion-name ${item.expanded ? "mediumFont" : ""}`}>{item.title}</div>
               {isMobileView && item.expanded === true && (
                 <InfoIcon
                   style={{ color: "black", opacity: 1 }}
@@ -195,7 +195,7 @@ const AccordionComponent = (props) => {
             ) : null}
           </AccordionDetails>
         </Accordions>
-      ))}
+      })}
     </div>
   );
 };

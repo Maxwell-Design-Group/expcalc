@@ -115,7 +115,7 @@ const Step2 = (props) => {
 
   function createGridView() {
     return (
-      <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto" }}>
+      <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto", overflow: "hidden" }}>
         <Grid
           container
           spacing={{ xs: 2, md: 2 }}
@@ -124,6 +124,7 @@ const Step2 = (props) => {
             flexWrap: isMobileView ? "nowrap" : "wrap",
             overflowX: isMobileView ? "scroll" : "hidden",
             marginLeft: isMobileView ? 0 : "-16px",
+            width: isMobileView ? "100%" : "calc(100% + 16px)"
           }}
         >
           {master.map((theme, index) => {

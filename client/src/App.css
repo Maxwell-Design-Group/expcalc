@@ -36,6 +36,22 @@ body {
     url("./Assets/font/GothamBold.ttf") format("truetype");
 }
 
+.lightFont {
+  font-family: light !important;
+}
+
+.normalFont {
+  font-family: normal !important;
+}
+
+.mediumFont {
+  font-family: medium !important;
+}
+
+.boldFont {
+  font-family: bold !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -988,15 +1004,15 @@ div label input {
   flex-wrap: nowrap;
 }
 
-.stepOne .css-ahj2mt-MuiTypography-root {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+.accordion-name {
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
-  font: normal normal 500 20px/24px Gotham;
+  font-size: 20px;
   letter-spacing: 0.14px;
-  /* color: #000000; */
-  opacity: 0.7;
+  color: #000000;
+  opacity: 1;
+  font-family: normal;
 }
 
 .stepOne .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
@@ -1004,8 +1020,10 @@ div label input {
         left: 416px; */
   /* width: 277px; */
   /* position: fixed; */
-  height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+  min-height: 70px;
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -1020,7 +1038,9 @@ div label input {
   left: 1446px;
   width: 175px;
   height: 18px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
+    var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: left;
   font: normal normal 500 16px/22px Gotham;
@@ -1119,7 +1139,7 @@ div label input {
   cursor: pointer;
 }
 
-.pos_btn input[type="radio"]:checked+label {
+.pos_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1158,7 +1178,7 @@ div label input {
   z-index: 100;
 }
 
-.sf_btn input[type="radio"]:checked+label {
+.sf_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1238,7 +1258,7 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.fs_button label input+span {
+.fs_button label input + span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
   width: auto;
@@ -1246,11 +1266,11 @@ div label input {
   padding: 5px 12px;
 }
 
-.fs_button input:checked+span {
+.fs_button input:checked + span {
   color: #ffffff;
 }
 
-.sports input:checked+span {
+.sports input:checked + span {
   background-color: #4bae4f;
   border-radius: 15px;
 }
@@ -1284,7 +1304,7 @@ div label input {
   z-index: 100;
 }
 
-.ds_btn input[type="radio"]:checked+label {
+.ds_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1328,7 +1348,7 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.catering label input+span {
+.catering label input + span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
   height: 100%;
@@ -1338,7 +1358,7 @@ div label input {
   white-space: break-spaces;
 }
 
-.catering input:checked+span {
+.catering input:checked + span {
   color: #ffffff;
   padding: 6px;
 }

@@ -1,8 +1,7 @@
 /* step3style */
 
 * {
-  font-family: "Gotham", sans-serif !important;
- 
+  font-family: normal !important;
 }
 
 .LogoButton {
@@ -57,7 +56,7 @@
   font-weight: bolder;
   overflow: hidden;
 }
-.headingLocal{
+.headingLocal {
   padding-top: 1%;
   padding-bottom: 1%;
   background-color: #00000013;
@@ -203,7 +202,6 @@
   transform: translateX(26px) !important;
 } */
 
-
 /* Step3 Responsive */
 .logoNToggleRs {
   display: flex;
@@ -219,7 +217,7 @@
   width: 25%;
   height: auto;
 }
-.switchButtonRs{
+.switchButtonRs {
   margin-left: 5%;
 }
 
@@ -235,16 +233,16 @@
   opacity: 1;
   margin-left: 2%;
 }
-.DataScrollRs{
+.DataScrollRs {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: scroll;
   margin-top: 1%;
-    margin-bottom: 1%;
-    width: 90%;
+  margin-bottom: 1%;
+  width: 90%;
 }
-.DataScrollRs::-webkit-scrollbar{
+.DataScrollRs::-webkit-scrollbar {
   display: none;
 }
 .formButtonsRs {
@@ -266,14 +264,14 @@
   font-weight: bolder;
   overflow: hidden;
 }
-.lastButtons{
+.lastButtons {
   max-width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between  ;
+  justify-content: space-between;
   margin-left: 2%;
 }
- .next_btn3Rs {
+.next_btn3Rs {
   font: var(--unnamed-font-style-normal) normal
     var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
     var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);

@@ -3,7 +3,7 @@
   top: 18px;
   left: 106px;
 }
-.aramark_header_bg {
+/* .aramark_header_bg {
   background: url(http://localhost:3000/static/media/Header-image.ed09048….png)
     top center no-repeat;
   margin: -1.8em 0 0 2.63em !important;
@@ -11,15 +11,14 @@
   border-radius: 0px 40px 40px 0px;
   box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 50%);
   background-size: cover;
-}
-.aramark_header_bg {
+} */
+/* .aramark_header_bg {
   background: url(../images/Header-image.png) top center no-repeat;
-  /* margin: -0.85em 0 0 0; */
   height: 2.49em;
   border-radius: 0px 40px 40px 0px;
   box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 50%);
   background-size: cover;
-}
+} */
 
 .aramark_dashboard .accordianContent::-webkit-scrollbar {
   display: none;
@@ -71,7 +70,8 @@
   letter-spacing: var(--unnamed-character-spacing-0-6);
   color: var(--unnamed-color-ffffff);
   text-align: left;
-  font: normal normal medium 20px/21px Gotham;
+  font-family: medium !important;
+  font-size: 21px;
   letter-spacing: 0.6px;
   color: #ffffff;
   text-transform: uppercase;

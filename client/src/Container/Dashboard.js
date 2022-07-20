@@ -116,9 +116,8 @@ function Dashboard() {
               className="aramark_header_logo"
             />
           </Col>
-          <Col md={isMobileView ? 8 : 9} className="aramark_header_bg">
-            <div className="aramark_header_text">Experience calculator</div>
-          </Col>
+          <Col md={isMobileView ? 8 : 9} className="aramark_header_bg" />
+          <div className="aramark_header_text">Experience calculator</div>
         </Row>
       </header>
     );
