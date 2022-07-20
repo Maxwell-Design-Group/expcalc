@@ -20,7 +20,11 @@ const Calculator = (props) => {
               {clientDetails ? clientDetails.clientname : ""}
             </p>
           </div>
-          {isMobileView && <div className="total-cost">$0</div>}
+          {isMobileView && (
+            <div className="total-cost" id="total">
+              $0
+            </div>
+          )}
         </div>
         <div
           style={{
