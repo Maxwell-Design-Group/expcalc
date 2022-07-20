@@ -676,7 +676,8 @@ div label input {
     opacity: 1;
     white-space: nowrap;
   }
-  */ .aramark_dashboard .main_header {
+
+  .aramark_dashboard .main_header {
     flex-wrap: nowrap;
     height: 45px !important;
     overflow: hidden;
