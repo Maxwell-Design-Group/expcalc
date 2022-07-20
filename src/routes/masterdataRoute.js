@@ -27,5 +27,7 @@ module.exports = (app) => {
     app.post('/supportingfeatures', masterdata.getSupportingFeatures);
 
     app.get('/calculate', masterdata.calculecapexopex);
+
+    app.post('/sendEstimate', masterdata.sendEstimate);
     
    }

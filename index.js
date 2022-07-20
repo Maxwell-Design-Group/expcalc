@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 var bodyParser = require('body-parser');
 const db = require("./src/db/db");
 
-
-
 var cors = require('cors');
 
 
