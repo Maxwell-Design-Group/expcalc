@@ -1099,7 +1099,7 @@ div label input {
   top: 172px;
   left: 398px;
   height: 100% !important;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   padding-bottom: 5px;
 }
@@ -1110,7 +1110,6 @@ div label input {
 
 .mains-cs-all {
   padding: 50px 0px;
-  overflow-y: hidden;
 }
 
 .aramark_dashboard .css-ahj2mt-MuiTypography-root {
@@ -1126,7 +1125,7 @@ div label input {
   margin-right: 20px;
 }
 
-*/ .aramark_dashboard .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
+.aramark_dashboard .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
   /* top: 187px;
         left: 416px; */
   /* width: 277px; */

@@ -144,5 +144,6 @@ p.dashboard-calculator-text {
 
   .calculator-main-container {
     aspect-ratio: 0;
+    margin-right: 10px;
   }
 }

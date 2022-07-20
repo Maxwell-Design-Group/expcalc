@@ -146,7 +146,7 @@ function Dashboard() {
       {headerBar()}
 
       <section>
-        <Row className="aramark_section mains-cs-all">
+        <Row className={`aramark_section ${!isMobileView && "mains-cs-all"}`}>
           <Col md={8} className="accordianContent">
             {isMobileView && <Calculator isMobileView={true} />}
             <article>
