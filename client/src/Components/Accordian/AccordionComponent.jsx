@@ -31,7 +31,7 @@ const AccordionComponent = (props) => {
       id: 1,
       title: "Tell us about your prospect",
       data: null,
-      expanded: false,
+      expanded: true,
       disabled: false,
       backgroundColor: "#808080",
     },
