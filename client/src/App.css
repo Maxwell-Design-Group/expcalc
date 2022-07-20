@@ -156,6 +156,12 @@ body {
   border-left: 15px solid #f4f4f4;
 }
 
+.MuiPaper-root::before {
+
+  height: 0 !important;
+
+}
+
 .stepOne {
   /* width: 100%; */
   margin: -5px 0 0 0;
@@ -299,6 +305,7 @@ body {
   background-color: #ffffff !important;
   opacity: 1 !important;
   padding: 0 1em;
+  margin: 16px 4px !important;
 }
 
 .stepOne .css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
@@ -1021,9 +1028,7 @@ div label input {
   /* width: 277px; */
   /* position: fixed; */
   min-height: 70px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) /
-    var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -1038,9 +1043,7 @@ div label input {
   left: 1446px;
   width: 175px;
   height: 18px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
-    var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: left;
   font: normal normal 500 16px/22px Gotham;
@@ -1139,7 +1142,7 @@ div label input {
   cursor: pointer;
 }
 
-.pos_btn input[type="radio"]:checked + label {
+.pos_btn input[type="radio"]:checked+label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1178,7 +1181,7 @@ div label input {
   z-index: 100;
 }
 
-.sf_btn input[type="radio"]:checked + label {
+.sf_btn input[type="radio"]:checked+label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1227,7 +1230,7 @@ div label input {
 .fs_button {
   float: left;
   margin: -5px 0px 0px 20px;
-  min-width: 102px;
+  min-width: 130px;
   height: 43px;
   position: relative;
   top: 10px;
@@ -1258,19 +1261,19 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.fs_button label input + span {
+.fs_button label input+span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
-  width: auto;
+  width: 145px;
   height: 43px;
   padding: 5px 12px;
 }
 
-.fs_button input:checked + span {
+.fs_button input:checked+span {
   color: #ffffff;
 }
 
-.sports input:checked + span {
+.sports input:checked+span {
   background-color: #4bae4f;
   border-radius: 15px;
 }
@@ -1304,7 +1307,7 @@ div label input {
   z-index: 100;
 }
 
-.ds_btn input[type="radio"]:checked + label {
+.ds_btn input[type="radio"]:checked+label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1348,7 +1351,7 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.catering label input + span {
+.catering label input+span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
   height: 100%;
@@ -1358,7 +1361,7 @@ div label input {
   white-space: break-spaces;
 }
 
-.catering input:checked + span {
+.catering input:checked+span {
   color: #ffffff;
   padding: 6px;
 }

@@ -1,10 +1,68 @@
 import React from "react";
 import "./Resultset.css";
-
-const Resultset = () => {
+import { useSelector } from "react-redux";
+const Resultset = (props) => {
+  const { isMobileView = false } = props;
+  const { clientDetails } = useSelector((state) => state.Reducer);
   return (
     <>
       <div className="dashboard-resultset-main-container">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <h5 className="dashboard-resultset-heder">EXPORT RESULT SET</h5>
+            <p className="dashboard-resultset-text">
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr tempor
+              invidunt.
+            </p>
+          </div>
+          {isMobileView && (
+            <div className="total-cost" id="total">
+              $0
+            </div>
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isMobileView ? "row" : "column",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <form>
+            <div>
+              <input
+                className="dashboard-resultset-email-input"
+                type="text"
+                placeholder="Enter the email address "
+              />
+            </div>
+            <div>
+              <button
+                className="dashboard-resultset-email-btn"
+                type="button"
+                // class="result_next_btn btn btn-contained btn-small"
+                style={{
+                  width: "100%",
+                  height: "48px",
+                  background: "#000000 0% 0% no-repeat padding-box",
+                  borderRadius: "24px",
+                  opacity: "1",
+                  color: "#FFFFFF",
+                }}
+              >
+                EMAIL ME THE ESTIMATES
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      {/* <div className="dashboard-resultset-main-container">
         <h5 className="dashboard-resultset-heder">EXPORT RESULT SET</h5>
         <p className="dashboard-resultset-text">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr tempor
@@ -36,7 +94,7 @@ const Resultset = () => {
             </button>
           </div>
         </form>
-      </div>
+      </div> */}
     </>
   );
 };
