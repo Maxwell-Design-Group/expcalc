@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     const winThemData = new winThemData({
         email: req.body.email, 
         wintheme: req.body.wintheme
-          
+
     });
 
     // Save Category in the database

@@ -18,7 +18,7 @@ const Step4 = (props) => {
   const { clientDetails } = useSelector((state) => state.Reducer);
 
   const tableRows = [];
-  let features = [];
+  let selectedFeatures = [];
   const [checked, setChecked] = useState(false);
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
@@ -79,22 +79,22 @@ const Step4 = (props) => {
         }
       }
     }
-    
   };
 
   const handleChangeFeatures = (e, rowData) => {
     const { checked } = e.target;
-    features = userSelectedFeatures;
+    selectedFeatures = userSelectedFeatures;
+
     if (checked === true) {
-      features.push(rowData.label);
+      selectedFeatures.push(rowData.label);
 
-      setUserSelectedFeatures(features);
+      setUserSelectedFeatures(selectedFeatures);
     } else {
-      for (let i = 0; i < features.length; i++) {
-        if (features[i] === rowData.label) {
-          features.splice(i, 1);
+      for (let i = 0; i < selectedFeatures.length; i++) {
+        if (selectedFeatures[i] === rowData.label) {
+          selectedFeatures.splice(i, 1);
 
-          setUserSelectedFeatures(features);
+          setUserSelectedFeatures(selectedFeatures);
         }
       }
     }
@@ -177,9 +177,8 @@ const Step4 = (props) => {
     dispatch(prevAccordionOpen(id));
   };
 
-  
-
   const selectNoOption = (id) => {
+    console.log("features ", selectedFeatures);
     let catering = "";
     if (
       digitalSinage50 == "" &&
@@ -189,13 +188,13 @@ const Step4 = (props) => {
       Alert.error(
         "It looks like you are not requesting any digital signage or catering for this client.  Is that correct?"
       );
-    } else if (features.length == 0) {
+    } else if (userSelectedFeatures.length == 0) {
       Alert.error(
         "It looks like you are not requesting any digital signage or catering for this client.  Is that correct?"
       );
     } else {
-      if (features.length > 0) {
-        catering = features.toString();
+      if (userSelectedFeatures.length > 0) {
+        catering = userSelectedFeatures.toString();
       }
       let obj = {
         ...clientDetails,

@@ -10,6 +10,7 @@ const cateringDetail = require('../models/cateringdetail.js');
 const posData = require('../models/posdata.js');
 const digitalSignageService = require('../services/digital-signage.service');
 const cateringService = require('../services/catering.service');
+const estimateSerivce=require('../services/createEstimateExcel');
 
 exports.findAll = async (req, res) => {
 
@@ -471,4 +472,9 @@ exports.calculecapexopex = (req, res) => {
         }
     );
 
+}
+
+exports.sendEstimate = (req, res) => {
+   estimateSerivce.createEstimate(req.body);
+   res.json('Success');
 }

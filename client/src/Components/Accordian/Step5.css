@@ -17,7 +17,7 @@
     height: 90px;
     max-width: 170px;
     padding: 0 0 0 10px;
-    min-width: 140px;
+    min-width: 162px;
     text-align: center;
     white-space: break-spaces;
     display: flex;
@@ -52,9 +52,10 @@
     opacity: 1;
     min-height: 200px;
     max-width: 170px;
-    min-width: 140px;
+    min-width: 162px;
     text-align: center;
     white-space: break-spaces;
+    padding: 0 0 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,6 +120,11 @@
 
 }
 
+.tableFixHead:hover {
+    overflow-y: scroll;
+
+}
+
 /* .you-may-also-like-mbl {
     min-height: 45px;
     width: 100% !important;
@@ -127,7 +133,8 @@
 
 
 .tableFixHead {
-    overflow-y: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
     height: 190px;
 }
 
