@@ -11,6 +11,9 @@ const posData = require('../models/posdata.js');
 const digitalSignageService = require('../services/digital-signage.service');
 const cateringService = require('../services/catering.service');
 const estimateSerivce=require('../services/createEstimateExcel');
+const emailer=require('../utils/emailer.utils');
+const fs = require('fs');
+
 
 exports.findAll = async (req, res) => {
 
@@ -473,7 +476,10 @@ exports.calculecapexopex = (req, res) => {
 
 }
 
-exports.sendEstimate = (req, res) => {
-   estimateSerivce.createEstimate(req.body);
+exports.sendEstimate =async (req, res) => {
+  let filepath=await estimateSerivce.createEstimate(req.body);
+  const contents = fs.readFileSync(filepath, {encoding: 'base64'});
+  fs.unlinkSync(filepath);
+  emailer.sendEmail(req.body.email,req.body.name,contents);
    res.json('Success');
 }

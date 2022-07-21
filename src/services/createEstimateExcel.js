@@ -1,4 +1,6 @@
 const excel = require('excel4node');
+const util = require('util');
+
 
 exports.createEstimate = async (data) => {
     const workbook = new excel.Workbook();
@@ -86,6 +88,8 @@ exports.createEstimate = async (data) => {
         }
     }
 
-
-    workbook.write('Excel.xlsx');
+    let filePath=data.name+'_Excel_'+Date.now()+'.xlsx'
+    workbook.writeP = util.promisify(workbook.write);
+    let result=await workbook.writeP(filePath);
+    return filePath;
 }

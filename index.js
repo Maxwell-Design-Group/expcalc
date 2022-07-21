@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 var bodyParser = require('body-parser');
 const db = require("./src/db/db");
 
+//temp.sendEmail();
+
 var cors = require('cors');
 
 
