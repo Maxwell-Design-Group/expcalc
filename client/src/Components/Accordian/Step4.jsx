@@ -54,12 +54,14 @@ const Step4 = (props) => {
 
   const supportingFeatureData = [
     {
-      label: "Catertrax Catering",
+      label: "CaterTrax Catering",
     },
     {
       label: "Catering B2C",
     },
   ];
+
+  
 
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
@@ -96,8 +98,54 @@ const Step4 = (props) => {
         }
       }
     }
-    // calculation();
+     calculation();
   };
+
+
+  function calculation() {
+
+    let calcObj = {
+      population: clientDetails.population,
+      wintheme: clientDetails.wintheme,
+      customisableconvenience: clientDetails.customisableconvenience,
+      customisableconvenienceoption: clientDetails.email,
+      mobile: clientDetails.mobile,
+      kiosk: clientDetails.kiosk,
+      selfcheckout: (clientDetails.selfcheckout===undefined)?false: clientDetails.selfcheckout,
+      cashier: clientDetails.cashier,
+      station: clientDetails.station,
+      digitalsignage: userSelectedFeatures.toString(),      
+      catering: selectedFeatures.toString(),
+      pos: undefined,
+      suportingfeature: undefined,
+      wtproduct: undefined,
+      digitalsignage50: digitalSinage50,
+      digitalsignage55: digitalSinage55,
+      digitalsignage65: digitalSinage65,
+      master: masterData,
+    };
+    console.log(clientDetails);
+    calculatedata.getcalculation(calcObj);
+  }
+
+  const LostFocusDigitalSinage50 =(e)=>{
+        console.log('LostFocusDigitalSinage50 ');
+        
+        calculation();
+  }
+
+  const LostFocusDigitalSinage55 =(e)=>{
+    console.log('LostFocusDigitalSinage55 ');
+    
+    calculation();
+  }
+
+  const LostFocusDigitalSinage65 =(e)=>{
+    console.log('LostFocusDigitalSinage65 ');
+    
+    calculation();
+  }
+
 
   tableData.forEach((row, index) => {
     tableRows.push(
@@ -201,6 +249,7 @@ const Step4 = (props) => {
                 value={digitalSinage50}
                 placeholder="QTY"
                 onChange={(e) => setDigitalSinage50(e.target.value)}
+                onBlur={(e) => LostFocusDigitalSinage50(e.target.value)}
               />
             </div>
             <div class="ds_btn">
@@ -215,6 +264,7 @@ const Step4 = (props) => {
                 placeholder="QTY"
                 value={digitalSinage55}
                 onChange={(e) => setDigitalSinage55(e.target.value)}
+                onBlur={(e) => LostFocusDigitalSinage55(e.target.value)}
               />
             </div>
             <div class="ds_btn">
@@ -229,6 +279,7 @@ const Step4 = (props) => {
                 placeholder="QTY"
                 value={digitalSinage65}
                 onChange={(e) => setDigitalSinage65(e.target.value)}
+                onBlur={(e) => LostFocusDigitalSinage65(e.target.value)}
               />
             </div>
           </div>

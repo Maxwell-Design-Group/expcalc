@@ -86,7 +86,7 @@ const Step1 = (props) => {
       anticipatedrevenue: anticipatedRevenue,
       population: population,
       industrytype: industryType,
-      customisableconvenienceoption:"",
+      
     };
     if (clientName === "" || clientName.length > 255) {
       Alert.error("Enter client name,0-255 characters");
@@ -96,10 +96,10 @@ const Step1 = (props) => {
       document.getElementById("contractType").focus();
     } else if (industryType === null || industryType === "") {
       Alert.error("Select at least one industry type");
-    } else if (anticipatedRevenue === 0) {
+    } else if (Number(anticipatedRevenue) === 0) {
       Alert.error("Select the anticipated revenue");
       document.getElementById("AnticipatedRevenue").focus();
-    } else if (population === 0) {
+    } else if (Number(population) === 0) {
       Alert.error("Estimate the population");
       document.getElementById("Population").focus();
     } else {

@@ -254,6 +254,7 @@ exports.getSupportingFeatures = async (req, res) => {
         }
     }
     
+     
 
     if (req.body.digitalSignage) {
         if (req.body.digitalSignage['50']) {
@@ -275,15 +276,17 @@ exports.getSupportingFeatures = async (req, res) => {
 
             digitalSignageResult.push('Digital Signage65 $'  + total);
         }
+        
+        
 
         if (req.body.catering) {
             for (let i = 0; i < catering.length; i++) {
-                for (let j = 0; j < req.body.catering; j++) {
+                for (let j = 0; j < req.body.catering.length; j++) {
+                    
                     if (catering[i].digitalsign == req.body.catering[j]) {
                         let total = Number(catering[i].capex) + Number(catering[i].opex);
-                        //let outPutParam={'supportingFeatur}
-                        console.log(catering.digitalsign);
-                        digitalSignageResult.push(catering.digitalsign+ ' $'  + total);
+                        
+                        digitalSignageResult.push(catering[i].digitalsign + ' $'  + total);
                     }
                 }
             }
@@ -291,13 +294,11 @@ exports.getSupportingFeatures = async (req, res) => {
        
     }
 
-
-    
     return res.send(digitalSignageResult);
     
-
-
 }
+
+
 
 exports.pos = (req, res) => {
 
@@ -321,7 +322,7 @@ exports.pos = (req, res) => {
                         total = total + (Number(cco.capex) + Number(cco.opex));
 
                         return res.send({ /// the block will return single only due to validation to chose single ccoption
-                            pos: {
+                            pos: {                               
                                 pos: cco.pos,
                                 capex: capex,
                                 opex: opex,
