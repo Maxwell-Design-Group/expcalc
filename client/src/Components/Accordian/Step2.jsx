@@ -223,13 +223,14 @@ const Step2 = (props) => {
           let wtProducts = masterData.wtproduct;
           for (let j = 0; j < wtProducts.length; j++) {
             // for (let j = 0; j < themes.length; j++) {
-
-            if (
-              userSelectedThemes[i]!= undefined && userSelectedThemes[i] ===
-              wtProducts[j].Wintheme
-            ) {
-              tableData2.push(wtProducts[j]);
-              dispatch(setWinThemes(tableData2));
+            if (wtProducts[j].Wintheme !== undefined) {
+              if (
+                userSelectedThemes[i] != undefined &&
+                userSelectedThemes[i] === wtProducts[j].Wintheme
+              ) {
+                tableData2.push(wtProducts[j]);
+                dispatch(setWinThemes(tableData2));
+              }
             }
           }
         }
