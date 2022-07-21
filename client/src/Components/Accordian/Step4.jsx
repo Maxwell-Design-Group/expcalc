@@ -115,7 +115,7 @@ const Step4 = (props) => {
       cashier: clientDetails.cashier,
       station: clientDetails.station,
       digitalsignage: userSelectedFeatures.toString(),      
-      catering: features.toString(),
+      catering: selectedFeatures.toString(),
       pos: undefined,
       suportingfeature: undefined,
       wtproduct: undefined,
