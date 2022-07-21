@@ -18,9 +18,9 @@ import Step4 from "./Step4";
 
 const AccordionComponent = (props) => {
   const {
-    handleAccordionChange = () => {},
+    handleAccordionChange = () => { },
     isMobileView = false,
-    handleOpenModal = () => {},
+    handleOpenModal = () => { },
   } = props;
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
@@ -114,8 +114,8 @@ const AccordionComponent = (props) => {
               completedSteps.includes(item.id) && item.expanded === true
                 ? "step_edit"
                 : completedSteps.includes(item.id) && item.expanded === false
-                ? "step_completed"
-                : null
+                  ? "step_completed"
+                  : null
             }
           >
             <AccordionSummary
@@ -191,7 +191,7 @@ const AccordionComponent = (props) => {
                   }
                 />
               ) : item.id === 1 ? (
-                <Step1 />
+                <Step1 isMobileView={isMobileView} />
               ) : item.id === 2 ? (
                 <Step2
                   isMobileView={isMobileView}
