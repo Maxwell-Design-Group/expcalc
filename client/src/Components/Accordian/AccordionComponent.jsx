@@ -152,19 +152,30 @@ const AccordionComponent = (props) => {
                 }}
               >
                 <div
-                  className={`accordion-name ${item.expanded ? "mediumFont" : ""
-                    }`}
+                  className={`accordion-name ${
+                    item.expanded ? "mediumFont" : ""
+                  }`}
                   style={{
-                    marginRight: item.expanded ? "20px" : "0px"
+                    marginRight: item.expanded ? "20px" : "0px",
                   }}
                 >
                   {item.title}
                 </div>
-                {isMobileView && item.expanded === true && (
+                {isMobileView && item.expanded === true ? (
                   <InfoIcon
                     style={{ color: "black", opacity: 1 }}
                     onClick={(e) => handleOpenModal(e)}
                   />
+                ) : item.expanded === true ? (
+                  <span
+                    className={
+                      item.id === 4 ? "input_required_4" : "input_required"
+                    }
+                  >
+                    *Required inputs
+                  </span>
+                ) : (
+                  ""
                 )}
               </div>
             </AccordionSummary>

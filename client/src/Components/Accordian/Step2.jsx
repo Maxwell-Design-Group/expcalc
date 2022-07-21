@@ -6,14 +6,14 @@ import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import CommunityInvolvement from "../../Assets/images/Community-Involvement.png";
-import CostConsciousnes from "../../Assets/images/Cost-Consciousnes.png";
-import DEI from "../../Assets/images/DEI.png";
-import LeadershipVisibility from "../../Assets/images/Leadership-Visibility.png";
-import OperationalResults from "../../Assets/images/Operational-Results.png";
-import ProactiveInnovation from "../../Assets/images/Proactive-Innovation.png";
-import RightTeamOnTheGround from "../../Assets/images/Right-Team-On-The-Ground.png";
-import Sustainability from "../../Assets/images/Sustainability.png";
+import CommunityInvolvement from "../../Assets/images/winthemesImages/Community-Involvement.png";
+import CostConsciousnes from "../../Assets/images/winthemesImages/Cost-Consciousnes.png";
+import DEI from "../../Assets/images/winthemesImages/DEI.png";
+import LeadershipVisibility from "../../Assets/images/winthemesImages/Leadership-Visibility.png";
+import OperationalResults from "../../Assets/images/winthemesImages/Operational-Results.png";
+import ProactiveInnovation from "../../Assets/images/winthemesImages/Proactive-Innovation.png";
+import RightTeamOnTheGround from "../../Assets/images/winthemesImages/Right-Team-On-The-Ground.png";
+import Sustainability from "../../Assets/images/winthemesImages/Sustainability.png";
 import { prevAccordionOpen, setWinThemes } from "../../Redux/Actions";
 
 import WinthemeDetailService from "../../Services/WinthemeDetailService";
@@ -36,15 +36,7 @@ const Step2 = (props) => {
       description: "",
     },
     {
-      img: LeadershipVisibility,
-      description: "",
-    },
-    {
       img: OperationalResults,
-      description: "",
-    },
-    {
-      img: RightTeamOnTheGround,
       description: "",
     },
     {
@@ -52,15 +44,23 @@ const Step2 = (props) => {
       description: "",
     },
     {
+      img: LeadershipVisibility,
+      description: "",
+    },
+    {
+      img: RightTeamOnTheGround,
+      description: "",
+    },
+    {
       img: DEI,
       description: "DEEP CLIENT UNDERSTANDING",
     },
     {
-      img: Sustainability,
+      img: CommunityInvolvement,
       description: "DEEP CLIENT UNDERSTANDING",
     },
     {
-      img: CommunityInvolvement,
+      img: Sustainability,
       description: "DEEP CLIENT UNDERSTANDING",
     },
   ];
@@ -115,7 +115,13 @@ const Step2 = (props) => {
 
   function createGridView() {
     return (
-      <Box sx={{ flexGrow: 1, width: isMobileView ? "100%" : "auto", overflow: "hidden" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          width: isMobileView ? "100%" : "auto",
+          overflow: "hidden",
+        }}
+      >
         <Grid
           container
           spacing={{ xs: 2, md: 2 }}
@@ -124,7 +130,7 @@ const Step2 = (props) => {
             flexWrap: isMobileView ? "nowrap" : "wrap",
             overflowX: isMobileView ? "scroll" : "hidden",
             marginLeft: isMobileView ? 0 : "-16px",
-            width: isMobileView ? "100%" : "calc(100% + 16px)"
+            width: isMobileView ? "100%" : "calc(100% + 16px)",
           }}
         >
           {master.map((theme, index) => {
@@ -159,10 +165,12 @@ const Step2 = (props) => {
                       src={theme.image}
                       alt={theme.image}
                       style={{
-                        display: "block",
-                        margin: "0.5em 3.5em",
-                        top: "20%",
-                        position: "absolute",
+                        height: "44px",
+                        width: "auto",
+                        // display: "block",
+                        // margin: "0.5em 3.5em",
+                        // top: "20%",
+                        // position: "absolute",
                       }}
                     />
                     <div className="theme_label_container">
@@ -246,11 +254,15 @@ const Step2 = (props) => {
     >
       <div className={isFormEnableOrDisabled()}>
         <Row className="rowSeprator ">{createGridView()}</Row>
-        <Row
-          className="rowSeprator"
-          style={{ padding: "0 0.3em", flexWrap: "nowrap" }}
-        >
-          <Col md={6} style={{ textAlign: "left" }}>
+        <Row className="rowSeprator" style={{ flexWrap: "nowrap" }}>
+          <Col
+            md={6}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "4px",
+            }}
+          >
             <Button
               variant="contained"
               size="small"
@@ -261,7 +273,14 @@ const Step2 = (props) => {
               Previous
             </Button>
           </Col>
-          <Col md={6} style={{ textAlign: "right" }}>
+          <Col
+            md={6}
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              paddingRight: "3px",
+            }}
+          >
             <Button
               variant="contained"
               size="small"
