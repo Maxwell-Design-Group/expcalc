@@ -58,6 +58,10 @@ body {
   }
 }
 
+.btn:focus {
+  box-shadow: none;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -737,7 +741,7 @@ div label input {
   opacity: 1;
 }
 
-.stepOne .nav_description {
+/* .stepOne .nav_description {
   font: var(--unnamed-font-style-normal) normal
     var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
     var(--unnamed-font-family-gotham);
@@ -747,7 +751,7 @@ div label input {
   letter-spacing: 0.48px;
   color: #ffffff;
   opacity: 0.65;
-}
+} */
 
 .stepOne .tootalCalculationSection_container {
   top: 194px;
