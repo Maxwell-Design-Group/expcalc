@@ -217,7 +217,7 @@ if (selectedFootprint.includes(value)) {
         customisableconvenienceoption:"",
         mobile: mobile,
         kiosk: kiosk,
-        selfCheckout: selfCheckout,
+        selfcheckout: selfCheckout,
         cashier: cashier,
         station: station,
       };

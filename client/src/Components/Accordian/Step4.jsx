@@ -111,7 +111,7 @@ const Step4 = (props) => {
       customisableconvenienceoption: clientDetails.email,
       mobile: clientDetails.mobile,
       kiosk: clientDetails.kiosk,
-      selfcheckout: (clientDetails.selfCheckout===undefined)?false: clientDetails.selfCheckout,
+      selfcheckout: (clientDetails.selfcheckout===undefined)?false: clientDetails.selfcheckout,
       cashier: clientDetails.cashier,
       station: clientDetails.station,
       digitalsignage: userSelectedFeatures.toString(),      
@@ -124,7 +124,7 @@ const Step4 = (props) => {
       digitalsignage65: digitalSinage65,
       master: masterData,
     };
-    
+    console.log(clientDetails);
     calculatedata.getcalculation(calcObj);
   }
 
