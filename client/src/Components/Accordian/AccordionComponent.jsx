@@ -135,27 +135,28 @@ const AccordionComponent = (props) => {
                 )
               }
               aria-controls="panel1a-content"
-              id="panel1a-header"
               className="accordian-summary-header"
               style={{
                 flexDirection: "row-reverse",
                 margin: "11px 0 0 0",
-                padding: item.expanded && "0px 0px 0px 0px !important",
+                padding: item.expanded && "0px",
               }}
             >
               <div
                 style={{
                   display: "flex",
                   padding: item.expanded ? "0px" : "0px 20px",
-                  // marginLeft: "-5px",
+                  alignItems: "center",
                   justifyContent: "space-between",
                   flex: 1,
                 }}
               >
                 <div
-                  className={`accordion-name ${
-                    item.expanded ? "mediumFont" : ""
-                  }`}
+                  className={`accordion-name ${item.expanded ? "mediumFont" : ""
+                    }`}
+                  style={{
+                    marginRight: item.expanded ? "20px" : "0px"
+                  }}
                 >
                   {item.title}
                 </div>
