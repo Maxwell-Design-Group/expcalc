@@ -227,7 +227,7 @@ const Step5 = (props) => {
             value={pos.pos}
           />
           <label class="btn btn-default" for="a25">
-            {pos.pos}
+            {pos.pos+ ' $' + parseFloat( (pos.capex + pos.opex)).toFixed(2)}
           </label>
         </div>
       );
