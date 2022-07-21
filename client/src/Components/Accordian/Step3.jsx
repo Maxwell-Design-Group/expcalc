@@ -347,14 +347,17 @@ console.log("yesOptionsss"+yesOption);
       {isMatchSm || isMatchMd ? (
         <>
           <Row className="logoNToggleRs">
-          <img
+            <Col xs={5}>
+            <img
                       src={ccOption}
                       alt={ccOption}
                       style={{
-                        width:"242px",
+                        width:"100%",
                         height:"77px",
                       }}
                     />
+            </Col>
+          <Col xs={1}>
             <Switch
               className="switchButtonRs"
               inputProps={{ "aria-label": "secondary checkbox" }}
@@ -363,6 +366,7 @@ console.log("yesOptionsss"+yesOption);
               checked={yesOrNo}
               onChange={handleYesOrNoChange}
             />
+            </Col>
           </Row>
           <br />
           {yesOrNo ? (
@@ -414,15 +418,15 @@ console.log("yesOptionsss"+yesOption);
                       key={data.value}
                       name={data.value}
                       value={data.value}
-                      onClick={() => handleFootprintButtons(data.value)}
+                      onClick={() => handleFootprintButtons(data.name)}
                       style={{
-                        backgroundColor: selectedFootprint.includes(data.value)
+                        backgroundColor: selectedFootprint.includes(data.name)
                           ? "#4BAE4F"
                           : "#fff",
-                        color: selectedFootprint.includes(data.value)
+                        color: selectedFootprint.includes(data.name)
                           ? "white"
                           : "black",
-                        border: selectedFootprint.includes(data.value)
+                        border: selectedFootprint.includes(data.name)
                           ? ""
                           : "1px solid #979797",
                       }}
@@ -577,7 +581,7 @@ console.log("yesOptionsss"+yesOption);
                       src={ccOption}
                       alt={ccOption}
                       style={{
-                        width:"242px",
+                        width:"100%",
                         height:"77px",
                       }}
                     />
@@ -641,10 +645,10 @@ console.log("yesOptionsss"+yesOption);
                       backgroundColor: selectedFootprint.includes(data.name)
                         ? "#4BAE4F"
                         : "#fff",
-                      color: selectedFootprint.includes(data.value)
+                      color: selectedFootprint.includes(data.name)
                         ? "white"
                         : "black",
-                      border: selectedFootprint.includes(data.value)
+                      border: selectedFootprint.includes(data.name)
                         ? ""
                         : "1px solid #979797",
                     }}
@@ -755,8 +759,9 @@ console.log("yesOptionsss"+yesOption);
                           onClick={(e) => handleNoButtons(data.station)}
                           style={{
                             backgroundColor: selectedNoOptions.includes(
-                              data.value
+                              data.station
                             )
+                            
                               ? "#4BAE4F"
                               : "#fff",
                             color: selectedNoOptions.includes(data.station)
