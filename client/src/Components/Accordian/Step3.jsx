@@ -136,10 +136,12 @@ const Step3 = (props) => {
       }
       
      if (population>=0 && population<=250){
-      
-         document.getElementsByName("Kiosk")[0].disabled=true;
-         document.getElementsByName("Self-Checkout")[0].disabled=true;
-                    
+        if (document.getElementsByName("Kiosk")[0]!=undefined ){
+          document.getElementsByName("Kiosk")[0].disabled=true;
+        }
+         if(document.getElementsByName("Self-Checkout")[0]!=undefined){
+          document.getElementsByName("Self-Checkout")[0].disabled=true;
+         }          
      } 
 
 
