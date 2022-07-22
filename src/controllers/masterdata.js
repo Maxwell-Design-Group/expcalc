@@ -8,6 +8,9 @@ const supportingFeature = require('../models/supportingfeature.js');
 const digitalSignage = require('../models/digitalsignage.js');
 const cateringDetail = require('../models/cateringdetail.js');
 const posData = require('../models/posdata.js');
+const posexp=require('../models/posexp');
+const networkexp=require('../models/networkexp');
+const custconvexp=require('../models/custconexp');
 const digitalSignageService = require('../services/digital-signage.service');
 const cateringService = require('../services/catering.service');
 const estimateSerivce=require('../services/createEstimateExcel');
@@ -28,6 +31,9 @@ exports.findAll = async (req, res) => {
     var gwth = [];
     var gccoption = [];
     var gpos = [];
+    let posexpList=[];
+    let networkexpList=[];
+    let custconvexpList=[];
 
 
     await contractTypeList.find()
@@ -141,6 +147,43 @@ exports.findAll = async (req, res) => {
             });
         });
 
+//-----------------------------------------
+    await posexp.find()
+    .then(posexpRes => {
+
+        posexpList = posexpRes;
+        
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
+
+    //-----------------------------------------
+    await networkexp.find()
+    .then(networkexpRes => {
+
+        networkexpList = networkexpRes;
+        
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
+
+    //-----------------------------------------
+    await custconvexp.find()
+    .then(custconvexpRes => {
+
+        custconvexpList = custconvexpRes;
+        
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
+
+
     //-----------------------------------------
     await cateringDetail.find()
         .then(cateringdetail => {
@@ -163,6 +206,9 @@ exports.findAll = async (req, res) => {
                 ccoption: gccoption,
                 wintheme: gwth,
                 pos: gpos,
+                posexp: posexpList,
+                networkexp: networkexpList,
+                custconvexp: custconvexpList
 
             });
         }).catch(err => {
