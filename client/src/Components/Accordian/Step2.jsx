@@ -226,9 +226,11 @@ const Step2 = (props) => {
             if (wtProducts[j].Wintheme !== undefined) {
               if (
                 userSelectedThemes[i] != undefined &&
-                userSelectedThemes[i] === wtProducts[j].Wintheme
+                userSelectedThemes[i].toUpperCase() ===
+                  wtProducts[j].Wintheme.toUpperCase()
               ) {
                 tableData2.push(wtProducts[j]);
+                console.log("tableData2 ", tableData2);
                 dispatch(setWinThemes(tableData2));
               }
             }
