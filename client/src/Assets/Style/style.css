@@ -377,3 +377,30 @@
   font-weight: bold;
   color: #808b96;
 }
+
+@media only screen and (min-width: 320px) {
+  .customizable-convenience-img {
+    width: 120px;
+    height: 38px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .customizable-convenience-img {
+    width: 160px;
+    height: 48px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .customizable-convenience-img {
+    width: 200px;
+    height: 60px;
+  }
+}
+@media only screen and (min-width: 1900px) {
+  .customizable-convenience-img {
+    width: 242px;
+    height: 77px;
+  }
+}
