@@ -505,13 +505,13 @@ div label input {
   font-size: 0.575rem !important;
 }
 
-.stepOne .themes .themesLabel {
-  /* font-size: 1.2em;
+/* .stepOne .themes .themesLabel {
+  font-size: 1.2em;
     font-weight: bold;
     color: #808B96;
-    line-height: 1.8em; */
+    line-height: 1.8em; 
 
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
+font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing--0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -519,8 +519,8 @@ div label input {
   letter-spacing: -0.14px;
   color: #000000;
   text-transform: uppercase;
-  opacity: 1;
-}
+  opacity: 1; 
+} */
 
 .stepOne .css-i4bv87-MuiSvgIcon-root {
   -webkit-user-select: none;
@@ -686,9 +686,9 @@ div label input {
   position: absolute;
 } */
 
-.stepOne .accordianContent::-webkit-scrollbar {
+/* .stepOne .accordianContent::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* .accordianContent {
   -ms-overflow-style: none;
@@ -1455,8 +1455,8 @@ select option[value=""] {
 }
 
 ::-webkit-scrollbar {
-  width: 2em;
-  height: 2em;
+  width: 1em;
+  /* height: 2em; */
 }
 
 .input_required {

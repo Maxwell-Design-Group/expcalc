@@ -92,13 +92,13 @@ const Step3 = (props) => {
         return {
           ...master,
           image: yesImages[index].img,
-          
-        
+
+
         };
       }
-    
+
     });
-    console.log(JSON.stringify(master)+"mastersss");
+    console.log(JSON.stringify(master) + "mastersss");
     master = master.filter(function (el) {
       return el != null;
     });
@@ -126,23 +126,23 @@ const Step3 = (props) => {
   });
 
 
-     let population = clientDetails.population;
+  let population = clientDetails.population;
 
-      if (document.getElementsByName("Mobile")[0]!=undefined){
-        document.getElementsByName("Mobile")[0].disabled=false;
-        document.getElementsByName("Cashier")[0].disabled=false;
-        document.getElementsByName("Self-Checkout")[0].disabled=false;
-        document.getElementsByName("Kiosk")[0].disabled=false;
-      }
-      
-     if (population>=0 && population<=250){
-        if (document.getElementsByName("Kiosk")[0]!=undefined ){
-          document.getElementsByName("Kiosk")[0].disabled=true;
-        }
-         if(document.getElementsByName("Self-Checkout")[0]!=undefined){
-          document.getElementsByName("Self-Checkout")[0].disabled=true;
-         }          
-     } 
+  if (document.getElementsByName("Mobile")[0] != undefined) {
+    document.getElementsByName("Mobile")[0].disabled = false;
+    document.getElementsByName("Cashier")[0].disabled = false;
+    document.getElementsByName("Self-Checkout")[0].disabled = false;
+    document.getElementsByName("Kiosk")[0].disabled = false;
+  }
+
+  if (population >= 0 && population <= 250) {
+    if (document.getElementsByName("Kiosk")[0] != undefined) {
+      document.getElementsByName("Kiosk")[0].disabled = true;
+    }
+    if (document.getElementsByName("Self-Checkout")[0] != undefined) {
+      document.getElementsByName("Self-Checkout")[0].disabled = true;
+    }
+  }
 
 
 
@@ -159,8 +159,8 @@ const Step3 = (props) => {
   };
 
   const handleFootprintButtons = (value) => {
-console.log( document.getElementsByName(value)[0]);
-if (selectedFootprint.includes(value)) {
+    console.log(document.getElementsByName(value)[0]);
+    if (selectedFootprint.includes(value)) {
       setSelectedFootprint((prev) =>
         prev.filter((item) => {
           return item !== value;
@@ -189,13 +189,13 @@ if (selectedFootprint.includes(value)) {
     if (yesOption === "") {
       Alert.error("select any Option");
     } else {
-      
+
       let obj = {
         ...clientDetails,
-        customisableconvenience: yesOrNo,        
-        email:yesOption,
-        'clientDetails.ccopt':yesOption,
-        
+        customisableconvenience: yesOrNo,
+        email: yesOption,
+        'clientDetails.ccopt': yesOption,
+
       };
       DiningExperience.sendData(obj, id, clientDetails);
     }
@@ -216,7 +216,7 @@ if (selectedFootprint.includes(value)) {
       let obj = {
         ...clientDetails,
         customisableconvenience: yesOrNo,
-        customisableconvenienceoption:"",
+        customisableconvenienceoption: "",
         mobile: mobile,
         kiosk: kiosk,
         selfcheckout: selfCheckout,
@@ -248,7 +248,7 @@ if (selectedFootprint.includes(value)) {
       wtproduct: undefined,
       master: masterData,
     };
-calculatedata.getcalculation(calcObj);
+    calculatedata.getcalculation(calcObj);
   }
 
   function createGridView() {
@@ -259,7 +259,7 @@ calculatedata.getcalculation(calcObj);
           spacing={{ xs: 2, md: 2 }}
           columns={{ xs: 2, sm: 6, md: 12 }}
           style={{
-            flexWrap: isMatchSm || isMatchMd ?"nowrap" : "wrap",
+            flexWrap: isMatchSm || isMatchMd ? "nowrap" : "wrap",
             marginLeft: isMatchSm || isMatchMd ? "5%" : "0",
           }}
         >
@@ -271,7 +271,7 @@ calculatedata.getcalculation(calcObj);
                     className="yesOptions action"
                     id={"themesBtn" + index}
                     onClick={() => handleYesButtons(data.custConvOption)}
-                    style={{overflow:"hidden"}}
+                    style={{ overflow: "hidden" }}
                   >
                     <input
                       type="checkbox"
@@ -300,8 +300,8 @@ calculatedata.getcalculation(calcObj);
                         margin: "0.5em 3.5em",
                         top: "20%",
                         position: "absolute",
-                        width:"176px",
-                        height:"105px",
+                        width: "176px",
+                        height: "105px",
                       }}
                     />
                     <div className="theme_label_container">
@@ -318,7 +318,7 @@ calculatedata.getcalculation(calcObj);
       </Box>
     );
   }
-console.log("yesOptionsss"+yesOption);
+  console.log("yesOptionsss" + yesOption);
 
   useEffect(() => {
     calculation();
@@ -326,7 +326,7 @@ console.log("yesOptionsss"+yesOption);
 
   useEffect(() => {
     calculation();
-    
+
     console.log(selectedNoOptions.toString());
   }, [selectedNoOptions]);
 
@@ -344,32 +344,26 @@ console.log("yesOptionsss"+yesOption);
     }
     return isFormActive;
   }
+
   return (
     <>
       {isMatchSm || isMatchMd ? (
         <>
-          <Row className="logoNToggleRs">
-            <Col xs={5}>
+          <div className="logoNToggleRs">
             <img
-                      src={ccOption}
-                      alt={ccOption}
-                      style={{
-                        width:"100%",
-                        height:"77px",
-                      }}
-                    />
-            </Col>
-          <Col xs={1}>
+              className="customizable-convenience-img"
+              src={ccOption}
+              alt={ccOption}
+            />
             <Switch
-              className="switchButtonRs"
+              // className="switchButtonRs"
               inputProps={{ "aria-label": "secondary checkbox" }}
               color="success"
               style={{ float: "right" }}
               checked={yesOrNo}
               onChange={handleYesOrNoChange}
             />
-            </Col>
-          </Row>
+          </div>
           <br />
           {yesOrNo ? (
             <>
@@ -577,31 +571,24 @@ console.log("yesOptionsss"+yesOption);
         </>
       ) : (
         <>
-          <Row className="logoNToggle">
-            <Col md={5}>
+          <div className="logoNToggle">
             <img
-                      src={ccOption}
-                      alt={ccOption}
-                      style={{
-                        width:"100%",
-                        height:"77px",
-                      }}
-                    />
-            </Col>
-            <Col md={1}>
-              <Switch
-                inputProps={{ "aria-label": "secondary checkbox" }}
-                color="success"
-                style={{ float: "right" }}
-                checked={yesOrNo}
-                onChange={handleYesOrNoChange}
-              />
-            </Col>
-          </Row>
+              src={ccOption}
+              alt={ccOption}
+              className="customizable-convenience-img"
+            />
+            <Switch
+              inputProps={{ "aria-label": "secondary checkbox" }}
+              color="success"
+              style={{ float: "right" }}
+              checked={yesOrNo}
+              onChange={handleYesOrNoChange}
+            />
+          </div>
           <br />
           {yesOrNo ? (
             <>
-             <Row className="rowSeprator ">{createGridView()}</Row>
+              <Row className="rowSeprator ">{createGridView()}</Row>
               <Row className="rowSeprator" style={{ padding: "0 0.3em" }}>
                 <Col md={6} style={{ textAlign: "left" }}>
                   <Button
@@ -763,7 +750,7 @@ console.log("yesOptionsss"+yesOption);
                             backgroundColor: selectedNoOptions.includes(
                               data.station
                             )
-                            
+
                               ? "#4BAE4F"
                               : "#fff",
                             color: selectedNoOptions.includes(data.station)

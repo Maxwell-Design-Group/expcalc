@@ -25,6 +25,7 @@ function Dashboard() {
   );
   const [selectedAccordion, setSelectedAccordion] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(isMobileView);
+  const { completedSteps } = useSelector((state) => state.Reducer);
 
   const handleWindowResize = (e) => {
     if (e.target.innerWidth < mobileViewSize) {
@@ -168,7 +169,7 @@ function Dashboard() {
                 <Calculator />
               )}
 
-              {selectedAccordion === 5 ? (
+              {selectedAccordion === 5 && completedSteps.includes(5) ? (
                 <div style={{ margin: "1em 0" }}>
                   <Resultset />
                 </div>

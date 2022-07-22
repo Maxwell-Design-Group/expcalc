@@ -61,8 +61,6 @@ const Step4 = (props) => {
     },
   ];
 
-  
-
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
     let products = userSelectedProducts;
@@ -98,12 +96,10 @@ const Step4 = (props) => {
         }
       }
     }
-     calculation();
+    calculation();
   };
 
-
   function calculation() {
-
     let calcObj = {
       population: clientDetails.population,
       wintheme: clientDetails.wintheme,
@@ -111,10 +107,13 @@ const Step4 = (props) => {
       customisableconvenienceoption: clientDetails.email,
       mobile: clientDetails.mobile,
       kiosk: clientDetails.kiosk,
-      selfcheckout: (clientDetails.selfcheckout===undefined)?false: clientDetails.selfcheckout,
+      selfcheckout:
+        clientDetails.selfcheckout === undefined
+          ? false
+          : clientDetails.selfcheckout,
       cashier: clientDetails.cashier,
       station: clientDetails.station,
-      digitalsignage: userSelectedFeatures.toString(),      
+      digitalsignage: userSelectedFeatures.toString(),
       catering: selectedFeatures.toString(),
       pos: undefined,
       suportingfeature: undefined,
@@ -128,24 +127,23 @@ const Step4 = (props) => {
     calculatedata.getcalculation(calcObj);
   }
 
-  const LostFocusDigitalSinage50 =(e)=>{
-        console.log('LostFocusDigitalSinage50 ');
-        
-        calculation();
-  }
+  const LostFocusDigitalSinage50 = (e) => {
+    console.log("LostFocusDigitalSinage50 ");
 
-  const LostFocusDigitalSinage55 =(e)=>{
-    console.log('LostFocusDigitalSinage55 ');
-    
     calculation();
-  }
+  };
 
-  const LostFocusDigitalSinage65 =(e)=>{
-    console.log('LostFocusDigitalSinage65 ');
-    
+  const LostFocusDigitalSinage55 = (e) => {
+    console.log("LostFocusDigitalSinage55 ");
+
     calculation();
-  }
+  };
 
+  const LostFocusDigitalSinage65 = (e) => {
+    console.log("LostFocusDigitalSinage65 ");
+
+    calculation();
+  };
 
   tableData.forEach((row, index) => {
     tableRows.push(
@@ -228,7 +226,7 @@ const Step4 = (props) => {
             flexDirection: isMobileView ? "column" : "row",
           }}
         >
-          <div className="digital_signage_text">Digital Sinage</div>
+          <div className="digital_signage_text">Digital Signage</div>
 
           <div
             style={{

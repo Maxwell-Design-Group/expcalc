@@ -184,8 +184,16 @@ const Step5 = (props) => {
             &nbsp;
             {row.product}
           </td>
-          <td>{row.productDescription}</td>
-          <td>{row.Total}</td>
+          <td
+            style={{
+              letterSpacing: "-0.52px",
+              textAlign: "left",
+              wordBreak: "break-all",
+            }}
+          >
+            {row.productDescription}
+          </td>
+          <td style={{ textAlign: "right" }}>{row.Total}</td>
         </tr>
       );
     });
@@ -329,7 +337,7 @@ const Step5 = (props) => {
                 >
                   <thead
                     style={{
-                      borderBottom: "1px solid #cfcfcf",
+                      // borderBottom: "1px solid #cfcfcf",
                       textAlign: "left",
                       font: "normal normal 400 14px/36px Gotham",
                       letterSpacing: "0.25px",
@@ -338,7 +346,7 @@ const Step5 = (props) => {
                     }}
                   >
                     <tr>
-                      <th style={{ width: "20%", background: "#fff" }}>
+                      <th style={{ width: "15%", background: "#fff" }}>
                         Product
                       </th>
                       <th style={{ width: "45%", background: "#fff" }}>
@@ -348,6 +356,7 @@ const Step5 = (props) => {
                         style={{
                           width: "10%",
                           background: "#fff",
+                          textAlign: "right",
                         }}
                       >
                         Cost
