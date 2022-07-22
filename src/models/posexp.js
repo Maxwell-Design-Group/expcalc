@@ -2,22 +2,21 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // Define collection and schema for ContracttypeLists
-var posexp = new Schema({
-    vendor: {
+var posExp = new Schema({
+    vender: {
         type: String
     },
     experience: {
-        type: []
+        type:String
     },
     capex: {
         type: Number
     },
     opex: {
         type: Number
-    }
-
+    },
 },{
     collection: 'posexp'
 });
 
-module.exports = mongoose.model('posexp', posexp);
+module.exports = mongoose.model('posExp', posExp);

@@ -26,13 +26,10 @@ var clientDetails = new Schema({
     },
     wintheme: {
         type: String // Pass Comma seperated string 
-    },
+    },    
     customisableconvenience: {
         type: Boolean
-    },
-    customisableconvenienceoption: {
-        type: String
-    },
+    }, 
 	digitalsignage: {
         type: String
     },
@@ -70,6 +67,9 @@ var clientDetails = new Schema({
         type: String // Pass Comma seperated string 
     },
     wtproduct: {
+        type: String // Pass Comma seperated string 
+    },
+    ccopt: {
         type: String // Pass Comma seperated string 
     },
 

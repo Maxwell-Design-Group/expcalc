@@ -8,9 +8,10 @@ const supportingFeature = require('../models/supportingfeature.js');
 const digitalSignage = require('../models/digitalsignage.js');
 const cateringDetail = require('../models/cateringdetail.js');
 const posData = require('../models/posdata.js');
-const posexp=require('../models/posexp');
-const networkexp=require('../models/networkexp');
-const custconvexp=require('../models/custconexp');
+const posExp = require('../models/posexp.js');
+const footPrint = require('../models/footprint.js');
+const installExp = require('../models/installexp.js');
+const networkExp = require('../models/networkexp.js');
 const digitalSignageService = require('../services/digital-signage.service');
 const cateringService = require('../services/catering.service');
 const estimateSerivce=require('../services/createEstimateExcel');
@@ -31,10 +32,10 @@ exports.findAll = async (req, res) => {
     var gwth = [];
     var gccoption = [];
     var gpos = [];
-    let posexpList=[];
-    let networkexpList=[];
-    let custconvexpList=[];
-
+    var gposexp = [];
+    var ginstallexp = [];
+    var gnetworkexp = [];
+    var gfp=[];
 
     await contractTypeList.find()
         .then(contracttypelist => {
@@ -45,6 +46,50 @@ exports.findAll = async (req, res) => {
                 message: err.message || "Something went wrong."
             });
         });
+
+    //-----------------------------------------
+    await posExp.find()
+        .then(posexp  => {
+
+            gposexp = posexp;
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something went wrong."
+            });
+        });
+
+    //-----------------------------------------
+    await installExp.find()
+    .then(installexp  => {
+       // console.log(installexp);
+        ginstallexp = installexp;
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
+
+//-----------------------------------------
+    await networkExp.find()
+    .then(networkexp  => {
+
+        gnetworkexp = networkexp;
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
+
+    //-----------------------------------------
+    await footPrint.find()
+    .then(footprint  => {
+
+        gfp = footprint;
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something went wrong."
+        });
+    });
 
     //-----------------------------------------
     await industryType.find()
@@ -126,7 +171,7 @@ exports.findAll = async (req, res) => {
         .then(digitalsignage => {
 
             gdigitalsignage = digitalsignage;
-            console.log(gdigitalsignage);
+            //console.log(gdigitalsignage);
 
         }).catch(err => {
             res.status(500).send({
@@ -139,7 +184,7 @@ exports.findAll = async (req, res) => {
         .then(pos => {
 
             gpos = pos;
-            console.log(gpos);
+           // console.log(gpos);
 
         }).catch(err => {
             res.status(500).send({
@@ -147,51 +192,14 @@ exports.findAll = async (req, res) => {
             });
         });
 
-//-----------------------------------------
-    await posexp.find()
-    .then(posexpRes => {
-
-        posexpList = posexpRes;
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
-        });
-    });
-
-    //-----------------------------------------
-    await networkexp.find()
-    .then(networkexpRes => {
-
-        networkexpList = networkexpRes;
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
-        });
-    });
-
-    //-----------------------------------------
-    await custconvexp.find()
-    .then(custconvexpRes => {
-
-        custconvexpList = custconvexpRes;
-        
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something went wrong."
-        });
-    });
-
-
     //-----------------------------------------
     await cateringDetail.find()
         .then(cateringdetail => {
 
 
             gcateringdetail = cateringdetail;
-            console.log(gwth);
-            console.log(gpos);
+            //console.log(gwth);
+           // console.log(gpos);
             return res.status(200).send({
                 success: true,
                 contracttypelist: gcontracttypelist,
@@ -206,9 +214,13 @@ exports.findAll = async (req, res) => {
                 ccoption: gccoption,
                 wintheme: gwth,
                 pos: gpos,
-                posexp: posexpList,
-                networkexp: networkexpList,
-                custconvexp: custconvexpList
+                posexp:gposexp,
+
+                installexp:ginstallexp,
+                networkexp:gnetworkexp,
+
+                footprint:gfp,
+                
 
             });
         }).catch(err => {
