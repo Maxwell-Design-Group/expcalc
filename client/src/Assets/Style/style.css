@@ -28,11 +28,11 @@
   align-items: center;
   width: 100%;
   height: auto;
-  box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #cfcfcf;
   border-radius: 15px;
   opacity: 1;
   margin-left: 0.2%;
+  margin-bottom: 2%;
 }
 
 .formButtons {
@@ -42,19 +42,48 @@
   font: normal normal normal 14px/20px Gotham;
   letter-spacing: 0.25px;
   opacity: 1;
-  margin-left: 1%;
+  margin-left: 2%;
   padding: 2px 6px;
   margin-bottom: 1%;
   margin-top: 1%;
+  font-size: x-small;
 }
 .heading {
   padding-top: 3%;
   padding-bottom: 3%;
   background-color: #00000013;
   border-radius: 15px 0px 0px 15px;
-  align-items: center;
   font-weight: bolder;
   overflow: hidden;
+  white-space: nowrap;
+  padding-left: 3%;
+  width: 21%;
+  text-align: left;
+  margin-right: 2%;
+  font-size: x-small;
+}
+
+.serviceOfferings{
+color: var(--unnamed-color-000000);
+text-align: left;
+font: normal normal bold 16px/22px Gotham;
+letter-spacing: 0.48px;
+color: #000000;
+text-transform: uppercase;
+opacity: 1;
+margin-left: 0.2%;
+margin-bottom: 0.7%;
+font-weight:bold;
+}
+
+.headingRs {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background-color: #00000013;
+  border-radius: 15px 0px 0px 15px;
+  font-weight: bolder;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .headingLocal {
   padding-top: 1%;
@@ -64,6 +93,11 @@
   align-items: center;
   font-weight: bolder;
   overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+  padding-left: 3%;
+  width: 21%;
+  margin-right: 2%;
 }
 .OptionAla {
   display: flex;
@@ -78,13 +112,18 @@
   margin-left: 0.2%;
 }
 .headingAla {
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 6%;
+  padding-bottom: 6%;
+  padding-left: 3%;
   background-color: #00000013;
   border-radius: 15px 0px 0px 15px;
   align-items: center;
   font-weight: bolder;
   overflow: hidden;
+  text-align: left;
+  white-space: nowrap;
+  width: 21%;
+  margin-right: 2%;
 }
 .formButtonsAla {
   border: 1px solid #979797;
@@ -147,6 +186,7 @@
   padding-bottom: 3%;
   padding-right: 4%;
   padding-left: 4%;
+  /* color: #880505; */
 }
 
 /* .MuiSwitch-root {
@@ -219,20 +259,17 @@
 }
 .switchButtonRs {
   margin-left: 5%;
+
 }
 
 .OptionRs {
   display: flex;
-  flex-direction: column;
   align-items: center;
   max-width: 100%;
   height: auto;
-  box-shadow: 0px 3px 6px #00000029;
-  border: 1px solid #cfcfcf;
-  border-radius: 15px;
   opacity: 1;
   margin-left: 2%;
-  overflow-x: scroll;
+  overflow-x: scroll; align-items: center;
 }
 .DataScrollRs {
   display: flex;
@@ -324,7 +361,7 @@
   border: 1px solid var(--unnamed-color-ebebeb);
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
-  border: 1px solid #ebebeb;
+  /* border: 1px solid #ebebeb; */
   opacity: 1;
   position: relative;
   display: flex;

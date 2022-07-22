@@ -47,7 +47,7 @@ const footprintData = [
 
 const yesImages = [
   {
-    img: essential
+    img: essential,
   },
   {
     img: essentialPlus,
@@ -60,7 +60,6 @@ const yesImages = [
   },
 ];
 const Step3 = (props) => {
-
   const { disabled = disabled } = props;
   const DiningExperience = new DiningExperienceService();
   const calculatedata = new calculatedataService();
@@ -74,6 +73,7 @@ const Step3 = (props) => {
     selfCheckout: false,
     cashier: false,
   });
+  const [error,setError] = useState(false);
 
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
@@ -92,22 +92,18 @@ const Step3 = (props) => {
         return {
           ...master,
           image: yesImages[index].img,
-
-
         };
       }
-
     });
-    console.log(JSON.stringify(master) + "mastersss");
     master = master.filter(function (el) {
       return el != null;
     });
   }
 
-  let yesDatas = [];
-  if (masterData.ccoption) {
-    yesDatas = masterData.ccoption;
-  }
+  // let yesDatas = [];
+  // if (masterData.ccoption) {
+  //   yesDatas = masterData.ccoption;
+  // }
 
   let stationData = [];
   if (masterData.stationdata) {
@@ -145,6 +141,10 @@ const Step3 = (props) => {
   }
 
 
+  if (population >= 0 && population <= 250) {
+    document.getElementsByName("Kiosk")[0].disabled = true;
+    document.getElementsByName("Self-Checkout")[0].disabled = true;
+  }
 
   const handleYesOrNoChange = (e) => {
     setYesOrNo(e.target.checked);
@@ -155,6 +155,18 @@ const Step3 = (props) => {
       setYesOption("");
     } else {
       setYesOption(value);
+      setError(false);
+    }
+  };
+
+  const refresh = () => {
+    if (yesOrNo === false) {
+      setYesOption("");
+      setError(false);
+    } else {
+      setSelectedFootprint([]);
+      setSelectedNoOptions([]);
+      setError(false);
     }
   };
 
@@ -170,6 +182,7 @@ const Step3 = (props) => {
     } else {
       setSelectedFootprint((prev) => [...prev, value]);
       setSelectedFootprintBool({ ...selectedFootprintBool, [value]: true });
+      setError(false);
     }
   };
 
@@ -188,14 +201,13 @@ const Step3 = (props) => {
   const selectYesOption = (id) => {
     if (yesOption === "") {
       Alert.error("select any Option");
+      setError(true)
     } else {
-
       let obj = {
         ...clientDetails,
         customisableconvenience: yesOrNo,
         email: yesOption,
-        'clientDetails.ccopt': yesOption,
-
+        "clientDetails.ccopt": yesOption,
       };
       DiningExperience.sendData(obj, id, clientDetails);
     }
@@ -209,6 +221,7 @@ const Step3 = (props) => {
     let station = "";
     if (selectedFootprint.length === 0) {
       Alert.error("select one option from Footprint");
+      setError(true);
     } else {
       if (selectedNoOptions.length > 0) {
         station = selectedNoOptions.toString();
@@ -271,7 +284,9 @@ const Step3 = (props) => {
                     className="yesOptions action"
                     id={"themesBtn" + index}
                     onClick={() => handleYesButtons(data.custConvOption)}
-                    style={{ overflow: "hidden" }}
+                    style={{ overflow: "hidden" ,
+                    border : error ? "2px solid #880505" : 
+                    yesOption === data.custConvOption ? "2px solid #4BAE4F" :"1px solid #ebebeb"}}
                   >
                     <input
                       type="checkbox"
@@ -318,24 +333,15 @@ const Step3 = (props) => {
       </Box>
     );
   }
-  console.log("yesOptionsss" + yesOption);
+
 
   useEffect(() => {
     calculation();
-  }, [yesOption]);
+  }, [yesOption, selectedNoOptions, selectedFootprintBool]);
 
   useEffect(() => {
-    calculation();
-
-    console.log(selectedNoOptions.toString());
-  }, [selectedNoOptions]);
-
-  useEffect(() => {
-    calculation();
-    console.log(selectedFootprintBool);
-    console.log(selectedNoOptions.toString());
-  }, [selectedFootprintBool]);
-
+    refresh();
+  }, [yesOrNo]);
 
   function isFormEnableOrDisabled() {
     let isFormActive = "stepOne isStepDiabled";
@@ -373,7 +379,7 @@ const Step3 = (props) => {
                     <b> What option would they like?</b>
                   </Typography>
                 </Col> */}
-                <Row className="rowSeprator ">{createGridView()}</Row>
+                {createGridView()}
               </Row>
               <br />
               <Row className="lastButtons">
@@ -401,7 +407,7 @@ const Step3 = (props) => {
           ) : (
             <>
               <Row className="OptionRs">
-                <Col className="heading" md={12}>
+                <Col className="headingRs" md={12}>
                   <Typography variant="subtitle1">
                     <b>Footprint</b>
                   </Typography>
@@ -423,7 +429,7 @@ const Step3 = (props) => {
                           ? "white"
                           : "black",
                         border: selectedFootprint.includes(data.name)
-                          ? ""
+                          ? "" : error === true ? "1px solid #880505"
                           : "1px solid #979797",
                       }}
                     >
@@ -434,7 +440,7 @@ const Step3 = (props) => {
               </Row>
               <br />
               <Row className="OptionRs">
-                <Col className="heading" md={12}>
+                <Col className="headingRs" md={12}>
                   <Typography variant="subtitle1">
                     <b>On the go</b>
                   </Typography>
@@ -470,7 +476,7 @@ const Step3 = (props) => {
               </Row>
               <br />
               <Row className="OptionRs">
-                <Col className="heading" md={12}>
+                <Col className="headingRs" md={12}>
                   <Typography variant="subtitle1">
                     <b>
                       Local
@@ -510,7 +516,7 @@ const Step3 = (props) => {
               </Row>
               <br />
               <Row className="OptionRs">
-                <Col className="heading" md={12}>
+                <Col className="headingRs" md={12}>
                   <Typography variant="subtitle1">
                     <b>A la carte</b>
                   </Typography>
@@ -617,11 +623,11 @@ const Step3 = (props) => {
           ) : (
             <>
               <Row className="Option">
-                <Col className="heading" md={2}>
-                  <Typography variant="subtitle1">
-                    <b>Footprint</b>
+                <div className="heading">
+                  <Typography variant="caption">
+                    <b>Digital<br/>Touchpoints</b>
                   </Typography>
-                </Col>
+                </div>
                 {footprintData.map((data, index) => (
                   <Button
                     className="formButtons"
@@ -638,21 +644,21 @@ const Step3 = (props) => {
                         ? "white"
                         : "black",
                       border: selectedFootprint.includes(data.name)
-                        ? ""
+                        ? "" : error === true ? "1px solid #880505"
                         : "1px solid #979797",
                     }}
                   >
-                    <Typography variant="subtitle2"> {data.value}</Typography>
+                    {data.value}
                   </Button>
                 ))}
               </Row>
-              <br />
+              <Row className="serviceOfferings">SERVICE OFFERINGS</Row>
               <Row className="Option">
-                <Col className="heading" md={2}>
-                  <Typography variant="subtitle1">
+                <div className="heading" >
+                  <Typography variant="caption">
                     <b>On the go</b>
                   </Typography>
-                </Col>
+                </div>
                 <Col>
                   <Row className="alaCarteRow">
                     {stationList
@@ -678,26 +684,23 @@ const Step3 = (props) => {
                               : "1px solid #979797",
                           }}
                         >
-                          <Typography variant="subtitle2">
                             {" "}
                             {data.station}
-                          </Typography>
                         </Button>
                       ))}
                   </Row>
                 </Col>
               </Row>
-              <br />
               <Row className="Option">
-                <Col className="headingLocal" md={2}>
-                  <Typography variant="subtitle1">
+                <div className="headingLocal" >
+                  <Typography variant="caption">
                     <b>
                       Local
                       <br />
                       Variety
                     </b>
                   </Typography>
-                </Col>
+                </div>
                 {stationList
                   .filter((item) => item.type === "Local Veriety")
                   .map((data, index) => (
@@ -721,27 +724,23 @@ const Step3 = (props) => {
                           : "1px solid #979797",
                       }}
                     >
-                      <Typography variant="subtitle2">
-                        {" "}
                         {data.station}
-                      </Typography>
                     </Button>
                   ))}
               </Row>
-              <br />
-              <Row className="OptionAla">
-                <Col className="headingAla" md={2}>
-                  <Typography variant="subtitle1">
+              <Row className="Option">
+                <div className="headingAla" >
+                  <Typography variant="caption">
                     <b>A la carte</b>
                   </Typography>
-                </Col>
+                </div>
                 <Col md={9}>
                   <Row>
                     {stationList
                       .filter((item) => item.type === "alacarte")
                       .map((data, index) => (
                         <Button
-                          className="formButtonsAla"
+                          className="formButtons"
                           variant="light"
                           name={data.value}
                           value={data.value}
@@ -750,7 +749,6 @@ const Step3 = (props) => {
                             backgroundColor: selectedNoOptions.includes(
                               data.station
                             )
-
                               ? "#4BAE4F"
                               : "#fff",
                             color: selectedNoOptions.includes(data.station)
@@ -761,10 +759,7 @@ const Step3 = (props) => {
                               : "1px solid #979797",
                           }}
                         >
-                          <Typography variant="subtitle2">
-                            {" "}
                             {data.station}
-                          </Typography>
                         </Button>
                       ))}
                   </Row>
