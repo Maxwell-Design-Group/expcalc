@@ -1059,8 +1059,8 @@ div label input {
   opacity: 1;
   top: 565px;
   left: 1200px;
-  width: 100px;
-  height: 38px;
+  width: 145px;
+  height: 48px;
 }
 
 .aramark_dashboard .previous_btn {
@@ -1074,8 +1074,8 @@ div label input {
   opacity: 1;
   top: 565px;
   left: 1200px;
-  width: 100px;
-  height: 38px;
+  width: 145px;
+  height: 48px;
   /* UI Properties */
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
   border: 1px solid var(--unnamed-color-000000);

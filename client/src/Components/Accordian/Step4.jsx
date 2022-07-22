@@ -19,6 +19,7 @@ const Step4 = (props) => {
 
   const tableRows = [];
   let selectedFeatures = [];
+  let supportingFeatureData = [];
   const [checked, setChecked] = useState(false);
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
@@ -52,14 +53,9 @@ const Step4 = (props) => {
     },
   ]);
 
-  const supportingFeatureData = [
-    {
-      label: "CaterTrax Catering",
-    },
-    {
-      label: "Catering B2C",
-    },
-  ];
+  if (masterData.cateringdetail) {
+    supportingFeatureData = masterData.cateringdetail;
+  }
 
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
@@ -84,12 +80,12 @@ const Step4 = (props) => {
     selectedFeatures = userSelectedFeatures;
 
     if (checked === true) {
-      selectedFeatures.push(rowData.label);
+      selectedFeatures.push(rowData.digitalsign);
 
       setUserSelectedFeatures(selectedFeatures);
     } else {
       for (let i = 0; i < selectedFeatures.length; i++) {
-        if (selectedFeatures[i] === rowData.label) {
+        if (selectedFeatures[i] === rowData.digitalsign) {
           selectedFeatures.splice(i, 1);
 
           setUserSelectedFeatures(selectedFeatures);
@@ -298,11 +294,11 @@ const Step4 = (props) => {
                   <label>
                     <input
                       type="checkbox"
-                      value={feature.label}
+                      value={feature.digitalsign}
                       defaultChecked={featureChecked}
                       onChange={(e) => handleChangeFeatures(e, feature, index)}
                     />
-                    <span> {feature.label}</span>
+                    <span> {feature.digitalsign}</span>
                   </label>
                 </div>
               );

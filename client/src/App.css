@@ -1465,7 +1465,7 @@ select option[value=""] {
   font: normal normal normal 14px/15px Gotham;
   letter-spacing: -0.14px;
   color: #DA291C;
-
+  margin: 0 8px 0 0;
 }
 
 .input_required_4 {

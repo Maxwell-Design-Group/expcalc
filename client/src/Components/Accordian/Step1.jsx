@@ -87,7 +87,6 @@ const Step1 = (props) => {
       anticipatedrevenue: anticipatedRevenue,
       population: population,
       industrytype: industryType,
-
     };
     if (clientName === "" || clientName.length > 255) {
       Alert.error("Enter client name,0-255 characters");
@@ -169,6 +168,7 @@ const Step1 = (props) => {
               borderTop: "1px solid transparent",
               borderBottom: "1px solid transparent",
               outline: "1px solid rgb(208, 205, 205)",
+              background: "transparent",
             }}
           >
             <option value="" selected>
@@ -184,9 +184,12 @@ const Step1 = (props) => {
           flexWrap: "nowrap",
         }}
       >
-        <Col md={6} style={{
-          paddingRight: isMobileView ? "0px" : "15px"
-        }}>
+        <Col
+          md={6}
+          style={{
+            paddingRight: isMobileView ? "0px" : "15px",
+          }}
+        >
           <label style={{ float: "left" }} className="switchLabel">
             Industry Type<span style={{ color: "red" }}>*</span>
           </label>{" "}
@@ -208,6 +211,7 @@ const Step1 = (props) => {
               borderTop: "1px solid transparent",
               borderBottom: "1px solid transparent",
               outline: "1px solid rgb(208, 205, 205)",
+              background: "transparent",
             }}
           >
             <option value="" selected>
@@ -220,7 +224,11 @@ const Step1 = (props) => {
           <img
             src={LifeWork}
             alt="lifeWork"
-            style={isMobileView ? { width: "94px", height: "18px" } : { width: "104px", height: "20px" }}
+            style={
+              isMobileView
+                ? { width: "94px", height: "18px" }
+                : { width: "104px", height: "20px" }
+            }
           />
           <Switch
             id="Lifeworks"
