@@ -404,15 +404,15 @@ class calculatedataService {
      }
         
     if(capex!==0 && opex!==0 && total!==0){
-      document.getElementById("capex").innerHTML = '$' + capex;
-      document.getElementById("opex").innerHTML= '$' + opex;
-      document.getElementById("total").innerHTML = '$' + total;
+      document.getElementById("capex").innerHTML = '$' + parseInt(capex) ;
+      document.getElementById("opex").innerHTML= '$' + parseInt( opex);
+      document.getElementById("total").innerHTML = '$' + parseInt( total);
     }
     else{
       if (document.getElementById("capex")!=undefined){
         document.getElementById("capex").innerHTML = '$0';
         document.getElementById("opex").innerHTML= '$0' ;
-        document.getElementById("total").innerHTML = '$0s';
+        document.getElementById("total").innerHTML = '$0';
       }
     } 
 
