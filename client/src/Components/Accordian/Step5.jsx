@@ -77,7 +77,7 @@ const Step5 = (props) => {
 
   
   function calculation() {
-    console.log(clientDetails);
+    
     let calcObj = {
       population: clientDetails.population,
       wintheme: clientDetails.wintheme,
@@ -96,11 +96,12 @@ const Step5 = (props) => {
       pos: undefined,
       suportingfeature: undefined,
       wtproduct: userSelectedProducts.toString(),
-      digitalsignage50: clientDetails.digitalSinage50,
-      digitalsignage55: clientDetails.digitalSinage55,
-      digitalsignage65: clientDetails.digitalSinage65,
+      digitalsignage50: clientDetails.digitalsignage50,
+      digitalsignage55: clientDetails.digitalsignage55,
+      digitalsignage65: clientDetails.digitalsignage65,
       master: masterData,
     };
+    console.log(calcObj);
     console.log(clientDetails);
     calculatedata.getcalculation(calcObj);
   }
