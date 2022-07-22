@@ -644,7 +644,7 @@ const Step3 = (props) => {
                         ? "white"
                         : "black",
                       border: selectedFootprint.includes(data.name)
-                        ? "" : error === true ? "1px solid #880505"
+                        ? "" : error === true ? "2px solid #880505"
                         : "1px solid #979797",
                     }}
                   >
