@@ -1455,8 +1455,8 @@ select option[value=""] {
 }
 
 ::-webkit-scrollbar {
-  width: 2em;
-  height: 2em;
+  width: 1em;
+  /* height: 2em; */
 }
 
 .input_required {

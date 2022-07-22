@@ -57,7 +57,7 @@
     white-space: break-spaces;
     padding: 0 0 0 10px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     text-align: left;
     font: normal normal medium 14px/15px Gotham;
@@ -109,6 +109,7 @@
         min-height: 45px;
         width: 100%;
         max-width: 100%;
+        justify-content: center;
     }
 
     .POS_main_container {
@@ -120,10 +121,10 @@
 
 }
 
-.tableFixHead:hover {
+/* .tableFixHead:hover {
     overflow-y: scroll;
 
-}
+} */
 
 /* .you-may-also-like-mbl {
     min-height: 45px;
@@ -133,14 +134,24 @@
 
 
 .tableFixHead {
-    overflow-y: hidden;
+    overflow-y: scroll;
     overflow-x: hidden;
     height: 190px;
 }
 
 .tableFixHead thead th {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
+}
+
+.tableFixHead thead th:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 /* table {
