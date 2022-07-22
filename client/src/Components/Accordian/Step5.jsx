@@ -75,9 +75,7 @@ const Step5 = (props) => {
     SupportingQuestion.sendData(obj, id, clientDetails);
   };
 
-  
   function calculation() {
-    
     let calcObj = {
       population: clientDetails.population,
       wintheme: clientDetails.wintheme,
@@ -241,7 +239,9 @@ const Step5 = (props) => {
             value={pos.pos}
           />
           <label class="btn btn-default" for="a25">
-            {pos.pos + " $" + parseInt(parseInt(pos.capex) + parseInt(pos.opex))}
+            {pos.pos +
+              " $" +
+              parseInt(parseInt(pos.capex) + parseInt(pos.opex))}
           </label>
         </div>
       );
@@ -275,11 +275,12 @@ const Step5 = (props) => {
           <div className="POS_text">POS</div>
 
           <div
-            style={{
-              height: "80px",
-              display: "flex",
-              alignItems: "center",
-            }}
+            // style={{
+            //   height: "80px",
+            //   display: "flex",
+            //   alignItems: "center",
+            // }}
+            className="pos_options_container"
           >
             {POSData}
 

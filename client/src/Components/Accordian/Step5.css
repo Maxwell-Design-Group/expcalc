@@ -118,6 +118,11 @@
         flex-wrap: inherit;
     }
 
+    .pos_options_container {
+
+        width: 16rem !important;
+
+    }
 
 }
 
@@ -168,3 +173,10 @@ td {
 th {
     background: #eee;
 } */
+.pos_options_container {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    width: 30rem;
+    overflow-x: scroll;
+}

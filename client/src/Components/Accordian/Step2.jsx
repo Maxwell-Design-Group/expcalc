@@ -92,7 +92,9 @@ const Step2 = (props) => {
     let themes = [...userSelectedThemes];
     if (checked === true) {
       for (let i = 0; i < winThemelist.length; i++) {
-        document.getElementById("themesBtn" + i).style.border = "none";
+        if (userSelectedThemes.length === 0) {
+          document.getElementById("themesBtn" + i).style.border = "none";
+        }
       }
       document.getElementById("themesBtn" + index).style.backgroundColor =
         "#fff";
@@ -105,7 +107,9 @@ const Step2 = (props) => {
     } else {
       for (let i = 0; i < themes.length; i++) {
         for (let i = 0; i < winThemelist.length; i++) {
-          document.getElementById("themesBtn" + i).style.border = "none";
+          if (userSelectedThemes.length === 0) {
+            document.getElementById("themesBtn" + i).style.border = "none";
+          }
         }
         if (themes[i] === theme) {
           themes.splice(i, 1);
@@ -148,6 +152,17 @@ const Step2 = (props) => {
                     id={"themesBtn" + index}
                     onClick={() => selectedThemes(theme.wintheme, index)}
                   >
+                    <div
+                      className="three-dots"
+                      style={{
+                        position: "absolute",
+                        top: "0px",
+                        right: "0px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      &#xFE19;
+                    </div>
                     <input
                       type="checkbox"
                       style={{

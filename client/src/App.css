@@ -1455,10 +1455,17 @@ select option[value=""] {
 }
 
 ::-webkit-scrollbar {
-  width: 1em;
+  width: 0.5em;
+  /* background: #EBEDEF; */
   /* height: 2em; */
 }
 
+/* .scroller {
+  width: 300px;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+} */
 .input_required {
   letter-spacing: var(--unnamed-character-spacing--0-14);
   text-align: left;

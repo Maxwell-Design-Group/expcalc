@@ -48,6 +48,7 @@
   margin-top: 1%;
   font-size: x-small;
 }
+
 .heading {
   padding-top: 3%;
   padding-bottom: 3%;
@@ -63,17 +64,17 @@
   font-size: x-small;
 }
 
-.serviceOfferings{
-color: var(--unnamed-color-000000);
-text-align: left;
-font: normal normal bold 16px/22px Gotham;
-letter-spacing: 0.48px;
-color: #000000;
-text-transform: uppercase;
-opacity: 1;
-margin-left: 0.2%;
-margin-bottom: 0.7%;
-font-weight:bold;
+.serviceOfferings {
+  color: var(--unnamed-color-000000);
+  text-align: left;
+  font: normal normal bold 16px/22px Gotham;
+  letter-spacing: 0.48px;
+  color: #000000;
+  text-transform: uppercase;
+  opacity: 1;
+  margin-left: 0.2%;
+  margin-bottom: 0.7%;
+  font-weight: bold;
 }
 
 .headingRs {
@@ -85,6 +86,7 @@ font-weight:bold;
   overflow: hidden;
   white-space: nowrap;
 }
+
 .headingLocal {
   padding-top: 1%;
   padding-bottom: 1%;
@@ -99,6 +101,7 @@ font-weight:bold;
   width: 21%;
   margin-right: 2%;
 }
+
 .OptionAla {
   display: flex;
   flex-direction: row;
@@ -111,6 +114,7 @@ font-weight:bold;
   opacity: 1;
   margin-left: 0.2%;
 }
+
 .headingAla {
   padding-top: 7%;
   padding-bottom: 7%;
@@ -125,6 +129,7 @@ font-weight:bold;
   width: 21%;
   margin-right: 2%;
 }
+
 .formButtonsAla {
   border: 1px solid #979797;
   border-radius: 16px;
@@ -140,9 +145,7 @@ font-weight:bold;
 }
 
 .stepOne .next_btn3 {
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
-    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -164,9 +167,7 @@ font-weight:bold;
 }
 
 .previous_btn3 {
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
-    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -257,6 +258,7 @@ font-weight:bold;
   width: 25%;
   height: auto;
 }
+
 .switchButtonRs {
   margin-left: 5%;
 
@@ -269,8 +271,10 @@ font-weight:bold;
   height: auto;
   opacity: 1;
   margin-left: 2%;
-  overflow-x: scroll; align-items: center;
+  overflow-x: scroll;
+  align-items: center;
 }
+
 .DataScrollRs {
   display: flex;
   flex-direction: row;
@@ -280,9 +284,11 @@ font-weight:bold;
   margin-bottom: 1%;
   width: 90%;
 }
+
 .DataScrollRs::-webkit-scrollbar {
   display: none;
 }
+
 .formButtonsRs {
   border: 1px solid #979797;
   border-radius: 16px;
@@ -293,6 +299,7 @@ font-weight:bold;
   margin-top: 1%;
   white-space: nowrap;
 }
+
 .headingRs {
   padding-top: 3%;
   padding-bottom: 3%;
@@ -302,6 +309,7 @@ font-weight:bold;
   font-weight: bolder;
   overflow: hidden;
 }
+
 .lastButtons {
   max-width: 100%;
   display: flex;
@@ -309,10 +317,9 @@ font-weight:bold;
   justify-content: space-between;
   margin-left: 2%;
 }
+
 .next_btn3Rs {
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
-    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -330,9 +337,7 @@ font-weight:bold;
 }
 
 .previous_btn3Rs {
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
-    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -391,9 +396,7 @@ font-weight:bold;
     color: #808B96;
     line-height: 1.8em; */
 
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) /
-    var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14) / var(--unnamed-line-spacing-29) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing--0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -435,6 +438,7 @@ font-weight:bold;
     height: 60px;
   }
 }
+
 @media only screen and (min-width: 1900px) {
   .customizable-convenience-img {
     width: 242px;
