@@ -686,9 +686,9 @@ div label input {
   position: absolute;
 } */
 
-.stepOne .accordianContent::-webkit-scrollbar {
+/* .stepOne .accordianContent::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* .accordianContent {
   -ms-overflow-style: none;
