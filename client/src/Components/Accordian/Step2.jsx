@@ -91,6 +91,9 @@ const Step2 = (props) => {
     const checked = !userSelectedThemes.includes(theme);
     let themes = [...userSelectedThemes];
     if (checked === true) {
+      for (let i = 0; i < winThemelist.length; i++) {
+        document.getElementById("themesBtn" + i).style.border = "none";
+      }
       document.getElementById("themesBtn" + index).style.backgroundColor =
         "#fff";
       document.getElementById("themesBtn" + index).style.border =
@@ -101,6 +104,9 @@ const Step2 = (props) => {
       setUserSelectedThemes(themes);
     } else {
       for (let i = 0; i < themes.length; i++) {
+        for (let i = 0; i < winThemelist.length; i++) {
+          document.getElementById("themesBtn" + i).style.border = "none";
+        }
         if (themes[i] === theme) {
           themes.splice(i, 1);
           document.getElementById("theme_check" + index).style.opacity = "0.1";
