@@ -75,7 +75,9 @@ const Step5 = (props) => {
     SupportingQuestion.sendData(obj, id, clientDetails);
   };
 
+  
   function calculation() {
+    console.log(clientDetails);
     let calcObj = {
       population: clientDetails.population,
       wintheme: clientDetails.wintheme,
@@ -83,20 +85,23 @@ const Step5 = (props) => {
       customisableconvenienceoption: clientDetails.email,
       mobile: clientDetails.mobile,
       kiosk: clientDetails.kiosk,
-      selfcheckout: clientDetails.selfCheckout,
+      selfcheckout:
+        clientDetails.selfcheckout === undefined
+          ? false
+          : clientDetails.selfcheckout,
       cashier: clientDetails.cashier,
       station: clientDetails.station,
-      digitalsignage: userSelectedFeatures.toString(),
-      digitalsignageqty55: clientDetails.digitalsignage55,
-      digitalsignageqty50: clientDetails.digitalsignage50,
-      digitalsignageqty65: clientDetails.digitalsignage65,
-      catering: undefined,
-      pos: pos,
+      digitalsignage: undefined,
+      catering: clientDetails.catering.toString(),
+      pos: undefined,
       suportingfeature: undefined,
       wtproduct: userSelectedProducts.toString(),
+      digitalsignage50: clientDetails.digitalSinage50,
+      digitalsignage55: clientDetails.digitalSinage55,
+      digitalsignage65: clientDetails.digitalSinage65,
       master: masterData,
     };
-
+    console.log(clientDetails);
     calculatedata.getcalculation(calcObj);
   }
 
