@@ -83,7 +83,7 @@ export const getSupportingQuestionDetails = (data) => {
       customisableconvenience: data.customisableconvenience,
       customisableconvenienceoption:
         data.customisableconvenienceoption === undefined
-          ? ""
+          ? data.email
           : data.customisableconvenienceoption,
       mobile: data.mobile === undefined ? "" : data.mobile,
       kiosk: data.kiosk === undefined ? "" : data.kiosk,
@@ -104,6 +104,7 @@ export const getSupportingQuestionDetails = (data) => {
       catering: catering,
     };
     console.log("posObj ", posObj);
+    console.log(data);
 
     axios
       .post("https://expcalc-dev.herokuapp.com/pos", posObj)

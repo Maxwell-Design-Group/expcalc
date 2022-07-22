@@ -100,11 +100,11 @@ const Step5 = (props) => {
     calculatedata.getcalculation(calcObj);
   }
 
-  useEffect(() => {
-    console.log("pos");
-    console.log(pos);
-    calculation();
-  }, [pos]);
+  // useEffect(() => {
+  //   console.log("pos");
+  //   console.log(pos);
+  //   calculation();
+  // }, [pos]);
 
   const handleChange = (e, rowData, index) => {
     const { checked } = e.target;
@@ -122,7 +122,7 @@ const Step5 = (props) => {
         }
       }
     }
-    calculation();
+    //calculation();
   };
   const handleChangeFeatures = (e, rowData, index) => {
     const { checked } = e.target;
@@ -161,7 +161,7 @@ const Step5 = (props) => {
       }
     }
 
-    calculation();
+    //calculation();
   };
   if (themes) {
     themes.forEach((row, index) => {
@@ -227,7 +227,7 @@ const Step5 = (props) => {
             value={pos.pos}
           />
           <label class="btn btn-default" for="a25">
-            {pos.pos + " $" + parseFloat(pos.capex + pos.opex).toFixed(2)}
+            {pos.pos + " $" + parseInt(parseInt(pos.capex) + parseInt(pos.opex))}
           </label>
         </div>
       );

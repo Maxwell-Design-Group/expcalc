@@ -220,7 +220,7 @@ exports.findAll = async (req, res) => {
                 networkexp:gnetworkexp,
 
                 footprint:gfp,
-                
+
 
             });
         }).catch(err => {
@@ -364,28 +364,29 @@ exports.pos = (req, res) => {
     var capex = "0";
     var opex = "0";
     var total = "0";
-    if (req.body.customisableconvenience === 'true') {
+    
+    if (req.body.customisableconvenience == true) {
 
-
+          
         //-----------------------------------------
         customisableConvenienceOption.find()
             .then(c => {
 
                 const ccoption = c.filter(e => e.custConvOption === req.body.customisableconvenienceoption);
-
+                
                 if (ccoption != null && ccoption.length > 0) {
                     ccoption.forEach(cco => {
                         capex = capex + Number(cco.capex);
                         opex = opex + Number(cco.opex);
-                        total = total + (Number(cco.capex) + Number(cco.opex));
+                        total = total + (Number(cco.pcapex) + Number(cco.popex));
 
                         return res.send({ /// the block will return single only due to validation to chose single ccoption
-                            pos: {                               
-                                pos: cco.pos,
+                            pos: [{                               
+                                pos: req.body.customisableconvenienceoption +'-'+ cco.pos,
                                 capex: capex,
                                 opex: opex,
                                 total: total
-                            }
+                            }]
                         });
                     });
                 }
@@ -403,7 +404,7 @@ exports.pos = (req, res) => {
     }
     else {
 
-
+        
         //-----------------------------------------
         posData.find()
             .then(pos => {

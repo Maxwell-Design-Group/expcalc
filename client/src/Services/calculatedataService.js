@@ -20,7 +20,7 @@ class calculatedataService {
 
      
 
-     if (data.mobile==true){
+    if (data.mobile==true){
       footprint =   "Mobile";
      } 
 	  if (data.cashier==true){ 
@@ -96,40 +96,168 @@ class calculatedataService {
      }
      else{
 
-      
-              if( master.pos!==undefined && footprint!=""){
+            
+            if( master.footprint!==undefined && footprint!=""){
+              
 
-                    let d = Number(data.population)/250;
-                    if (d>=1){
-                        if (parseInt(d)<parseFloat(d))
-                        {
-                          d=d+1;
-                        }
-                    }
-                    console.log(d);
-                    //const pos = master.pos.filter(e=>e.range1 <= Number(data.population) && e.range2 >= Number(data.population));
-                    const pos = master.pos.filter(e=>e.footprint == footprint);
-                    console.log(footprint);
-                    console.log(pos);
-                    pos.forEach(p => {              
-                      if(p!=null){
-                          capex=  capex + Number( p.capex) 
-                          opex= opex + Number( p.opex) 
-                          total= total +  Number( p.capex) ;
-                        
+              let d = Number(data.population)/250;
+              if (d>=1){
+              if (parseInt(d)<parseFloat(d))
+              {
+                        d=d+1;
+               }
+               }
 
-                          capex=  capex + Number( p.icapex) 
-                          opex= opex + Number( p.iopex) 
-                          total= total +  Number( p.icapex) +Number( p.iopex);
-
-                          capex=  capex + Number( p.ncapex) * parseInt(d);
-                          opex= opex + Number( p.nopex) *  parseInt(d);
-                          total= total +  (Number( p.ncapex) +Number( p.nopex)) * parseInt(d);
-                        
-                    }
-                  });
+              const ft =  master.footprint.filter(e=>e.footprint == footprint);
+              
+              
+              if (ft!=null && ft.length>0){
                 
-            }  
+                  const explist = ft[0].result.split(',');
+                  
+                  if (explist !=null){
+                      explist.forEach(expitem => {
+                        //==================================POS=====================================================
+                            const posexp = master.posexp.filter(e=>e.vender.trim().indexOf(expitem.trim())!=-1)
+                            
+                            if(posexp!=null){
+                              const footprintarr = footprint.split('+');
+                              footprintarr.forEach(f => {
+                                console.log(f);
+                                const p = posexp.filter(e=>e.Experience.trim().indexOf(f.trim())!=-1);
+                                console.log(p);
+                                    if (p!=null && p.length>0)
+                                    {
+                                      
+                                       for(let i=0;i<p.length;i++){
+                                        
+                                        if (data.population<=500){
+                                          if(p[i].vender!="Mashgin"){
+                                            capex=  capex + Number( p[i].Capex) * parseInt(d);
+                                            opex= opex + Number( p[i].opex) *  parseInt(d);
+                                            total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                          }
+                                          
+                                        }
+                                        else{
+                                          capex=  capex + Number( p[i].Capex) * parseInt(d);
+                                          opex= opex + Number( p[i].opex) *  parseInt(d);
+                                          total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                        }
+                                        
+                                       }
+                                    } 
+
+                              });
+
+                            }
+                          //===========================================INSTALL===================================================
+                          const installexp = master.installexp.filter(e=>e.vender.trim().indexOf(expitem.trim())!=-1)
+                          
+                          if(installexp!=null){
+                            const footprintarr = footprint.split('+');
+                            footprintarr.forEach(f => {
+                              const p = installexp.filter(e=>e.Experience.indexOf(f.trim().trim())!=-1);
+                                  if (p!=null && p.length>0)
+                                  {
+                                    
+                                     for(let i=0;i<p.length;i++){
+                                      
+                                      if (data.population<=500){
+                                        if(p[i].vender!="Mashgin"){
+                                          capex=  capex + Number( p[i].Capex) * parseInt(d);
+                                          opex= opex + Number( p[i].opex) *  parseInt(d);
+                                          total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                        }
+                                        
+                                      }
+                                      else{
+                                        capex=  capex + Number( p[i].Capex) * parseInt(d);
+                                        opex= opex + Number( p[i].opex) *  parseInt(d);
+                                        total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                      }
+                                      
+                                     }
+                                  } 
+
+                            });
+
+                          }
+                        //=============================================network=================================================
+
+                        const networkexp = master.networkexp.filter(e=>e.vender.trim().indexOf("Aramark")!=-1)
+                            
+                        if(networkexp!=null){
+                          const footprintarr = footprint.split('+');
+                          footprintarr.forEach(f => {
+                            const p = networkexp.filter(e=>e.Experience.trim().indexOf(f.trim())!=-1);
+                                if (p!=null && p.length>0)
+                                {
+                                  
+                                   for(let i=0;i<p.length;i++){
+                                    console.log("network");
+                                    if (data.population<=500){
+                                      if(p[i].vender!="Mashgin"){
+                                        capex=  capex + Number( p[i].Capex) 
+                                        opex= opex + Number( p[i].opex) 
+                                        total= total +  (Number( p[i].Capex) +Number( p[i].opex)) 
+                                      }
+                                      
+                                    }
+                                    else{
+                                      capex=  capex + Number( p[i].Capex) 
+                                      opex= opex + Number( p[i].opex) 
+                                      total= total +  (Number( p[i].Capex) +Number( p[i].opex))
+                                    }
+                                    
+                                   }
+                                } 
+
+                          });
+
+                        }
+                      //================================================================================================
+
+                      });
+                  }
+                  
+
+              }
+            }
+            
+            //   if( master.pos!==undefined && footprint!=""){
+
+            //         let d = Number(data.population)/250;
+            //         if (d>=1){
+            //             if (parseInt(d)<parseFloat(d))
+            //             {
+            //               d=d+1;
+            //             }
+            //         }
+            //         console.log(d);
+            //         //const pos = master.pos.filter(e=>e.range1 <= Number(data.population) && e.range2 >= Number(data.population));
+            //         const pos = master.pos.filter(e=>e.footprint == footprint);
+            //         console.log(footprint);
+            //         console.log(pos);
+            //         pos.forEach(p => {              
+            //           if(p!=null){
+            //               capex=  capex + Number( p.capex) 
+            //               opex= opex + Number( p.opex) 
+            //               total= total +  Number( p.capex) ;
+                        
+
+            //               capex=  capex + Number( p.icapex) 
+            //               opex= opex + Number( p.iopex) 
+            //               total= total +  Number( p.icapex) +Number( p.iopex);
+
+            //               capex=  capex + Number( p.ncapex) * parseInt(d);
+            //               opex= opex + Number( p.nopex) *  parseInt(d);
+            //               total= total +  (Number( p.ncapex) +Number( p.nopex)) * parseInt(d);
+                        
+            //         }
+            //       });
+                
+            // }  
 
             if( data.station!==undefined && data.station!=="" && master.stationdata!==undefined){
                     
@@ -158,11 +286,13 @@ class calculatedataService {
           console.log(data.digitalsignage50);
           let digitalsignage = master.digitalsignage.filter(e=>e.digitalsign  == '50');
            console.log(digitalsignage);
+           console.log(data.digitalsignage50);
+           console.log(total);
 
           if(digitalsignage!=null && digitalsignage.length>0 && data.digitalsignage50>0){
               capex= capex +  Number( digitalsignage[0].capex) * Number(data.digitalsignage50);
               opex= opex+ Number( digitalsignage[0].opex) * Number(data.digitalsignage50);
-              total= total+ capex + opex;
+              total= total+ (Number( digitalsignage[0].capex) * Number(data.digitalsignage50) + Number( digitalsignage[0].opex) * Number(data.digitalsignage50));
           } 
         }
 
@@ -172,7 +302,7 @@ class calculatedataService {
           if(digitalsignage!=null && digitalsignage.length>0 && data.digitalsignage55>0){
               capex= capex +  Number( digitalsignage[0].capex) * Number(data.digitalsignage55);
               opex= opex+ Number( digitalsignage[0].opex) * Number(data.digitalsignage55);
-              total= total+ capex + opex;
+              total= total+ (Number( digitalsignage[0].capex) * Number(data.digitalsignage55) + Number( digitalsignage[0].opex) * Number(data.digitalsignage55));
           } 
         }
 
@@ -181,7 +311,7 @@ class calculatedataService {
           if(digitalsignage!=null && digitalsignage.length>0 && data.digitalsignage65>0){
               capex= capex +  Number( digitalsignage[0].capex) * Number(data.digitalsignage65);
               opex= opex+ Number( digitalsignage[0].opex) * Number(data.digitalsignage65);
-              total= total+ capex + opex;
+              total= total+( Number( digitalsignage[0].capex) * Number(data.digitalsignage65) + Number( digitalsignage[0].opex) * Number(data.digitalsignage65));
           } 
         }
       
@@ -274,21 +404,25 @@ class calculatedataService {
      }
         
     if(capex!==0 && opex!==0 && total!==0){
-      document.getElementById("capex").innerHTML = '$' + capex.toFixed(2);
-      document.getElementById("opex").innerHTML= '$' + opex.toFixed(2);
-      document.getElementById("total").innerHTML = '$' + total.toFixed(2);
+      document.getElementById("capex").innerHTML = '$' + capex;
+      document.getElementById("opex").innerHTML= '$' + opex;
+      document.getElementById("total").innerHTML = '$' + total;
     }
     else{
       if (document.getElementById("capex")!=undefined){
-        document.getElementById("capex").innerHTML = '$0.00';
-        document.getElementById("opex").innerHTML= '$0.00' ;
-        document.getElementById("total").innerHTML = '$0.00';
+        document.getElementById("capex").innerHTML = '$0';
+        document.getElementById("opex").innerHTML= '$0' ;
+        document.getElementById("total").innerHTML = '$0s';
       }
     } 
 
   }
+
+      
+   
  
 }
+
 
 
 

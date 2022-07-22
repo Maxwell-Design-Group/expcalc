@@ -17,7 +17,13 @@ custConvOption: {
     },
     pos:{
         type: String 
-    }
+    },
+    pcapex: {
+        type: Number
+    },
+    popex: {
+        type: Number
+    },
 
 },{
     collection: 'customisableconvenienceoption'
