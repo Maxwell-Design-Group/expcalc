@@ -434,9 +434,10 @@ div label input {
 
 .MuiSlider-markLabel {
   position: absolute !important;
-  /* left: 3% !important; */
   top: -30px !important;
-  /* margin: -7px 0px !important */
+  color: #000000;
+  font-size: 14px;
+  font-family: normal !important;
 }
 
 .MuiSlider-mark {
@@ -608,6 +609,18 @@ div label input {
   width: 24px;
 } */
 
+.nav_header_popup {
+  color: white;
+  font-size: 20px;
+  font-family: medium !important;
+}
+
+.nav_description {
+  color: white;
+  font-size: 16px;
+  font-family: normal !important;
+}
+
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
   .aramark_dashboard nav,
@@ -699,22 +712,40 @@ div label input {
   }
 
   .switchColumn {
-    top: 0em !important;
+    top: 1em !important;
+  }
+
+  .nav_description {
+    color: white;
+    font-size: 14px;
+    font-family: normal !important;
+  }
+
+  .nav_header_popup {
+    color: white;
+    font-size: 15px;
+    font-family: medium !important;
+  }
+
+  .MuiSlider-thumb {
+    height: 16px !important;
+    background: url(../Assets/images/radio_on_button_small.png) !important;
+    width: 16px !important;
+  }
+
+  .MuiSlider-markLabel {
+    position: absolute !important;
+    top: -22px !important;
+    color: #000000;
+    font-size: 10px;
+    font-family: normal !important;
   }
 }
 
 .popup_header_container {
   display: flex;
   justify-content: space-between;
-  margin: 10px;
-}
-
-.nav_header_popup {
-  color: white;
-}
-
-.nav_description {
-  color: white;
+  margin: 10px 0px;
 }
 
 .aramark_header_logo_container {

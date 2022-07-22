@@ -18,6 +18,7 @@ import Input from "@mui/material/Input";
 import Alert from "../Alert/Alert";
 const Step1 = (props) => {
   const dispatch = useDispatch();
+  const { isMobileView } = props;
 
   const clientDetailService = new ClientDetailService();
   const [clientName, setClientName] = useState("");
@@ -86,7 +87,7 @@ const Step1 = (props) => {
       anticipatedrevenue: anticipatedRevenue,
       population: population,
       industrytype: industryType,
-      
+
     };
     if (clientName === "" || clientName.length > 255) {
       Alert.error("Enter client name,0-255 characters");
@@ -139,8 +140,8 @@ const Step1 = (props) => {
                 border: "1px solid #D0CDCD",
                 borderRadius: "25px",
 
-                height: "45px",
-                padding: "10px 20px",
+                height: isMobileView ? "35px" : "45px",
+                padding: isMobileView ? "0px 10px" : "10px 20px",
                 width: "100%",
               }}
             />
@@ -160,8 +161,8 @@ const Step1 = (props) => {
             style={{
               border: "1px solid #D0CDCD",
               borderRadius: "25px",
-              height: "45px",
-              padding: "10px 15px",
+              height: isMobileView ? "35px" : "45px",
+              padding: isMobileView ? "0px 10px" : "10px 15px",
               width: "100%",
               borderRight: "16px solid transparent",
               borderLeft: "1px solid transparent",
@@ -183,7 +184,9 @@ const Step1 = (props) => {
           flexWrap: "nowrap",
         }}
       >
-        <Col md={6}>
+        <Col md={6} style={{
+          paddingRight: isMobileView ? "0px" : "15px"
+        }}>
           <label style={{ float: "left" }} className="switchLabel">
             Industry Type<span style={{ color: "red" }}>*</span>
           </label>{" "}
@@ -197,8 +200,8 @@ const Step1 = (props) => {
             style={{
               border: "1px solid #D0CDCD",
               borderRadius: "25px",
-              height: "45px",
-              padding: "10px 15px",
+              height: isMobileView ? "35px" : "45px",
+              padding: isMobileView ? "0px 10px" : "10px 15px",
               width: "100%",
               borderRight: "16px solid transparent",
               borderLeft: "1px solid transparent",
@@ -217,7 +220,7 @@ const Step1 = (props) => {
           <img
             src={LifeWork}
             alt="lifeWork"
-            style={{ width: "104px", height: "20px" }}
+            style={isMobileView ? { width: "94px", height: "18px" } : { width: "104px", height: "20px" }}
           />
           <Switch
             id="Lifeworks"
@@ -243,7 +246,7 @@ const Step1 = (props) => {
               style={{
                 color: "#da291c",
                 width: "91%",
-                padding: "13px 0px",
+                padding: "0px 0px",
                 marginBottom: "20px",
               }}
               onChange={(e) => setAnticipatedRevenue(e.target.value)}
@@ -271,7 +274,7 @@ const Step1 = (props) => {
               style={{
                 color: "#da291c",
                 width: "91%",
-                padding: "13px 0px",
+                padding: "0px 0px",
                 marginBottom: "20px",
               }}
               onChange={(e) => setPopulation(e.target.value)}

@@ -227,7 +227,7 @@ const Step5 = (props) => {
             value={pos.pos}
           />
           <label class="btn btn-default" for="a25">
-            {pos.pos+ ' $' + parseFloat( (pos.capex + pos.opex)).toFixed(2)}
+            {pos.pos + " $" + parseFloat(pos.capex + pos.opex).toFixed(2)}
           </label>
         </div>
       );
@@ -361,7 +361,7 @@ const Step5 = (props) => {
             </Col>
           </div>
         </div>
-        <Row className="rowSeprator">
+        <Row className="rowSeprator" style={{ flexWrap: "nowrap" }}>
           <Col md={6} style={{ textAlign: "left" }}>
             <Button
               variant="contained"
