@@ -122,7 +122,7 @@ const Step5 = (props) => {
         }
       }
     }
-    //calculation();
+    calculation();
   };
   const handleChangeFeatures = (e, rowData, index) => {
     const { checked } = e.target;
