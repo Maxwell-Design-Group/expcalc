@@ -200,7 +200,7 @@ const Step3 = (props) => {
 
   const selectYesOption = (id) => {
     if (yesOption === "") {
-      Alert.error("select any Option");
+      Alert.error("Select at least one Option");
       setError(true)
     } else {
       let obj = {
@@ -220,7 +220,7 @@ const Step3 = (props) => {
   const selectNoOption = (id) => {
     let station = "";
     if (selectedFootprint.length === 0) {
-      Alert.error("select one option from Footprint");
+      Alert.error("Select at least one footprint");
       setError(true);
     } else {
       if (selectedNoOptions.length > 0) {
