@@ -358,18 +358,84 @@ exports.getSupportingFeatures = async (req, res) => {
 
 
 
-exports.pos = (req, res) => {
+exports.pos = async (req, res) => {
 
     var gpos = [];
     var capex = "0";
     var opex = "0";
     var total = "0";
+
+
+    
+    var footprint = "";
+     
+
+    if (req.body.pmobile==true){
+      footprint =   "Mobile";
+     } 
+	  if (req.body.cashier==true){ 
+      footprint =   "Cashier"; 
+
+    }
+    if (req.body.kiosk==true){ 
+      footprint =   "Kiosk"; 
+
+    } 
+    if (req.body.selfcheckout==true){ 
+      footprint =   "Self-Checkout"; 
+
+    } 
+    if (req.body.kiosk==true  && req.body.selfcheckout==true){ 
+      footprint =   "Kiosk + Self-Checkout"; 
+
+    } 
+    if (req.body.kiosk==true  && req.body.cashier==true){ 
+      footprint =   "Kiosk + Cashier"; 
+
+    } 	
+    if (req.body.mobile==true && req.body.kiosk==true){
+      footprint =   "Mobile + Kiosk";
+     
+    } 
+    if (req.body.mobile==true && req.body.selfcheckout==true){
+      footprint =   "Mobile + Self-Checkout";
+    
+    } 
+    if (req.body.mobile==true && req.body.cashier==true){
+      footprint =   "Mobile + Cashier";
+  
+    } 
+    if (req.body.selfCheckout==true && req.body.cashier==true){ 
+      footprint =   "Self-Checkout + Cashier"; 
+
+    } 
+    if (req.body.mobile==true && req.body.Kiosk==true && req.body.selfcheckout==true){  
+      footprint =   "Mobile + Kiosk + Self-Checkout";
+
+    } 
+    if (req.body.mobile==true && req.body.Kiosk==true && req.body.cashier==true){ 
+      footprint =   "Mobile + Kiosk + Cashier"; 
+
+    } 
+    if (req.body.mobile==true && req.body.selfcheckout==true && req.body.cashier==true){  
+      footprint =   "Mobile + Self-Checkout + Cashier";
+
+    } 
+    if (req.body.kiosk==true  && req.body.selfcheckout==true && req.body.cashier==true) { 
+      footprint =   "Kiosk + Self-Checkout + Cashier"; 
+
+    } 
+    if (req.body.mobile==true && req.body.kiosk==true && req.body.selfcheckout==true && req.body.cashier==true){ 
+      footprint =   "Mobile + Kiosk + Self-Checkout + Cashier"; 
+
+    } 
+
     
     if (req.body.customisableconvenience == true) {
 
           
         //-----------------------------------------
-        customisableConvenienceOption.find()
+       await customisableConvenienceOption.find()
             .then(c => {
 
                 const ccoption = c.filter(e => e.custConvOption === req.body.customisableconvenienceoption);
@@ -404,35 +470,115 @@ exports.pos = (req, res) => {
     }
     else {
 
-        
-        //-----------------------------------------
-        posData.find()
-            .then(pos => {
+        var footprintdata=[];
+        var posexpdata = [];
+        //========================================================
+            await footPrint.find()
+            .then(footprint  => {
 
-                const poslist = pos.filter(e => e.range1 <= req.body.population && e.range2 >= req.body.population);
-
-                if (poslist != null && poslist.length > 0) {
-                    poslist.forEach(l => {
-
-                        console.log(l);
-
-                    });
-
-                    return res.send({
-                        pos: poslist
-                    });
-
-                }
-                else {
-                    return res.send("Data not found");
-                }
-
-
+                footprintdata = footprint;
             }).catch(err => {
                 res.status(500).send({
                     message: err.message || "Something went wrong."
                 });
             });
+
+            //-----------------------------------------
+            
+            await posExp.find()
+                .then(posexp  => {
+
+                    posexpdata = posexp;
+                }).catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Something went wrong."
+                    });
+                });
+
+            //-----------------------------------------
+        //========================================================
+        //-----------------------------------------
+        
+        var pos = [];
+       
+
+        if( footprintdata!==undefined && footprintdata!==null && footprintdata.length>0 && footprint!="" && posexpdata!==null){
+              
+
+            let d = Number(req.body.population)/250;
+            if (d>=1){
+            if (parseInt(d)<parseFloat(d))
+            {
+                      d=d+1;
+             }
+             }
+
+            const ft =  footprintdata.filter(e=>e.footprint == footprint);
+            
+            
+            if (ft!=null && ft.length>0){
+              
+                const explist = ft[0].result.split(',');
+                
+                if (explist !=null){
+                    var pcapex = 0;
+                    var popex =0;
+                    var ptotal =0;
+                    explist.forEach(expitem => {
+                      
+                       var expitem2 = expitem.split("+");
+
+                       if(expitem2!=null){
+
+                            expitem2.forEach(expitem3 => {
+
+                                    //==================================POS=====================================================
+                                const pos2 = posexpdata.filter(e=>e.vender.trim().indexOf(expitem3.trim())!=-1)
+                                if (pos2!=null && pos2.length>0){
+                                    
+                                    const footprintarr = footprint.split('+');
+                                  footprintarr.forEach(f => {
+                                    console.log(f);
+                                    //const p = pos.filter(e=>e.Experience.indexOf(f.trim())!==-1 );
+                                   
+                                    for(let i=0;i<pos2.length;i++){
+                                        console.log(pos2[i])
+                                    }
+                                    
+                                  })
+
+
+                                }
+                                
+                                
+                            
+                           });
+
+                       }
+                       console.log("pos : " + expitem);
+                    //    capex = capex + pcapex;
+                    //    opex = opex + popex;
+                    //    total = ptotal;
+
+                       objpos = {                               
+                        pos:  expitem ,
+                        capex: capex,
+                        opex: opex,
+                        total: total
+                        };
+
+                        pos.push(objpos);
+
+                    });
+                }
+                
+
+            }
+          }
+
+          return res.send( /// the block will return single only due to validation to chose single ccoption
+               {pos} 
+            );
 
         // console.log('gpos details');
         //console.log(gpos);
