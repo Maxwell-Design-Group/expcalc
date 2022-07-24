@@ -260,20 +260,26 @@ class calculatedataService {
             // }  
 
             if( data.station!==undefined && data.station!=="" && master.stationdata!==undefined){
-                    
-                    const st = master.stationdata.filter(e=>e.station == data.station);
-                    console.log(st);
-                    if (st!=null && st.length>0){
-                          st.forEach(s => {              
-                            if(s!=null){
-                              capex=  capex + Number( s.capex) 
-                              opex= opex + Number( s.opex) 
-                              total= total +  Number( s.capex) ;
-                            
-                              console.log('total stations' + total);
+                    console.log(data.station);
+                    var station = data.station.split(",");
+                    if (station!=null && station.length>0){
+                      station.forEach(item => {
+                        const st = master.stationdata.filter(e=>e.station == item);
+                          console.log(st);
+                          if (st!=null && st.length>0){
+                                st.forEach(s => {              
+                                  if(s!=null){
+                                    capex=  capex + Number( s.capex) 
+                                    opex= opex + Number( s.opex) 
+                                    total= total +  Number( s.capex) ;
+                                  
+                                    console.log('total stations' + total);
+                                }
+                              });
                           }
-                        });
+                      });
                     }
+                    
             } 
 
 

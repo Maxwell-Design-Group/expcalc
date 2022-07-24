@@ -250,7 +250,7 @@ const Step3 = (props) => {
       kiosk: selectedFootprintBool.kiosk,
       selfcheckout: selectedFootprintBool.selfCheckout,
       cashier: selectedFootprintBool.cashier,
-      station: selectedNoOptions,
+      station: selectedNoOptions.toString(),
       digitalsignage: undefined,
       digitalsignageqty55: undefined,
       digitalsignageqty50: undefined,
