@@ -117,106 +117,118 @@ class calculatedataService {
                   
                   if (explist !=null){
                       explist.forEach(expitem => {
-                        //==================================POS=====================================================
-                            const posexp = master.posexp.filter(e=>e.vender.trim().indexOf(expitem.trim())!=-1)
-                            
-                            if(posexp!=null){
-                              const footprintarr = footprint.split('+');
-                              footprintarr.forEach(f => {
-                                console.log(f);
-                                const p = posexp.filter(e=>e.Experience.trim().indexOf(f.trim())!=-1);
-                                console.log(p);
-                                    if (p!=null && p.length>0)
-                                    {
-                                      
-                                       for(let i=0;i<p.length;i++){
+                        
+                         var expitem2 = expitem.split("+");
+
+                         if(expitem2!=null){
+
+                              expitem2.forEach(expitem3 => {
+
+                                      //==================================POS=====================================================
+                                  const posexp = master.posexp.filter(e=>e.vender.trim().indexOf(expitem3.trim())!=-1)
+                                  
+                                  if(posexp!=null){
+                                    const footprintarr = footprint.split('+');
+                                    footprintarr.forEach(f => {
+                                      console.log(f);
+                                      const p = posexp.filter(e=>e.Experience.trim().indexOf(f.trim())!=-1);
+                                      console.log(p);
+                                          if (p!=null && p.length>0)
+                                          {
+                                            
+                                            for(let i=0;i<p.length;i++){
+                                              
+                                              if (data.population<=500){
+                                                if(p[i].vender!="Mashgin"){
+                                                  capex=  capex + Number( p[i].Capex) * parseInt(d);
+                                                  opex= opex + Number( p[i].opex) *  parseInt(d);
+                                                  total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                                }
+                                                
+                                              }
+                                              else{
+                                                capex=  capex + Number( p[i].Capex) * parseInt(d);
+                                                opex= opex + Number( p[i].opex) *  parseInt(d);
+                                                total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                              }
+                                              
+                                            }
+                                          } 
+
+                                    });
+
+                                  }
+                                //===========================================INSTALL===================================================
+                                const installexp = master.installexp.filter(e=>e.vender.trim().indexOf(expitem3.trim())!=-1)
+                                
+                                if(installexp!=null){
+                                  const footprintarr = footprint.split('+');
+                                  footprintarr.forEach(f => {
+                                    const p = installexp.filter(e=>e.Experience.indexOf(f.trim().trim())!=-1);
+                                        if (p!=null && p.length>0)
+                                        {
+                                          
+                                          for(let i=0;i<p.length;i++){
+                                            
+                                            if (data.population<=500){
+                                              if(p[i].vender!="Mashgin"){
+                                                capex=  capex + Number( p[i].Capex) * parseInt(d);
+                                                opex= opex + Number( p[i].opex) *  parseInt(d);
+                                                total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                              }
+                                              
+                                            }
+                                            else{
+                                              capex=  capex + Number( p[i].Capex) * parseInt(d);
+                                              opex= opex + Number( p[i].opex) *  parseInt(d);
+                                              total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                            }
+                                            
+                                          }
+                                        } 
+
+                                  });
+
+                                }
+                              //=============================================network=================================================
+
+                              const networkexp = master.networkexp.filter(e=>e.vender.trim().indexOf("Aramark")!=-1)
+                                  
+                              if(networkexp!=null){
+                                const footprintarr = footprint.split('+');
+                                footprintarr.forEach(f => {
+                                  const p = networkexp.filter(e=>e.Experience.trim().indexOf(f.trim())!=-1);
+                                      if (p!=null && p.length>0)
+                                      {
                                         
-                                        if (data.population<=500){
-                                          if(p[i].vender!="Mashgin"){
-                                            capex=  capex + Number( p[i].Capex) * parseInt(d);
-                                            opex= opex + Number( p[i].opex) *  parseInt(d);
-                                            total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
+                                        for(let i=0;i<p.length;i++){
+                                          console.log("network");
+                                          if (data.population<=500){
+                                            if(p[i].vender!="Mashgin"){
+                                              capex=  capex + Number( p[i].Capex) 
+                                              opex= opex + Number( p[i].opex) 
+                                              total= total +  (Number( p[i].Capex) +Number( p[i].opex)) 
+                                            }
+                                            
+                                          }
+                                          else{
+                                            capex=  capex + Number( p[i].Capex) 
+                                            opex= opex + Number( p[i].opex) 
+                                            total= total +  (Number( p[i].Capex) +Number( p[i].opex))
                                           }
                                           
                                         }
-                                        else{
-                                          capex=  capex + Number( p[i].Capex) * parseInt(d);
-                                          opex= opex + Number( p[i].opex) *  parseInt(d);
-                                          total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
-                                        }
-                                        
-                                       }
-                                    } 
+                                      } 
 
-                              });
+                                });
 
-                            }
-                          //===========================================INSTALL===================================================
-                          const installexp = master.installexp.filter(e=>e.vender.trim().indexOf(expitem.trim())!=-1)
-                          
-                          if(installexp!=null){
-                            const footprintarr = footprint.split('+');
-                            footprintarr.forEach(f => {
-                              const p = installexp.filter(e=>e.Experience.indexOf(f.trim().trim())!=-1);
-                                  if (p!=null && p.length>0)
-                                  {
-                                    
-                                     for(let i=0;i<p.length;i++){
-                                      
-                                      if (data.population<=500){
-                                        if(p[i].vender!="Mashgin"){
-                                          capex=  capex + Number( p[i].Capex) * parseInt(d);
-                                          opex= opex + Number( p[i].opex) *  parseInt(d);
-                                          total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
-                                        }
-                                        
-                                      }
-                                      else{
-                                        capex=  capex + Number( p[i].Capex) * parseInt(d);
-                                        opex= opex + Number( p[i].opex) *  parseInt(d);
-                                        total= total +  (Number( p[i].Capex) +Number( p[i].opex)) * parseInt(d);
-                                      }
-                                      
-                                     }
-                                  } 
+                              }
+                            //================================================================================================
+                              
+                             });
 
-                            });
+                         }
 
-                          }
-                        //=============================================network=================================================
-
-                        const networkexp = master.networkexp.filter(e=>e.vender.trim().indexOf("Aramark")!=-1)
-                            
-                        if(networkexp!=null){
-                          const footprintarr = footprint.split('+');
-                          footprintarr.forEach(f => {
-                            const p = networkexp.filter(e=>e.Experience.trim().indexOf(f.trim())!=-1);
-                                if (p!=null && p.length>0)
-                                {
-                                  
-                                   for(let i=0;i<p.length;i++){
-                                    console.log("network");
-                                    if (data.population<=500){
-                                      if(p[i].vender!="Mashgin"){
-                                        capex=  capex + Number( p[i].Capex) 
-                                        opex= opex + Number( p[i].opex) 
-                                        total= total +  (Number( p[i].Capex) +Number( p[i].opex)) 
-                                      }
-                                      
-                                    }
-                                    else{
-                                      capex=  capex + Number( p[i].Capex) 
-                                      opex= opex + Number( p[i].opex) 
-                                      total= total +  (Number( p[i].Capex) +Number( p[i].opex))
-                                    }
-                                    
-                                   }
-                                } 
-
-                          });
-
-                        }
-                      //================================================================================================
 
                       });
                   }
@@ -225,39 +237,7 @@ class calculatedataService {
               }
             }
             
-            //   if( master.pos!==undefined && footprint!=""){
-
-            //         let d = Number(data.population)/250;
-            //         if (d>=1){
-            //             if (parseInt(d)<parseFloat(d))
-            //             {
-            //               d=d+1;
-            //             }
-            //         }
-            //         console.log(d);
-            //         //const pos = master.pos.filter(e=>e.range1 <= Number(data.population) && e.range2 >= Number(data.population));
-            //         const pos = master.pos.filter(e=>e.footprint == footprint);
-            //         console.log(footprint);
-            //         console.log(pos);
-            //         pos.forEach(p => {              
-            //           if(p!=null){
-            //               capex=  capex + Number( p.capex) 
-            //               opex= opex + Number( p.opex) 
-            //               total= total +  Number( p.capex) ;
-                        
-
-            //               capex=  capex + Number( p.icapex) 
-            //               opex= opex + Number( p.iopex) 
-            //               total= total +  Number( p.icapex) +Number( p.iopex);
-
-            //               capex=  capex + Number( p.ncapex) * parseInt(d);
-            //               opex= opex + Number( p.nopex) *  parseInt(d);
-            //               total= total +  (Number( p.ncapex) +Number( p.nopex)) * parseInt(d);
-                        
-            //         }
-            //       });
-                
-            // }  
+           
 
             if( data.station!==undefined && data.station!=="" && master.stationdata!==undefined){
                     console.log(data.station);
@@ -339,61 +319,7 @@ class calculatedataService {
         });
      }
 
-    //  if( data.pos!==undefined  && master.pos!=undefined){
-                    
-    //       const pos = master.pos.filter(e=>e.pos === data.pos);
-        
-    //       pos.forEach(p => {              
-    //         if(p!=null){
-    //           if(p.pos==data.pos){
-    //             capex=  capex + Number( p.capex) 
-    //             opex= opex + Number( p.opex) 
-    //             total= total +  Number( p.capex) ;
-    //           }
-    //       }
-    //     });
-  
-    // } 
-
-    //  if( data.digitalsignage!==undefined && master.digitalsignage!=undefined){
-
-    //     var suportingFeatureslist =  data.digitalsignage.split(',');
-
-    //     suportingFeatureslist.forEach(sp => {
-    //       const ydigitalsignage = master.digitalsignage.filter(e=>e.digitalsign  == sp);
-    //         if(ydigitalsignage!=null && ydigitalsignage.length>0){
-    //           if(sp=="50"){
-    //             capex=  capex + Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty50);
-    //             opex= opex + Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty50);
-    //             total= total + ( (Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty50)) + (Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty50)));
-    //           }else if(sp=="55"){
-    //             capex=  capex + Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty55);
-    //             opex= opex + Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty55);
-    //             total= total + ( (Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty55)) + (Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty55)));
-    //           }else if(sp=="65"){
-    //             capex=  capex + Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty65);
-    //             opex= opex + Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty65);
-    //             total= total + ( (Number( ydigitalsignage[0].capex) * Number(data.digitalsignageqty65)) + (Number( ydigitalsignage[0].opex) * Number(data.digitalsignageqty65)));
-    //           }
-              
-    //         }
-    //     });
-        
-    //  }
-
-     
-    //  if(data.catering!==undefined){
-    //     var categorylist =  data.catering.split(',');
-
-    //     categorylist.forEach(category => {
-    //        let categorydata = master.cateringdetail.filter(e=>e.digitalsign == category);
-    //        if(categorydata!=null && categorydata.length>0){
-    //            capex=  capex + Number( categorydata[0].capex);
-    //            opex= opex +  Number( categorydata[0].opex);
-    //            total= total + ( Number( categorydata[0].capex) + Number( categorydata[0].opex));
-    //        }
-    //     });
-    //  }
+   
 
      if(data.wtproduct!==undefined && data.wtproduct!== null && data.wtproduct.length>0 && master.wtproduct !== undefined){
         var wtproductlist =  data.wtproduct.split(',');

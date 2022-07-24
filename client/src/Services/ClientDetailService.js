@@ -52,6 +52,17 @@ class ClientDetailService {
       })
       .catch((error) => { });
   }
+
+   
+sendEmail(data) {
+  axios
+    .post("https://expcalc-dev.herokuapp.com/sendEstimate", data)
+    .then(() => {
+      Alert.success("Estimate successfully sent.");
+    })
+    .catch((error) => { });
+}
+
 }
 
 export default ClientDetailService;
