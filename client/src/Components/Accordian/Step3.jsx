@@ -1,4 +1,4 @@
-import { Box, Grid, Switch, Typography } from "@mui/material";
+import { Switch, Typography } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
@@ -16,7 +16,6 @@ import elevatedPlus from "../../Assets/images/Step3/elevatedPlus.png";
 import essential from "../../Assets/images/Step3/essential.png";
 import essentialPlus from "../../Assets/images/Step3/essentialPlus.png";
 import ccOption from "../../Assets/images/Step3/ccOption.png";
-import { styled } from '@mui/material/styles';
 
 const footprintData = [
   {
@@ -262,73 +261,69 @@ const Step3 = (props) => {
 
   function createGridView() {
     return (
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 2 }}
-          columns={{ xs: 2, sm: 6, md: 12 }}
-          style={{
-            flexWrap: isMatchSm || isMatchMd ? "nowrap" : "wrap",
-            marginLeft: isMatchSm || isMatchMd ? "5%" : "0",
-          }}
-        >
-          {master.map((data, index) => {
-            return (
-              <Grid item xs={2} sm={3} key={index}>
-                <div style={{ marginBottom: "0.5em" }} key={index}>
-                  <div
-                    className="yesOptions action"
-                    id={"themesBtn" + index}
-                    onClick={() => handleYesButtons(data.custConvOption)}
-                    style={{
-                      overflow: "hidden",
-                      border: error ? "2px solid #880505" :
-                        yesOption === data.custConvOption ? "2px solid #4BAE4F" : "1px solid #ebebeb"
-                    }}
-                  >
-                    <input
-                      type="checkbox"
-                      style={{
-                        width: "21px",
-                        height: "21px",
-                        accentColor: "#4BAE4F",
-                        border: "15px solid red",
-                        position: "absolute",
-                        left: "0px",
-                        top: "0px",
-                      }}
-                      labelStyle={{ color: "white" }}
-                      iconStyle={{ fill: "white" }}
-                      checked={yesOption === data.custConvOption}
-                      name="checkedSacCode"
-                      id={"theme_check" + index}
-                      className="yesData_selecting"
-                      onChange={(e) => handleYesButtons(data.custConvOption)}
-                    />
-                    <img
-                      src={data.image}
-                      alt={data.image}
-                      style={{
-                        display: "block",
-                        margin: "0.5em 3.5em",
-                        top: "20%",
-                        position: "absolute",
-                        width: "176px",
-                        height: "105px",
-                      }}
-                    />
-                    <div className="theme_label_container">
-                      <span className="themesLabel" id={"thmsLbl" + index}>
-                        {data.custConvOption}
-                      </span>
-                    </div>
-                  </div>
+      <div
+        style={{
+          flexWrap: "nowrap",
+          overflowX: "auto",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between"
+        }}
+      >
+        {master.map((data, index) => {
+          return (
+            <div style={{ margin: "0px 10px 0.5em 10px" }} key={index}>
+              <div
+                className="yesOptions action"
+                id={"themesBtn" + index}
+                onClick={() => handleYesButtons(data.custConvOption)}
+                style={{
+                  overflow: "hidden",
+                  border: error ? "2px solid #880505" :
+                    yesOption === data.custConvOption ? "2px solid #4BAE4F" : "1px solid #ebebeb"
+                }}
+              >
+                <input
+                  type="checkbox"
+                  style={{
+                    width: "21px",
+                    height: "21px",
+                    accentColor: "#4BAE4F",
+                    border: "15px solid red",
+                    position: "absolute",
+                    left: "0px",
+                    top: "0px",
+                  }}
+                  labelStyle={{ color: "white" }}
+                  iconStyle={{ fill: "white" }}
+                  checked={yesOption === data.custConvOption}
+                  name="checkedSacCode"
+                  id={"theme_check" + index}
+                  className="yesData_selecting"
+                  onChange={(e) => handleYesButtons(data.custConvOption)}
+                />
+                <img
+                  src={data.image}
+                  alt={data.image}
+                  style={{
+                    display: "block",
+                    margin: "0.5em 3.5em",
+                    top: "20%",
+                    position: "absolute",
+                    width: "176px",
+                    height: "105px",
+                  }}
+                />
+                <div className="theme_label_container">
+                  <span className="themesLabel" id={"thmsLbl" + index}>
+                    {data.custConvOption}
+                  </span>
                 </div>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     );
   }
 
