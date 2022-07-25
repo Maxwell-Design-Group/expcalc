@@ -145,7 +145,7 @@ const AccordionComponent = (props) => {
               <div
                 style={{
                   display: "flex",
-                  padding: item.expanded ? "0px" : "0px 20px",
+                  padding: item.expanded ? "0px" : "0px 10px",
                   alignItems: "center",
                   justifyContent: "space-between",
                   flex: 1,
