@@ -15,25 +15,25 @@ body {
 @font-face {
   font-family: "light";
   src: local("GothamLight"),
-    url("./Assets/font/GothamLight.otf") format("truetype");
+    url("./Assets/font/GothamLight.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "normal";
   src: local("GothamBook"),
-    url("./Assets/font/GothamBook.otf") format("truetype");
+    url("./Assets/font/GothamBook.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "medium";
   src: local("GothamMedium"),
-    url("./Assets/font/GothamMedium.otf") format("truetype");
+    url("./Assets/font/GothamMedium.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "bold";
   src: local("GothamBold"),
-    url("./Assets/font/GothamBold.otf") format("truetype");
+    url("./Assets/font/GothamBold.ttf") format("truetype");
 }
 
 .lightFont {

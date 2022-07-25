@@ -764,7 +764,7 @@ div label input {
 }
 
 .aramark_dashboard .accordianContent::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 .tootalCalculationSection {

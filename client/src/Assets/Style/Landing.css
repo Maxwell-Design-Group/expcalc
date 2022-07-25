@@ -3,6 +3,7 @@
   top: 18px;
   left: 106px;
 }
+
 /* .aramark_header_bg {
   background: url(http://localhost:3000/static/media/Header-image.ed09048….png)
     top center no-repeat;
@@ -21,7 +22,7 @@
 } */
 
 .aramark_dashboard .accordianContent::-webkit-scrollbar {
-  display: none;
+  scrollbar-width: thin;
 }
 
 /* .accordianContent {
@@ -40,6 +41,7 @@
   background: url(../images/First-page-image.png) top center no-repeat;
   background-size: cover;
 }
+
 .tootalCalculationSection_expanded {
   background: #01426a 0% 0% no-repeat padding-box;
   top: 172px;
@@ -49,6 +51,7 @@
   border-radius: 20px;
   /* background: url(../../assets/img/First-page-image.png) top center no-repeat; */
 }
+
 .aramark_dashboard .tootalCalculationSection_container {
   top: 194px;
   left: 1446px;
@@ -56,6 +59,7 @@
   height: 21px;
   position: fixed;
 }
+
 .aramark_dashboard .nav_header_container {
   position: absolute;
   top: 172px;
@@ -77,14 +81,13 @@
   text-transform: uppercase;
   opacity: 1;
 }
+
 .aramark_dashboard .client_info {
   top: 239px;
   left: 1446px;
   width: 175px;
   height: 18px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
-    var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: left;
   font: normal normal 500 16px/22px Gotham;
@@ -92,6 +95,7 @@
   color: #ffffff;
   opacity: 0.7;
 }
+
 .aramark_dashboard .capEx {
   /* top: 292px; */
   top: 259px;
@@ -105,6 +109,7 @@
   opacity: 1;
   position: fixed;
 }
+
 .aramark_dashboard .capEx_sign_container {
   top: 268px;
   left: 1456px;
@@ -123,9 +128,7 @@
   left: 1482px;
   width: 18px;
   height: 31px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) 28px/31px
-    var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 28px/31px var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
@@ -135,6 +138,7 @@
   opacity: 1;
   position: fixed;
 }
+
 .aramark_dashboard .capexValue_container {
   top: 268px;
   left: 1545px;
@@ -143,14 +147,13 @@
   opacity: 1;
   position: inherit;
 }
+
 .aramark_dashboard .capexValue_label {
   top: 281px;
   left: 1545px;
   width: 70px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
-    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: center;
   font: normal normal 500 20px/21px Gotham;
@@ -159,14 +162,13 @@
   opacity: 1;
   position: inherit;
 }
+
 .aramark_dashboard .capexValue {
   top: 305px;
   left: 1549px;
   width: 27px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
-    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
   font: normal normal 500 20px/21px Gotham;
@@ -176,6 +178,7 @@
   opacity: 1;
   position: inherit;
 }
+
 .aramark_dashboard .opEx {
   /* top: 397px; */
   top: 362px;
@@ -189,6 +192,7 @@
   opacity: 1;
   position: fixed;
 }
+
 .aramark_dashboard .opEx_sign_container {
   top: 374px;
   left: 1456px;
@@ -200,14 +204,13 @@
   opacity: 1;
   position: inherit;
 }
+
 .aramark_dashboard .opEx_sign {
   top: 395px;
   left: 1482px;
   width: 18px;
   height: 31px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) 28px/31px
-    var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 28px/31px var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
@@ -217,6 +220,7 @@
   opacity: 1;
   position: inherit;
 }
+
 .aramark_dashboard .opexValue_container {
   top: 418px;
   left: 1545px;
@@ -225,14 +229,13 @@
   opacity: 1;
   position: inherit;
 }
+
 .aramark_dashboard .opexValue_label {
   top: 376px;
   left: 1545px;
   width: 62px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
-    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: center;
   font: normal normal 500 20px/21px Gotham;
@@ -241,14 +244,13 @@
   opacity: 1;
   position: inherit;
 }
+
 .aramark_dashboard .opexValue {
   top: 402px;
   left: 1549px;
   width: 27px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
-    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
   font: normal normal 500 20px/21px Gotham;
@@ -258,6 +260,7 @@
   opacity: 1;
   position: inherit;
 }
+
 .aramark_dashboard .capExOpex_total_container {
   top: 492px;
   left: 1599px;
@@ -265,10 +268,9 @@
   height: 44px;
   position: fixed;
 }
+
 .aramark_dashboard .capExOpex_total {
-  font: var(--unnamed-font-style-normal) normal
-    var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) /
-    var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) / var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: left;
