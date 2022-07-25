@@ -94,7 +94,7 @@ export const getSupportingQuestionDetails = (data,mData) => {
     };
     let catering = "";
     if (data.catering.length > 0) {
-      catering = data.catering.split(" ");
+      catering = data.catering.split(",");
     }
     let sfObj = {
       digitalSignage: {
@@ -106,17 +106,18 @@ export const getSupportingQuestionDetails = (data,mData) => {
       catering: catering,
     };
     console.log("posObj ", posObj);
+    console.log("sfObj ", sfObj);
     console.log(data);
 
     axios
-      .post("https://expcalc-dev.herokuapp.com/pos", posObj)
+      .post("http://localhost:3000/pos", posObj)
       .then((response) => {
         console.log("response ", response);
         dispatch(setPosData(response.data.pos));
       })
       .catch((error) => {});
     axios
-      .post("https://expcalc-dev.herokuapp.com/supportingfeatures", sfObj)
+      .post("http://localhost:3000/supportingfeatures", sfObj)
       .then((response) => {
         console.log("response ", response);
         dispatch(supportingfeatures(response.data));
