@@ -534,6 +534,7 @@ div label input {
   height: 100%;
   display: flex;
   align-items: center;
+  font: normal normal 600 32px/35px Gotham;
 }
 
 @media (max-width: 1100px) {
