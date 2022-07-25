@@ -122,6 +122,14 @@ const Step1 = (props) => {
     );
   });
 
+  const handleChange = (event) => {
+    const { value } = event.target;
+    const re = /^[A-Za-z]+[A-Za-z ]*$/g;
+    if (value === "" || re.test(value)) {
+      setClientName(value);
+    }
+  };
+
   return (
     <div className="stepOne">
       <Row className="rowSeprator">
@@ -135,7 +143,7 @@ const Step1 = (props) => {
               id="clientName"
               value={clientName}
               placeholder="Enter Client Name"
-              onChange={(e) => setClientName(e.target.value)}
+              onChange={handleChange}
               style={{
                 border: "1px solid #D0CDCD",
                 borderRadius: "25px",

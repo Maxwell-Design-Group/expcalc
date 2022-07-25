@@ -439,13 +439,12 @@ div label input {
   background-color: transparent !important;
 }
 
-.aramark_dashboard
-  .css-yw020d-MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+.aramark_dashboard .Mui-expanded {
   -webkit-transform: rotate(0deg) !important;
   -moz-transform: rotate(0deg) !important;
   -ms-transform: rotate(0deg) !important;
   transform: rotate(0deg) !important;
-  margin: 0 5px 0 1em;
+  margin: 0 5px;
 }
 
 .aramark_dashboard .css-viou3o-MuiAutocomplete-root {
@@ -628,7 +627,7 @@ div label input {
   .aramark_dashboard .accordian-header-bar {
     border-bottom-left-radius: 10px !important;
     border-bottom-right-radius: 10px !important;
-    width: 90%;
+    width: 92%;
   }
 
   .accordian-summary-header {
