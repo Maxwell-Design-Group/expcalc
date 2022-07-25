@@ -518,9 +518,20 @@ exports.pos = async (req, res) => {
                                   
                                     
                                     p.forEach(item => {
-                                        pcapex = pcapex + item.Capex;
-                                        popex = popex + item.opex;
-                                        ptotal =Number(item.Capex) + Number(item.opex);  
+                                        if (Number(req.body.population)<=500){
+                                             if (item.vender !=="Mashgin"){
+                                                pcapex = pcapex +Number( item.Capex )* Number(d);
+                                                popex = popex + Number(item.opex)* Number(d);
+                                                ptotal =(Number(item.Capex) + Number(item.opex))* Number(d);  
+                                             }
+                                        }
+                                        else {
+                                            pcapex = pcapex + Number(item.Capex)* Number(d);
+                                            popex = popex + Number(item.opex)* Number(d);
+                                            ptotal =(Number(item.Capex) + Number(item.opex))* Number(d);  
+                                        }
+
+                                        
                                     });
                                     
                                   })
