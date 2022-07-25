@@ -17,58 +17,6 @@ import essential from "../../Assets/images/Step3/essential.png";
 import essentialPlus from "../../Assets/images/Step3/essentialPlus.png";
 import ccOption from "../../Assets/images/Step3/ccOption.png";
 import { styled } from '@mui/material/styles';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-
-const Android12Switch = styled(Switch)(({ theme }) => ({
-  '.MuiSwitch-root': {
-    width: "58px",
-    height: "22px",
-    padding: "0px",
-  },
-  '.MuiSwitch-switchBase': {
-    color: "#818181",
-    padding: "1px",
-  },
-  '.MuiSwitch-switchBase:checked::-ms-track': {
-    backgroundColor: "red",
-  },
-  '.MuiSwitch-thumb': {
-    color: "white",
-    width: "21px",
-    height: "21px",
-  },
-  '.MuiSwitch-track': {
-    width: "100%",
-    borderRadius: "20px",
-    backgroundColor: "#818181",
-    opacity: "1 !important",
-  },
-  '.MuiSwitch-track::after': {
-    content: '"Yes"',
-    left: "8px",
-    color: "white",
-    fontSize: "12px",
-    fontFamily: "medium !important",
-    position: "absolute",
-    top: "3px",
-    bottom: "3px",
-  },
-  '.MuiSwitch-track::before': {
-    content: '"No"',
-    right: "3px",
-    color: "white",
-    fontFamily: "medium !important",
-    fontSize: "12px",
-    position: "absolute",
-    top: "3px",
-    bottom: "3px",
-  },
-  '.Mui-checked': {
-    color: "#23bf58 !important",
-    transform: "translateX(35px) !important"
-  }
-}))
 
 const footprintData = [
   {
@@ -644,18 +592,18 @@ const Step3 = (props) => {
               alt={ccOption}
               className="customizable-convenience-img"
             />
-            <FormGroup>
+            {/* <FormGroup>
               <FormControlLabel
                 control={<Android12Switch defaultChecked />}
               />
-            </FormGroup>
-            {/* <Switch
+            </FormGroup> */}
+            <Switch
               inputProps={{ "aria-label": "secondary checkbox" }}
               color="success"
               style={{ float: "right" }}
               checked={yesOrNo}
               onChange={handleYesOrNoChange}
-            /> */}
+            />
           </div>
           <br />
           {yesOrNo ? (
