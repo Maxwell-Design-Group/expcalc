@@ -12,6 +12,7 @@ import Table from "react-bootstrap/Table";
 import SupportingQuestionService from "../../Services/SupportingQuestionService";
 import Alert from "../Alert/Alert";
 import calculatedataService from "../../Services/calculatedataService";
+import { Typography } from "@mui/material";
 
 const Step5 = (props) => {
   const { isMobileView = false, disabled = disabled } = props;
@@ -386,7 +387,9 @@ const Step5 = (props) => {
               className="previous_btn"
               onClick={() => onPrevious(accordionId - 1)}
             >
-              Previous
+              <Typography variant="subtitle1" style={{
+                fontSize: isMobileView ? "12px" : "16px"
+              }}>Previous</Typography>
             </Button>
           </Col>
 
@@ -398,7 +401,9 @@ const Step5 = (props) => {
               className="next_btn"
               onClick={() => selectNoOption(accordionId)}
             >
-              Submit
+              <Typography variant="subtitle1" style={{
+                fontSize: isMobileView ? "12px" : "16px"
+              }}>Submit</Typography>
             </Button>
           </Col>
         </Row>

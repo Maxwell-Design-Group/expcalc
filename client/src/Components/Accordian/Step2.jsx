@@ -18,6 +18,7 @@ import { prevAccordionOpen, setWinThemes } from "../../Redux/Actions";
 
 import WinthemeDetailService from "../../Services/WinthemeDetailService";
 import Alert from "../Alert/Alert";
+import { Typography } from "@mui/material";
 
 const Step2 = (props) => {
   const { isMobileView = false, disabled = disabled } = props;
@@ -248,7 +249,7 @@ const Step2 = (props) => {
               if (
                 userSelectedThemes[i] != undefined &&
                 userSelectedThemes[i].toUpperCase() ===
-                  wtProducts[j].Wintheme.toUpperCase()
+                wtProducts[j].Wintheme.toUpperCase()
               ) {
                 tableData2.push(wtProducts[j]);
                 console.log("tableData2 ", tableData2);
@@ -284,7 +285,7 @@ const Step2 = (props) => {
             style={{
               display: "flex",
               justifyContent: "flex-start",
-              paddingLeft: "4px",
+              paddingLeft: isMobileView ? "16px" : "4px"
             }}
           >
             <Button
@@ -294,7 +295,9 @@ const Step2 = (props) => {
               className="previous_btn"
               onClick={() => onPrevious(accordionId - 1)}
             >
-              Previous
+              <Typography variant="subtitle1" style={{
+                fontSize: isMobileView ? "12px" : "16px"
+              }}>Previous</Typography>
             </Button>
           </Col>
           <Col
@@ -302,7 +305,7 @@ const Step2 = (props) => {
             style={{
               display: "flex",
               justifyContent: "flex-end",
-              paddingRight: "3px",
+              paddingRight: isMobileView ? "16px" : "4px"
             }}
           >
             <Button
@@ -312,7 +315,9 @@ const Step2 = (props) => {
               className="next_btn"
               onClick={() => addWinThemes(accordionId)}
             >
-              Next
+              <Typography variant="subtitle1" style={{
+                fontSize: isMobileView ? "12px" : "16px"
+              }}>Next</Typography>
             </Button>
           </Col>
         </Row>

@@ -456,7 +456,7 @@ div label input {
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.cat label input+span {
+.cat label input + span {
   color: #000;
   font-weight: 500;
   font-size: 0.575rem !important;
@@ -651,11 +651,22 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
-
   .stepOne nav,
   article {
     width: 100%;
     height: auto;
+  }
+
+  .stepOne .next_btn {
+    width: 84px !important;
+    height: 32px !important;
+    padding-top: 4px !important;
+  }
+
+  .stepOne .previous_btn {
+    width: 84px !important;
+    height: 32px !important;
+    padding-top: 4px !important;
   }
 }
 
@@ -797,8 +808,12 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
 }
 
 .stepOne .capExOpex_total {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) / var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) / var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) /
+    var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-40) /
+    var(--unnamed-line-spacing-44) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: left;
@@ -827,7 +842,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   left: 1482px;
   width: 18px;
   height: 31px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 28px/31px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 28px/31px
+    var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
@@ -855,7 +872,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   left: 1482px;
   width: 18px;
   height: 31px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 28px/31px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) 28px/31px
+    var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-ffffff);
   text-align: center;
@@ -880,7 +899,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   left: 1545px;
   width: 70px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: center;
   font: normal normal 500 20px/21px Gotham;
@@ -895,7 +916,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   left: 1549px;
   width: 27px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
   font: normal normal 500 20px/21px Gotham;
@@ -920,7 +943,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   left: 1545px;
   width: 62px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: center;
   font: normal normal 500 20px/21px Gotham;
@@ -935,7 +960,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   left: 1549px;
   width: 27px;
   height: 21px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-21) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
   font: normal normal 500 20px/21px Gotham;
@@ -947,7 +974,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
 }
 
 .stepOne .next_btn {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -968,7 +997,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
 }
 
 .stepOne .previous_btn {
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) / var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-medium) var(--unnamed-font-size-16) /
+    var(--unnamed-line-spacing-16) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-1-42) !important;
   color: var(--unnamed-color-ffffff);
   text-align: center !important;
@@ -1032,7 +1063,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   /* width: 277px; */
   /* position: fixed; */
   min-height: 70px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) / var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-20) /
+    var(--unnamed-line-spacing-24) var(--unnamed-font-family-gotham);
   letter-spacing: var(--unnamed-character-spacing-0-14);
   color: var(--unnamed-color-000000);
   text-align: left;
@@ -1047,7 +1080,9 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   left: 1446px;
   width: 175px;
   height: 18px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px var(--unnamed-font-family-gotham);
+  font: var(--unnamed-font-style-normal) normal
+    var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) / 22px
+    var(--unnamed-font-family-gotham);
   color: var(--unnamed-color-ffffff);
   text-align: left;
   font: normal normal 500 16px/22px Gotham;
@@ -1146,7 +1181,7 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   cursor: pointer;
 }
 
-.pos_btn input[type="radio"]:checked+label {
+.pos_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1185,7 +1220,7 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   z-index: 100;
 }
 
-.sf_btn input[type="radio"]:checked+label {
+.sf_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1265,7 +1300,7 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.fs_button label input+span {
+.fs_button label input + span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
   width: 149px;
@@ -1273,11 +1308,11 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   padding: 5px 12px;
 }
 
-.fs_button input:checked+span {
+.fs_button input:checked + span {
   color: #ffffff;
 }
 
-.sports input:checked+span {
+.sports input:checked + span {
   background-color: #4bae4f;
   border-radius: 15px;
 }
@@ -1311,7 +1346,7 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   z-index: 100;
 }
 
-.ds_btn input[type="radio"]:checked+label {
+.ds_btn input[type="radio"]:checked + label {
   background: #4bae4f;
   border-radius: 15px;
   margin-bottom: 0px;
@@ -1355,7 +1390,7 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
 }
 
 /* selects all of the text within the input element and changes the color of the text */
-.catering label input+span {
+.catering label input + span {
   color: #000;
   font: normal normal 500 14px/16px Gotham;
   height: 100%;
@@ -1365,7 +1400,7 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
   white-space: break-spaces;
 }
 
-.catering input:checked+span {
+.catering input:checked + span {
   color: #ffffff;
   padding: 6px;
 }
@@ -1471,7 +1506,7 @@ select option[value=""] {
   text-align: left;
   font: normal normal normal 14px/15px Gotham;
   letter-spacing: -0.14px;
-  color: #DA291C;
+  color: #da291c;
   margin: 0 8px 0 0;
 }
 
@@ -1480,6 +1515,6 @@ select option[value=""] {
   text-align: left;
   font: normal normal normal 14px/15px Gotham;
   letter-spacing: -0.14px;
-  color: #DA291C;
+  color: #da291c;
   width: 23%;
 }

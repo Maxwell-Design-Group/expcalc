@@ -152,9 +152,8 @@ const AccordionComponent = (props) => {
                 }}
               >
                 <div
-                  className={`accordion-name ${
-                    item.expanded ? "mediumFont" : ""
-                  }`}
+                  className={`accordion-name ${item.expanded ? "mediumFont" : ""
+                    }`}
                   style={{
                     marginRight: item.expanded ? "20px" : "0px",
                   }}
@@ -186,6 +185,8 @@ const AccordionComponent = (props) => {
             >
               {item.id === 3 ? (
                 <Step3
+                  isExpanded={item.expanded}
+                  isMobileView={isMobileView}
                   disabled={
                     completedSteps.includes(item.id - 1) ? false : item.disabled
                   }
@@ -201,12 +202,14 @@ const AccordionComponent = (props) => {
                 />
               ) : item.id === 5 ? (
                 <Step5
+                  isMobileView={isMobileView}
                   disabled={
                     completedSteps.includes(item.id - 1) ? false : item.disabled
                   }
                 />
               ) : item.id === 4 ? (
                 <Step4
+                  isMobileView={isMobileView}
                   disabled={
                     completedSteps.includes(item.id - 1) ? false : item.disabled
                   }

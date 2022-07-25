@@ -16,6 +16,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Input from "@mui/material/Input";
 import Alert from "../Alert/Alert";
+import { Typography } from "@mui/material";
 const Step1 = (props) => {
   const dispatch = useDispatch();
   const { isMobileView } = props;
@@ -303,7 +304,9 @@ const Step1 = (props) => {
             className="next_btn"
             onClick={() => addClient(accordionId + 1)}
           >
-            Next
+            <Typography variant="subtitle1" style={{
+              fontSize: isMobileView ? "12px" : "16px"
+            }}>Next</Typography>
           </Button>
         </Col>
       </Row>

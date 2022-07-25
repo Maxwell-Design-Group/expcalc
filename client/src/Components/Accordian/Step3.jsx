@@ -16,11 +16,59 @@ import elevatedPlus from "../../Assets/images/Step3/elevatedPlus.png";
 import essential from "../../Assets/images/Step3/essential.png";
 import essentialPlus from "../../Assets/images/Step3/essentialPlus.png";
 import ccOption from "../../Assets/images/Step3/ccOption.png";
+import { styled } from '@mui/material/styles';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
-//import stationlist from "../../../src/models/stationlist";
-// import digitalsignage from "../../../src/models/digitalsignage";
-// import posdata from "../../../src/models/posdata";
-// import wtproduct from "../../../src/models/wtproduct";
+const Android12Switch = styled(Switch)(({ theme }) => ({
+  '.MuiSwitch-root': {
+    width: "58px",
+    height: "22px",
+    padding: "0px",
+  },
+  '.MuiSwitch-switchBase': {
+    color: "#818181",
+    padding: "1px",
+  },
+  '.MuiSwitch-switchBase:checked::-ms-track': {
+    backgroundColor: "red",
+  },
+  '.MuiSwitch-thumb': {
+    color: "white",
+    width: "21px",
+    height: "21px",
+  },
+  '.MuiSwitch-track': {
+    width: "100%",
+    borderRadius: "20px",
+    backgroundColor: "#818181",
+    opacity: "1 !important",
+  },
+  '.MuiSwitch-track::after': {
+    content: '"Yes"',
+    left: "8px",
+    color: "white",
+    fontSize: "12px",
+    fontFamily: "medium !important",
+    position: "absolute",
+    top: "3px",
+    bottom: "3px",
+  },
+  '.MuiSwitch-track::before': {
+    content: '"No"',
+    right: "3px",
+    color: "white",
+    fontFamily: "medium !important",
+    fontSize: "12px",
+    position: "absolute",
+    top: "3px",
+    bottom: "3px",
+  },
+  '.Mui-checked': {
+    color: "#23bf58 !important",
+    transform: "translateX(35px) !important"
+  }
+}))
 
 const footprintData = [
   {
@@ -60,7 +108,7 @@ const yesImages = [
   },
 ];
 const Step3 = (props) => {
-  const { disabled = disabled } = props;
+  const { isMobileView = false, disabled = disabled } = props;
   const DiningExperience = new DiningExperienceService();
   const calculatedata = new calculatedataService();
   const [yesOrNo, setYesOrNo] = useState(false);
@@ -73,7 +121,7 @@ const Step3 = (props) => {
     selfCheckout: false,
     cashier: false,
   });
-  const [error,setError] = useState(false);
+  const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
@@ -284,9 +332,11 @@ const Step3 = (props) => {
                     className="yesOptions action"
                     id={"themesBtn" + index}
                     onClick={() => handleYesButtons(data.custConvOption)}
-                    style={{ overflow: "hidden" ,
-                    border : error ? "2px solid #880505" : 
-                    yesOption === data.custConvOption ? "2px solid #4BAE4F" :"1px solid #ebebeb"}}
+                    style={{
+                      overflow: "hidden",
+                      border: error ? "2px solid #880505" :
+                        yesOption === data.custConvOption ? "2px solid #4BAE4F" : "1px solid #ebebeb"
+                    }}
                   >
                     <input
                       type="checkbox"
@@ -362,7 +412,7 @@ const Step3 = (props) => {
               alt={ccOption}
             />
             <Switch
-              // className="switchButtonRs"
+              className="switchButtonRs"
               inputProps={{ "aria-label": "secondary checkbox" }}
               color="success"
               style={{ float: "right" }}
@@ -387,10 +437,15 @@ const Step3 = (props) => {
                   variant="contained"
                   size="small"
                   type="submit"
-                  className="previous_btn3Rs"
+                  className="previous_btn"
+                  style={{
+                    isMobileView
+                  }}
                   onClick={() => onPrevious(accordionId - 1)}
                 >
-                  <Typography variant="subtitle1">Previous</Typography>
+                  <Typography variant="subtitle1" style={{
+                    fontSize: isMobileView ? "12px" : "16px"
+                  }}>Previous</Typography>
                 </Button>
                 <Button
                   variant="contained"
@@ -399,7 +454,9 @@ const Step3 = (props) => {
                   className="next_btn3Rs"
                   onClick={() => selectYesOption(accordionId)}
                 >
-                  <Typography variant="subtitle1">Next</Typography>
+                  <Typography variant="subtitle1" style={{
+                    fontSize: isMobileView ? "12px" : "16px"
+                  }}>Next</Typography>
                 </Button>
               </Row>
               <br />
@@ -430,7 +487,7 @@ const Step3 = (props) => {
                           : "black",
                         border: selectedFootprint.includes(data.name)
                           ? "" : error === true ? "1px solid #880505"
-                          : "1px solid #979797",
+                            : "1px solid #979797",
                       }}
                     >
                       <Typography variant="h6">{data.value}</Typography>
@@ -556,19 +613,23 @@ const Step3 = (props) => {
                   variant="contained"
                   size="small"
                   type="submit"
-                  className="previous_btn3Rs"
+                  className="previous_btn"
                   onClick={() => onPrevious(accordionId - 1)}
                 >
-                  <Typography variant="subtitle1">Previous</Typography>
+                  <Typography variant="subtitle1" style={{
+                    fontSize: isMobileView ? "12px" : "16px"
+                  }}>Previous</Typography>
                 </Button>
                 <Button
                   variant="contained"
                   size="small"
                   type="submit"
-                  className="next_btn3Rs"
+                  className="next_btn"
                   onClick={() => selectNoOption(accordionId)}
                 >
-                  <Typography variant="subtitle1">Next</Typography>
+                  <Typography variant="subtitle1" style={{
+                    fontSize: isMobileView ? "12px" : "16px"
+                  }}>Next</Typography>
                 </Button>
               </Row>
               <br />
@@ -583,13 +644,18 @@ const Step3 = (props) => {
               alt={ccOption}
               className="customizable-convenience-img"
             />
-            <Switch
+            <FormGroup>
+              <FormControlLabel
+                control={<Android12Switch defaultChecked />}
+              />
+            </FormGroup>
+            {/* <Switch
               inputProps={{ "aria-label": "secondary checkbox" }}
               color="success"
               style={{ float: "right" }}
               checked={yesOrNo}
               onChange={handleYesOrNoChange}
-            />
+            /> */}
           </div>
           <br />
           {yesOrNo ? (
@@ -601,10 +667,12 @@ const Step3 = (props) => {
                     variant="contained"
                     size="small"
                     type="submit"
-                    className="previous_btn3"
+                    className="previous_btn"
                     onClick={() => onPrevious(accordionId - 1)}
                   >
-                    Previous
+                    <Typography variant="subtitle1" style={{
+                      fontSize: isMobileView ? "12px" : "16px"
+                    }}>Previous</Typography>
                   </Button>
                 </Col>
                 <Col md={6} style={{ textAlign: "right" }}>
@@ -615,7 +683,9 @@ const Step3 = (props) => {
                     className="next_btn3"
                     onClick={() => selectYesOption(accordionId)}
                   >
-                    Next
+                    <Typography variant="subtitle1" style={{
+                      fontSize: isMobileView ? "12px" : "16px"
+                    }}>Next</Typography>
                   </Button>
                 </Col>
               </Row>
@@ -625,7 +695,7 @@ const Step3 = (props) => {
               <Row className="Option">
                 <div className="heading">
                   <Typography variant="caption">
-                    <b>Digital<br/>Touchpoints</b>
+                    <b>Digital<br />Touchpoints</b>
                   </Typography>
                 </div>
                 {footprintData.map((data, index) => (
@@ -645,7 +715,7 @@ const Step3 = (props) => {
                         : "black",
                       border: selectedFootprint.includes(data.name)
                         ? "" : error === true ? "2px solid #880505"
-                        : "1px solid #979797",
+                          : "1px solid #979797",
                     }}
                   >
                     {data.value}
@@ -684,8 +754,8 @@ const Step3 = (props) => {
                               : "1px solid #979797",
                           }}
                         >
-                            {" "}
-                            {data.station}
+                          {" "}
+                          {data.station}
                         </Button>
                       ))}
                   </Row>
@@ -724,7 +794,7 @@ const Step3 = (props) => {
                           : "1px solid #979797",
                       }}
                     >
-                        {data.station}
+                      {data.station}
                     </Button>
                   ))}
               </Row>
@@ -759,7 +829,7 @@ const Step3 = (props) => {
                               : "1px solid #979797",
                           }}
                         >
-                            {data.station}
+                          {data.station}
                         </Button>
                       ))}
                   </Row>
@@ -772,10 +842,12 @@ const Step3 = (props) => {
                     variant="contained"
                     size="small"
                     type="submit"
-                    className="previous_btn3"
+                    className="previous_btn"
                     onClick={() => onPrevious(accordionId - 1)}
                   >
-                    Previous
+                    <Typography variant="subtitle1" style={{
+                      fontSize: isMobileView ? "12px" : "16px"
+                    }}>Previous</Typography>
                   </Button>
                 </Col>
                 <Col style={{ textAlign: "right" }}>
@@ -783,10 +855,12 @@ const Step3 = (props) => {
                     variant="contained"
                     size="small"
                     type="submit"
-                    className="next_btn3"
+                    className="next_btn"
                     onClick={() => selectNoOption(accordionId)}
                   >
-                    Next
+                    <Typography variant="subtitle1" style={{
+                      fontSize: isMobileView ? "12px" : "16px"
+                    }}>Next</Typography>
                   </Button>
                 </Col>
               </Row>

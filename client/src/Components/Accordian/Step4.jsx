@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Typography } from "@mui/material";
 import {
   completedSteps,
   nextAccordionOpen,
@@ -197,7 +198,7 @@ const Step4 = (props) => {
         digitalsignage65: digitalSinage65,
         catering: catering,
       };
-      Experience.sendData(obj, id, clientDetails,masterData);
+      Experience.sendData(obj, id, clientDetails, masterData);
       // calculation();
     }
   };
@@ -318,7 +319,9 @@ const Step4 = (props) => {
               className="previous_btn"
               onClick={() => onPrevious(accordionId - 1)}
             >
-              Previous
+              <Typography variant="subtitle1" style={{
+                fontSize: isMobileView ? "12px" : "16px"
+              }}>Previous</Typography>
             </Button>
           </Col>
           <Col md={6} style={{ textAlign: "right" }}>
@@ -329,7 +332,9 @@ const Step4 = (props) => {
               className="next_btn"
               onClick={() => selectNoOption(accordionId)}
             >
-              Next
+              <Typography variant="subtitle1" style={{
+                fontSize: isMobileView ? "12px" : "16px"
+              }}>Next</Typography>
             </Button>
           </Col>
         </Row>
