@@ -111,7 +111,7 @@ const Step4 = (props) => {
       cashier: clientDetails.cashier,
       station: clientDetails.station,
       digitalsignage: userSelectedFeatures.toString(),
-      catering: selectedFeatures.toString(),
+      catering: userSelectedFeatures.toString(),
       pos: undefined,
       suportingfeature: undefined,
       wtproduct: undefined,
@@ -121,6 +121,7 @@ const Step4 = (props) => {
       master: masterData,
     };
     console.log(clientDetails);
+    console.log(calcObj);
     calculatedata.getcalculation(calcObj);
   }
 
