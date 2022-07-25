@@ -155,7 +155,7 @@ const AccordionComponent = (props) => {
                   className={`accordion-name ${item.expanded ? "mediumFont" : ""
                     }`}
                   style={{
-                    marginRight: item.expanded ? "20px" : "0px",
+                    margin: item.expanded ? "0px 20px" : "0px",
                   }}
                 >
                   {item.title}
