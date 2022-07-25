@@ -146,5 +146,7 @@ p.dashboard-calculator-text {
     aspect-ratio: 0;
     margin-right: 10px;
     margin-bottom: 10px;
+    position: fixed;
+    z-index: 1;
   }
 }

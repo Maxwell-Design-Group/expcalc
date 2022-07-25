@@ -431,7 +431,7 @@ div label input {
   position: absolute !important;
   top: -30px !important;
   color: #000000;
-  font-size: 14px;
+  font-size: 14px !important;
   font-family: normal !important;
 }
 
@@ -444,7 +444,7 @@ div label input {
   -moz-transform: rotate(0deg) !important;
   -ms-transform: rotate(0deg) !important;
   transform: rotate(0deg) !important;
-  margin: 0 5px;
+  margin: 0 0 0 8px;
 }
 
 .aramark_dashboard .css-viou3o-MuiAutocomplete-root {
@@ -732,8 +732,12 @@ div label input {
     position: absolute !important;
     top: -22px !important;
     color: #000000;
-    font-size: 10px;
+    font-size: 10px !important;
     font-family: normal !important;
+  }
+
+  .aramark_dashboard article {
+    margin-top: 145px;
   }
 }
 
