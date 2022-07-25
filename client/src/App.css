@@ -472,9 +472,9 @@ div label input {
 }
 
 .themes {
-  margin: 4px;
+  margin: 4px 1px;
   max-width: 200px;
-  min-width: 145px;
+  min-width: 120px;
   height: 165px;
   padding: 0.2em 0 0.2em 0.3em;
   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
@@ -667,6 +667,10 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
     width: 84px !important;
     height: 32px !important;
     padding-top: 4px !important;
+  }
+
+  .themes {
+    min-width: 145px;
   }
 }
 

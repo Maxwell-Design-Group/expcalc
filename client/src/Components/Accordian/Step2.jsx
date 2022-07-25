@@ -1,7 +1,7 @@
 import EnergySavingsLeafOutlinedIcon from "@mui/icons-material/EnergySavingsLeafOutlined";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import Avatar from "@mui/material/Avatar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
@@ -24,6 +24,7 @@ const Step2 = (props) => {
   const { isMobileView = false, disabled = disabled } = props;
   const [expand, setExpand] = useState(false);
   const [selectedTheme, setTheme] = useState(false);
+  const [isTabletView, setIsTabletView] = useState(false);
 
   const winThemeDetails = new WinthemeDetailService();
   const [userSelectedThemes, setUserSelectedThemes] = useState([]);
@@ -68,6 +69,19 @@ const Step2 = (props) => {
 
   const tableData2 = [];
   var master = [];
+
+  const handleWindowResize = (e) => {
+    if (890 < e.target.innerWidth && e.target.innerWidth < 1200) {
+      setIsTabletView(true);
+    } else {
+      setIsTabletView(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
 
   if (masterData.wintheme) {
     master = masterData.wintheme.map((master, index) => {
@@ -142,11 +156,12 @@ const Step2 = (props) => {
             overflowX: isMobileView ? "scroll" : "hidden",
             marginLeft: isMobileView ? 0 : "-16px",
             width: isMobileView ? "100%" : "calc(100% + 16px)",
+            padding: "0px 10px"
           }}
         >
           {master.map((theme, index) => {
             return (
-              <Grid item xs={2} sm={3} key={index}>
+              <Grid item xs={2} sm={3} md={isTabletView ? 4 : 0} key={index}>
                 <div style={{ marginBottom: "0.5em" }} key={index}>
                   <div
                     className="themes action"
