@@ -303,12 +303,15 @@ exports.getSupportingFeatures = async (req, res) => {
     for (let i = 0; i < digitalSignages.length; i++) {
         if (digitalSignages[i]['digitalsign'] == '50') {
             ds50Total = Number(digitalSignages[i]['capex']) + Number(digitalSignages[i]['opex']);
+            
         }
         else if (digitalSignages[i]['digitalsign'] == '55') {
             ds55Total = Number(digitalSignages[i]['capex']) + Number(digitalSignages[i]['opex']);
+            
         }
         else if (digitalSignages[i]['digitalsign'] == '65') {
             ds65Total = Number(digitalSignages[i]['capex']) + Number(digitalSignages[i]['opex']);
+            
         }
     }
     
@@ -324,19 +327,19 @@ exports.getSupportingFeatures = async (req, res) => {
             digitalSignageResult.push('Digital Signage50 $' + total);
         }
         if (req.body.digitalSignage['55']) {
-            let total = Number(req.body.digitalSignage['55']) * Number(ds50Total);
+            let total = Number(req.body.digitalSignage['55']) * Number(ds55Total);
             
             digitalSignageResult.push('Digital Signage55 $' + total);
         }
         if (req.body.digitalSignage['65']) {
-            let total = Number(req.body.digitalSignage['50']) * Number(ds50Total);
+            let total = Number(req.body.digitalSignage['50']) * Number(ds65Total);
 
 
             digitalSignageResult.push('Digital Signage65 $'  + total);
         }
         
         
-
+        console.log("catering");
         if (req.body.catering) {
             for (let i = 0; i < catering.length; i++) {
                 for (let j = 0; j < req.body.catering.length; j++) {
@@ -475,7 +478,7 @@ exports.pos = async (req, res) => {
         
         var pos = [];
        
-        console.log(footprint);
+        
 
         if( footprintdata!==undefined && footprintdata!==null && footprintdata.length>0 && footprint!="" && posexpdata!==null){
               
@@ -489,8 +492,7 @@ exports.pos = async (req, res) => {
              }
 
             const ft =  footprintdata.filter(e=>e.footprint === footprint);
-            console.log('ft');
-            console.log(ft);
+            
             
             if (ft!=null && ft.length>=0){
               
@@ -510,8 +512,7 @@ exports.pos = async (req, res) => {
 
                                     //==================================POS=====================================================
                                 const pos2 = posexpdata.filter(e=>e.vender.trim().indexOf(expitem3.trim())!=-1)
-                                console.log("=====");
-                                console.log(pos2);
+                               
                                 if (pos2!=null && pos2.length>0){
                                     
                                     const footprintarr = footprint.split('+');
@@ -519,8 +520,7 @@ exports.pos = async (req, res) => {
                                     footprintarr.forEach(f => {
                                     
                                     const p = pos2.filter(e=>e.Experience.indexOf(f.trim())!==-1 );
-                                    console.log("---=====----");
-                                    console.log(pos2);
+                                    
                                     
                                     p.forEach(item => {
                                         if (Number(req.body.population)<=500){
