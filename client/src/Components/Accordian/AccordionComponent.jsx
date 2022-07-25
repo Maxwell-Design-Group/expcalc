@@ -111,11 +111,11 @@ const AccordionComponent = (props) => {
             id={"accordion" + item.id}
             expanded={item.expanded}
             className={
-              completedSteps.includes(item.id) && item.expanded === true
+              `accordian-header-bar ${completedSteps.includes(item.id) && item.expanded === true
                 ? "step_edit"
                 : completedSteps.includes(item.id) && item.expanded === false
                   ? "step_completed"
-                  : null
+                  : null}`
             }
           >
             <AccordionSummary
