@@ -370,7 +370,7 @@ exports.pos = async (req, res) => {
     var footprint = "";
      
 
-    if (req.body.pmobile==true){
+    if (req.body.mobile==true){
       footprint =   "Mobile";
      } 
 	  if (req.body.cashier==true){ 
@@ -475,6 +475,7 @@ exports.pos = async (req, res) => {
         
         var pos = [];
        
+        console.log(footprint);
 
         if( footprintdata!==undefined && footprintdata!==null && footprintdata.length>0 && footprint!="" && posexpdata!==null){
               
@@ -487,10 +488,11 @@ exports.pos = async (req, res) => {
              }
              }
 
-            const ft =  footprintdata.filter(e=>e.footprint == footprint);
+            const ft =  footprintdata.filter(e=>e.footprint === footprint);
+            console.log('ft');
+            console.log(ft);
             
-            
-            if (ft!=null && ft.length>0){
+            if (ft!=null && ft.length>=0){
               
                 const explist = ft[0].result.split(',');
                 
@@ -508,6 +510,8 @@ exports.pos = async (req, res) => {
 
                                     //==================================POS=====================================================
                                 const pos2 = posexpdata.filter(e=>e.vender.trim().indexOf(expitem3.trim())!=-1)
+                                console.log("=====");
+                                console.log(pos2);
                                 if (pos2!=null && pos2.length>0){
                                     
                                     const footprintarr = footprint.split('+');
@@ -515,7 +519,8 @@ exports.pos = async (req, res) => {
                                     footprintarr.forEach(f => {
                                     
                                     const p = pos2.filter(e=>e.Experience.indexOf(f.trim())!==-1 );
-                                  
+                                    console.log("---=====----");
+                                    console.log(pos2);
                                     
                                     p.forEach(item => {
                                         if (Number(req.body.population)<=500){
