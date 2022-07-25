@@ -25,9 +25,9 @@ const Step4 = (props) => {
   const [featureChecked, setFeatureChecked] = useState(false);
   const [userSelectedProducts, setUserSelectedProducts] = useState([]);
   const [userSelectedFeatures, setUserSelectedFeatures] = useState([]);
-  const [digitalSinage50, setDigitalSinage50] = useState("");
-  const [digitalSinage55, setDigitalSinage55] = useState("");
-  const [digitalSinage65, setDigitalSinage65] = useState("");
+  const [digitalSinage50, setDigitalSinage50] = useState();
+  const [digitalSinage55, setDigitalSinage55] = useState();
+  const [digitalSinage65, setDigitalSinage65] = useState();
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
   const { masterData } = useSelector((state) => state.Master);
@@ -239,7 +239,7 @@ const Step4 = (props) => {
                 50&deg;
               </span>
               <input
-                type="text"
+                type="number"
                 id="digitalSinage50"
                 value={digitalSinage50}
                 placeholder="QTY"
@@ -254,7 +254,7 @@ const Step4 = (props) => {
                 55&deg;
               </span>
               <input
-                type="text"
+                type="number"
                 id="digitalSinage55"
                 placeholder="QTY"
                 value={digitalSinage55}
@@ -269,7 +269,7 @@ const Step4 = (props) => {
                 65&deg;
               </span>
               <input
-                type="text"
+                type="number"
                 id="digitalSinage65"
                 placeholder="QTY"
                 value={digitalSinage65}

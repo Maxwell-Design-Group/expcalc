@@ -752,7 +752,7 @@ const Step3 = (props) => {
                     <b>A la carte</b>
                   </Typography>
                 </div>
-                <Col md={9}>
+                <Col>
                   <Row>
                     {stationList
                       .filter((item) => item.type === "alacarte")
