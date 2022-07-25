@@ -15,7 +15,7 @@ import elevated from "../../Assets/images/Step3/elavated.png";
 import elevatedPlus from "../../Assets/images/Step3/elevatedPlus.png";
 import essential from "../../Assets/images/Step3/essential.png";
 import essentialPlus from "../../Assets/images/Step3/essentialPlus.png";
-import ccOption from "../../Assets/images/Step3/ccOption.png";
+import ccOption from "../../Assets/images/Step3/ccOption.svg";
 
 const footprintData = [
   {
@@ -69,6 +69,7 @@ const Step3 = (props) => {
     cashier: false,
   });
   const [error, setError] = useState(false);
+  const [stationError, setStationError] = useState(false);
 
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
@@ -156,10 +157,12 @@ const Step3 = (props) => {
     if (yesOrNo === false) {
       setYesOption("");
       setError(false);
+      setStationError(false);
     } else {
       setSelectedFootprint([]);
       setSelectedNoOptions([]);
       setError(false);
+      setStationError(false);
     }
   };
 
@@ -186,8 +189,10 @@ const Step3 = (props) => {
           return item !== value;
         })
       );
+      setStationError(false);
     } else {
       setSelectedNoOptions((prev) => [...prev, value]);
+      setStationError(false);
     }
   };
 
@@ -211,14 +216,13 @@ const Step3 = (props) => {
   };
 
   const selectNoOption = (id) => {
-    let station = "";
     if (selectedFootprint.length === 0) {
       Alert.error("Select at least one footprint");
       setError(true);
+    }else if(selectedNoOptions.length === 0){
+      Alert.error("Select at least one station");
+      setStationError(true);
     } else {
-      if (selectedNoOptions.length > 0) {
-        station = selectedNoOptions.toString();
-      }
       let obj = {
         ...clientDetails,
         customisableconvenience: yesOrNo,
@@ -227,7 +231,7 @@ const Step3 = (props) => {
         kiosk: kiosk,
         selfcheckout: selfCheckout,
         cashier: cashier,
-        station: station,
+        station: selectedNoOptions.toString(),
       };
       DiningExperience.sendData(obj, id, clientDetails);
     }
@@ -481,8 +485,9 @@ const Step3 = (props) => {
                             color: selectedNoOptions.includes(data.station)
                               ? "white"
                               : "black",
-                            border: selectedNoOptions.includes(data.station)
-                              ? ""
+                            border: selectedNoOptions.includes(data.station) && stationError===false
+                            ? "" : stationError === true
+                            ? "1px solid #880505"
                               : "1px solid #979797",
                           }}
                         >
@@ -521,8 +526,9 @@ const Step3 = (props) => {
                             color: selectedNoOptions.includes(data.station)
                               ? "white"
                               : "black",
-                            border: selectedNoOptions.includes(data.station)
-                              ? ""
+                            border: selectedNoOptions.includes(data.station) && stationError===false
+                            ? "" : stationError === true
+                            ? "1px solid #880505"
                               : "1px solid #979797",
                           }}
                         >
@@ -557,8 +563,9 @@ const Step3 = (props) => {
                             color: selectedNoOptions.includes(data.station)
                               ? "white"
                               : "black",
-                            border: selectedNoOptions.includes(data.station)
-                              ? ""
+                            border: selectedNoOptions.includes(data.station)&& stationError===false
+                            ? "" : stationError === true
+                            ? "1px solid #880505"
                               : "1px solid #979797",
                           }}
                         >
@@ -673,7 +680,7 @@ const Step3 = (props) => {
             ) : (
               <>
                 <Row className="Option">
-                  <div className="heading">
+                  <div className="headingLocal">
                     <Typography variant="caption">
                       <b>
                         Digital
@@ -700,7 +707,7 @@ const Step3 = (props) => {
                         border: selectedFootprint.includes(data.name)
                           ? ""
                           : error === true
-                          ? "2px solid #880505"
+                          ? "1px solid #880505"
                           : "1px solid #979797",
                       }}
                     >
@@ -715,8 +722,7 @@ const Step3 = (props) => {
                       <b>On the go</b>
                     </Typography>
                   </div>
-                  <Col>
-                    <Row className="alaCarteRow">
+                    <div className="datScroll">
                       {stationList
                         .filter((item) => item.type === "On the go")
                         .map((data, index) => (
@@ -735,8 +741,9 @@ const Step3 = (props) => {
                               color: selectedNoOptions.includes(data.station)
                                 ? "white"
                                 : "black",
-                              border: selectedNoOptions.includes(data.station)
-                                ? ""
+                              border: selectedNoOptions.includes(data.station) && stationError===false
+                                ? "" : stationError === true
+                                ? "1px solid #880505"
                                 : "1px solid #979797",
                             }}
                           >
@@ -744,8 +751,7 @@ const Step3 = (props) => {
                             {data.station}
                           </Button>
                         ))}
-                    </Row>
-                  </Col>
+                    </div>
                 </Row>
                 <Row className="Option">
                   <div className="headingLocal">
@@ -775,8 +781,9 @@ const Step3 = (props) => {
                           color: selectedNoOptions.includes(data.station)
                             ? "white"
                             : "black",
-                          border: selectedNoOptions.includes(data.station)
-                            ? ""
+                          border: selectedNoOptions.includes(data.station) && stationError===false
+                            ? "" : stationError === true
+                            ? "1px solid #880505"
                             : "1px solid #979797",
                         }}
                       >
@@ -790,8 +797,8 @@ const Step3 = (props) => {
                       <b>A la carte</b>
                     </Typography>
                   </div>
-                  <Col>
-                    <Row>
+                  <Col className="dataScrollAla">
+                    <Row >
                       {stationList
                         .filter((item) => item.type === "alacarte")
                         .map((data, index) => (
@@ -810,8 +817,9 @@ const Step3 = (props) => {
                               color: selectedNoOptions.includes(data.station)
                                 ? "white"
                                 : "black",
-                              border: selectedNoOptions.includes(data.station)
-                                ? ""
+                              border: selectedNoOptions.includes(data.station) && stationError===false
+                                ? "" : stationError === true
+                                ? "1px solid #880505"
                                 : "1px solid #979797",
                             }}
                           >
