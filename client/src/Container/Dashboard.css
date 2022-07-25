@@ -439,14 +439,6 @@ div label input {
   background-color: transparent !important;
 }
 
-.aramark_dashboard .Mui-expanded {
-  -webkit-transform: rotate(0deg) !important;
-  -moz-transform: rotate(0deg) !important;
-  -ms-transform: rotate(0deg) !important;
-  transform: rotate(0deg) !important;
-  margin: 0 0 0 8px;
-}
-
 .aramark_dashboard .css-viou3o-MuiAutocomplete-root {
   width: 100% !important;
 }
