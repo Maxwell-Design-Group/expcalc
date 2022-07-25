@@ -273,7 +273,7 @@ const Step5 = (props) => {
             flexDirection: isMobileView ? "column" : "row",
           }}
         >
-          <div className="POS_text">POS</div>
+          <div className="POS_text">Point-of-Sale</div>
 
           <div
             // style={{
@@ -387,9 +387,14 @@ const Step5 = (props) => {
               className="previous_btn"
               onClick={() => onPrevious(accordionId - 1)}
             >
-              <Typography variant="subtitle1" style={{
-                fontSize: isMobileView ? "12px" : "16px"
-              }}>Previous</Typography>
+              <Typography
+                variant="subtitle1"
+                style={{
+                  fontSize: isMobileView ? "12px" : "16px",
+                }}
+              >
+                Previous
+              </Typography>
             </Button>
           </Col>
 
@@ -401,9 +406,14 @@ const Step5 = (props) => {
               className="next_btn"
               onClick={() => selectNoOption(accordionId)}
             >
-              <Typography variant="subtitle1" style={{
-                fontSize: isMobileView ? "12px" : "16px"
-              }}>Submit</Typography>
+              <Typography
+                variant="subtitle1"
+                style={{
+                  fontSize: isMobileView ? "12px" : "16px",
+                }}
+              >
+                Submit
+              </Typography>
             </Button>
           </Col>
         </Row>
