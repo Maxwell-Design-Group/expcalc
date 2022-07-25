@@ -255,6 +255,7 @@ const Step2 = (props) => {
         ...clientDetails,
         wintheme: wintheme,
       };
+      dispatch(setWinThemes(tableData2));
       for (let i = 0; i < userSelectedThemes.length; i++) {
         if (masterData.wtproduct.length !== 0) {
           let wtProducts = masterData.wtproduct;
