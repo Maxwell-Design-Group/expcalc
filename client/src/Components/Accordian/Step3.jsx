@@ -69,6 +69,7 @@ const Step3 = (props) => {
     cashier: false,
   });
   const [error, setError] = useState(false);
+  const [stationError, setStationError] = useState(false);
 
   const dispatch = useDispatch();
   const { accordionId } = useSelector((state) => state.Reducer);
@@ -156,10 +157,12 @@ const Step3 = (props) => {
     if (yesOrNo === false) {
       setYesOption("");
       setError(false);
+      setStationError(false);
     } else {
       setSelectedFootprint([]);
       setSelectedNoOptions([]);
       setError(false);
+      setStationError(false);
     }
   };
 
@@ -186,8 +189,10 @@ const Step3 = (props) => {
           return item !== value;
         })
       );
+      setStationError(false);
     } else {
       setSelectedNoOptions((prev) => [...prev, value]);
+      setStationError(false);
     }
   };
 
@@ -211,14 +216,13 @@ const Step3 = (props) => {
   };
 
   const selectNoOption = (id) => {
-    let station = "";
     if (selectedFootprint.length === 0) {
       Alert.error("Select at least one footprint");
       setError(true);
+    }else if(selectedNoOptions.length === 0){
+      Alert.error("Select at least one station");
+      setStationError(true);
     } else {
-      if (selectedNoOptions.length > 0) {
-        station = selectedNoOptions.toString();
-      }
       let obj = {
         ...clientDetails,
         customisableconvenience: yesOrNo,
@@ -227,7 +231,7 @@ const Step3 = (props) => {
         kiosk: kiosk,
         selfcheckout: selfCheckout,
         cashier: cashier,
-        station: station,
+        station: selectedNoOptions.toString(),
       };
       DiningExperience.sendData(obj, id, clientDetails);
     }
@@ -481,8 +485,9 @@ const Step3 = (props) => {
                             color: selectedNoOptions.includes(data.station)
                               ? "white"
                               : "black",
-                            border: selectedNoOptions.includes(data.station)
-                              ? ""
+                            border: selectedNoOptions.includes(data.station) && stationError===false
+                            ? "" : stationError === true
+                            ? "1px solid #880505"
                               : "1px solid #979797",
                           }}
                         >
@@ -521,8 +526,9 @@ const Step3 = (props) => {
                             color: selectedNoOptions.includes(data.station)
                               ? "white"
                               : "black",
-                            border: selectedNoOptions.includes(data.station)
-                              ? ""
+                            border: selectedNoOptions.includes(data.station) && stationError===false
+                            ? "" : stationError === true
+                            ? "1px solid #880505"
                               : "1px solid #979797",
                           }}
                         >
@@ -557,8 +563,9 @@ const Step3 = (props) => {
                             color: selectedNoOptions.includes(data.station)
                               ? "white"
                               : "black",
-                            border: selectedNoOptions.includes(data.station)
-                              ? ""
+                            border: selectedNoOptions.includes(data.station)&& stationError===false
+                            ? "" : stationError === true
+                            ? "1px solid #880505"
                               : "1px solid #979797",
                           }}
                         >
@@ -700,7 +707,7 @@ const Step3 = (props) => {
                         border: selectedFootprint.includes(data.name)
                           ? ""
                           : error === true
-                          ? "2px solid #880505"
+                          ? "1px solid #880505"
                           : "1px solid #979797",
                       }}
                     >
@@ -734,8 +741,9 @@ const Step3 = (props) => {
                               color: selectedNoOptions.includes(data.station)
                                 ? "white"
                                 : "black",
-                              border: selectedNoOptions.includes(data.station)
-                                ? ""
+                              border: selectedNoOptions.includes(data.station) && stationError===false
+                                ? "" : stationError === true
+                                ? "1px solid #880505"
                                 : "1px solid #979797",
                             }}
                           >
@@ -773,8 +781,9 @@ const Step3 = (props) => {
                           color: selectedNoOptions.includes(data.station)
                             ? "white"
                             : "black",
-                          border: selectedNoOptions.includes(data.station)
-                            ? ""
+                          border: selectedNoOptions.includes(data.station) && stationError===false
+                            ? "" : stationError === true
+                            ? "1px solid #880505"
                             : "1px solid #979797",
                         }}
                       >
@@ -808,8 +817,9 @@ const Step3 = (props) => {
                               color: selectedNoOptions.includes(data.station)
                                 ? "white"
                                 : "black",
-                              border: selectedNoOptions.includes(data.station)
-                                ? ""
+                              border: selectedNoOptions.includes(data.station) && stationError===false
+                                ? "" : stationError === true
+                                ? "1px solid #880505"
                                 : "1px solid #979797",
                             }}
                           >
