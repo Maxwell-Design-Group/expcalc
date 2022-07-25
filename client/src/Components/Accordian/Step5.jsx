@@ -241,9 +241,10 @@ const Step5 = (props) => {
             value={pos.pos}
           />
           <label class="btn btn-default" for="a25">
-            {pos.pos +
-              " $" +
-              parseInt(parseInt(pos.capex) + parseInt(pos.opex))}
+            {pos.pos}
+            <div>
+              {" $" + parseInt(parseInt(pos.capex) + parseInt(pos.opex))}
+            </div>
           </label>
         </div>
       );
