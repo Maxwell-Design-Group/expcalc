@@ -15,7 +15,7 @@ import elevated from "../../Assets/images/Step3/elavated.png";
 import elevatedPlus from "../../Assets/images/Step3/elevatedPlus.png";
 import essential from "../../Assets/images/Step3/essential.png";
 import essentialPlus from "../../Assets/images/Step3/essentialPlus.png";
-import ccOption from "../../Assets/images/Step3/ccOption.png";
+import ccOption from "../../Assets/images/Step3/ccOption.svg";
 
 const footprintData = [
   {
@@ -673,7 +673,7 @@ const Step3 = (props) => {
             ) : (
               <>
                 <Row className="Option">
-                  <div className="heading">
+                  <div className="headingLocal">
                     <Typography variant="caption">
                       <b>
                         Digital
@@ -715,8 +715,7 @@ const Step3 = (props) => {
                       <b>On the go</b>
                     </Typography>
                   </div>
-                  <Col>
-                    <Row className="alaCarteRow">
+                    <div className="datScroll">
                       {stationList
                         .filter((item) => item.type === "On the go")
                         .map((data, index) => (
@@ -744,8 +743,7 @@ const Step3 = (props) => {
                             {data.station}
                           </Button>
                         ))}
-                    </Row>
-                  </Col>
+                    </div>
                 </Row>
                 <Row className="Option">
                   <div className="headingLocal">
@@ -790,8 +788,8 @@ const Step3 = (props) => {
                       <b>A la carte</b>
                     </Typography>
                   </div>
-                  <Col>
-                    <Row>
+                  <Col className="dataScrollAla">
+                    <Row >
                       {stationList
                         .filter((item) => item.type === "alacarte")
                         .map((data, index) => (
