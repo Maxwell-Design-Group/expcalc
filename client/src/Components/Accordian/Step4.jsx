@@ -197,7 +197,7 @@ const Step4 = (props) => {
         digitalsignage65: digitalSinage65,
         catering: catering,
       };
-      Experience.sendData(obj, id, clientDetails);
+      Experience.sendData(obj, id, clientDetails,masterData);
       // calculation();
     }
   };

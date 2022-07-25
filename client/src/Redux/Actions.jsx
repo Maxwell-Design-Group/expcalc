@@ -74,8 +74,9 @@ export const setClientDetails = (data) => {
   };
 };
 
-export const getSupportingQuestionDetails = (data) => {
+export const getSupportingQuestionDetails = (data,mData) => {
   console.log("posData ", data);
+ 
 
   return function (dispatch) {
     let posObj = {
@@ -89,6 +90,7 @@ export const getSupportingQuestionDetails = (data) => {
       kiosk: data.kiosk === undefined ? "" : data.kiosk,
       selfcheckout: data.selfCheckout === undefined ? "" : data.selfCheckout,
       cashier: data.cashier === undefined ? "" : data.cashier,
+      master:mData,
     };
     let catering = "";
     if (data.catering.length > 0) {
@@ -107,7 +109,7 @@ export const getSupportingQuestionDetails = (data) => {
     console.log(data);
 
     axios
-      .post("https://expcalc-dev.herokuapp.com/pos", posObj)
+      .post("http://localhost:3000/pos", posObj)
       .then((response) => {
         console.log("response ", response);
         dispatch(setPosData(response.data.pos));

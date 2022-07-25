@@ -360,12 +360,12 @@ exports.getSupportingFeatures = async (req, res) => {
 
 exports.pos = async (req, res) => {
 
-    var gpos = [];
+    
     var capex = "0";
     var opex = "0";
     var total = "0";
-
-
+   
+    
     
     var footprint = "";
      
@@ -470,34 +470,8 @@ exports.pos = async (req, res) => {
     }
     else {
 
-        var footprintdata=[];
-        var posexpdata = [];
-        //========================================================
-            await footPrint.find()
-            .then(footprint  => {
-
-                footprintdata = footprint;
-            }).catch(err => {
-                res.status(500).send({
-                    message: err.message || "Something went wrong."
-                });
-            });
-
-            //-----------------------------------------
-            
-            await posExp.find()
-                .then(posexp  => {
-
-                    posexpdata = posexp;
-                }).catch(err => {
-                    res.status(500).send({
-                        message: err.message || "Something went wrong."
-                    });
-                });
-
-            //-----------------------------------------
-        //========================================================
-        //-----------------------------------------
+        var footprintdata=req.body.master.footprint;
+        var posexpdata = req.body.master.posexp;
         
         var pos = [];
        
@@ -537,13 +511,17 @@ exports.pos = async (req, res) => {
                                 if (pos2!=null && pos2.length>0){
                                     
                                     const footprintarr = footprint.split('+');
-                                  footprintarr.forEach(f => {
-                                    console.log(f);
-                                    //const p = pos.filter(e=>e.Experience.indexOf(f.trim())!==-1 );
-                                   
-                                    for(let i=0;i<pos2.length;i++){
-                                        console.log(pos2[i])
-                                    }
+                                    
+                                    footprintarr.forEach(f => {
+                                    
+                                    const p = pos2.filter(e=>e.Experience.indexOf(f.trim())!==-1 );
+                                  
+                                    
+                                    p.forEach(item => {
+                                        pcapex = pcapex + item.Capex;
+                                        popex = popex + item.opex;
+                                        ptotal =Number(item.Capex) + Number(item.opex);  
+                                    });
                                     
                                   })
 
@@ -555,13 +533,13 @@ exports.pos = async (req, res) => {
                            });
 
                        }
-                       console.log("pos : " + expitem);
-                    //    capex = capex + pcapex;
-                    //    opex = opex + popex;
-                    //    total = ptotal;
+                       
+                       capex = capex + pcapex;
+                       opex = opex + popex;
+                       total = ptotal;
 
                        objpos = {                               
-                        pos:  expitem ,
+                        pos:  expitem,
                         capex: capex,
                         opex: opex,
                         total: total

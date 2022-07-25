@@ -5,12 +5,14 @@ import Config from "../Config/Config.json";
 import Alert from "../Components/Alert/Alert";
 import {
   completedSteps,
+  getMasterData,
   getSupportingQuestionDetails,
   nextAccordionOpen,
   setClientDetails,
 } from "../Redux/Actions";
 class ExperienceService {
-  sendData(data, accordianId, clientDetails) {
+  
+  sendData(data, accordianId, clientDetails,mData) {
     axios
       .put(
         Config.baseUrl + Config.client + clientDetails._id,
@@ -24,7 +26,7 @@ class ExperienceService {
 
         Store.dispatch(completedSteps(accordianId));
         Store.dispatch(nextAccordionOpen(accordianId + 1));
-        Store.dispatch(getSupportingQuestionDetails(data));
+        Store.dispatch(getSupportingQuestionDetails(data,mData));
       })
       .catch((error) => {});
   }
