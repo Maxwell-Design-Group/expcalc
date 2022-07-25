@@ -229,6 +229,7 @@ const Step5 = (props) => {
   };
   if (posDetails) {
     POS = posDetails;
+    console.log("POS ", POS.length);
     POS.forEach((pos, index) => {
       POSData.push(
         <div class="pos_btn">
@@ -281,7 +282,11 @@ const Step5 = (props) => {
             //   display: "flex",
             //   alignItems: "center",
             // }}
-            className="pos_options_container"
+            className={
+              POS.length > 2
+                ? "pos_options_container_scroll"
+                : "pos_options_container"
+            }
           >
             {POSData}
 

@@ -1121,7 +1121,7 @@ font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 
 .pos_btn {
   float: left;
   margin: -5px 0px 0px 20px;
-  min-width: 120px;
+  min-width: 150px;
   height: 43px;
   position: relative;
   top: 10px;
@@ -1471,9 +1471,16 @@ select option[value=""] {
 }
 
 ::-webkit-scrollbar {
-  width: 0.5em;
-  /* background: #EBEDEF; */
-  /* height: 2em; */
+  width: 0.2em;
+  background: #EBEDEF;
+  height: 0.2em;
+  border-radius: 15px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 15px;
+  height: 0.2em;
 }
 
 /* .scroller {
@@ -1498,4 +1505,12 @@ select option[value=""] {
   letter-spacing: -0.14px;
   color: #da291c;
   width: 10.8em;
+}
+
+.previous_btn h6 {
+  font-weight: bold;
+}
+
+.next_btn h6 {
+  font-weight: bold;
 }
