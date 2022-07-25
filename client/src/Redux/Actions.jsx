@@ -109,7 +109,7 @@ export const getSupportingQuestionDetails = (data,mData) => {
     console.log(data);
 
     axios
-      .post("http://localhost:3000/pos", posObj)
+      .post("https://expcalc-dev.herokuapp.com/pos", posObj)
       .then((response) => {
         console.log("response ", response);
         dispatch(setPosData(response.data.pos));
